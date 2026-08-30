@@ -581,6 +581,7 @@
       <a href="#platform"><span class="lang-en">Platform</span><span class="lang-fr">Programme</span></a>
       <a href="#plans"><span class="lang-en">Plans</span><span class="lang-fr">Plans</span></a>
       <a href="#media"><span class="lang-en">Media</span><span class="lang-fr">Médias</span></a>
+      <a href="#donate"><span class="lang-en">Donate</span><span class="lang-fr">Faire un don</span></a>
     </div>
     <div class="lang-toggle" role="group" aria-label="Language">
       <button id="btn-en" aria-pressed="true" onclick="setLang('en')">EN</button>
@@ -1080,7 +1081,241 @@
 </section>
 
 
+<section class="section donate home" id="donate">
+  <div class="wrap">
+    <div class="donate-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="lang-en">Support</span>
+          <span class="lang-fr">Appui</span>
+        </div>
+        <h2 class="section-title">
+          <span class="lang-en">Support the campaign</span>
+          <span class="lang-fr">Appuyez la campagne</span>
+        </h2>
+        <div class="donate-voice" style="margin-top:18px">
+          <p>
+            <span class="lang-en">This is a small campaign. Neighbours, volunteers, and a plan.</span>
+            <span class="lang-fr">C'est une petite campagne. Des voisins, des bénévoles, et un plan.</span>
+          </p>
+          <p>
+            <span class="lang-en">Every dollar comes from a neighbour. That is the whole machine.</span>
+            <span class="lang-fr">Chaque dollar vient d'un voisin. C'est ça, toute la machine.</span>
+          </p>
+          <p>
+            <span class="lang-en">Your donation pays for signs, cards, and getting the plan in front of people.</span>
+            <span class="lang-fr">Votre don paie les pancartes, les cartes, et mettre le plan devant le monde.</span>
+          </p>
+          <p>
+            <span class="lang-en">Every dollar is recorded, every donation gets a receipt, and nothing gets wasted. That is how I run a job, and that is how I will run the town.</span>
+            <span class="lang-fr">Chaque dollar est consigné, chaque don reçoit un reçu, et rien ne se perd. C'est comme ça que je mène un chantier, et c'est comme ça que je vais mener la ville.</span>
+          </p>
+          <p>
+            <span class="lang-en">If you can give, please give. If money is tight, share a card and tell a neighbour. That helps just as much.</span>
+            <span class="lang-fr">Si vous pouvez donner, donnez s'il vous plaît. Si l'argent est serré, partagez une carte et parlez-en à un voisin. Ça aide autant.</span>
+          </p>
+          <p>
+            <span class="lang-en">Thank you. Hawkesbury is where I intend to spend the rest of my life. We build it together.</span>
+            <span class="lang-fr">Merci. Hawkesbury, c'est ici que je vais passer le reste de ma vie. On le bâtit ensemble.</span>
+          </p>
+          <div class="donate-sig">Denis</div>
+        </div>
+      </div>
+      <div class="donate-plate">
+        <svg class="dn-box-art" viewBox="0 0 120 112" aria-hidden="true" focusable="false">
+          <g class="dn-coin">
+            <circle cx="60" cy="18" r="15" fill="#C8862A" stroke="#14181C" stroke-width="4"/>
+            <text x="60" y="25" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="19" font-weight="900" fill="#14181C">$</text>
+          </g>
+          <g transform="rotate(-3 60 78)">
+            <rect x="20" y="52" width="80" height="52" fill="#F4F1EA" stroke="#14181C" stroke-width="4"/>
+            <rect x="42" y="47" width="36" height="9" rx="3" fill="#14181C"/>
+            <path d="M32 78h20M32 88h32" stroke="#C8862A" stroke-width="4" stroke-linecap="round"/>
+            <path d="M84 74l5 5 9-11" fill="none" stroke="#8A5A12" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+        <div class="big">
+          <span class="lang-en">Donate</span>
+          <span class="lang-fr">Faire un don</span>
+        </div>
+        <div class="method">
+          <span class="lang-en">Interac e-Transfer</span>
+          <span class="lang-fr">Virement Interac</span>
+        </div>
+        <ol class="donate-steps">
+          <li data-n="1"><span class="lang-en">Fill in the form below.</span><span class="lang-fr">Remplissez le formulaire ci-dessous.</span></li>
+          <li data-n="2"><span class="lang-en">Send your gift by e-transfer.</span><span class="lang-fr">Envoyez votre don par virement.</span></li>
+          <li data-n="3"><span class="lang-en">Your official receipt follows.</span><span class="lang-fr">Votre reçu officiel suit.</span></li>
+        </ol>
+      </div>
+    </div>
 
+    <div class="dn-card">
+      <form class="dn-form" id="dn-form" novalidate onsubmit="return dnSubmit(event)">
+        <h3>
+          <svg class="dn-h3-coin" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
+            <circle cx="17" cy="17" r="14" fill="#C8862A" stroke="#14181C" stroke-width="3.5"/>
+            <text x="17" y="24" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="19" font-weight="900" fill="#14181C">$</text>
+          </svg><span class="lang-en">Make a donation</span>
+          <span class="lang-fr">Faire un don</span>
+        </h3>
+
+        <div class="dn-legend"><span class="lang-en">Amount</span><span class="lang-fr">Montant</span></div>
+        <div class="dn-amounts" id="dn-amounts" role="group" aria-label="Amount">
+          <button type="button" data-amt="10" aria-pressed="false" onclick="dnPick(this)">$10</button>
+          <button type="button" data-amt="25" aria-pressed="false" onclick="dnPick(this)">$25</button>
+          <button type="button" data-amt="50" aria-pressed="false" onclick="dnPick(this)">$50</button>
+          <button type="button" data-amt="100" aria-pressed="false" onclick="dnPick(this)">$100</button>
+          <button type="button" data-amt="250" aria-pressed="false" onclick="dnPick(this)">$250</button>
+          <button type="button" data-amt="500" aria-pressed="false" onclick="dnPick(this)">$500</button>
+          <button type="button" data-amt="other" aria-pressed="false" onclick="dnPick(this)">
+            <span class="lang-en">Other</span><span class="lang-fr">Autre</span>
+          </button>
+        </div>
+        <div class="dn-other-wrap" id="dn-other-wrap">
+          <label for="dn-other" style="font-weight:800;font-size:14px">
+            <span class="lang-en">Amount ($1 to $1,200)</span>
+            <span class="lang-fr">Montant (1 $ à 1 200 $)</span>
+          </label>
+          <input type="number" id="dn-other" min="1" max="1200" step="1" inputmode="numeric" oninput="dnAmtChanged()">
+        </div>
+        <div class="dn-err" id="dn-amt-err" role="alert">
+          <span class="lang-en">The maximum any one person may give to a municipal campaign is $1,200.</span>
+          <span class="lang-fr">Le maximum qu'une personne peut donner à une campagne municipale est de 1 200 $.</span>
+        </div>
+
+        <div class="dn-legend"><span class="lang-en">Your details</span><span class="lang-fr">Vos coordonnées</span></div>
+        <div class="dn-grid">
+          <div class="dn-field">
+            <label for="dn-first"><span class="lang-en">First name</span><span class="lang-fr">Prénom</span></label>
+            <input id="dn-first" name="first_name" autocomplete="given-name" required>
+          </div>
+          <div class="dn-field">
+            <label for="dn-last"><span class="lang-en">Last name</span><span class="lang-fr">Nom</span></label>
+            <input id="dn-last" name="last_name" autocomplete="family-name" required>
+          </div>
+          <div class="dn-field">
+            <label for="dn-email"><span class="lang-en">Email</span><span class="lang-fr">Courriel</span></label>
+            <input id="dn-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="dn-field">
+            <label for="dn-phone"><span class="lang-en">Phone</span><span class="lang-fr">Téléphone</span></label>
+            <input id="dn-phone" name="phone" type="tel" autocomplete="tel" required>
+          </div>
+          <div class="dn-field full">
+            <label for="dn-addr1"><span class="lang-en">Address</span><span class="lang-fr">Adresse</span></label>
+            <input id="dn-addr1" name="address1" autocomplete="address-line1" required>
+          </div>
+          <div class="dn-field">
+            <label for="dn-city"><span class="lang-en">City</span><span class="lang-fr">Ville</span></label>
+            <input id="dn-city" name="city" autocomplete="address-level2" required>
+          </div>
+          <div class="dn-field">
+            <label for="dn-postal"><span class="lang-en">Postal code</span><span class="lang-fr">Code postal</span></label>
+            <input id="dn-postal" name="postal" autocomplete="postal-code" required>
+          </div>
+          <div class="dn-field full dn-region-line">
+            <button type="button" class="dn-region-toggle" onclick="dnRegion()">
+              <span id="dn-region-label">Ontario, Canada</span>
+              <span class="lang-en">· change</span><span class="lang-fr">· modifier</span>
+            </button>
+          </div>
+          <div class="dn-field full" id="dn-region-fields" hidden>
+            <div class="dn-grid" style="margin-top:0">
+              <div class="dn-field full">
+                <label for="dn-addr2"><span class="lang-en">Address line 2 <span class="opt">(optional)</span></span><span class="lang-fr">Adresse, ligne 2 <span class="opt">(facultatif)</span></span></label>
+                <input id="dn-addr2" name="address2" autocomplete="address-line2">
+              </div>
+              <div class="dn-field">
+                <label for="dn-province"><span class="lang-en">Province</span><span class="lang-fr">Province</span></label>
+                <input id="dn-province" name="province" autocomplete="address-level1" value="Ontario" required oninput="dnRegionLabel()">
+              </div>
+              <div class="dn-field">
+                <label for="dn-country"><span class="lang-en">Country</span><span class="lang-fr">Pays</span></label>
+                <input id="dn-country" name="country" autocomplete="country-name" value="Canada" required oninput="dnRegionLabel()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dn-check" style="margin-top:18px">
+          <input type="checkbox" id="dn-optin" name="email_optin">
+          <span>
+            <span class="lang-en">Send me campaign updates by email.</span>
+            <span class="lang-fr">Je souhaite recevoir des nouvelles de la campagne par courriel.</span>
+          </span>
+        </div>
+
+        <div class="dn-legend"><span class="lang-en">Certification</span><span class="lang-fr">Attestation</span></div>
+        <div class="dn-check">
+          <input type="checkbox" id="dn-cert" required onchange="dnAmtChanged()">
+          <span>
+            <span class="lang-en">I certify that I am an individual normally resident in Ontario and that this contribution is made from my own personal funds. I understand that corporations and trade unions cannot contribute to a municipal campaign, and that this contribution is not tax deductible.</span>
+            <span class="lang-fr">Je certifie que je suis un particulier résidant normalement en Ontario et que cette contribution est faite avec mes propres fonds personnels. Je comprends que les sociétés et les syndicats ne peuvent pas contribuer à une campagne municipale, et que cette contribution n'est pas déductible d'impôt.</span>
+          </span>
+        </div>
+
+        <ul class="dn-notices">
+          <li><span class="lang-en">The maximum any one person may give to this campaign is $1,200.</span><span class="lang-fr">Le maximum qu'une personne peut donner à cette campagne est de 1 200 $.</span></li>
+          <li><span class="lang-en">If your total giving passes $100, the law requires your name and address to appear on the campaign's public financial statement filed with the Town.</span><span class="lang-fr">Si le total de vos dons dépasse 100 $, la loi exige que votre nom et votre adresse figurent dans le rapport financier public déposé à la Ville.</span></li>
+          <li><span class="lang-en">Contributions to a municipal campaign are not tax deductible.</span><span class="lang-fr">Les contributions à une campagne municipale ne sont pas déductibles d'impôt.</span></li>
+        </ul>
+
+        <button type="submit" class="dn-submit" id="dn-submit" disabled>
+          <span id="dn-submit-label">
+            <span class="lang-en">Select an amount above</span>
+            <span class="lang-fr">Sélectionnez un montant ci-dessus</span>
+          </span>
+        </button>
+
+        <p class="dn-privacy">
+          <span class="lang-en">We collect your name and address because Ontario election law requires the campaign to record every contribution. Your details are used only for the legally required records and your receipt, and are kept for the record period the law sets, to the end of the 2026 to 2030 council term.</span>
+          <span class="lang-fr">Nous recueillons votre nom et votre adresse parce que la loi électorale de l'Ontario oblige la campagne à consigner chaque contribution. Vos renseignements servent uniquement aux registres exigés par la loi et à votre reçu, et sont conservés pour la période prévue par la loi, jusqu'à la fin du mandat du conseil 2026 à 2030.</span>
+        </p>
+
+        <div class="dn-otherways">
+          <b><span class="lang-en">Other ways to give.</span><span class="lang-fr">Autres façons de donner.</span></b>
+          <span class="lang-en">You can also give by cheque, or in person at an event or at the door using the paper contribution form. Write to denispirollo2026@gmail.com and we will sort it in one reply. Cash is accepted only up to $25.</span>
+          <span class="lang-fr">Vous pouvez aussi donner par chèque, ou en personne lors d'un événement ou à la porte avec le formulaire papier. Écrivez à denispirollo2026@gmail.com et on règle ça en une réponse. L'argent comptant est accepté seulement jusqu'à 25 $.</span>
+        </div>
+      </form>
+
+      <div class="dn-confirm" id="dn-confirm" aria-live="polite">
+        <svg class="dn-thanks-art" viewBox="0 0 120 112" aria-hidden="true" focusable="false">
+          <g transform="rotate(-3 60 78)">
+            <rect x="20" y="52" width="80" height="52" fill="#F4F1EA" stroke="#14181C" stroke-width="4"/>
+            <rect x="42" y="47" width="36" height="9" rx="3" fill="#14181C"/>
+            <circle cx="60" cy="80" r="13" fill="#C8862A" stroke="#14181C" stroke-width="3.5"/>
+            <text x="60" y="86" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="16" font-weight="900" fill="#14181C">$</text>
+          </g>
+          <path d="M30 30l-6-8M60 24v-10M90 30l6-8" stroke="#C8862A" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <div class="dn-thanks">
+          <span class="lang-en">Thank you. Two quick steps, about a minute.</span>
+          <span class="lang-fr">Merci. Deux étapes rapides, environ une minute.</span>
+        </div>
+        <ol>
+          <li data-n="1">
+            <span class="lang-en">Press the button so your details reach the campaign for your receipt.</span>
+            <span class="lang-fr">Appuyez sur le bouton pour que vos coordonnées parviennent à la campagne pour votre reçu.</span><br>
+            <a class="dn-mailbtn" id="dn-mailbtn" href="#">
+              <span class="lang-en">Email my details to the campaign</span>
+              <span class="lang-fr">Envoyer mes coordonnées à la campagne</span>
+            </a>
+          </li>
+          <li data-n="2">
+            <span class="lang-en">Send <span class="dn-big" id="dn-c-amt-en">$0</span> by Interac e-transfer to <span class="dn-big">denispirollo2026@gmail.com</span><button type="button" class="dn-copy" onclick="dnCopy(this,'denispirollo2026@gmail.com')">Copy</button>. When your bank asks for a security question, the answer is <span class="dn-big">Denis2026</span><button type="button" class="dn-copy" onclick="dnCopy(this,'Denis2026')">Copy</button>. The question itself can be anything. Put reference <span class="dn-big" id="dn-c-code-en">PIR</span><button type="button" class="dn-copy" onclick="dnCopy(this,document.getElementById('dn-c-code-en').textContent)">Copy</button> in the message box.</span>
+            <span class="lang-fr">Envoyez <span class="dn-big" id="dn-c-amt-fr">0 $</span> par virement Interac à <span class="dn-big">denispirollo2026@gmail.com</span><button type="button" class="dn-copy" onclick="dnCopy(this,'denispirollo2026@gmail.com')">Copier</button>. Quand votre banque demande une question de sécurité, la réponse est <span class="dn-big">Denis2026</span><button type="button" class="dn-copy" onclick="dnCopy(this,'Denis2026')">Copier</button>. La question elle-même peut être n'importe laquelle. Inscrivez la référence <span class="dn-big" id="dn-c-code-fr">PIR</span><button type="button" class="dn-copy" onclick="dnCopy(this,document.getElementById('dn-c-code-fr').textContent)">Copier</button> dans le message.</span>
+          </li>
+        </ol>
+        <p class="dn-fine">
+          <span class="lang-en">Your official receipt follows once the transfer arrives.</span>
+          <span class="lang-fr">Votre reçu officiel suivra dès la réception du virement.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -3031,6 +3266,110 @@
     var nav = document.getElementById('mainnav');
     if(nav.classList.contains('open') && !nav.contains(e.target)){ toggleMenu(false); }
   });
+
+  /* ============ donation form (phase 1: record by email + e-transfer, no card, no storage) ============ */
+  var dnChoice = null; /* 'other' or a number */
+
+  function dnFmtEn(n){ return '$' + n.toLocaleString('en-CA'); }
+  function dnFmtFr(n){ return n.toLocaleString('fr-CA') + ' $'; }
+
+  function dnAmount(){
+    if(dnChoice === null) return null;
+    if(dnChoice !== 'other') return dnChoice;
+    var v = parseInt(document.getElementById('dn-other').value, 10);
+    return isNaN(v) ? null : v;
+  }
+
+  function dnPick(btn){
+    document.querySelectorAll('#dn-amounts button').forEach(function(b){
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+    dnChoice = btn.dataset.amt === 'other' ? 'other' : parseInt(btn.dataset.amt, 10);
+    var wrap = document.getElementById('dn-other-wrap');
+    wrap.classList.toggle('show', dnChoice === 'other');
+    if(dnChoice === 'other'){ document.getElementById('dn-other').focus(); }
+    dnAmtChanged();
+  }
+
+  function dnAmtChanged(){
+    var amt = dnAmount();
+    var over = amt !== null && amt > 1200;
+    var under = amt !== null && amt < 1;
+    document.getElementById('dn-amt-err').classList.toggle('show', over);
+    var ok = amt !== null && !over && !under;
+    var submit = document.getElementById('dn-submit');
+    submit.disabled = !ok;
+    document.getElementById('dn-submit-label').innerHTML = ok
+      ? '<span class="lang-en">Continue · ' + dnFmtEn(amt) + '</span><span class="lang-fr">Continuer · ' + dnFmtFr(amt) + '</span>'
+      : '<span class="lang-en">Select an amount above</span><span class="lang-fr">Sélectionnez un montant ci-dessus</span>';
+  }
+
+  function dnSubmit(e){
+    e.preventDefault();
+    var form = document.getElementById('dn-form');
+    if(!form.reportValidity()) return false;
+    var amt = dnAmount();
+    if(amt === null || amt < 1 || amt > 1200) return false;
+
+    var code = 'PIR-W-' + String(Math.floor(1000 + Math.random() * 9000));
+    var g = function(id){ return document.getElementById(id).value.trim(); };
+    var fr = document.body.classList.contains('fr');
+
+    var lines = [
+      'reference_code: ' + code,
+      'amount: ' + amt,
+      'first_name: ' + g('dn-first'),
+      'last_name: ' + g('dn-last'),
+      'email: ' + g('dn-email'),
+      'phone: ' + g('dn-phone'),
+      'address1: ' + g('dn-addr1'),
+      'address2: ' + g('dn-addr2'),
+      'city: ' + g('dn-city'),
+      'province: ' + g('dn-province'),
+      'postal: ' + g('dn-postal'),
+      'country: ' + g('dn-country'),
+      'language: ' + (fr ? 'FR' : 'EN'),
+      'email_optin: ' + (document.getElementById('dn-optin').checked ? 'yes' : 'no'),
+      'cert_ontario_resident: yes',
+      'payment_method: e-transfer',
+      'contribution_type: money',
+      'submitted_at: ' + new Date().toISOString()
+    ];
+    var subject = (fr ? 'Formulaire de don ' : 'Donation form ') + code;
+    document.getElementById('dn-mailbtn').href =
+      'mailto:denispirollo2026@gmail.com?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+
+    document.getElementById('dn-c-amt-en').textContent = dnFmtEn(amt);
+    document.getElementById('dn-c-amt-fr').textContent = dnFmtFr(amt);
+    document.getElementById('dn-c-code-en').textContent = code;
+    document.getElementById('dn-c-code-fr').textContent = code;
+
+    form.classList.add('hide');
+    var conf = document.getElementById('dn-confirm');
+    conf.classList.add('show');
+    conf.scrollIntoView({behavior:'smooth', block:'start'});
+    return false;
+  }
+
+  function dnRegion(){
+    var f = document.getElementById('dn-region-fields');
+    f.hidden = !f.hidden;
+    if(!f.hidden){ document.getElementById('dn-addr2').focus(); }
+  }
+  function dnRegionLabel(){
+    document.getElementById('dn-region-label').textContent =
+      document.getElementById('dn-province').value + ', ' + document.getElementById('dn-country').value;
+  }
+  function dnCopy(btn, text){
+    var done = function(){
+      btn.classList.add('done');
+      setTimeout(function(){ btn.classList.remove('done'); }, 1200);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){});
+    }
+  }
 </script>
 
 <script>
