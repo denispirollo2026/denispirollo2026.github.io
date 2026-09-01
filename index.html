@@ -150,6 +150,36 @@
     margin-top:22px;font-size:clamp(27px,3.6vw,42px);font-weight:800;
     line-height:1.12;color:var(--accent);text-wrap:balance;max-width:14ch;
   }
+  .hero-anchor{margin-top:30px;animation:ctaIn .5s cubic-bezier(.22,.66,.24,1) .45s both}
+  @keyframes ctaIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .hero-line{font-size:17px;font-weight:600;color:var(--ink);max-width:40ch}
+  .hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:16px}
+  .hero-more{font-weight:700;font-size:15px;color:var(--accent-deep);text-decoration:none;border-bottom:3px solid transparent;padding-bottom:2px}
+  .hero-more:hover,.hero-more:focus-visible{border-bottom-color:var(--accent)}
+
+  /* ============ the ask: one button family, primary/nav/read/bar ============ */
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:var(--ink);border:3px solid var(--ink);
+    padding:14px 22px;font-weight:900;font-size:16px;letter-spacing:.04em;text-transform:uppercase;
+    text-decoration:none;box-shadow:4px 4px 0 var(--ink);transform:rotate(-1deg);
+    transition:transform .14s cubic-bezier(.2,.8,.2,1),box-shadow .14s cubic-bezier(.2,.8,.2,1);
+  }
+  .cta:hover,.cta:focus-visible{transform:rotate(0) translate(-1px,-1px);box-shadow:6px 6px 0 var(--ink);color:var(--ink)}
+  .cta:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+  .cta:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+  .cta svg{width:20px;height:20px;flex:none}
+  .nav-links a.cta{padding:8px 14px 8px 12px;font-size:13px;box-shadow:3px 3px 0 var(--ink);border-bottom:3px solid var(--ink)}
+  .nav-links a.cta:hover,.nav-links a.cta:focus-visible{border-bottom-color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+  .nav-links a.cta svg{width:16px;height:16px}
+  .read-cta{
+    margin-top:52px;padding:26px 0 8px;border-top:3px solid var(--ink);
+    display:flex;flex-direction:column;align-items:flex-start;gap:20px;
+  }
+  .read-cta[hidden]{display:none}
+  .read-cta p{margin:0;font-size:17px;line-height:1.5;max-width:44ch}
+  .read-cta p strong{font-weight:900}
+  .cta-bar{display:none}
   .hero-photo{position:relative;max-width:430px;margin:0 auto}
   .hero-photo img{width:100%;display:block;border:4px solid var(--ink)}
   .hero-plate{
@@ -567,7 +597,21 @@
     .nav.open .nav-links a:hover,.nav.open .nav-links a:focus-visible{
       border-bottom-color:var(--divider);background:rgba(200,134,42,.14);
     }
+    .nav.open .nav-links a.cta{margin:12px 22px 4px;justify-content:center;transform:none;padding:14px}
     .lang-toggle button{padding:6px 11px}
+    .hero-actions .cta{width:100%;justify-content:center;padding:17px 22px;transform:none}
+    .read-cta .cta{width:100%;justify-content:center;padding:17px 22px;transform:none}
+    /* the phone bar: the ask sits in the thumb zone once the reader is past the hero */
+    .cta-bar{
+      display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;
+      padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+      background:var(--paper);border-top:3px solid var(--ink);
+      transform:translateY(110%);visibility:hidden;
+      transition:transform .28s cubic-bezier(.22,.66,.24,1),visibility 0s linear .28s;
+    }
+    .cta-bar.show{transform:none;visibility:visible;transition:transform .28s cubic-bezier(.22,.66,.24,1)}
+    .cta-bar .cta{display:flex;justify-content:center;width:100%;padding:16px;transform:none;box-shadow:none}
+    body.cta-bar-on{padding-bottom:84px}
   }
 </style>
 
@@ -586,7 +630,7 @@
       <a href="#platform"><span class="lang-en">Platform</span><span class="lang-fr">Programme</span></a>
       <a href="#plans"><span class="lang-en">Plans</span><span class="lang-fr">Plans</span></a>
       <a href="#media"><span class="lang-en">Media</span><span class="lang-fr">Médias</span></a>
-      <a href="#donate"><span class="lang-en">Donate</span><span class="lang-fr">Faire un don</span></a>
+      <a class="cta" href="#donate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="13" font-weight="900" fill="var(--ink)">$</text></svg><span class="lang-en">Chip in</span><span class="lang-fr">Contribuez</span></a>
     </div>
     <div class="lang-toggle" role="group" aria-label="Language">
       <button id="btn-en" aria-pressed="true" onclick="setLang('en')">EN</button>
@@ -618,6 +662,16 @@
         <div class="hero-tagline">
           <span class="lang-en">Building a stronger Hawkesbury together.</span>
           <span class="lang-fr">Construire ensemble un Hawkesbury plus fort.</span>
+        </div>
+        <div class="hero-anchor">
+          <p class="hero-line">
+            <span class="lang-en">A small campaign: neighbours, volunteers, and a plan. Every dollar comes from a neighbour.</span>
+            <span class="lang-fr">Une petite campagne : des voisins, des bénévoles, et un plan. Chaque dollar vient d'un voisin.</span>
+          </p>
+          <div class="hero-actions">
+            <a class="cta" href="#donate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="13" font-weight="900" fill="var(--ink)">$</text></svg><span class="lang-en">Chip in</span><span class="lang-fr">Contribuez</span></a>
+            <a class="hero-more" href="#platform"><span class="lang-en">See the five points &rarr;</span><span class="lang-fr">Voir les cinq points &rarr;</span></a>
+          </div>
         </div>
       </div>
       <div class="hero-photo">
@@ -1099,6 +1153,18 @@
     </div>
   </div>
 </section>
+
+<div class="read-cta" id="read-cta-tpl" hidden>
+  <p>
+    <span class="lang-en"><strong>That is the plan.</strong> Getting it in front of people costs money, and every dollar comes from a neighbour.</span>
+    <span class="lang-fr"><strong>C'est ça, le plan.</strong> Le mettre devant le monde, ça coûte de l'argent, pis chaque dollar vient d'un voisin.</span>
+  </p>
+  <a class="cta" href="#donate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="13" font-weight="900" fill="var(--ink)">$</text></svg><span class="lang-en">Chip in</span><span class="lang-fr">Contribuez</span></a>
+</div>
+
+<div class="cta-bar" id="cta-bar">
+  <a class="cta" href="#donate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="13" font-weight="900" fill="var(--ink)">$</text></svg><span class="lang-en">Chip in to the plan</span><span class="lang-fr">Contribuez au plan</span></a>
+</div>
 
 
 <section class="section donate home" id="donate">
@@ -4094,9 +4160,46 @@
     });
     document.body.classList.toggle('viewing-article', found);
     if(found){ window.scrollTo(0, 0); }
+    else if(location.hash.length > 1){
+      /* leaving an article for a home anchor: the target was display:none when the
+         browser tried to jump, so scroll to it once the home sections are back */
+      var target = document.getElementById(location.hash.slice(1));
+      if(target){ requestAnimationFrame(function(){ target.scrollIntoView(); }); }
+    }
   }
   window.addEventListener('hashchange', route);
   route();
+
+  /* the ask at the end of every long read, cloned from one template */
+  (function(){
+    var tpl = document.getElementById('read-cta-tpl');
+    if(!tpl) return;
+    document.querySelectorAll('.article-view .art-wrap').forEach(function(w){
+      var c = tpl.cloneNode(true);
+      c.removeAttribute('id'); c.hidden = false;
+      var back = w.querySelector('.art-back.bottom');
+      if(back){ back.parentNode.insertBefore(c, back); } else { w.appendChild(c); }
+    });
+  })();
+
+  /* phone bar: shows once the reader is past the hero, hides while the donate section is on screen */
+  (function(){
+    var bar = document.getElementById('cta-bar'), hero = document.querySelector('.hero'), dn = document.getElementById('donate');
+    if(!bar || !hero || !dn) return;
+    function update(){
+      var inArticle = document.body.classList.contains('viewing-article');
+      var past = window.scrollY > (inArticle ? 420 : hero.offsetTop + hero.offsetHeight - 80);
+      var r = dn.getBoundingClientRect();
+      var dnOnScreen = !inArticle && r.top < window.innerHeight && r.bottom > 0;
+      var on = past && !dnOnScreen;
+      bar.classList.toggle('show', on);
+      document.body.classList.toggle('cta-bar-on', on);
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('hashchange', function(){ setTimeout(update, 50); });
+    window.addEventListener('resize', update);
+    update();
+  })();
 
   /* mobile hamburger menu */
   function toggleMenu(force){
