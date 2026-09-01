@@ -205,9 +205,13 @@
   /* ============ blog ============ */
   .post-list{display:flex;flex-direction:column}
   .post-row{
-    display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:24px;
+    display:grid;grid-template-columns:150px minmax(0,1fr) auto 96px;gap:24px;
     padding:26px 0;border-top:1px solid var(--divider);align-items:baseline;
   }
+  .post-art{width:96px;height:96px;align-self:center;justify-self:end}
+  .post-art svg{width:100%;height:100%;display:block}
+  a.post-row:hover .post-art svg,a.post-row:focus-visible .post-art svg{transform:rotate(-1.5deg)}
+  .post-art svg{transition:transform .18s ease}
   .post-row:last-child{border-bottom:1px solid var(--divider)}
   .post-date{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .post-title{font-size:22px;font-weight:800;line-height:1.2;color:var(--muted)}
@@ -534,6 +538,7 @@
     .hero-plate{left:-8px}
     .donate-plate{justify-self:start}
     .post-row{grid-template-columns:1fr;gap:6px}
+    .post-art{display:none}
     .nav{gap:16px}
     .nav-links{gap:16px}
     .eco-band{grid-template-columns:1fr;gap:8px}
@@ -808,6 +813,7 @@
           <div class="post-excerpt"><span class="lang-en">What the Town's own plan says, who is responsible for each piece of the fix, and the seven moves a mayor can actually make with council.</span><span class="lang-fr">Ce que dit le plan de la Ville, qui est responsable de chaque morceau de la solution, et les sept gestes qu'un maire peut vraiment poser avec le conseil.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(-2 45 44)"><path d="M20 72 L36 20 H52 L68 72 Z" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linejoin="round"/><line x1="44" y1="26" x2="44" y2="68" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-dasharray="7 6"/><path d="M58 58 L64 42 L70 58 Z" fill="var(--accent,#C8862A)" stroke="var(--ink,#14181C)" stroke-width="2.5" stroke-linejoin="round"/><line x1="54" y1="59" x2="74" y2="59" stroke="var(--ink,#14181C)" stroke-width="2.5" stroke-linecap="round"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/main-street">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -816,6 +822,7 @@
           <div class="post-excerpt"><span class="lang-en">The tourism line in the Town's budget reads $0. The plan puts the street, the river and the events calendar under one person in charge, one set of rules, and one clear list of what a sponsor gets.</span><span class="lang-fr">La ligne tourisme au budget de la Ville dit 0 $. Le plan met la rue, la rivière et le calendrier d'événements sous un seul responsable, une seule série de règles et une seule liste claire de ce qu'un commanditaire reçoit.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(2 45 44)"><rect x="20" y="32" width="50" height="30" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3"/><rect x="17" y="24" width="56" height="9" fill="var(--accent,#C8862A)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><path d="M17 33 q4.7 6 9.4 0 q4.6 6 9.3 0 q4.6 6 9.3 0 q4.6 6 9.3 0 q4.6 6 9.3 0 q4.7 6 9.4 0" fill="none" stroke="var(--ink,#14181C)" stroke-width="2.5"/><rect x="52" y="44" width="12" height="18" fill="var(--accent-deep,#8A5A12)"/><rect x="26" y="44" width="18" height="11" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><path d="M16 74 q6 -5 12 0 q6 5 12 0 q6 -5 12 0 q6 5 12 0 q6 -5 12 0" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/youth">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -824,6 +831,7 @@
           <div class="post-excerpt"><span class="lang-en">The typical person in town today is thirteen years older than the typical person here twenty years ago. A first job at town hall, a real seat at the table, and the young talent already carrying this campaign.</span><span class="lang-fr">Le résident typique d'aujourd'hui a treize ans de plus que celui d'il y a vingt ans. Un premier emploi à l'hôtel de ville, une vraie place à la table, pis le jeune talent qui porte déjà cette campagne.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(-2 45 44)"><path d="M50 50 L63 37 L76 50 V70 H50 Z" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linejoin="round"/><rect x="59" y="56" width="8" height="14" fill="var(--accent,#C8862A)"/><path d="M18 68 Q12 30 42 23 Q56 20 62 30" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round"/><path d="M66 38 L62 27 L53 31 Z" fill="var(--accent-deep,#8A5A12)"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/housing">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -832,6 +840,7 @@
           <div class="post-excerpt"><span class="lang-en">For twenty years our population went down while every town around us grew. The land being cleaned right now, the town rules a council can change on its own, and the people Denis will get on the phone himself.</span><span class="lang-fr">Pendant vingt ans, notre population a baissé alors que toutes les villes autour grandissaient. Le terrain qui se fait nettoyer en ce moment, les règlements qu'un conseil peut corriger lui-même, et le monde que Denis va appeler lui-même.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(2 45 44)"><path d="M13 48 L29 32 L45 48 V71 H13 Z" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linejoin="round"/><rect x="24" y="54" width="10" height="9" fill="var(--accent,#C8862A)"/><path d="M49 48 L65 32 L81 48 V71 H49 Z" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linejoin="round" stroke-dasharray="6 5"/><line x1="10" y1="72" x2="84" y2="72" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linecap="round"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/park">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -840,6 +849,7 @@
           <div class="post-excerpt"><span class="lang-en">Next door in Champlain, 130 acres of zoned industrial land waits on one thing: our water and sewer. The two towns signed a first agreement in December, the deadline for the final one slipped, and finishing is a builder's trade.</span><span class="lang-fr">Juste à côté, à Champlain, 130 acres de terrain industriel zoné attendent une seule affaire : notre eau pis nos égouts. Les deux villes ont signé une première entente en décembre, l'échéance de la finale a glissé, pis finir, c'est le métier d'un bâtisseur.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(-2 45 44)"><path d="M16 66 V38 L36 46 V38 L56 46 V38 L76 46 V66 Z" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linejoin="round"/><rect x="24" y="52" width="8" height="8" fill="var(--accent-deep,#8A5A12)"/><rect x="40" y="52" width="8" height="8" fill="var(--accent-deep,#8A5A12)"/><rect x="58" y="52" width="11" height="14" fill="var(--ink,#14181C)"/><line x1="14" y1="76" x2="80" y2="76" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-dasharray="7 6"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/books">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -848,6 +858,7 @@
           <div class="post-excerpt"><span class="lang-en">We spent months inside the Town's budgets and its own rules. Here is what checks out, what cannot be checked, and the commitments that would let anyone here check the Town's numbers for themselves.</span><span class="lang-fr">On a passé des mois dans les budgets et règlements de la Ville. Voici ce qui se vérifie, ce qui ne peut pas l'être, et les engagements qui permettraient à n'importe qui d'ici de vérifier les chiffres de la Ville par lui-même.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(2 45 44)"><path d="M46 28 Q30 20 14 28 V70 Q30 62 46 70 Z" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linejoin="round"/><path d="M46 28 Q62 20 78 28 V70 Q62 62 46 70 Z" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linejoin="round"/><path d="M22 38 h16 M22 46 h16 M22 54 h16" stroke="var(--muted,#6E6A5E)" stroke-width="2.5" stroke-linecap="round"/><path d="M54 38 h16 M54 46 h16" stroke="var(--muted,#6E6A5E)" stroke-width="2.5" stroke-linecap="round"/><path d="M62 25 v14 l4 -4 4 4 V25" fill="var(--accent,#C8862A)" stroke="var(--ink,#14181C)" stroke-width="2"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/technology">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -856,6 +867,7 @@
           <div class="post-excerpt"><span class="lang-en">Running Town Hall costs 37 percent more than five years ago. No line in the books says what technology costs. The audit that counts the hours, the services going online, and the promise that nobody loses a job over it.</span><span class="lang-fr">Faire rouler l'hôtel de ville coûte 37 pour cent de plus qu'il y a cinq ans. Pis aucune ligne dans les livres ne dit ce que la technologie coûte. L'audit qui compte les heures, les services qui passent en ligne, pis la promesse que personne ne perd sa job là-dedans.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(-2 45 44)"><rect x="21" y="24" width="52" height="36" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3"/><path d="M33 43 l9 9 17 -20" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><line x1="47" y1="60" x2="47" y2="69" stroke="var(--ink,#14181C)" stroke-width="3"/><line x1="34" y1="70" x2="60" y2="70" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linecap="round"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/powers">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -864,6 +876,7 @@
           <div class="post-excerpt"><span class="lang-en">One vote of seven. The pen that writes the budget. A seat on the county council. And powers sitting in a drawer. The parts of the job nobody campaigns on, plus a test to hold every candidate to.</span><span class="lang-fr">Un vote sur sept. Le crayon qui écrit le budget. Un siège au conseil des Comtés. Et des pouvoirs qui dorment dans un tiroir. La partie de la job dont personne ne parle en campagne, plus un test pour tous les candidats.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(2 45 44)"><path d="M60 18 L76 34 L40 70 L22 74 L26 56 Z" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linejoin="round"/><line x1="54" y1="26" x2="68" y2="40" stroke="var(--accent,#C8862A)" stroke-width="6"/><line x1="26" y1="56" x2="34" y2="64" stroke="var(--ink,#14181C)" stroke-width="2.5"/><path d="M16 82 q14 -7 28 -1 q12 5 24 -1" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/transparency">
         <div class="post-date"><span class="lang-en">Long read</span><span class="lang-fr">Texte de fond</span></div>
@@ -872,6 +885,7 @@
           <div class="post-excerpt"><span class="lang-en">Six years of council records, and not one vote shows who voted which way. It is entirely lawful, and it can end the day somebody asks. The plan to put every vote on the big things on the record, with names, where you can look it up.</span><span class="lang-fr">Six ans d'archives du conseil, pis pas un vote ne montre qui a voté de quel bord. C'est parfaitement légal, pis ça peut finir le jour où quelqu'un le demande. Le plan pour mettre chaque vote sur les grosses affaires au registre, avec les noms, là où vous pouvez le consulter.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the plan</span><span class="lang-fr">Lire le plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(-2 45 44)"><rect x="17" y="18" width="62" height="58" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><path d="M25 32 h28 M25 46 h28 M25 60 h28" stroke="var(--muted,#6E6A5E)" stroke-width="3" stroke-linecap="round"/><path d="M60 30 l4 5 8 -9" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M61 42 l9 9 M70 42 l-9 9" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round"/><path d="M60 58 l4 5 8 -9" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div>
       </a>
       <a class="post-row" href="#/plans/campus">
         <div class="post-date"><span class="lang-en">An idea · in the open</span><span class="lang-fr">Une idée · à ciel ouvert</span></div>
@@ -880,6 +894,7 @@
           <div class="post-excerpt"><span class="lang-en">Points 2, 3 and 4 taken all the way. What a bilingual trades and health-care campus could be, built on the training that already happens here. And an honest account of what a mayor could and could not do about it.</span><span class="lang-fr">Les points 2, 3 et 4 suivis jusqu'au bout. Ce que pourrait être un campus bilingue des métiers et des soins, bâti sur la formation qui se donne déjà ici. Pis un portrait honnête de ce qu'un maire pourrait et ne pourrait pas faire là-dedans.</span></div>
         </div>
         <div class="post-cta"><span class="lang-en">Read the idea</span><span class="lang-fr">Lire l'idée</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><g transform="rotate(2 45 44)"><rect x="16" y="26" width="64" height="30" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3"/><rect x="26" y="15" width="44" height="12" fill="var(--ink,#14181C)"/><rect x="22" y="34" width="12" height="9" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><rect x="62" y="34" width="12" height="9" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><rect x="43" y="42" width="10" height="14" fill="var(--ink,#14181C)"/><line x1="12" y1="57" x2="84" y2="57" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linecap="round"/><g transform="rotate(35 28 70)"><rect x="25.5" y="68" width="5" height="16" fill="var(--accent-deep,#8A5A12)" stroke="var(--ink,#14181C)" stroke-width="2"/><rect x="16" y="60" width="24" height="9" rx="1.5" fill="var(--accent,#C8862A)" stroke="var(--ink,#14181C)" stroke-width="2.5"/></g><rect x="61" y="61" width="7" height="21" fill="var(--accent-deep,#8A5A12)"/><rect x="54" y="68" width="21" height="7" fill="var(--accent-deep,#8A5A12)"/></g></svg></div>
       </a>
       
     </div>
