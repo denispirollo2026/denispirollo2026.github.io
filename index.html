@@ -177,6 +177,12 @@
     display:flex;flex-direction:column;align-items:flex-start;gap:20px;
   }
   .read-cta[hidden]{display:none}
+  .plan-note{margin-top:44px;padding:18px 20px 16px;border:3px solid var(--ink);background:var(--plate);box-shadow:5px 5px 0 var(--accent);transform:rotate(-.35deg)}
+  .plan-note .media-kind{margin-bottom:8px}
+  .plan-note p{margin:0;font-size:15px;line-height:1.6;color:var(--ink)}
+  .plan-note a{font-weight:800;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px}
+  .plan-note a:hover,.plan-note a:focus-visible{background:var(--accent);text-decoration:none}
+  .plan-note[hidden]{display:none}
   .read-cta p{margin:0;font-size:17px;line-height:1.5;max-width:44ch}
   .read-cta p strong{font-weight:900}
   .cta-bar{display:none}
@@ -1154,6 +1160,14 @@
   </div>
 </section>
 
+<div class="plan-note" id="plan-note-tpl" hidden>
+  <div class="media-kind"><span class="lang-en">A living document</span><span class="lang-fr">Un document vivant</span></div>
+  <p>
+    <span class="lang-en"><strong>These plans keep improving.</strong> New facts come in, and the plans change to match them. The team behind them is small and only human, so it will get something wrong now and then. If you spot an error, or know a fact we missed, please write to <a href="mailto:denispirollo2026@gmail.com?subject=Correction">denispirollo2026@gmail.com</a>. That kind of note is the most useful thing a reader can send.</span>
+    <span class="lang-fr"><strong>Ces plans s'améliorent sans arrêt.</strong> De nouveaux faits arrivent, pis les plans changent pour les suivre. L'équipe derrière est petite pis juste humaine, ça fait qu'elle va se tromper de temps en temps. Si vous voyez une erreur, ou si vous connaissez un fait qu'on a manqué, écrivez-nous à <a href="mailto:denispirollo2026@gmail.com?subject=Correction">denispirollo2026@gmail.com</a>. C'est le genre de message le plus utile qu'un lecteur peut envoyer.</span>
+  </p>
+</div>
+
 <div class="read-cta" id="read-cta-tpl" hidden>
   <p>
     <span class="lang-en"><strong>That is the plan.</strong> Getting it in front of people costs money, and every dollar comes from a neighbour.</span>
@@ -1650,6 +1664,7 @@
 </section>
 
 
+
 <section class="article-view" id="view-campus">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
@@ -1728,8 +1743,12 @@
         <span class="lang-fr">L'idée, en mots simples</span>
       </h2>
       <p>
-        <span class="lang-en">The idea is a bilingual campus in Hawkesbury that trains people for the skilled trades and health care. It starts as <b class="pop">a growth of what already works here.</b> La Cité already trains practical nurses here, with the hospital. The hands-on labs happen at the hospital itself, the part where students practise on a real hospital floor. The classroom half still comes from Ottawa over a screen. That is exactly the half a campus would bring home. The hospital already hires those graduates. The high schools on both sides of the river already send their young people away to train. A campus would keep them here. Where it would go and how it would be paid for are two questions I am <b class="pop">not</b> going to answer for you today. Nobody has earned the right to answer them yet. Students and staff downtown every weekday would be the Main Street plan's best customer (point 2). Workers trained here would be the investment plan's best argument (point 4).</span>
-        <span class="lang-fr">L'idée, c'est un campus bilingue à Hawkesbury qui forme du monde pour les métiers spécialisés pis les soins de santé. Ça commence comme <b class="pop">la croissance de ce qui marche déjà ici.</b> La Cité forme déjà des infirmières auxiliaires ici, avec l'hôpital. Les laboratoires se font à l'hôpital même, la partie où les étudiantes pratiquent sur un vrai plancher d'hôpital. La moitié théorique arrive encore d'Ottawa par un écran. C'est exactement cette moitié-là qu'un campus ramènerait chez nous. L'hôpital engage déjà ces diplômées-là. Les écoles secondaires des deux bords de la rivière envoient déjà leurs jeunes se former ailleurs. Un campus les garderait ici. Où ça irait pis comment ça se paierait, c'est deux questions que je ne vais <b class="pop">pas</b> vous répondre aujourd'hui. Personne n'a encore gagné le droit d'y répondre. Des étudiants pis du personnel au centre-ville chaque jour de semaine, ce serait le meilleur client du plan de la rue Main (point 2). Des travailleurs formés ici, ce serait le meilleur argument du plan d'investissement (point 4).</span>
+        <span class="lang-en">The idea is a bilingual campus in Hawkesbury that trains people for the skilled trades and health care. It starts as <b class="pop">a growth of what already works here.</b> The hospital already calls itself a teaching site. Doctors in training from the University of Ottawa do rotations there. La Cité already trains practical nurses here, with the hospital, and its personal support workers and advanced care paramedics do their placements there too. The hands-on labs for the nurses happen at the hospital itself, the part where students practise on a real hospital floor. The classroom half still comes from Ottawa over a screen. That is exactly the half a campus would bring home. The hospital already hires those graduates. The high schools on both sides of the river already send their young people away to train. A campus would keep them here. Where it would go and how it would be paid for are two questions I am <b class="pop">not</b> going to answer for you today. Nobody has earned the right to answer them yet. Students and staff downtown every weekday would be the Main Street plan's best customer (point 2). Workers trained here would be the investment plan's best argument (point 4).</span>
+        <span class="lang-fr">L'idée, c'est un campus bilingue à Hawkesbury qui forme du monde pour les métiers spécialisés pis les soins de santé. Ça commence comme <b class="pop">la croissance de ce qui marche déjà ici.</b> L'hôpital se décrit déjà lui-même comme un site d'enseignement. Des médecins en formation de l'Université d'Ottawa y font des stages. La Cité forme déjà des infirmières auxiliaires ici, avec l'hôpital, pis ses préposés aux services de soutien personnel pis ses paramédics en soins avancés y font leurs stages aussi. Les laboratoires des infirmières se font à l'hôpital même, la partie où les étudiantes pratiquent sur un vrai plancher d'hôpital. La moitié théorique arrive encore d'Ottawa par un écran. C'est exactement cette moitié-là qu'un campus ramènerait chez nous. L'hôpital engage déjà ces diplômées-là. Les écoles secondaires des deux bords de la rivière envoient déjà leurs jeunes se former ailleurs. Un campus les garderait ici. Où ça irait pis comment ça se paierait, c'est deux questions que je ne vais <b class="pop">pas</b> vous répondre aujourd'hui. Personne n'a encore gagné le droit d'y répondre. Des étudiants pis du personnel au centre-ville chaque jour de semaine, ce serait le meilleur client du plan de la rue Main (point 2). Des travailleurs formés ici, ce serait le meilleur argument du plan d'investissement (point 4).</span>
+      </p>
+      <p>
+        <span class="lang-en">The trades side has a history here too, and it is worth knowing. La Cité ran apprenticeship classes in this town, welding, machining and automotive among them, in classrooms and workshops inside the French catholic high school on Kitchener Street. The college's own website listed a Hawkesbury campus until earlier this year. It no longer does. The college dropped its automotive programme last spring, and this year's apprenticeship calendar has no Hawkesbury dates on it. Nobody cuts a ribbon when something like that leaves. A web page changes and a calendar goes quiet. <b class="pop">Rooms you borrow can be taken back. A campus with its own front door stays.</b> That is the difference between what this town had and what it needs.</span>
+        <span class="lang-fr">Le côté des métiers a une histoire ici aussi, pis ça vaut la peine de la connaître. La Cité a donné des cours d'apprentissage dans cette ville, soudage, usinage pis mécanique automobile entre autres, dans des classes pis des ateliers à l'intérieur de l'école secondaire catholique de la rue Kitchener. Le site web du collège affichait un campus de Hawkesbury jusqu'au début de cette année. Il ne l'affiche plus. Le collège a laissé tomber son programme d'entretien automobile le printemps passé, pis le calendrier d'apprentissage de cette année n'a aucune date à Hawkesbury. Personne ne coupe un ruban quand une affaire de même s'en va. Une page web change, pis un calendrier devient silencieux. <b class="pop">Des locaux qu'on emprunte, ça se reprend. Un campus avec sa propre porte d'entrée, ça reste.</b> C'est ça, la différence entre ce que cette ville avait pis ce dont elle a besoin.</span>
       </p>
 
       <figure class="art-media">
@@ -1894,7 +1913,7 @@
           <span class="lang-fr">Les reçus</span>
         </h2>
         <ul class="receipts-list">
-          <li><span class="lang-en">This page makes no claim about money, no claim about a site, and no claim about a partner. The two facts it leans on are public and you can check them today: La Cité collégiale has trained practical nurses at the Hawkesbury hospital since September 2022, and the college's own page tells its students they must be willing to travel to the Ottawa region to finish some of their work placements. Both are on La Cité's website. Everything else here is an idea, and it is labelled as one.</span><span class="lang-fr">Cette page ne fait aucune affirmation sur l'argent, aucune sur un site, aucune sur un partenaire. Les deux faits sur lesquels elle s'appuie sont publics pis vérifiables aujourd'hui : La Cité collégiale forme des infirmières auxiliaires à l'Hôpital général de Hawkesbury depuis septembre 2022, pis la page du collège dit à ses étudiants qu'ils doivent être prêts à se déplacer dans la région d'Ottawa pour compléter certains stages. Les deux sont sur le site de La Cité. Tout le reste ici est une idée, pis c'est écrit comme tel.</span></li>
+          <li><span class="lang-en">This page makes no claim about money, no claim about a site, and no claim about a partner. The facts it leans on are public and you can check them today. La Cité collégiale has trained practical nurses at the Hawkesbury hospital since September 2022, and the college's own page tells its students they must be willing to travel to the Ottawa region to finish some of their work placements. The hospital's own website says it is an official teaching site with academic affiliations to the University of Ottawa and La Cité, and its placements page lists medical residents and students, personal support workers, practical nurses and advanced care paramedics. The college's campus page, as saved by the Internet Archive on 14 January 2026, lists a Campus de Hawkesbury at the catholic regional high school on Kitchener Street; the copy saved on 21 June 2026 does not, and neither does the live page. The college's apprenticeship calendar for 2026, read on 3 September 2026, shows no Hawkesbury dates. Radio-Canada reported the end of the automotive technician programme on 22 May 2025. Everything else here is an idea, and it is labelled as one.</span><span class="lang-fr">Cette page ne fait aucune affirmation sur l'argent, aucune sur un site, aucune sur un partenaire. Les faits sur lesquels elle s'appuie sont publics pis vérifiables aujourd'hui. La Cité collégiale forme des infirmières auxiliaires à l'Hôpital général de Hawkesbury depuis septembre 2022, pis la page du collège dit à ses étudiants qu'ils doivent être prêts à se déplacer dans la région d'Ottawa pour compléter certains stages. Le site web de l'hôpital dit qu'il est un site officiel d'enseignement avec des affiliations académiques avec l'Université d'Ottawa et La Cité, pis sa page des stages nomme des résidents et des étudiants en médecine, des préposés aux services de soutien personnel, des infirmières auxiliaires pis des paramédics en soins avancés. La page des campus du collège, telle que sauvegardée par l'Internet Archive le 14 janvier 2026, affiche un Campus de Hawkesbury à l'école secondaire catholique régionale de la rue Kitchener; la copie du 21 juin 2026 ne l'affiche plus, pis la page en ligne non plus. Le calendrier d'apprentissage du collège pour 2026, lu le 3 septembre 2026, ne montre aucune date à Hawkesbury. Radio-Canada a rapporté la fin du programme de technicien d'entretien automobile le 22 mai 2025. Tout le reste ici est une idée, pis c'est écrit comme tel.</span></li>
         </ul>
       </div>
 
@@ -4172,13 +4191,17 @@
 
   /* the ask at the end of every long read, cloned from one template */
   (function(){
-    var tpl = document.getElementById('read-cta-tpl');
+    var tpl = document.getElementById('read-cta-tpl'), note = document.getElementById('plan-note-tpl');
     if(!tpl) return;
     document.querySelectorAll('.article-view .art-wrap').forEach(function(w){
-      var c = tpl.cloneNode(true);
-      c.removeAttribute('id'); c.hidden = false;
       var back = w.querySelector('.art-back.bottom');
-      if(back){ back.parentNode.insertBefore(c, back); } else { w.appendChild(c); }
+      /* the living-document note first, then the ask, so the ask still lands last */
+      [note, tpl].forEach(function(src){
+        if(!src) return;
+        var c = src.cloneNode(true);
+        c.removeAttribute('id'); c.hidden = false;
+        if(back){ back.parentNode.insertBefore(c, back); } else { w.appendChild(c); }
+      });
     });
   })();
 
