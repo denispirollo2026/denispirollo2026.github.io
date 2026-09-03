@@ -177,12 +177,15 @@
     display:flex;flex-direction:column;align-items:flex-start;gap:20px;
   }
   .read-cta[hidden]{display:none}
-  .plan-note{margin-top:44px;padding:18px 20px 16px;border:3px solid var(--ink);background:var(--plate);box-shadow:5px 5px 0 var(--accent);transform:rotate(-.35deg)}
-  .plan-note .media-kind{margin-bottom:8px}
-  .plan-note p{margin:0;font-size:15px;line-height:1.6;color:var(--ink)}
-  .plan-note a{font-weight:800;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px}
+  .art-header{position:relative}
+  .plan-note{position:absolute;right:calc(100% + 26px);top:4px;width:196px;padding:14px 16px 12px;border:3px solid var(--ink);background:var(--plate);box-shadow:5px 5px 0 var(--accent);transform:rotate(-2deg);z-index:2}
+  .plan-note .media-kind{font-size:11px;letter-spacing:.14em;margin-bottom:6px}
+  .plan-note p{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink)}
+  .plan-note a{font-weight:800;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:3px;overflow-wrap:normal;word-break:normal}
   .plan-note a:hover,.plan-note a:focus-visible{background:var(--accent);text-decoration:none}
+  .plan-note-updated{margin-top:10px;padding-top:8px;border-top:2px solid var(--ink);font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep)}
   .plan-note[hidden]{display:none}
+  @media (max-width:1260px){.plan-note{position:static;width:auto;margin:0 0 26px;padding:16px 18px 14px;transform:rotate(-.6deg)}}
   .read-cta p{margin:0;font-size:17px;line-height:1.5;max-width:44ch}
   .read-cta p strong{font-weight:900}
   .cta-bar{display:none}
@@ -1160,13 +1163,14 @@
   </div>
 </section>
 
-<div class="plan-note" id="plan-note-tpl" hidden>
+<aside class="plan-note" id="plan-note-tpl" hidden>
   <div class="media-kind"><span class="lang-en">A living document</span><span class="lang-fr">Un document vivant</span></div>
   <p>
-    <span class="lang-en"><strong>These plans keep improving.</strong> New facts come in, and the plans change to match them. The team behind them is small and only human, so it will get something wrong now and then. If you spot an error, or know a fact we missed, please write to <a href="mailto:denispirollo2026@gmail.com?subject=Correction">denispirollo2026@gmail.com</a>. That kind of note is the most useful thing a reader can send.</span>
-    <span class="lang-fr"><strong>Ces plans s'améliorent sans arrêt.</strong> De nouveaux faits arrivent, pis les plans changent pour les suivre. L'équipe derrière est petite pis juste humaine, ça fait qu'elle va se tromper de temps en temps. Si vous voyez une erreur, ou si vous connaissez un fait qu'on a manqué, écrivez-nous à <a href="mailto:denispirollo2026@gmail.com?subject=Correction">denispirollo2026@gmail.com</a>. C'est le genre de message le plus utile qu'un lecteur peut envoyer.</span>
+    <span class="lang-en"><strong>These plans keep improving.</strong> New facts come in and the plans change to match. The team behind them is small and only human, so it will get something wrong now and then. Spot an error, or a fact we missed? Write to <a href="mailto:denispirollo2026@gmail.com?subject=Correction">denispirollo2026<wbr>@gmail.com</a>. It helps a lot.</span>
+    <span class="lang-fr"><strong>Ces plans s'améliorent sans arrêt.</strong> De nouveaux faits arrivent, pis les plans changent pour les suivre. L'équipe derrière est petite pis juste humaine, ça fait qu'elle va se tromper de temps en temps. Une erreur, un fait qu'on a manqué ? Écrivez à <a href="mailto:denispirollo2026@gmail.com?subject=Correction">denispirollo2026<wbr>@gmail.com</a>. Ça aide beaucoup.</span>
   </p>
-</div>
+  <div class="plan-note-updated"><span class="lang-en">Last updated <time></time></span><span class="lang-fr">Mise à jour : <time></time></span></div>
+</aside>
 
 <div class="read-cta" id="read-cta-tpl" hidden>
   <p>
@@ -1419,7 +1423,7 @@
 
 
 
-<section class="article-view" id="view-books">
+<section class="article-view" id="view-books" data-updated="2026-08-27">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -1665,7 +1669,7 @@
 
 
 
-<section class="article-view" id="view-campus">
+<section class="article-view" id="view-campus" data-updated="2026-09-03">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -1926,7 +1930,7 @@
 </section>
 
 
-<section class="article-view" id="view-housing">
+<section class="article-view" id="view-housing" data-updated="2026-09-02">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -2212,7 +2216,7 @@
 </section>
 
 
-<section class="article-view" id="view-park">
+<section class="article-view" id="view-park" data-updated="2026-09-01">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -2506,7 +2510,7 @@
 </section>
 
 
-<section class="article-view" id="view-main-street">
+<section class="article-view" id="view-main-street" data-updated="2026-09-02">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -2791,7 +2795,7 @@
 </section>
 
 
-<section class="article-view" id="view-powers">
+<section class="article-view" id="view-powers" data-updated="2026-08-30">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -3020,7 +3024,7 @@
 </section>
 
 
-<section class="article-view" id="view-roads">
+<section class="article-view" id="view-roads" data-updated="2026-08-30">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -3323,7 +3327,7 @@
 </section>
 
 
-<section class="article-view" id="view-technology">
+<section class="article-view" id="view-technology" data-updated="2026-08-30">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -3620,7 +3624,7 @@
 </section>
 
 
-<section class="article-view" id="view-transparency">
+<section class="article-view" id="view-transparency" data-updated="2026-08-31">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -3847,7 +3851,7 @@
 </section>
 
 
-<section class="article-view" id="view-youth">
+<section class="article-view" id="view-youth" data-updated="2026-08-30">
   <div class="wrap art-wrap">
     <a class="art-back" href="#plans">
       <span class="lang-en">&larr; Back to the site</span>
@@ -4192,16 +4196,29 @@
   /* the ask at the end of every long read, cloned from one template */
   (function(){
     var tpl = document.getElementById('read-cta-tpl'), note = document.getElementById('plan-note-tpl');
-    if(!tpl) return;
-    document.querySelectorAll('.article-view .art-wrap').forEach(function(w){
-      var back = w.querySelector('.art-back.bottom');
-      /* the living-document note first, then the ask, so the ask still lands last */
-      [note, tpl].forEach(function(src){
-        if(!src) return;
-        var c = src.cloneNode(true);
-        c.removeAttribute('id'); c.hidden = false;
+    var MEN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var MFR = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+    function fmt(d, fr){ var p = d.split('-'); var day = parseInt(p[2],10), m = parseInt(p[1],10)-1;
+      return fr ? (day + ' ' + MFR[m] + ' ' + p[0]) : (day + ' ' + MEN[m] + ' ' + p[0]); }
+    document.querySelectorAll('.article-view').forEach(function(v){
+      var w = v.querySelector('.art-wrap'); if(!w) return;
+      /* the living-document banner sits beside the title, with the article's own last-updated date */
+      var hd = w.querySelector('.art-header');
+      if(note && hd){
+        var n = note.cloneNode(true); n.removeAttribute('id'); n.hidden = false;
+        var d = v.getAttribute('data-updated'), ts = n.querySelectorAll('time');
+        if(d && ts.length === 2){
+          ts[0].setAttribute('datetime', d); ts[0].textContent = fmt(d, false);
+          ts[1].setAttribute('datetime', d); ts[1].textContent = fmt(d, true);
+        } else { var u = n.querySelector('.plan-note-updated'); if(u){ u.parentNode.removeChild(u); } }
+        hd.insertBefore(n, hd.firstChild);
+      }
+      /* the ask at the end of every long read */
+      if(tpl){
+        var c = tpl.cloneNode(true); c.removeAttribute('id'); c.hidden = false;
+        var back = w.querySelector('.art-back.bottom');
         if(back){ back.parentNode.insertBefore(c, back); } else { w.appendChild(c); }
-      });
+      }
     });
   })();
 
