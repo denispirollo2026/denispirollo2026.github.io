@@ -1329,10 +1329,6 @@
             <label for="dn-email"><span class="lang-en">Email</span><span class="lang-fr">Courriel</span></label>
             <input id="dn-email" name="email" type="email" autocomplete="email" required>
           </div>
-          <div class="dn-field">
-            <label for="dn-phone"><span class="lang-en">Phone</span><span class="lang-fr">Téléphone</span></label>
-            <input id="dn-phone" name="phone" type="tel" autocomplete="tel" required>
-          </div>
           <div class="dn-field full">
             <label for="dn-addr1"><span class="lang-en">Address</span><span class="lang-fr">Adresse</span></label>
             <input id="dn-addr1" name="address1" autocomplete="address-line1" required>
@@ -1435,8 +1431,8 @@
             </a>
           </li>
           <li data-n="2">
-            <span class="lang-en">Send <span class="dn-big" id="dn-c-amt-en">$0</span> by Interac e-transfer to <span class="dn-big">denispirollo2026@gmail.com</span><button type="button" class="dn-copy" onclick="dnCopy(this,'denispirollo2026@gmail.com')">Copy</button>. When your bank asks for a security question, the answer is <span class="dn-big">Denis2026</span><button type="button" class="dn-copy" onclick="dnCopy(this,'Denis2026')">Copy</button>. The question itself can be anything. Put reference <span class="dn-big" id="dn-c-code-en">PIR</span><button type="button" class="dn-copy" onclick="dnCopy(this,document.getElementById('dn-c-code-en').textContent)">Copy</button> in the message box.</span>
-            <span class="lang-fr">Envoyez <span class="dn-big" id="dn-c-amt-fr">0 $</span> par virement Interac à <span class="dn-big">denispirollo2026@gmail.com</span><button type="button" class="dn-copy" onclick="dnCopy(this,'denispirollo2026@gmail.com')">Copier</button>. Quand votre banque demande une question de sécurité, la réponse est <span class="dn-big">Denis2026</span><button type="button" class="dn-copy" onclick="dnCopy(this,'Denis2026')">Copier</button>. La question elle-même peut être n'importe laquelle. Inscrivez la référence <span class="dn-big" id="dn-c-code-fr">PIR</span><button type="button" class="dn-copy" onclick="dnCopy(this,document.getElementById('dn-c-code-fr').textContent)">Copier</button> dans le message.</span>
+            <span class="lang-en">Send <span class="dn-big" id="dn-c-amt-en">$0</span> by Interac e-transfer to <span class="dn-big">denispirollo2026@gmail.com</span><button type="button" class="dn-copy" onclick="dnCopy(this,'denispirollo2026@gmail.com')">Copy</button>. That is the whole step. There is no security question to answer and nothing to write in the message box.</span>
+            <span class="lang-fr">Envoyez <span class="dn-big" id="dn-c-amt-fr">0 $</span> par virement Interac à <span class="dn-big">denispirollo2026@gmail.com</span><button type="button" class="dn-copy" onclick="dnCopy(this,'denispirollo2026@gmail.com')">Copier</button>. C'est toute l'étape. Aucune question de sécurité, et rien à écrire dans le message.</span>
           </li>
         </ol>
         <p class="dn-fine">
@@ -4543,7 +4539,6 @@
       'first_name: ' + g('dn-first'),
       'last_name: ' + g('dn-last'),
       'email: ' + g('dn-email'),
-      'phone: ' + g('dn-phone'),
       'address1: ' + g('dn-addr1'),
       'address2: ' + g('dn-addr2'),
       'city: ' + g('dn-city'),
@@ -4564,8 +4559,6 @@
 
     document.getElementById('dn-c-amt-en').textContent = dnFmtEn(amt);
     document.getElementById('dn-c-amt-fr').textContent = dnFmtFr(amt);
-    document.getElementById('dn-c-code-en').textContent = code;
-    document.getElementById('dn-c-code-fr').textContent = code;
 
     form.classList.add('hide');
     var conf = document.getElementById('dn-confirm');
