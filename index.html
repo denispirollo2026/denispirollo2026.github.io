@@ -477,6 +477,64 @@
     .dn-grid{grid-template-columns:1fr}
   }
 
+  /* ============ sign reservations (css) ============ */
+  .signs-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:center}
+  .sg-lede{margin-top:18px;font-size:19px;font-weight:600;line-height:1.5;max-width:50ch}
+  .sg-steps{margin-top:22px;max-width:52ch}
+  .sg-steps li{
+    list-style:none;position:relative;padding:12px 0 12px 42px;
+    border-top:1px solid var(--divider);font-size:16.5px;font-weight:700;line-height:1.45;
+  }
+  .sg-steps li:first-child{border-top:0}
+  .sg-steps li::before{
+    content:attr(data-n);position:absolute;left:0;top:10px;
+    width:28px;height:28px;text-align:center;line-height:24px;
+    background:var(--accent);color:var(--ink);border:2px solid var(--ink);font-size:14px;font-weight:900;
+  }
+  .sg-dates{
+    margin-top:18px;max-width:52ch;font-size:15px;line-height:1.55;
+    background:var(--plate);border-left:4px solid var(--accent-deep);padding:12px 14px;
+  }
+  .sg-plate{
+    background:var(--plate);border:4px solid var(--ink);transform:rotate(-2deg);
+    box-shadow:var(--shadow);padding:14px;max-width:440px;justify-self:center;margin:0;
+  }
+  .sg-plate img{display:block;width:100%;height:auto;border:2px solid var(--ink)}
+  .sg-plate figcaption{
+    margin-top:10px;text-align:center;font-size:13px;font-weight:800;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);
+  }
+  .sg-card{margin-top:52px}
+  .sg-h3-icon{width:30px;height:30px;vertical-align:-6px;margin-right:8px;overflow:visible}
+  .sg-radios{display:flex;flex-direction:column;gap:10px}
+  .sg-radio{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.45;cursor:pointer}
+  .sg-radio input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--accent-deep)}
+  .sg-note{
+    display:none;margin-top:12px;font-size:14.5px;line-height:1.55;
+    background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;
+  }
+  .sg-note.show{display:block}
+  .sg-note .sg-radios{flex-direction:row;gap:26px;margin-top:10px}
+  .sg-card .dn-field textarea{
+    font-family:inherit;font-size:16px;font-weight:600;color:var(--ink);
+    background:var(--paper);border:2px solid var(--ink);padding:9px 11px;min-height:70px;resize:vertical;
+  }
+  .sg-card .dn-field textarea:focus-visible{outline:2px solid var(--accent-deep);outline-offset:1px}
+  .sg-card .dn-check{margin-top:10px}
+  .sg-fallback{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.6}
+  .sg-copybox{
+    display:none;margin-top:10px;width:100%;min-height:170px;
+    font-family:Consolas,'Courier New',monospace;font-size:12.5px;line-height:1.45;
+    color:var(--ink);background:var(--paper);border:2px solid var(--ink);padding:8px;
+  }
+  .sg-copybox.show{display:block}
+  .sg-ref{font-weight:900;color:var(--accent-deep)}
+  @media (max-width:860px){
+    .signs-grid{grid-template-columns:1fr;gap:38px}
+    .sg-plate{max-width:400px}
+  }
+  /* ============ end sign reservations (css) ============ */
+
   /* ============ footer ============ */
   footer{padding:64px 0 48px}
   .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px}
@@ -670,6 +728,7 @@
       <a href="#platform"><span class="lang-en">Platform</span><span class="lang-fr">Programme</span></a>
       <a href="#plans"><span class="lang-en">Plans</span><span class="lang-fr">Plans</span></a>
       <a href="#media"><span class="lang-en">Media</span><span class="lang-fr">Médias</span></a>
+      <a href="#signs"><span class="lang-en">Get a sign</span><span class="lang-fr">Ma pancarte</span></a>
       <a class="cta" href="#donate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="13" font-weight="900" fill="var(--ink)">$</text></svg><span class="lang-en">Chip in</span><span class="lang-fr">Contribuez</span></a>
     </div>
     <div class="lang-toggle" role="group" aria-label="Language">
@@ -1291,6 +1350,213 @@
 <div class="cta-bar" id="cta-bar">
   <a class="cta" href="#donate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="13" font-weight="900" fill="var(--ink)">$</text></svg><span class="lang-en">Chip in to the plan</span><span class="lang-fr">Contribuez au plan</span></a>
 </div>
+
+
+<section class="section signs home" id="signs">
+  <div class="wrap">
+    <div class="signs-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="lang-en">Lawn signs</span>
+          <span class="lang-fr">Pancartes</span>
+        </div>
+        <h2 class="section-title">
+          <span class="lang-en">Put a sign on your lawn</span>
+          <span class="lang-fr">Une pancarte sur votre terrain</span>
+        </h2>
+        <p class="sg-lede">
+          <span class="lang-en">A sign on your lawn tells the whole street where you stand. It costs you nothing, and we do the work.</span>
+          <span class="lang-fr">Une pancarte sur votre terrain, ça montre à toute la rue de quel bord vous êtes. Ça ne vous coûte rien, pis c'est nous qui faisons le travail.</span>
+        </p>
+        <ol class="sg-steps">
+          <li data-n="1"><span class="lang-en">Reserve it with the form below.</span><span class="lang-fr">Réservez-la en remplissant le formulaire ci-dessous.</span></li>
+          <li data-n="2"><span class="lang-en">We bring it and put it up, starting Saturday 26 September.</span><span class="lang-fr">On vous l'apporte et on l'installe, à partir du samedi 26 septembre.</span></li>
+          <li data-n="3"><span class="lang-en">After the vote, we come back for it.</span><span class="lang-fr">Après le vote, on revient la chercher.</span></li>
+        </ol>
+        <p class="sg-dates">
+          <span class="lang-en">Saturday 26 September is the first day the Town allows election signs, and every sign comes down by Saturday 31 October. Yours goes on your own property, back from the road, clear of driveways and street corners.</span>
+          <span class="lang-fr">Le samedi 26 septembre est le premier jour où la Ville autorise les pancartes électorales, et toutes les pancartes sont retirées au plus tard le samedi 31 octobre. La vôtre sera installée sur votre propre terrain, en retrait de la rue, à l'écart des entrées et des intersections.</span>
+        </p>
+      </div>
+      <figure class="sg-plate">
+        <img src="assets/6bd346c90ca0.jpg" width="760" height="570" loading="lazy" decoding="async"
+             alt="Denis Pirollo lawn sign / Pancarte de Denis Pirollo">
+        <figcaption>
+          <span class="lang-en">The sign · 24 x 18 in</span>
+          <span class="lang-fr">La pancarte · 24 × 18 po</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="dn-card sg-card">
+      <form class="dn-form" id="sg-form" novalidate onsubmit="return sgSubmit(event)">
+        <h3>
+          <svg class="sg-h3-icon" viewBox="0 0 34 34" aria-hidden="true" focusable="false">
+            <rect x="3" y="4" width="28" height="18" fill="#C8862A" stroke="#14181C" stroke-width="3"/>
+            <path d="M10 22v10M24 22v10" stroke="#14181C" stroke-width="3" stroke-linecap="round"/>
+          </svg><span class="lang-en">Reserve your sign</span>
+          <span class="lang-fr">Réservez votre pancarte</span>
+        </h3>
+
+        <div class="dn-legend"><span class="lang-en">Your details</span><span class="lang-fr">Vos coordonnées</span></div>
+        <div class="dn-grid">
+          <div class="dn-field">
+            <label for="sg-first"><span class="lang-en">First name</span><span class="lang-fr">Prénom</span></label>
+            <input id="sg-first" name="first_name" autocomplete="given-name" required>
+          </div>
+          <div class="dn-field">
+            <label for="sg-last"><span class="lang-en">Last name</span><span class="lang-fr">Nom</span></label>
+            <input id="sg-last" name="last_name" autocomplete="family-name" required>
+          </div>
+          <div class="dn-field">
+            <label for="sg-email"><span class="lang-en">Email</span><span class="lang-fr">Courriel</span></label>
+            <input id="sg-email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="dn-field">
+            <label for="sg-phone"><span class="lang-en">Phone <span class="opt">(optional)</span></span><span class="lang-fr">Téléphone <span class="opt">(facultatif)</span></span></label>
+            <input id="sg-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="dn-legend"><span class="lang-en">Where the sign goes</span><span class="lang-fr">Emplacement de la pancarte</span></div>
+        <div class="dn-grid">
+          <div class="dn-field full">
+            <label for="sg-addr"><span class="lang-en">Street address (number and street)</span><span class="lang-fr">Adresse (numéro et rue)</span></label>
+            <input id="sg-addr" name="address" autocomplete="address-line1" required>
+          </div>
+          <div class="dn-field">
+            <label for="sg-city"><span class="lang-en">Town</span><span class="lang-fr">Ville</span></label>
+            <input id="sg-city" name="city" autocomplete="address-level2" value="Hawkesbury" required oninput="sgPostal()">
+          </div>
+          <div class="dn-field">
+            <label for="sg-postal"><span class="lang-en">Postal code</span><span class="lang-fr">Code postal</span></label>
+            <input id="sg-postal" name="postal" autocomplete="postal-code" required oninput="sgPostal()">
+          </div>
+        </div>
+        <div class="sg-note" id="sg-out-note">
+          <span class="lang-en">This address looks like it is outside Hawkesbury. Send your request anyway: we check the sign rules there and write back before anything goes up.</span>
+          <span class="lang-fr">Cette adresse semble être à l'extérieur de Hawkesbury. Envoyez votre demande quand même : on vérifie les règles d'affichage de cette municipalité et on vous répond avant d'installer quoi que ce soit.</span>
+        </div>
+
+        <div class="dn-legend"><span class="lang-en">The property</span><span class="lang-fr">La propriété</span></div>
+        <div class="sg-radios" role="radiogroup" aria-label="Property / Propriété">
+          <label class="sg-radio"><input type="radio" name="sg-type" value="own" required onchange="sgType()">
+            <span><span class="lang-en">It's my home, and I own it</span><span class="lang-fr">C'est chez moi, et j'en suis propriétaire</span></span></label>
+          <label class="sg-radio"><input type="radio" name="sg-type" value="rent" onchange="sgType()">
+            <span><span class="lang-en">It's my home, and I rent it</span><span class="lang-fr">C'est chez moi, et je suis locataire</span></span></label>
+          <label class="sg-radio"><input type="radio" name="sg-type" value="business" onchange="sgType()">
+            <span><span class="lang-en">It's a business</span><span class="lang-fr">C'est un commerce</span></span></label>
+        </div>
+        <div class="sg-note" id="sg-rent-note">
+          <span class="lang-en">The Town's sign rule needs the owner's permission. Before we install, we will ask you for your landlord's OK in writing. A text or an email from them is enough.</span>
+          <span class="lang-fr">Le règlement de la Ville sur les enseignes électorales exige la permission du propriétaire. Avant d'installer la pancarte, on vous demandera l'accord écrit de votre propriétaire. Un texto ou un courriel de sa part suffit.</span>
+        </div>
+        <div class="sg-note" id="sg-biz-note">
+          <span class="lang-en">One question for businesses: do you ever charge anyone to put up a sign or a display here?</span>
+          <span class="lang-fr">Une question pour les commerces : est-ce qu'il vous arrive de faire payer quelqu'un qui veut installer une pancarte, une affiche ou un présentoir chez vous?</span>
+          <div class="sg-radios" role="radiogroup" aria-label="Display fee / Frais d'affichage">
+            <label class="sg-radio"><input type="radio" name="sg-fee" value="no" onchange="sgFee()"><span><span class="lang-en">No</span><span class="lang-fr">Non</span></span></label>
+            <label class="sg-radio"><input type="radio" name="sg-fee" value="yes" onchange="sgFee()"><span><span class="lang-en">Yes</span><span class="lang-fr">Oui</span></span></label>
+          </div>
+        </div>
+        <div class="sg-note" id="sg-fee-note">
+          <span class="lang-en">Thank you for telling us. A paid spot comes with its own rules, so we will write to you before anything goes up.</span>
+          <span class="lang-fr">Merci de nous l'avoir dit. Un emplacement payant est soumis à des règles particulières, alors on vous écrira avant d'installer quoi que ce soit.</span>
+        </div>
+
+        <div class="dn-grid" style="margin-top:18px">
+          <div class="dn-field full">
+            <label for="sg-place"><span class="lang-en">Where on the property? <span class="opt">(optional)</span></span><span class="lang-fr">À quel endroit sur le terrain? <span class="opt">(facultatif)</span></span></label>
+            <textarea id="sg-place" name="placement" rows="2"></textarea>
+            <span class="opt" style="font-size:13px">
+              <span class="lang-en">For example: left of the driveway, or the corner of the lot.</span>
+              <span class="lang-fr">Par exemple : à gauche de l'entrée, ou au coin du terrain.</span>
+            </span>
+          </div>
+        </div>
+        <div class="dn-check">
+          <input type="checkbox" id="sg-big" name="room_for_big_sign">
+          <span>
+            <span class="lang-en">I have room for a bigger sign: a large lot, or frontage on Highway 17.</span>
+            <span class="lang-fr">J'ai de la place pour une plus grande pancarte : un grand terrain, ou un emplacement en bordure de la 17.</span>
+          </span>
+        </div>
+
+        <div class="dn-legend"><span class="lang-en">Permission</span><span class="lang-fr">Autorisation</span></div>
+        <div class="dn-check">
+          <input type="checkbox" id="sg-perm" required>
+          <span id="sg-perm-text">
+            <span class="lang-en">I own this property, or its owner agrees. I allow Denis Pirollo's campaign to put an election sign on it from Saturday 26 September to Saturday 31 October 2026, and to come back for it after the vote.</span>
+            <span class="lang-fr">Je suis propriétaire des lieux, ou le propriétaire a donné son accord. J'autorise la campagne de Denis Pirollo à y installer une pancarte électorale du samedi 26 septembre au samedi 31 octobre 2026, et à revenir la retirer après le vote.</span>
+          </span>
+        </div>
+
+        <div class="dn-legend"><span class="lang-en">Want to do more? <span style="text-transform:none;letter-spacing:0;font-weight:600">(optional)</span></span><span class="lang-fr">Envie d'en faire plus? <span style="text-transform:none;letter-spacing:0;font-weight:600">(facultatif)</span></span></div>
+        <div class="dn-check">
+          <input type="checkbox" id="sg-vol" name="volunteer">
+          <span>
+            <span class="lang-en">I can help put up signs in my neighbourhood.</span>
+            <span class="lang-fr">Je peux aider à installer des pancartes dans mon quartier.</span>
+          </span>
+        </div>
+        <div class="dn-check">
+          <input type="checkbox" id="sg-optin" name="email_optin">
+          <span>
+            <span class="lang-en">Send me campaign updates by email.</span>
+            <span class="lang-fr">Je souhaite recevoir des nouvelles de la campagne par courriel.</span>
+          </span>
+        </div>
+
+        <button type="submit" class="dn-submit" id="sg-submit">
+          <span class="lang-en">Reserve my sign</span>
+          <span class="lang-fr">Réserver ma pancarte</span>
+        </button>
+
+        <p class="dn-privacy">
+          <span class="lang-en">We use your details only to bring, place and pick up your sign, and to keep the owner's permission that the Town's sign by-law asks for. We never share them, and we add you to no mailing list unless you ticked the box for updates.</span>
+          <span class="lang-fr">Vos renseignements servent uniquement à apporter, installer et reprendre votre pancarte, et à conserver la preuve de la permission du propriétaire exigée par le règlement de la Ville sur les enseignes électorales. On ne les partage jamais, et on ne vous ajoute à aucune liste d'envoi, sauf si vous avez coché la case pour recevoir des nouvelles.</span>
+        </p>
+
+        <div class="dn-otherways">
+          <b><span class="lang-en">Rather ask in person?</span><span class="lang-fr">Vous préférez demander en personne?</span></b>
+          <span class="lang-en">Tell Denis or a volunteer at your door, or write to denispirollo2026@gmail.com.</span>
+          <span class="lang-fr">Dites-le à Denis ou à un bénévole qui frappe à votre porte, ou écrivez à denispirollo2026@gmail.com.</span>
+        </div>
+      </form>
+
+      <div class="dn-confirm" id="sg-confirm" aria-live="polite">
+        <div class="dn-thanks">
+          <span class="lang-en">Almost done. One step left.</span>
+          <span class="lang-fr">Presque fini. Il reste une étape.</span>
+        </div>
+        <ol>
+          <li data-n="1">
+            <span class="lang-en">Press the button. Your email opens with your request already written; just press Send.</span>
+            <span class="lang-fr">Appuyez sur le bouton. Votre messagerie s'ouvre avec votre demande déjà rédigée : il ne reste qu'à appuyer sur Envoyer.</span><br>
+            <a class="dn-mailbtn" id="sg-mailbtn" href="#">
+              <span class="lang-en">Email my sign request</span>
+              <span class="lang-fr">Envoyer ma demande par courriel</span>
+            </a>
+            <p class="sg-fallback">
+              <span class="lang-en">No email opened? Copy your request and send it yourself to denispirollo2026@gmail.com.</span>
+              <span class="lang-fr">Votre messagerie ne s'est pas ouverte? Copiez votre demande et envoyez-la vous-même à denispirollo2026@gmail.com.</span>
+              <button type="button" class="dn-copy" onclick="sgCopyReq(this)"><span class="lang-en">Copy my request</span><span class="lang-fr">Copier ma demande</span></button>
+            </p>
+            <textarea class="sg-copybox" id="sg-copybox" readonly aria-label="Request / Demande"></textarea>
+          </li>
+          <li data-n="2">
+            <span class="lang-en">We write back to confirm. Your sign goes up starting Saturday 26 September.</span>
+            <span class="lang-fr">On vous répondra pour confirmer. Votre pancarte sera installée à partir du samedi 26 septembre.</span>
+          </li>
+        </ol>
+        <p class="dn-fine">
+          <span class="lang-en">Your reference:</span><span class="lang-fr">Votre numéro de référence :</span>
+          <span class="sg-ref" id="sg-ref"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 <section class="section donate home" id="donate">
@@ -5160,6 +5426,101 @@
     };
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(done, function(){});
+    }
+  }
+</script>
+
+<script>
+  /* ============ sign reservations (script): the request leaves as an email written by the resident; this page stores nothing ============ */
+  var SG_TO = 'denispirollo2026@gmail.com';
+  function sgVal(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  function sgOne(s){ return String(s || '').replace(/\s+/g, ' ').trim(); }
+  function sgIsFr(){ return document.body.classList.contains('fr'); }
+  function sgChecked(name){ var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+
+  function sgPostal(){
+    var el = document.getElementById('sg-postal');
+    var p = el.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    var city = sgVal('sg-city').toLowerCase();
+    var bad = p.length > 0 && !/^[A-Z]\d[A-Z]\d[A-Z]\d$/.test(p);
+    el.setCustomValidity(bad ? (sgIsFr() ? 'Entrez un code postal au format K6A 1A1.' : 'Enter a postal code like K6A 1A1.') : '');
+    var outside = (p.length === 6 && !bad && p.slice(0, 3) !== 'K6A') ||
+                  (city.length > 2 && city.indexOf('hawkesbury') === -1);
+    document.getElementById('sg-out-note').classList.toggle('show', outside);
+  }
+
+  function sgType(){
+    var t = sgChecked('sg-type');
+    document.getElementById('sg-rent-note').classList.toggle('show', t === 'rent');
+    document.getElementById('sg-biz-note').classList.toggle('show', t === 'business');
+    document.querySelectorAll('input[name="sg-fee"]').forEach(function(r){ r.required = (t === 'business'); });
+    sgFee();
+  }
+  function sgFee(){
+    document.getElementById('sg-fee-note').classList.toggle('show',
+      sgChecked('sg-type') === 'business' && sgChecked('sg-fee') === 'yes');
+  }
+
+  function sgSubmit(e){
+    e.preventDefault();
+    sgPostal();
+    var form = document.getElementById('sg-form');
+    if(!form.reportValidity()) return false;
+
+    var fr = sgIsFr();
+    var type = sgChecked('sg-type');
+    var yn = function(id){ return document.getElementById(id).checked ? 'yes' : 'no'; };
+    var perm = sgOne(document.querySelector('#sg-perm-text .lang-' + (fr ? 'fr' : 'en')).textContent);
+    var postal = sgVal('sg-postal').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    if(postal.length === 6){ postal = postal.slice(0, 3) + ' ' + postal.slice(3); }
+    var code = 'PIR-S-' + String(Math.floor(10000 + Math.random() * 90000));
+
+    var lines = [
+      fr ? "Bonjour, je voudrais une pancarte de Denis Pirollo à l'adresse ci-dessous."
+         : 'Hello, I would like a Denis Pirollo sign at the address below.',
+      '',
+      'reference_code: ' + code,
+      'first_name: ' + sgOne(sgVal('sg-first')),
+      'last_name: ' + sgOne(sgVal('sg-last')),
+      'email: ' + sgOne(sgVal('sg-email')),
+      'phone: ' + sgOne(sgVal('sg-phone')),
+      'address: ' + sgOne(sgVal('sg-addr')),
+      'city: ' + sgOne(sgVal('sg-city')),
+      'postal: ' + postal,
+      'property_type: ' + type,
+      'business_charges_for_display: ' + (type === 'business' ? sgChecked('sg-fee') : 'n/a'),
+      'placement_note: ' + sgOne(sgVal('sg-place')),
+      'room_for_big_sign: ' + yn('sg-big'),
+      'volunteer_to_install: ' + yn('sg-vol'),
+      'email_optin: ' + yn('sg-optin'),
+      'owner_permission: yes',
+      'permission_text: ' + perm,
+      'language: ' + (fr ? 'FR' : 'EN'),
+      'submitted_at: ' + new Date().toISOString()
+    ];
+    var subject = (fr ? 'Demande de pancarte ' : 'Sign request ') + code;
+    var body = lines.join('\r\n');
+    document.getElementById('sg-mailbtn').href = 'mailto:' + SG_TO +
+      '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    document.getElementById('sg-copybox').value =
+      (fr ? 'À : ' : 'To: ') + SG_TO + '\n' + (fr ? 'Objet : ' : 'Subject: ') + subject + '\n\n' + lines.join('\n');
+    document.getElementById('sg-ref').textContent = code;
+
+    form.classList.add('hide');
+    var conf = document.getElementById('sg-confirm');
+    conf.classList.add('show');
+    conf.scrollIntoView({behavior:'smooth', block:'start'});
+    return false;
+  }
+
+  function sgCopyReq(btn){
+    var box = document.getElementById('sg-copybox');
+    box.classList.add('show');
+    box.focus();
+    box.select();
+    var done = function(){ btn.classList.add('done'); setTimeout(function(){ btn.classList.remove('done'); }, 1400); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(box.value).then(done, function(){});
     }
   }
 </script>
