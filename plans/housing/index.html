@@ -12,6 +12,7 @@
 <meta http-equiv="content-language" content="en-CA">
 <meta name="theme-color" content="#C8862A">
 <meta name="author" content="Denis Pirollo campaign">
+<link rel="alternate" type="application/rss+xml" title="Denis Pirollo for Mayor of Hawkesbury" href="/feed.xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1203,7 +1204,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"infrastructure":"/plans/infrastructure/","powers":"/plans/powers/","partners":"/plans/partners/","campus":"/plans/campus/","roads":"/plans/roads/","housing":"/plans/housing/","park":"/plans/park/","youth":"/plans/youth/","transparency":"/plans/transparency/","books":"/plans/books/","technology":"/plans/technology/","transport":"/plans/transport/","main-street":"/plans/main-street/","mainstreet":"/plans/main-street/"};
+  var PLAN_PAGES = {"park":"/plans/park/","housing":"/plans/housing/","campus":"/plans/campus/","roads":"/plans/roads/","main-street":"/plans/main-street/","books":"/plans/books/","transparency":"/plans/transparency/","transport":"/plans/transport/","infrastructure":"/plans/infrastructure/","youth":"/plans/youth/","powers":"/plans/powers/","partners":"/plans/partners/","technology":"/plans/technology/","mainstreet":"/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }

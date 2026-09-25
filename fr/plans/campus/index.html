@@ -12,6 +12,7 @@
 <meta http-equiv="content-language" content="fr-CA">
 <meta name="theme-color" content="#C8862A">
 <meta name="author" content="Denis Pirollo campaign">
+<link rel="alternate" type="application/rss+xml" title="Denis Pirollo, candidat à la mairie de Hawkesbury" href="/fr/feed.xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -1236,7 +1237,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"infrastructure":"/fr/plans/infrastructure/","powers":"/fr/plans/powers/","partners":"/fr/plans/partners/","campus":"/fr/plans/campus/","roads":"/fr/plans/roads/","housing":"/fr/plans/housing/","park":"/fr/plans/park/","youth":"/fr/plans/youth/","transparency":"/fr/plans/transparency/","books":"/fr/plans/books/","technology":"/fr/plans/technology/","transport":"/fr/plans/transport/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/"};
+  var PLAN_PAGES = {"park":"/fr/plans/park/","housing":"/fr/plans/housing/","campus":"/fr/plans/campus/","roads":"/fr/plans/roads/","main-street":"/fr/plans/main-street/","books":"/fr/plans/books/","transparency":"/fr/plans/transparency/","transport":"/fr/plans/transport/","infrastructure":"/fr/plans/infrastructure/","youth":"/fr/plans/youth/","powers":"/fr/plans/powers/","partners":"/fr/plans/partners/","technology":"/fr/plans/technology/","mainstreet":"/fr/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
