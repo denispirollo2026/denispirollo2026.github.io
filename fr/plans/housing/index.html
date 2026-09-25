@@ -838,6 +838,9 @@
 
 
 
+
+
+
 <section class="article-view active" id="view-housing" data-updated="2026-09-24">
   <div class="wrap art-wrap">
     <a class="art-back" href="/fr/#plans">
@@ -980,7 +983,7 @@
       </h2>
       <p>
         
-        <span class="lang-fr">J'ai passé ma vie active du bord du comptoir où se tient le bâtisseur. Alors laissez-moi vous montrer ce comptoir tel qu'il est aujourd'hui. Chaque ligne est tirée des règlements de la Ville elle-même, c'est-à-dire les règles que le conseil écrit pis que le conseil peut changer. Pour bâtir un logement ici, il faut fournir presque <span class="hl">deux cases de stationnement par unité</span>. Un studio en demande autant qu'un logement familial. Il n'y a pas moyen de payer pour du stationnement public à la place, parce que le texte du règlement admet lui-même que la Ville n'en possède pas. Vous voulez bâtir quelque chose que les règles actuelles ne permettent pas? Ça, c'est un rezonage, pis ça peut exiger jusqu'à <span class="hl">14 études techniques distinctes</span> avant même que l'horloge de la Ville se mette à tourner. La seule vitesse que la Ville promet, c'est dix jours ouvrables pour vérifier si votre dossier est complet. La liste de prix de la Ville va de <span class="hl">3 400 $ à 5 700 $</span> pour un changement de zonage. Un plan d'implantation, le dessin de ce qui va où sur le terrain, va de <span class="hl">2 600 $ à 4 500 $</span>, plus un dépôt de 7 000 $. Par-dessus ça, quand la Ville engage un expert de l'extérieur pour regarder votre dossier, elle vous envoie la facture, sans plafond sur le montant, plus 15 % pour s'en occuper. Je dis la partie honnête tout haut. Refiler ces factures-là, c'est légal pis courant en Ontario, pis en pratique la Ville a facturé bien moins qu'elle aurait pu. Le problème est ailleurs. <b class="pop">Un bâtisseur ne peut pas prédire ce qu'un oui va coûter ici, ni quand il va arriver.</b> L'étude nationale de l'industrie elle-même dit que la vitesse d'approbation pis des frais prévisibles décident où les bâtisseurs s'en vont. Alors ils s'en vont ailleurs.</span>
+        <span class="lang-fr">J'ai passé ma vie active du bord du comptoir où se tient le bâtisseur. Alors laissez-moi vous montrer ce comptoir tel qu'il est aujourd'hui. Chaque ligne est tirée des règlements de la Ville elle-même, c'est-à-dire les règles que le conseil écrit pis que le conseil peut changer. Pour bâtir un logement ici, il faut fournir presque <span class="hl">deux cases de stationnement par unité</span>. Un studio en demande autant qu'un logement familial. Il n'y a pas moyen de payer pour du stationnement public à la place, parce que le texte du règlement admet lui-même que la Ville n'en possède pas. Pour bâtir quelque chose que les règles actuelles ne permettent pas, ça prend un rezonage, pis ça peut exiger jusqu'à <span class="hl">14 études techniques distinctes</span> avant même que l'horloge de la Ville se mette à tourner. La seule vitesse que la Ville promet, c'est dix jours ouvrables pour vérifier si votre dossier est complet. La liste de prix de la Ville va de <span class="hl">3 400 $ à 5 700 $</span> pour un changement de zonage. Un plan d'implantation, le dessin de ce qui va où sur le terrain, va de <span class="hl">2 600 $ à 4 500 $</span>, plus un dépôt de 7 000 $. Par-dessus ça, quand la Ville engage un expert de l'extérieur pour regarder votre dossier, elle vous envoie la facture, sans plafond sur le montant, plus 15 % pour s'en occuper. Je dis la partie honnête tout haut. Refiler ces factures-là, c'est légal pis courant en Ontario, pis en pratique la Ville a facturé bien moins qu'elle aurait pu. Le problème est ailleurs. <b class="pop">Un bâtisseur ne peut pas prédire ce qu'un oui va coûter ici, ni quand il va arriver.</b> L'étude nationale de l'industrie elle-même dit que la vitesse d'approbation pis des frais prévisibles décident où les bâtisseurs s'en vont. Alors ils s'en vont ailleurs.</span>
       </p>
       <p>
         
@@ -1200,7 +1203,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"roads":"/fr/plans/roads/","infrastructure":"/fr/plans/infrastructure/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","main-street":"/fr/plans/main-street/","park":"/fr/plans/park/","technology":"/fr/plans/technology/","youth":"/fr/plans/youth/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","transparency":"/fr/plans/transparency/","books":"/fr/plans/books/","mainstreet":"/fr/plans/main-street/"};
+  var PLAN_PAGES = {"infrastructure":"/fr/plans/infrastructure/","powers":"/fr/plans/powers/","partners":"/fr/plans/partners/","campus":"/fr/plans/campus/","roads":"/fr/plans/roads/","housing":"/fr/plans/housing/","park":"/fr/plans/park/","youth":"/fr/plans/youth/","transparency":"/fr/plans/transparency/","books":"/fr/plans/books/","technology":"/fr/plans/technology/","transport":"/fr/plans/transport/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }

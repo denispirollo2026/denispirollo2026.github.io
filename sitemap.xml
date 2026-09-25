@@ -28,14 +28,14 @@
   </url>
   <url>
     <loc>https://denispirollo2026.ca/plans/campus/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/campus/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/campus/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/campus/"/>
   </url>
   <url>
     <loc>https://denispirollo2026.ca/fr/plans/campus/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/campus/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/campus/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/campus/"/>
@@ -98,14 +98,14 @@
   </url>
   <url>
     <loc>https://denispirollo2026.ca/plans/partners/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/partners/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/partners/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/partners/"/>
   </url>
   <url>
     <loc>https://denispirollo2026.ca/fr/plans/partners/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/partners/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/partners/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/partners/"/>
@@ -154,17 +154,31 @@
   </url>
   <url>
     <loc>https://denispirollo2026.ca/plans/transparency/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/transparency/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/transparency/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/transparency/"/>
   </url>
   <url>
     <loc>https://denispirollo2026.ca/fr/plans/transparency/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-09-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/transparency/"/>
     <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/transparency/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/transparency/"/>
+  </url>
+  <url>
+    <loc>https://denispirollo2026.ca/plans/transport/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/transport/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/transport/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/transport/"/>
+  </url>
+  <url>
+    <loc>https://denispirollo2026.ca/fr/plans/transport/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://denispirollo2026.ca/plans/transport/"/>
+    <xhtml:link rel="alternate" hreflang="fr-CA" href="https://denispirollo2026.ca/fr/plans/transport/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://denispirollo2026.ca/plans/transport/"/>
   </url>
   <url>
     <loc>https://denispirollo2026.ca/plans/youth/</loc>

@@ -838,6 +838,9 @@
 
 
 
+
+
+
 <section class="article-view active" id="view-youth" data-updated="2026-09-21">
   <div class="wrap art-wrap">
     <a class="art-back" href="/fr/#plans">
@@ -1175,7 +1178,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"roads":"/fr/plans/roads/","infrastructure":"/fr/plans/infrastructure/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","main-street":"/fr/plans/main-street/","park":"/fr/plans/park/","technology":"/fr/plans/technology/","youth":"/fr/plans/youth/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","transparency":"/fr/plans/transparency/","books":"/fr/plans/books/","mainstreet":"/fr/plans/main-street/"};
+  var PLAN_PAGES = {"infrastructure":"/fr/plans/infrastructure/","powers":"/fr/plans/powers/","partners":"/fr/plans/partners/","campus":"/fr/plans/campus/","roads":"/fr/plans/roads/","housing":"/fr/plans/housing/","park":"/fr/plans/park/","youth":"/fr/plans/youth/","transparency":"/fr/plans/transparency/","books":"/fr/plans/books/","technology":"/fr/plans/technology/","transport":"/fr/plans/transport/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }

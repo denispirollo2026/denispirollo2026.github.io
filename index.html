@@ -1073,6 +1073,15 @@
         <div class="post-cta"><span class="lang-en">Read the plan</span></div>
               <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><rect x="12" y="38" width="66" height="14" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><g transform="rotate(-2 45 44)"><rect x="18" y="30" width="24" height="12" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><rect x="50" y="48" width="24" height="12" fill="var(--ink,#14181C)"/></g><rect x="41" y="24" width="8" height="42" fill="var(--ink,#14181C)"/><path d="M22 24 C 34 12, 56 12, 68 24" fill="none" stroke="var(--accent-deep,#8A5A12)" stroke-width="3"/><line x1="12" y1="70" x2="78" y2="70" stroke="var(--accent-deep,#8A5A12)" stroke-width="3"/></svg></div>
       </a>
+      <a class="post-row" href="/plans/transport/">
+        <div class="post-date"><span class="lang-en">Long read</span></div>
+        <div>
+          <div class="post-title live"><span class="lang-en">Zero buses. One law. Four votes.</span></div>
+          <div class="post-excerpt"><span class="lang-en">The intercity bus left and never came back, the Counties' bus shut down, and a lot of people here do not drive. The one by-law a mayor can fix from inside Town Hall, the study money that exists, and five moves in the order I will try them.</span></div>
+        </div>
+        <div class="post-cta"><span class="lang-en">Read the plan</span></div>
+              <div class="post-art"><svg viewBox="0 0 96 96" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="13" width="80" height="78" fill="var(--accent,#C8862A)" opacity=".3"/><rect x="5" y="5" width="80" height="78" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="3"/><line x1="10" y1="66" x2="80" y2="66" stroke="var(--ink,#14181C)" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="72" x2="26" y2="72" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round"/><line x1="36" y1="72" x2="46" y2="72" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round"/><line x1="56" y1="72" x2="66" y2="72" stroke="var(--accent-deep,#8A5A12)" stroke-width="3" stroke-linecap="round"/><g transform="rotate(-2 45 44)"><rect x="18" y="38" width="42" height="24" rx="3" fill="var(--paper,#F4F1EA)" stroke="var(--ink,#14181C)" stroke-width="3"/><rect x="23" y="43" width="10" height="9" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><rect x="37" y="43" width="10" height="9" fill="var(--plate,#FFFFFF)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><rect x="51" y="43" width="6" height="9" fill="var(--accent,#C8862A)" stroke="var(--ink,#14181C)" stroke-width="2.5"/><circle cx="28" cy="63" r="4.5" fill="var(--ink,#14181C)"/><circle cx="52" cy="63" r="4.5" fill="var(--ink,#14181C)"/></g><rect x="70" y="30" width="3" height="36" fill="var(--ink,#14181C)"/><rect x="64" y="24" width="15" height="11" rx="1.5" fill="var(--accent,#C8862A)" stroke="var(--ink,#14181C)" stroke-width="2.5"/></svg></div>
+      </a>
       <a class="post-row" href="/plans/infrastructure/">
         <div class="post-date"><span class="lang-en">Long read</span></div>
         <div>
@@ -1800,6 +1809,9 @@
 
 
 
+
+
+
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -1856,7 +1868,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"roads":"/plans/roads/","infrastructure":"/plans/infrastructure/","campus":"/plans/campus/","housing":"/plans/housing/","main-street":"/plans/main-street/","park":"/plans/park/","technology":"/plans/technology/","youth":"/plans/youth/","partners":"/plans/partners/","powers":"/plans/powers/","transparency":"/plans/transparency/","books":"/plans/books/","mainstreet":"/plans/main-street/"};
+  var PLAN_PAGES = {"infrastructure":"/plans/infrastructure/","powers":"/plans/powers/","partners":"/plans/partners/","campus":"/plans/campus/","roads":"/plans/roads/","housing":"/plans/housing/","park":"/plans/park/","youth":"/plans/youth/","transparency":"/plans/transparency/","books":"/plans/books/","technology":"/plans/technology/","transport":"/plans/transport/","main-street":"/plans/main-street/","mainstreet":"/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }

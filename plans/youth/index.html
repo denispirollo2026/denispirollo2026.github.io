@@ -838,6 +838,9 @@
 
 
 
+
+
+
 <section class="article-view active" id="view-youth" data-updated="2026-09-21">
   <div class="wrap art-wrap">
     <a class="art-back" href="/#plans">
@@ -1175,7 +1178,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"roads":"/plans/roads/","infrastructure":"/plans/infrastructure/","campus":"/plans/campus/","housing":"/plans/housing/","main-street":"/plans/main-street/","park":"/plans/park/","technology":"/plans/technology/","youth":"/plans/youth/","partners":"/plans/partners/","powers":"/plans/powers/","transparency":"/plans/transparency/","books":"/plans/books/","mainstreet":"/plans/main-street/"};
+  var PLAN_PAGES = {"infrastructure":"/plans/infrastructure/","powers":"/plans/powers/","partners":"/plans/partners/","campus":"/plans/campus/","roads":"/plans/roads/","housing":"/plans/housing/","park":"/plans/park/","youth":"/plans/youth/","transparency":"/plans/transparency/","books":"/plans/books/","technology":"/plans/technology/","transport":"/plans/transport/","main-street":"/plans/main-street/","mainstreet":"/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
