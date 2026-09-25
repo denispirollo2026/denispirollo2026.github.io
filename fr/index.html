@@ -198,6 +198,9 @@
   .rt-n{font-size:var(--nsz);font-weight:900;line-height:.95;color:var(--accent);font-variant-numeric:tabular-nums}
   .rt-l{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-top:4px;color:var(--ink)}
   .rt-l [hidden]{display:none}
+  .rt-top{display:flex;align-items:baseline;gap:.3em}
+  .rt-u{font-size:calc(var(--nsz) * .44);font-weight:900;line-height:.95;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+  .rt-u [hidden]{display:none}
   .rt-stake{width:7px;height:var(--stake);background:var(--ink);transform-origin:50% 100%}
   .rt-flock{position:absolute;inset:0;width:100%;height:100%;display:block}
   .hero-after{padding:0 0 72px}
@@ -286,6 +289,65 @@
     border:4px double var(--accent-deep);color:var(--accent-deep);
     font-size:clamp(20px,3.2vw,32px);font-weight:900;letter-spacing:.16em;
     text-transform:uppercase;transform:rotate(-3deg);white-space:nowrap;
+  }
+
+  /* ============ the campaign film ============ */
+  .film{margin-top:56px}
+  .film-head{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-bottom:26px}
+  .film-stick{transform-box:view-box;transform-origin:8px 30px;transform:rotate(-12deg)}
+  .film.is-live .film-stick{transform:rotate(0deg);transition:transform .16s cubic-bezier(.6,0,.9,.5)}
+  .film.is-live .vs-clap{animation:film-clack .3s .15s}
+  @keyframes film-clack{0%{transform:rotate(-4deg)}35%{transform:rotate(-2.5deg) translateY(3px)}100%{transform:rotate(-4deg)}}
+  .film .vs-stamp{opacity:0;transform:rotate(-3deg) scale(1.5)}
+  .film.is-live .vs-stamp{opacity:1;transform:rotate(-3deg) scale(1);transition:transform .24s cubic-bezier(.3,1.5,.5,1) 1s,opacity .1s 1s}
+  .film-frame{position:relative;aspect-ratio:16/9;background:#0B0D10;border:4px solid var(--ink);box-shadow:10px 12px 0 rgba(200,134,42,.28);overflow:hidden}
+  .film-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block;cursor:pointer}
+  .film-shutter{position:absolute;left:0;right:0;height:50.5%;background:var(--ink);z-index:2}
+  .film-shutter-top{top:0;border-bottom:3px solid var(--accent)}
+  .film-shutter-bot{bottom:0;border-top:3px solid var(--accent)}
+  .film.is-live .film-shutter{transition:transform .8s cubic-bezier(.75,0,.2,1) .3s}
+  .film.is-live .film-shutter-top{transform:translateY(-102%)}
+  .film.is-live .film-shutter-bot{transform:translateY(102%)}
+  .film-big{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:84px;height:84px;border-radius:50%;
+            background:var(--accent);border:4px solid var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:6px 7px 0 rgba(20,24,28,.5)}
+  .film-big svg{width:38px;height:38px;margin-left:4px}
+  .film-big[hidden]{display:none}
+  .film-bar{position:absolute;left:0;right:0;bottom:4px;z-index:3;display:flex;align-items:center;gap:8px;padding:26px 12px 8px;
+            background:linear-gradient(rgba(11,13,16,0),rgba(11,13,16,.72));opacity:0;transition:opacity .4s 1s}
+  .film.is-live .film-bar{opacity:1}
+  .film-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(244,241,234,.1);color:#F4F1EA;border:2px solid rgba(244,241,234,.55);
+            padding:7px 12px;font:800 12.5px/1 'Libre Franklin',Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+  .film-btn:hover{background:rgba(244,241,234,.22)}
+  .film-btn:focus-visible,.film-big:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+  .film-btn svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+  .film-btn [hidden]{display:none}
+  #film-play .i-pause,#film-play[aria-pressed="true"] .i-play{display:none}
+  #film-play[aria-pressed="true"] .i-pause{display:inline}
+  .film-sound .i-mute,.film-sound[aria-pressed="true"] .i-waves{display:none}
+  .film-sound.is-muted .i-mute,.film-sound[aria-pressed="true"] .i-waves{display:inline}
+  .film-sound.is-muted .i-waves{display:none}
+  .film.is-live .film-sound.is-muted{border-color:var(--accent);animation:film-nudge 1.6s 2s 3}
+  @keyframes film-nudge{0%,100%{box-shadow:0 0 0 0 rgba(200,134,42,0)}50%{box-shadow:0 0 0 7px rgba(200,134,42,.45)}}
+  .film-spacer{flex:1}
+  .film-prog{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(244,241,234,.2);z-index:4;cursor:pointer}
+  .film-prog i{display:block;height:100%;width:0;background:var(--accent)}
+  .film-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .film-note{margin-top:20px;font-weight:700;max-width:72ch}
+  .film-credit{margin-top:6px;color:var(--muted);font-size:14px;max-width:84ch}
+  .film-frame:fullscreen{border:0;box-shadow:none;background:#000}
+  .film-frame:-webkit-full-screen{border:0;box-shadow:none;background:#000;width:100%;height:100%}
+  @media (max-width:560px){
+    .film-btn{padding:6px 8px}
+    .film-btn .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    .film-bar{padding:18px 8px 6px}
+    .film-big{width:64px;height:64px}
+    .film-big svg{width:28px;height:28px}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .film-shutter{display:none}
+    .film .vs-stamp{opacity:1;transform:rotate(-3deg)}
+    .film-bar{opacity:1;transition:none}
+    .film.is-live .vs-clap,.film.is-live .film-sound.is-muted{animation:none}
   }
 
   /* ============ platform cards ============ */
@@ -861,13 +923,21 @@
       <img class="rt-denis" id="rt-denis" src="/assets/e4449a77479f.png" alt="Denis Pirollo, candidat à la mairie de Hawkesbury" fetchpriority="high" decoding="async" width="407" height="979">
       <div class="rt-sign" id="rt-sign">
         <div class="rt-count" id="rt-count">
-          <div class="rt-n" id="rt-n">0</div>
+          <div class="rt-top">
+            <div class="rt-n" id="rt-n">0</div>
+            <div class="rt-u">
+              
+              
+              <span class="lang-fr" data-cnt="many">jours</span>
+              <span class="lang-fr" data-cnt="one" hidden>jour</span>
+            </div>
+          </div>
           <div class="rt-l">
             
             
             
-            <span class="lang-fr" data-cnt="many">jours avant le vote</span>
-            <span class="lang-fr" data-cnt="one" hidden>jour avant le vote</span>
+            <span class="lang-fr" data-cnt="many">avant le vote</span>
+            <span class="lang-fr" data-cnt="one" hidden>avant le vote</span>
             <span class="lang-fr" data-cnt="zero" hidden>C'est le jour du vote</span>
           </div>
         </div>
@@ -877,35 +947,70 @@
   </div>
 </section>
 
-<section class="home hero-after">
+<section class="home hero-after" id="film">
   <div class="wrap">
-    
-    <div class="video-slot" id="video-slot">
-      <svg class="vs-clap" width="122" height="96" viewBox="0 0 128 100" aria-hidden="true" focusable="false">
-        <g transform="rotate(-12 8 30)">
-          <rect x="4" y="18" width="116" height="14" fill="#14181C"/>
-          <path d="M10 18l10 14M32 18l10 14M54 18l10 14M76 18l10 14M98 18l10 14M116 18l4 6" stroke="#F4F1EA" stroke-width="6"/>
-        </g>
-        <rect x="4" y="34" width="116" height="12" fill="#14181C"/>
-        <path d="M10 34l9 12M32 34l9 12M54 34l9 12M76 34l9 12M98 34l9 12M116 34l4 5" stroke="#C8862A" stroke-width="6"/>
-        <rect x="4" y="46" width="116" height="46" fill="#14181C"/>
-        <text x="10" y="66" font-family="'Libre Franklin',Arial,sans-serif" font-size="11" font-weight="800" fill="#F4F1EA" textLength="104" lengthAdjust="spacingAndGlyphs">SCENE: HAWKESBURY</text>
-        <text x="10" y="83" font-family="'Libre Franklin',Arial,sans-serif" font-size="11" font-weight="800" fill="#C8862A" textLength="88" lengthAdjust="spacingAndGlyphs">DIR: D. PIROLLO</text>
-      </svg>
-      <div>
-        <span class="slot-chip">
-          
-          <span class="lang-fr">Le film de campagne · montage du réalisateur</span>
-        </span>
-        <div class="video-slot-title">
-          
-          <span class="lang-fr">Lumières. Caméra. Hawkesbury.</span>
-        </div>
-        <div class="vs-stamp">
-          
-          <span class="lang-fr">Bientôt à l'affiche</span>
+    <div class="film" id="film-box">
+      <div class="film-head">
+        <svg class="vs-clap" width="122" height="96" viewBox="0 0 128 100" aria-hidden="true" focusable="false">
+          <g class="film-stick">
+            <rect x="4" y="18" width="116" height="14" fill="#14181C"/>
+            <path d="M10 18l10 14M32 18l10 14M54 18l10 14M76 18l10 14M98 18l10 14M116 18l4 6" stroke="#F4F1EA" stroke-width="6"/>
+          </g>
+          <rect x="4" y="34" width="116" height="12" fill="#14181C"/>
+          <path d="M10 34l9 12M32 34l9 12M54 34l9 12M76 34l9 12M98 34l9 12M116 34l4 5" stroke="#C8862A" stroke-width="6"/>
+          <rect x="4" y="46" width="116" height="46" fill="#14181C"/>
+          <text x="10" y="66" font-family="'Libre Franklin',Arial,sans-serif" font-size="11" font-weight="800" fill="#F4F1EA" textLength="104" lengthAdjust="spacingAndGlyphs">SCENE: HAWKESBURY</text>
+          <text x="10" y="83" font-family="'Libre Franklin',Arial,sans-serif" font-size="11" font-weight="800" fill="#C8862A" textLength="62" lengthAdjust="spacingAndGlyphs">TAKE: 2026</text>
+        </svg>
+        <div>
+          <span class="slot-chip">
+            
+            <span class="lang-fr">Le film de campagne · Promesse de potentiel</span>
+          </span>
+          <div class="video-slot-title" id="film-title">
+            
+            <span class="lang-fr">Une lettre d'amour à Hawkesbury.</span>
+          </div>
+          <div class="vs-stamp">
+            
+            <span class="lang-fr">À l'affiche</span>
+          </div>
         </div>
       </div>
+      <div class="film-frame" id="film-frame">
+        <video id="film-video" src="/assets/e67d0f64dc0d.mp4" poster="/assets/dff7ac94165c.jpg"
+               muted playsinline preload="none" aria-labelledby="film-title"></video>
+        <div class="film-shutter film-shutter-top" aria-hidden="true"></div>
+        <div class="film-shutter film-shutter-bot" aria-hidden="true"></div>
+        <button class="film-big" id="film-big" type="button" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="#14181C"/></svg>
+          <span class="film-sr"><span class="lang-fr">Lire le film</span></span>
+        </button>
+        <div class="film-bar">
+          <button class="film-btn" id="film-play" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="i-play" d="M7 5v14l11-7z"/><path class="i-pause" d="M6.5 5h4v14h-4zM13.5 5h4v14h-4z"/></svg>
+            <span class="lbl"><span class="lang-fr" data-when="off">Lecture</span><span class="lang-fr" data-when="on" hidden>Pause</span></span>
+          </button>
+          <button class="film-btn film-sound is-muted" id="film-sound" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="i-waves" d="M15 9a4.2 4.2 0 0 1 0 6M17.6 6.6a7.6 7.6 0 0 1 0 10.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="i-mute" d="M15.5 9.5l5 5M20.5 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="lbl"><span class="lang-fr" data-when="off">Activer le son</span><span class="lang-fr" data-when="on" hidden>Couper le son</span></span>
+          </button>
+          <span class="film-spacer"></span>
+          <button class="film-btn" id="film-full" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>
+            <span class="lbl"><span class="lang-fr">Plein écran</span></span>
+          </button>
+        </div>
+        <div class="film-prog" id="film-prog" aria-hidden="true"><i></i></div>
+      </div>
+      <p class="film-note">
+        
+        <span class="lang-fr">Certaines scènes sont réelles. D'autres sont dessinées : elles montrent ce que ça pourrait devenir.</span>
+      </p>
+      <p class="film-credit">
+        
+        <span class="lang-fr">Musique : « La promesse », Kristine St-Pierre. Utilisée avec la permission de l'artiste. Images aériennes : Immersive (immersiveinc.ca).</span>
+      </p>
     </div>
   </div>
 </section>
@@ -1947,7 +2052,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"main-street":"/fr/plans/main-street/","youth":"/fr/plans/youth/","powers":"/fr/plans/powers/","partners":"/fr/plans/partners/","books":"/fr/plans/books/","transport":"/fr/plans/transport/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","roads":"/fr/plans/roads/","technology":"/fr/plans/technology/","infrastructure":"/fr/plans/infrastructure/","park":"/fr/plans/park/","transparency":"/fr/plans/transparency/","mainstreet":"/fr/plans/main-street/"};
+  var PLAN_PAGES = {"books":"/fr/plans/books/","campus":"/fr/plans/campus/","transparency":"/fr/plans/transparency/","roads":"/fr/plans/roads/","transport":"/fr/plans/transport/","park":"/fr/plans/park/","youth":"/fr/plans/youth/","main-street":"/fr/plans/main-street/","technology":"/fr/plans/technology/","infrastructure":"/fr/plans/infrastructure/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","housing":"/fr/plans/housing/","mainstreet":"/fr/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
@@ -2318,6 +2423,60 @@
 </script>
 
 <script>
+  /* ============ the campaign film ============ */
+  /* When the film comes into view the clapperboard claps, the shutters open and it plays, muted; sound and full screen
+     are one tap away. It pauses when scrolled away unless the sound is on, and never plays by itself under reduced motion. */
+  (function(){
+    var box = document.getElementById("film-box"); if(!box){ return; }
+    var v = document.getElementById("film-video"), frame = document.getElementById("film-frame");
+    var bPlay = document.getElementById("film-play"), bSound = document.getElementById("film-sound"), bFull = document.getElementById("film-full");
+    var big = document.getElementById("film-big"), prog = document.getElementById("film-prog"), fill = prog.firstElementChild;
+    var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+    var live = false, userPaused = false;
+    function flip(btn, on){
+      btn.setAttribute("aria-pressed", String(on));
+      Array.prototype.forEach.call(btn.querySelectorAll("[data-when]"), function(s){ s.hidden = s.getAttribute("data-when") !== (on ? "on" : "off"); });
+    }
+    function sync(){
+      var playing = !v.paused && !v.ended;
+      flip(bPlay, playing); flip(bSound, !v.muted); bSound.classList.toggle("is-muted", v.muted);
+      big.hidden = playing || !live;
+    }
+    ["play", "playing", "pause", "ended", "volumechange"].forEach(function(e){ v.addEventListener(e, sync); });
+    v.addEventListener("timeupdate", function(){ if(v.duration){ fill.style.width = (100 * v.currentTime / v.duration).toFixed(2) + "%"; } });
+    function play(){ var p = v.play(); if(p && p.catch){ p.catch(sync); } }
+    function goLive(){
+      live = true; v.preload = "auto"; box.classList.add("is-live"); sync();
+      if(!reduce){ setTimeout(function(){ if(!userPaused){ play(); } }, 900); }
+    }
+    bPlay.addEventListener("click", function(){ if(v.paused || v.ended){ userPaused = false; play(); } else { userPaused = true; v.pause(); } });
+    big.addEventListener("click", function(){ userPaused = false; play(); });
+    v.addEventListener("click", function(){ bPlay.click(); });
+    bSound.addEventListener("click", function(){ v.muted = !v.muted; if(!v.muted && (v.paused || v.ended)){ userPaused = false; play(); } });
+    bFull.addEventListener("click", function(){
+      var fs = frame.requestFullscreen || frame.webkitRequestFullscreen;
+      v.muted = false; userPaused = false;                        // full screen means watching: with the sound
+      if(fs){ var r = fs.call(frame); if(r && r.catch){ r.catch(function(){}); } }
+      else if(v.webkitEnterFullscreen){ v.webkitEnterFullscreen(); }
+      play();
+    });
+    prog.addEventListener("click", function(e){
+      var r = prog.getBoundingClientRect();
+      if(v.duration){ v.currentTime = v.duration * Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)); }
+    });
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){
+        if(e.intersectionRatio >= .35){
+          if(!live){ goLive(); }
+          else if(!reduce && !userPaused && v.paused && !v.ended){ play(); }
+        } else if(e.intersectionRatio < .15 && !v.paused && v.muted){ v.pause(); }
+      }); }, { threshold: [0, .15, .35, .6] }).observe(frame);
+    } else { goLive(); }
+    sync();
+  })();
+</script>
+
+<script>
   /* ============ the birds ============ */
 /* A murmuration: hundreds of small birds fly as one living cloud (a slowly churning swirl plus a pull back inside a
    stretched, turning ellipse, which gives a real murmuration its leaf shape). Then, in writing order, each bird peels off
@@ -2505,6 +2664,11 @@
     this.t = 0; this.placed = false; this.assigned = false;
     var n = Math.round(seconds / DT); for(var i = 0; i < n; i++){ this.step(); }
     if(n === 0){ this.place(0); this.placed = true; }
+    this.draw();
+  };
+  PMFlock.prototype.jumpTo = function(seconds, lead){             // carry on from another page's clock: a short run-up
+    this.t = Math.max(0, seconds - lead); this.acc = 0; this.last = null; this.placed = false; this.assigned = false;
+    while(this.t < seconds){ this.step(); }
     this.draw();
   };
   PMFlock.prototype.reset = function(){ this.t = 0; this.acc = 0; this.last = null; this.placed = false; this.assigned = false; this.place(0); this.placed = true; this.draw(); };
@@ -2785,7 +2949,7 @@
 </script>
 
 <script>
-  /* ============ the river-town hero and the footer birds ============ */
+  /* ============ the river-town hero ============ */
 /* The river-town hero. The birds (PMFlock) and Whiskey and Peanut (PMPets) come in their own
    script blocks just before this one.
 
@@ -3251,6 +3415,14 @@
         for(var tt = 0; tt <= s + 1e-6; tt += 1 / 60){ pets.update(T0 + tt); }
         unhide(); return; }
       if(qT != null && hasHero){ render(clamp(qT, 0, END)); unhide(); return; }
+      var carry = null;
+      try{ carry = JSON.parse(sessionStorage.getItem("rt-clock") || "null"); sessionStorage.removeItem("rt-clock"); }catch(e){}
+      if(carry && hasHero && flock && !reduce && typeof carry.t === "number" && Date.now() - carry.at < 15000){
+        // arriving from the other language: no opening again, the hero's day carries on from the same moment
+        render(END); unhide(); started2 = true; amb0 = performance.now();
+        flock.resize(); fwFit(); flock.jumpTo(carry.t + (Date.now() - carry.at) / 1000, 2.5); nightUpdate(flock.t % DAY);
+        resume(); return;
+      }
       if(hasHero && document.hidden){
         // loaded in a background tab: the browser holds animation frames until the tab is seen, so show the finished
         // hero now (never a blank one) and play the opening the first time the page is actually looked at
@@ -3263,7 +3435,12 @@
   window.addEventListener("resize", layout);
   if(typeof window.setLang === "function"){                      // the other language's copy has other widths
     var _setLang = window.setLang;
-    window.setLang = function(l){ _setLang(l); layout(); };
+    window.setLang = function(l){
+      // on the public site each language is its own page: hand the next page the hero's clock, so the day (or the
+      // night, the moon and the fireworks) carries on where it was instead of starting over
+      if(flock && started2){ try{ sessionStorage.setItem("rt-clock", JSON.stringify({ t: flock.t, at: Date.now() })); }catch(e){} }
+      _setLang(l); layout();
+    };
   }
   window.addEventListener("hashchange", function(){ setTimeout(layout, 0); });
   if(hasHero){ el("rt-denis").addEventListener("load", layout); }
