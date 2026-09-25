@@ -1024,7 +1024,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"transparency":"/fr/plans/transparency/","powers":"/fr/plans/powers/","campus":"/fr/plans/campus/","infrastructure":"/fr/plans/infrastructure/","books":"/fr/plans/books/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","youth":"/fr/plans/youth/","main-street":"/fr/plans/main-street/","technology":"/fr/plans/technology/","housing":"/fr/plans/housing/","roads":"/fr/plans/roads/","transport":"/fr/plans/transport/","mainstreet":"/fr/plans/main-street/"};
+  var PLAN_PAGES = {"books":"/fr/plans/books/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","infrastructure":"/fr/plans/infrastructure/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","roads":"/fr/plans/roads/","technology":"/fr/plans/technology/","transparency":"/fr/plans/transparency/","transport":"/fr/plans/transport/","youth":"/fr/plans/youth/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }

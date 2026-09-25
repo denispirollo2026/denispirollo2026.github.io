@@ -58,6 +58,102 @@
   .vote-wrap{max-width:780px}
   .vote-wrap .art-body a{color:var(--accent-deep);font-weight:700}
 </style>
+<style id="pm-css">
+/* Plan motion kit v1 (2026-09-24). House motion law applied to the web: each thing moves
+   once, plainly, then holds still. Transform and opacity only. Nothing that is already on
+   screen at load is animated, and nothing is animated at all under reduced motion (the
+   script never arms it). Deliberately still: the sixty-second box, the who-owns-the-road
+   bands, the receipts, all body text. */
+
+/* ---------- motion (armed by the script only when motion is allowed) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  /* M1 · bar charts fill to true scale, the last bar (the gap) last and slowest */
+  .tally.pm-arm .tally-bar{transform:scaleX(0);transform-origin:0 50%}
+  .tally.pm-arm .tally-bar>span{opacity:0}
+  .tally.pm-arm.pm-on .tally-bar{transform:none;
+    transition:transform var(--dur,.7s) cubic-bezier(.22,.66,.24,1) calc(var(--i,0) * .55s + .1s)}
+  .tally.pm-arm.pm-on .tally-bar>span{opacity:1;
+    transition:opacity .3s ease-out calc(var(--i,0) * .55s + .1s + var(--dur,.7s))}
+
+  /* M2 · the highlighted figures get their marker stroke once, as the paragraph arrives */
+  .art-body p.pm-arm .hl{box-shadow:none;position:relative}
+  .art-body p.pm-arm .hl::after{content:"";position:absolute;left:-1px;right:-1px;bottom:0;height:.42em;
+    background:rgba(200,134,42,.26);mix-blend-mode:multiply;transform:scaleX(0);transform-origin:0 50%;pointer-events:none}
+  .art-body p.pm-arm.pm-on .hl::after{transform:none;
+    transition:transform .55s cubic-bezier(.22,.66,.24,1) calc(var(--i,0) * .28s + .2s)}
+
+  /* M3 · each numbered move's tilted plate stamps down as the move arrives */
+  .mech-list li.pm-arm::before{opacity:0;transform:rotate(-2deg) scale(1.7)}
+  .mech-list li.pm-arm.pm-on::before{opacity:1;transform:rotate(-2deg);
+    transition:transform .42s cubic-bezier(.34,1.45,.5,1) .05s,opacity .18s ease-out .05s}
+
+  /* M4 · the timeline rule draws down and each date marker pops in order */
+  .timeline.pm-arm{border-left-color:transparent;position:relative}
+  .timeline.pm-arm::after{content:"";position:absolute;left:-3px;top:0;bottom:0;width:3px;background:var(--ink);
+    transform:scaleY(0);transform-origin:50% 0}
+  .timeline.pm-arm .tl-row::before{opacity:0;transform:scale(.3)}
+  .timeline.pm-arm.pm-on::after{transform:none;transition:transform calc(var(--n,5) * .16s + .3s) cubic-bezier(.4,.1,.3,1)}
+  .timeline.pm-arm.pm-on .tl-row::before{opacity:1;transform:none;
+    transition:transform .35s cubic-bezier(.34,1.45,.5,1) calc(var(--i,0) * .16s + .15s),
+               opacity .2s ease-out calc(var(--i,0) * .16s + .15s)}
+
+  /* M5 · the CAN and CANNOT plates settle into their tilt, CANNOT a beat later */
+  .ledger2.pm-arm .ledger-col{opacity:0;transform:translateY(18px)}
+  .ledger2.pm-arm.pm-on .ledger-col{opacity:1;transform:rotate(-.8deg);
+    transition:transform .5s cubic-bezier(.22,.66,.24,1),opacity .35s ease-out}
+  .ledger2.pm-arm.pm-on .ledger-col.cannot{transform:rotate(.8deg);transition-delay:.22s}
+
+  /* M6 · a drawing assembles in its own drawing order (opacity only: its pieces keep their positions) */
+  .art-media.pm-arm .pm-part{opacity:0}
+  .art-media.pm-arm.pm-on .pm-part{opacity:1;transition:opacity .35s ease-out var(--d,0s)}
+
+  html.pm{scroll-behavior:smooth}
+}
+
+/* ---------- interactivity (works with or without motion) ---------- */
+
+/* I1 · filter the numbered moves by lever */
+.pm-filter{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:24px 0 6px;padding:12px 14px 14px;
+  background:var(--plate);border:2px solid var(--ink)}
+.pm-filter-lab{width:100%;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+button.pm-lever-btn{font-family:inherit;background:transparent;cursor:pointer;padding:4px 8px 4px 6px}
+button.pm-lever-btn:hover{background:rgba(200,134,42,.14)}
+button.pm-lever-btn[aria-pressed="true"]{background:var(--accent-deep);color:var(--plate)}
+button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.pm-count{margin-left:3px;padding-left:6px;border-left:2px solid currentColor;font-weight:900}
+.mech-list li{transition:opacity .25s ease-out}
+.mech-list.pm-filtering li:not(.pm-hit){opacity:.28}
+.lever.pm-match{background:var(--accent-deep);color:var(--plate)}
+
+/* I2 · on this page */
+.pm-toc{margin:0 0 32px;border-top:3px solid var(--ink);border-bottom:1px solid var(--divider)}
+.pm-toc summary{cursor:pointer;list-style:none;padding:12px 0;font-size:12.5px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:10px}
+.pm-toc summary::-webkit-details-marker{display:none}
+.pm-toc summary::after{content:"+";margin-left:auto;font-size:22px;line-height:1;font-weight:900;color:var(--accent-deep)}
+.pm-toc[open] summary::after{content:"\2212"}
+.pm-toc ol{margin:0 0 12px;padding:0;list-style:none;counter-reset:pmtoc}
+.pm-toc li{counter-increment:pmtoc;border-top:1px solid var(--divider)}
+.pm-toc a{display:flex;gap:12px;padding:9px 0;color:var(--ink);text-decoration:none;font-weight:600;font-size:15.5px;line-height:1.35}
+.pm-toc a::before{content:counter(pmtoc);min-width:22px;font-weight:900;color:var(--accent-deep)}
+.pm-toc a:hover{color:var(--accent-deep)}
+.art-h2{scroll-margin-top:84px}
+
+/* I3 · share this plan */
+.pm-share{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:inherit;font-size:12px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:var(--plate);border:2px solid var(--ink);
+  padding:7px 13px 7px 10px;cursor:pointer;box-shadow:3px 3px 0 var(--accent);transition:transform .12s ease-out,box-shadow .12s ease-out}
+.pm-share svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.pm-share:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--accent)}
+.pm-share:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--accent)}
+
+/* I4 · a thin ochre reading rule across the top */
+.pm-progress{position:fixed;left:0;top:0;width:100%;height:4px;background:var(--accent);transform-origin:0 50%;
+  transform:scaleX(0);z-index:9999;pointer-events:none}
+
+@media print{.pm-filter,.pm-toc,.pm-share,.pm-progress{display:none}}
+
+</style>
 </head>
 <body class="viewing-article">
 <style>
@@ -1384,7 +1480,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"transparency":"/plans/transparency/","powers":"/plans/powers/","campus":"/plans/campus/","infrastructure":"/plans/infrastructure/","books":"/plans/books/","park":"/plans/park/","partners":"/plans/partners/","youth":"/plans/youth/","main-street":"/plans/main-street/","technology":"/plans/technology/","housing":"/plans/housing/","roads":"/plans/roads/","transport":"/plans/transport/","mainstreet":"/plans/main-street/"};
+  var PLAN_PAGES = {"books":"/plans/books/","campus":"/plans/campus/","housing":"/plans/housing/","infrastructure":"/plans/infrastructure/","main-street":"/plans/main-street/","mainstreet":"/plans/main-street/","park":"/plans/park/","partners":"/plans/partners/","powers":"/plans/powers/","roads":"/plans/roads/","technology":"/plans/technology/","transparency":"/plans/transparency/","transport":"/plans/transport/","youth":"/plans/youth/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
@@ -2783,5 +2879,223 @@
 
 </script>
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "232b5148254a4dc39e4d1f83c2997a17"}'></script>
+<script id="pm-js">
+/* Plan motion kit v1 (2026-09-24). Progressive enhancement for the long reads: without this
+   script every page reads exactly as it does today. Motion is armed only when the visitor
+   allows motion, only on things that start BELOW the first screen, and each thing moves once.
+   New visible words (four, EN and FR) are in T. */
+(function(){
+  var doc = document, root = doc.documentElement;
+  var art = doc.querySelector('.article-view');
+  if(!art){ return; }
+  var each = function(list, fn){ Array.prototype.forEach.call(list, fn); };
+  var FR = /^fr/i.test(root.getAttribute('lang') || '');
+  var T = FR
+    ? {filter:'Filtrer les gestes par levier', toc:'Sur cette page', share:'Partager ce plan', copied:'Lien copié'}
+    : {filter:'Filter the moves by lever', toc:'On this page', share:'Share this plan', copied:'Link copied'};
+  root.classList.add('pm');
+
+  /* ---------------- motion ---------------- */
+  var motionOK = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: no-preference)').matches &&
+                    'IntersectionObserver' in window);
+  var io = motionOK ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('pm-on'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.2, rootMargin: '0px 0px -6% 0px'}) : null;
+
+  function belowFold(el){
+    var vh = window.innerHeight || root.clientHeight;
+    return el.getBoundingClientRect().top > vh * 0.9;
+  }
+  function arm(el){
+    if(!io || !belowFold(el)){ return false; }
+    el.classList.add('pm-arm');
+    io.observe(el);
+    return true;
+  }
+
+  /* M1 bar charts: in order, the last bar last and slowest */
+  each(art.querySelectorAll('.tally'), function(fig){
+    var bars = fig.querySelectorAll('.tally-bar');
+    each(bars, function(b, i){
+      b.style.setProperty('--i', i);
+      if(bars.length > 1 && i === bars.length - 1){ b.style.setProperty('--dur', '1.05s'); }
+    });
+    arm(fig);
+  });
+
+  /* M2 highlighted figures, per paragraph */
+  each(art.querySelectorAll('.art-body p'), function(p){
+    var hls = p.querySelectorAll('.hl');
+    if(!hls.length){ return; }
+    each(hls, function(h, i){ h.style.setProperty('--i', i); });
+    arm(p);
+  });
+
+  /* M3 numbered moves, one at a time as each arrives */
+  each(art.querySelectorAll('.mech-list > li'), arm);
+
+  /* M4 timelines */
+  each(art.querySelectorAll('.timeline'), function(t){
+    var rows = t.querySelectorAll('.tl-row');
+    each(rows, function(r, i){ r.style.setProperty('--i', i); });
+    t.style.setProperty('--n', rows.length);
+    arm(t);
+  });
+
+  /* M5 can / cannot plates */
+  each(art.querySelectorAll('.ledger2'), arm);
+
+  /* M6 drawings: top-level pieces in drawing order (one wrapper group is opened up) */
+  each(art.querySelectorAll('figure.art-media > svg'), function(svg){
+    var skip = {defs:1, title:1, desc:1, style:1};
+    var parts = Array.prototype.filter.call(svg.children, function(c){ return !skip[c.tagName.toLowerCase()]; });
+    if(parts.length === 1 && parts[0].children.length > 1){
+      parts = Array.prototype.filter.call(parts[0].children, function(c){ return !skip[c.tagName.toLowerCase()]; });
+    }
+    if(parts.length < 2){ return; }
+    /* wrapped lines of one caption are consecutive same-style <text> siblings: they read as one
+       sentence and must fade in together as one beat, not as separate, visibly out-of-step moments */
+    var groups = [];
+    parts.forEach(function(el){
+      var prev = groups[groups.length - 1];
+      var sameCaption = prev && el.tagName.toLowerCase() === 'text' && prev[0].tagName.toLowerCase() === 'text' &&
+        el.getAttribute('font-weight') === prev[0].getAttribute('font-weight') &&
+        el.getAttribute('font-size') === prev[0].getAttribute('font-size');
+      if(sameCaption){ prev.push(el); } else { groups.push([el]); }
+    });
+    var step = Math.min(0.2, 1.6 / groups.length);
+    groups.forEach(function(g, i){
+      g.forEach(function(p){
+        p.classList.add('pm-part');
+        p.style.setProperty('--d', (i * step).toFixed(2) + 's');
+      });
+    });
+    if(!arm(svg.parentNode)){ parts.forEach(function(p){ p.classList.remove('pm-part'); }); }
+  });
+
+  window.addEventListener('beforeprint', function(){
+    each(doc.querySelectorAll('.pm-arm'), function(el){ el.classList.add('pm-on'); });
+  });
+
+  /* ---------------- interactivity ---------------- */
+
+  /* I1 filter the numbered moves by lever (labels and icons are the page's own chips) */
+  each(art.querySelectorAll('ol.mech-list'), function(ol){
+    var items = Array.prototype.slice.call(ol.children);
+    var map = {}, order = [];
+    items.forEach(function(li){
+      each(li.querySelectorAll('.lever'), function(lv){
+        var k = lv.textContent.replace(/\s+/g, ' ').trim();
+        if(!k){ return; }
+        if(!map[k]){ map[k] = {n: 0, icon: lv.querySelector('svg')}; order.push(k); }
+        map[k].n++;
+        lv.setAttribute('data-pm-lever', k);
+      });
+    });
+    if(order.length < 2){ return; }
+    var box = doc.createElement('div');
+    box.className = 'pm-filter';
+    box.setAttribute('role', 'group');
+    box.setAttribute('aria-label', T.filter);
+    var lab = doc.createElement('span');
+    lab.className = 'pm-filter-lab';
+    lab.textContent = T.filter;
+    box.appendChild(lab);
+    var active = null, btns = [];
+    function apply(){
+      btns.forEach(function(x){ x.setAttribute('aria-pressed', String(x.getAttribute('data-k') === active)); });
+      ol.classList.toggle('pm-filtering', !!active);
+      items.forEach(function(li){
+        var hit = false;
+        each(li.querySelectorAll('.lever'), function(lv){
+          var m = !!active && lv.getAttribute('data-pm-lever') === active;
+          lv.classList.toggle('pm-match', m);
+          if(m){ hit = true; }
+        });
+        li.classList.toggle('pm-hit', hit);
+      });
+    }
+    order.forEach(function(k){
+      var b = doc.createElement('button');
+      b.type = 'button';
+      b.className = 'lever pm-lever-btn';
+      b.setAttribute('data-k', k);
+      b.setAttribute('aria-pressed', 'false');
+      if(map[k].icon){ b.appendChild(map[k].icon.cloneNode(true)); }
+      var s = doc.createElement('span'); s.textContent = k; b.appendChild(s);
+      var c = doc.createElement('span'); c.className = 'pm-count'; c.textContent = map[k].n; b.appendChild(c);
+      b.addEventListener('click', function(){ active = (active === k) ? null : k; apply(); });
+      btns.push(b);
+      box.appendChild(b);
+    });
+    ol.parentNode.insertBefore(box, ol);
+  });
+
+  /* I2 on this page (the article's own section titles) */
+  var hs = art.querySelectorAll('h2.art-h2');
+  if(hs.length >= 3){
+    var det = doc.createElement('details');
+    det.className = 'pm-toc';
+    var sum = doc.createElement('summary');
+    sum.textContent = T.toc + ' · ' + hs.length;
+    det.appendChild(sum);
+    var list = doc.createElement('ol');
+    each(hs, function(h, i){
+      if(!h.id){ h.id = 'section-' + (i + 1); }
+      var li = doc.createElement('li');
+      var a = doc.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+    det.appendChild(list);
+    var after = art.querySelector('.sixty') || art.querySelector('.art-header');
+    if(after){ after.parentNode.insertBefore(det, after.nextSibling); }
+  }
+
+  /* I3 share this plan: the phone's own share sheet, or copy the address */
+  var hdr = art.querySelector('.art-header');
+  if(hdr){
+    var sb = doc.createElement('button');
+    sb.type = 'button';
+    sb.className = 'pm-share';
+    sb.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="M7.5 7.5L12 3l4.5 4.5"/>' +
+                   '<path d="M5 12v7.5A1.5 1.5 0 006.5 21h11a1.5 1.5 0 001.5-1.5V12"/></svg><span></span>';
+    var st = sb.querySelector('span');
+    st.textContent = T.share;
+    var copied = function(){ st.textContent = T.copied; setTimeout(function(){ st.textContent = T.share; }, 2200); };
+    sb.addEventListener('click', function(){
+      var url = location.href.split('#')[0];
+      if(navigator.share){ navigator.share({title: doc.title, url: url}).catch(function(){}); return; }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(url).then(copied, function(){}); return; }
+      var ta = doc.createElement('textarea'); ta.value = url; doc.body.appendChild(ta); ta.select();
+      try{ doc.execCommand('copy'); copied(); }catch(e){}
+      doc.body.removeChild(ta);
+    });
+    hdr.appendChild(sb);
+  }
+
+  /* I4 reading rule: how far through the plan the reader is */
+  var rule = doc.createElement('div');
+  rule.className = 'pm-progress';
+  rule.setAttribute('aria-hidden', 'true');
+  doc.body.appendChild(rule);
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var r = art.getBoundingClientRect();
+    var span = r.height - (window.innerHeight || root.clientHeight);
+    var p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 1;
+    rule.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive: true});
+  window.addEventListener('resize', update);
+  update();
+})();
+
+</script>
 </body>
 </html>

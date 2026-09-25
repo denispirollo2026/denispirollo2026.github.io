@@ -1433,7 +1433,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"transparency":"/fr/plans/transparency/","powers":"/fr/plans/powers/","campus":"/fr/plans/campus/","infrastructure":"/fr/plans/infrastructure/","books":"/fr/plans/books/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","youth":"/fr/plans/youth/","main-street":"/fr/plans/main-street/","technology":"/fr/plans/technology/","housing":"/fr/plans/housing/","roads":"/fr/plans/roads/","transport":"/fr/plans/transport/","mainstreet":"/fr/plans/main-street/"};
+  var PLAN_PAGES = {"books":"/fr/plans/books/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","infrastructure":"/fr/plans/infrastructure/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","roads":"/fr/plans/roads/","technology":"/fr/plans/technology/","transparency":"/fr/plans/transparency/","transport":"/fr/plans/transport/","youth":"/fr/plans/youth/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
@@ -2908,10 +2908,22 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
       parts = Array.prototype.filter.call(parts[0].children, function(c){ return !skip[c.tagName.toLowerCase()]; });
     }
     if(parts.length < 2){ return; }
-    var step = Math.min(0.2, 1.6 / parts.length);
-    parts.forEach(function(p, i){
-      p.classList.add('pm-part');
-      p.style.setProperty('--d', (i * step).toFixed(2) + 's');
+    /* wrapped lines of one caption are consecutive same-style <text> siblings: they read as one
+       sentence and must fade in together as one beat, not as separate, visibly out-of-step moments */
+    var groups = [];
+    parts.forEach(function(el){
+      var prev = groups[groups.length - 1];
+      var sameCaption = prev && el.tagName.toLowerCase() === 'text' && prev[0].tagName.toLowerCase() === 'text' &&
+        el.getAttribute('font-weight') === prev[0].getAttribute('font-weight') &&
+        el.getAttribute('font-size') === prev[0].getAttribute('font-size');
+      if(sameCaption){ prev.push(el); } else { groups.push([el]); }
+    });
+    var step = Math.min(0.2, 1.6 / groups.length);
+    groups.forEach(function(g, i){
+      g.forEach(function(p){
+        p.classList.add('pm-part');
+        p.style.setProperty('--d', (i * step).toFixed(2) + 's');
+      });
     });
     if(!arm(svg.parentNode)){ parts.forEach(function(p){ p.classList.remove('pm-part'); }); }
   });
