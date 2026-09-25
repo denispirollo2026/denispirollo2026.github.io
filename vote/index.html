@@ -158,7 +158,10 @@
      The name plate lockup, in the italic that lives only in the lockup. The copy is one centred column on the plate's
      centre line, in the clear sky above the bridge; the scene (the town, the birds, Denis, the countdown sign, Whiskey
      and Peanut) fills the hero behind it. */
-  .hero{position:relative;overflow:hidden}
+  /* the hero's colours come from --h-* when night falls on it (set by the script, day values here) */
+  .hero{position:relative;overflow:hidden;background:var(--h-sky,var(--paper))}
+  .hero .eyebrow{color:var(--h-muted,var(--muted))}
+  .lk-vote,.lk-denis{color:var(--h-text,var(--ink))}
   .hero-copy{position:relative;z-index:2}
   .hero-left{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
   .lockup{--P:120px;display:flex;flex-direction:column;align-items:center;width:max-content;max-width:100%;margin:0;
@@ -171,20 +174,20 @@
             margin-top:calc(var(--P)*.254);transform:rotate(-2deg);box-shadow:calc(var(--P)*.102) calc(var(--P)*.119) 0 rgba(200,134,42,.28)}
   .lk-pirollo{font-size:var(--P);font-weight:900;font-style:italic;letter-spacing:-.01em;line-height:1.04;text-transform:uppercase}
   .lk-mayor{font-size:calc(var(--P)*.356);font-weight:800;font-style:italic;letter-spacing:.16em;margin-left:.16em;text-transform:uppercase;
-            line-height:1;margin-top:calc(var(--P)*.305);color:var(--accent-deep)}
+            line-height:1;margin-top:calc(var(--P)*.305);color:var(--h-deep,var(--accent-deep))}
   .hero-tagline{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--accent);line-height:1.15;max-width:15em;text-wrap:balance}
-  .hero-line{font-size:16.5px;font-weight:600;color:var(--ink);max-width:44ch;margin:0 auto}
+  .hero-line{font-size:16.5px;font-weight:600;color:var(--h-text,var(--ink));max-width:44ch;margin:0 auto}
   .hero-actions{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:16px}
-  .hero-more{font-weight:700;font-size:15px;color:var(--accent-deep);text-decoration:none;border-bottom:3px solid transparent;padding-bottom:2px}
+  .hero-more{font-weight:700;font-size:15px;color:var(--h-deep,var(--accent-deep));text-decoration:none;border-bottom:3px solid transparent;padding-bottom:2px}
   .hero-more:hover,.hero-more:focus-visible{border-bottom-color:var(--accent)}
   .rt-pre #hero .hero-copy,.rt-pre #hero .rt-scene{visibility:hidden}   /* until the script has set the opening's first frame */
   .rt-scene{pointer-events:none}
   .rt-town{position:absolute;left:0;right:0;bottom:0;width:100%;height:var(--bandH)}
-  .rt-town .rt-ln{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
-  .rt-town .rt-wv{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;opacity:.55;vector-effect:non-scaling-stroke}
-  .rt-town .rt-fillp{fill:var(--paper)}
+  .rt-town .rt-ln{fill:none;stroke:var(--h-line,var(--ink));stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .rt-town .rt-wv{fill:none;stroke:var(--h-line,var(--ink));stroke-width:2.2;stroke-linecap:round;opacity:.55;vector-effect:non-scaling-stroke}
+  .rt-town .rt-fillp{fill:var(--h-fill,var(--paper))}
   .rt-town .rt-sun{fill:var(--accent)}
-  .rt-town .rt-inkf{fill:var(--ink)}
+  .rt-town .rt-inkf{fill:var(--h-line,var(--ink))}
   .rt-town .pet{cursor:pointer;pointer-events:auto}.rt-town .pet .hit{pointer-events:all}
   .rt-figure{position:absolute;bottom:var(--bank,40px);left:50%;display:flex;align-items:flex-end;gap:var(--gap);transform:translateX(-50%);width:max-content}
   .rt-denis{height:var(--dh);width:auto;max-width:none;display:block;transform-origin:50% 100%}
@@ -959,7 +962,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"infrastructure":"/plans/infrastructure/","main-street":"/plans/main-street/","roads":"/plans/roads/","books":"/plans/books/","technology":"/plans/technology/","park":"/plans/park/","housing":"/plans/housing/","transport":"/plans/transport/","campus":"/plans/campus/","partners":"/plans/partners/","powers":"/plans/powers/","youth":"/plans/youth/","transparency":"/plans/transparency/","mainstreet":"/plans/main-street/"};
+  var PLAN_PAGES = {"main-street":"/plans/main-street/","youth":"/plans/youth/","powers":"/plans/powers/","partners":"/plans/partners/","books":"/plans/books/","transport":"/plans/transport/","campus":"/plans/campus/","housing":"/plans/housing/","roads":"/plans/roads/","technology":"/plans/technology/","infrastructure":"/plans/infrastructure/","park":"/plans/park/","transparency":"/plans/transparency/","mainstreet":"/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
@@ -1801,9 +1804,11 @@
    stands up out of the page onto the promenade and the lawn-sign countdown plants beside him (about 3 s). Then the town
    stays alive: water, a car over the bridge, a murmuration in the sky that builds the name plate, then HAWKESBURY, then
    the vote date, in turn, Whiskey on the bridge beam and Peanut at the foot of the sign (click either: it runs off, then
-   comes back).
+   comes back). After the birds' loop the sun sets, night falls on the hero, the town lights up and fireworks write the
+   same three words; then dawn, and the birds return (about 39 s in all). The sun and the moon ride one turning arc that
+   dips into the river's horizon: the sun sets in the west (down the bridge), the moon comes up in the east.
    Everything alive pauses off screen and in a hidden tab, and stays still under reduced motion. Nothing here reads or
-   sends anything. Review a frozen moment with ?rt= (opening seconds), ?rg= (the birds, seconds into their loop),
+   sends anything. Review a frozen moment with ?rt= (opening seconds), ?rg= (seconds into the hero's day: birds, dusk, night, fireworks),
    ?rp= (both pets clicked at 0) or ?rpi= (pets idle). */
 (function(){
   "use strict";
@@ -1823,6 +1828,7 @@
 
   /* ================================================================ the hero ================================================ */
   var draws = [], plan = {}, S = 1, geo = null, sunR = 36, lastT = null, pets = null, flock = null;
+  var wheel = { dir: -1, d: 60, R: 128, H: 68, rise: 1.4, moonY: 80 };
   var days = 0, past = false;
   if(hasHero){
     // the town, seen from the waterfront: the bridge on the left, Main Street and the spire on the right
@@ -1909,6 +1915,17 @@
     el("rt-sun").setAttribute("r", sunR.toFixed(1));
     el("rt-sun").setAttribute("cx", sunX == null ? "-200" : vx(sunX).toFixed(1));
     el("rt-sun").setAttribute("cy", (198 - Math.max(sunR * 1.9, 52)).toFixed(1));
+    // the sun's arc: a circle through its place in the sky that meets the horizon to the west (left, down the bridge),
+    // as far out as the open sky on that side allows; the moon rides the same turn opposite it, on a longer arm, so its
+    // highest point clears the bridge beam and stays under the words
+    var H = Math.max(sunR * 1.9, 52), sp = sunX == null ? 0 : sunX, edge = -1e9;
+    blocks.forEach(function(b){ if(b[1] <= sp - rad){ edge = Math.max(edge, b[1]); } });
+    var Ls = clamp((sp - edge) / S - 10, H * 1.03, 113);
+    wheel.H = H; wheel.d = (Ls * Ls - H * H) / (2 * H); wheel.R = H + wheel.d;
+    wheel.rise = Math.acos(clamp((wheel.d - sunR) / wheel.R, -1, 1)) + .06;   // how far round the sun is fully down
+    var cb = -1e9, bandTop = r.bottom - 280 * S;
+    if(desk){ Array.prototype.forEach.call(el("rt-left").children, function(c){ var b = c.getBoundingClientRect(); if(b.height){ cb = Math.max(cb, (b.bottom - bandTop) / S); } }); }
+    wheel.moonY = clamp(cb + sunR * .8 + 8, 80, 100);
 
     // 4. Whiskey on the bridge's top beam (a little way from the sun), else a roof ridge; Peanut at the foot of the sign
     if(pets){
@@ -1928,8 +1945,9 @@
       pets.place({ cat: cat, chip: { x: chipX, y: 198 }, ps: ps, vis: { l: vx(r.left), r: vx(r.right) } });
       pets.update(pets.lastNow != null ? pets.lastNow : performance.now() / 1000);
     }
-    if(flock){ flock.resize(); }
+    if(flock){ flock.resize(); fwFit(); }
     if(lastT != null){ render(lastT); }
+    if(flock && (started2 || review)){ nightUpdate(flock.t % DAY); }
   }
 
   function render(t){
@@ -1939,7 +1957,7 @@
       var w = plan[p.id] || [1.00 + .06 * (i % 4), 2.00];
       p.style.strokeDashoffset = ((p.dataset.len * S + 2) * (1 - seg(t, w[0], w[1]))).toFixed(1);
     });
-    el("rt-sung").setAttribute("transform", "translate(0 " + (110 * (1 - seg(t, 1.20, 2.20))).toFixed(1) + ")");
+    el("rt-sung").setAttribute("transform", sunAt(-wheel.rise * (1 - seg(t, 1.20, 2.20))));
     var p;
     // the name plate stamps down and the page takes the hit
     p = seg(t, .10, .40); el("rt-vote").style.opacity = p; el("rt-vote").style.transform = "translateY(" + (14 * (1 - p)) + "px)";
@@ -1970,7 +1988,9 @@
   // turn, each held, let go and swirled before the next: the name plate, the town's name in the campaign's own lettering
   // (never the Town's logo, which the Town reserves), and the vote date as a ballot mark beside "26 OCT" (the same in
   // English and French). The first time in, the cloud sweeps in from beyond the right edge.
-  var BIRD_CYCLE = 15;
+  var BIRD_CYCLE = 5;
+  // where the sun sits a turn of a (radians) along its arc from its place in the sky (a > 0 is towards the west)
+  function sunAt(a){ return "translate(" + (wheel.dir * wheel.R * Math.sin(a)).toFixed(1) + " " + (wheel.R * (1 - Math.cos(a))).toFixed(1) + ")"; }
   function heroSlot(cr){
     var g = geo, desk = window.innerWidth >= 900, x0, x1, y0, y1;
     if(!g){ x0 = cr.width * .55; x1 = cr.width - 16; y0 = 16; y1 = cr.height * .55; }
@@ -2011,24 +2031,189 @@
     g.moveTo(box / 2 - ins, -box / 2 + ins); g.lineTo(-box / 2 + ins, box / 2 - ins); g.stroke(); g.restore();
     g.textAlign = "left"; g.textBaseline = "middle"; g.fillText("26 OCT", x0 + box + gap, cy + .03 * fs);
   });
+  // One day in the town, about 39 s, all from the birds' own clock: 15 s of birds building their words (the day), the
+  // birds fly off, the sun sets, night falls, fireworks write the same three words over the town, then dawn and the
+  // birds come back. The clock stops whenever the hero is off screen.
+  var NIGHT = "on" === "on";                       // the build turns the night on or holds it back
+  var DAY = NIGHT ? 39 : 3 * BIRD_CYCLE;
+  // how far the birds are into writing their word, u seconds into its 5 s: swirl, write, hold, let go
+  function wordM(u){ return u < .8 ? 0 : u < 2 ? smooth((u - .8) / 1.2) : u < 4.2 ? 1 : u < 4.8 ? 1 - smooth((u - 4.2) / .6) : 0; }
   function heroPlan(tau, s, W, H, t){
-    var cx = s.x0 + s.W / 2, cy = s.y0 + s.H / 2, ax = .16 * s.W, ay = .1 * s.H;
+    var ct = t % DAY, cx = s.x0 + s.W / 2, cy = s.y0 + s.H / 2, ax = .16 * s.W, ay = .1 * s.H;
     var P = { cx: cx + ax * Math.sin(t * .31 + 1), cy: cy + ay * Math.sin(t * .53),
               vx: ax * .31 * Math.cos(t * .31 + 1), vy: ay * .53 * Math.cos(t * .53),
-              rx: .3 * s.W, ry: .24 * s.H, rot: .25 * Math.sin(t * .4), face: 0, on: true, si: Math.floor(t / BIRD_CYCLE) };
-    if(t < 3){                                                   // the first time in: from beyond the right edge
-      var off = (W - s.x0) + .6 * s.W, q = t / 3;
+              rx: .3 * s.W, ry: .24 * s.H, rot: .25 * Math.sin(t * .4), face: 0, on: true, si: Math.floor(ct / BIRD_CYCLE), m: 0 };
+    var off = (W - s.x0) + .7 * s.W;
+    if(t < 3 || (NIGHT && ct >= 36)){                                       // coming in from beyond the right edge (first, and at dawn)
+      var q = t < 3 ? t / 3 : (ct - 36) / 3;
       P.cx += off * (1 - q) * (1 - q); P.vx -= off * 2 * (1 - q) / 3; P.face = Math.PI;
+      if(t < 3){ P.m = wordM(ct % BIRD_CYCLE); }                 // the first time in, they write the name plate as they arrive
+      return P;
     }
-    P.m = tau < 2.6 ? 0 : tau < 5.4 ? smooth((tau - 2.6) / 2.8) : tau < 11.2 ? 1 : tau < 12.4 ? 1 - smooth((tau - 11.2) / 1.2) : 0;
+    if(NIGHT && ct >= 15){                                       // dusk: away over the rooftops to roost until dawn
+      var q2 = Math.min(1, (ct - 15) / 3);
+      P.cx += off * q2 * q2; P.cy -= .35 * s.H * q2; P.vx += off * 2 * q2 / 3; P.on = ct < 18;
+      return P;
+    }
+    P.m = wordM(ct % BIRD_CYCLE);
     return P;
   }
   if(hasHero && window.PMFlock && !reduce){
     flock = new PMFlock(el("rt-flock"), { slot: heroSlot, shapes: [birdPlate, birdTown, birdDate], plan: heroPlan,
-                                          cycle: BIRD_CYCLE, replace: false, colors: ["rgba(20,24,28,.92)", "#C8862A"], accentShare: .14 });
+                                          cycle: DAY, replace: false, colors: ["rgba(20,24,28,.92)", "#C8862A"], accentShare: .14 });
     hero.addEventListener("mousemove", function(e){ var r = el("rt-flock").getBoundingClientRect(); flock.ptr = { x: e.clientX - r.left, y: e.clientY - r.top }; });
     hero.addEventListener("mouseleave", function(){ flock.ptr = null; });
     hero.addEventListener("click", function(e){ if(!e.target.closest("a,button")){ var r = el("rt-flock").getBoundingClientRect(); flock.burst(e.clientX - r.left, e.clientY - r.top); } });
+  }
+
+  /* ---- night: the colours, the sun and the moon, the lights, the stars, the fireworks ---- */
+  var PAL = [
+    { sky: [244, 241, 234], line: [20, 24, 28], fill: [244, 241, 234], text: [20, 24, 28], muted: [110, 106, 94], deep: [138, 90, 18] },     // day
+    { sky: [238, 213, 182], line: [46, 36, 31], fill: [234, 206, 173], text: [20, 24, 28], muted: [104, 86, 70], deep: [128, 80, 14] },     // dusk
+    { sky: [78, 68, 96], line: [200, 188, 176], fill: [56, 48, 72], text: [244, 241, 234], muted: [206, 196, 186], deep: [238, 180, 98] },   // twilight
+    { sky: [26, 33, 48], line: [176, 168, 154], fill: [17, 22, 33], text: [244, 241, 234], muted: [185, 179, 166], deep: [229, 172, 80] }   // night
+  ];
+  var HERO_VARS = ["sky", "line", "fill", "text", "muted", "deep"];
+  function mixc(a, b, q){ return [a[0] + (b[0] - a[0]) * q, a[1] + (b[1] - a[1]) * q, a[2] + (b[2] - a[2]) * q]; }
+  function rgb(c){ return "rgb(" + Math.round(c[0]) + "," + Math.round(c[1]) + "," + Math.round(c[2]) + ")"; }
+  function rnd(i){ var v = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return v - Math.floor(v); }
+  function nightLevel(ct){                                       // 0 day, 1 dusk, 2 twilight, 3 night
+    if(ct < 14.5){ return 0; } if(ct < 16.5){ return smooth((ct - 14.5) / 2); } if(ct < 18){ return 1 + smooth((ct - 16.5) / 1.5); }
+    if(ct < 19.5){ return 2 + smooth((ct - 18) / 1.5); } if(ct < 34.5){ return 3; } if(ct < 36){ return 3 - smooth((ct - 34.5) / 1.5); }
+    if(ct < 37.5){ return 2 - smooth((ct - 36) / 1.5); } if(ct < 39){ return 1 - smooth((ct - 37.5) / 1.5); } return 0;
+  }
+  function palAt(lv, key){ var i = Math.min(Math.floor(lv), PAL.length - 2); return mixc(PAL[i][key], PAL[i + 1][key], lv - i); }
+  function on01(ct, a, b, fade){ return smooth((ct - a) / fade) * (1 - smooth((ct - b) / fade)); }
+  var WINDOWS = [[690, 138, 8], [750, 128, 9], [766, 128, 9], [782, 128, 9], [850, 136, 8], [866, 136, 8], [935, 130, 9],
+                 [955, 130, 9], [1022, 134, 8], [1038, 134, 8], [1180, 140, 8]];
+  var lightsG = null, winEls = [], lampEls = [], moonG = null, moonC = null, moonGlow = null, moonR = -1, beam = null;
+  var nightLast = -1, stars = [], fwT = null, fwSlot = null, fwGround = 0, fwTop = 0, fwX0 = 0, moonPx = null;
+  var FW0 = 18.5, FWW = 5.5;                                     // fireworks: three words, 5.5 s each, from 18.5 s
+  if(hasHero && flock && NIGHT){
+    (function(){
+      var svg = el("rt-town"), ns = "http://www.w3.org/2000/svg";
+      function mk(tag, at, parent){ var e = document.createElementNS(ns, tag); for(var k in at){ e.setAttribute(k, at[k]); } parent.appendChild(e); return e; }
+      lightsG = mk("g", { opacity: "0" }, svg); svg.insertBefore(lightsG, el("rt-deck"));
+      WINDOWS.forEach(function(w){ var g = mk("g", { opacity: "0" }, lightsG);
+        mk("rect", { x: w[0] - 6, y: w[1] - 4, width: 12, height: w[2] + 8, rx: 4, fill: "#F2C26B", opacity: ".22" }, g);
+        mk("rect", { x: w[0] - 2.4, y: w[1] - 1, width: 4.8, height: w[2] + 2, fill: "#F7D488" }, g); winEls.push(g); });
+      for(var x = 56; x <= 504; x += 56){ var g = mk("g", { opacity: "0" }, lightsG);
+        mk("circle", { cx: x, cy: 109, r: 8, fill: "#F2C26B", opacity: ".2" }, g); mk("circle", { cx: x, cy: 109, r: 2.6, fill: "#FBE3A8" }, g); lampEls.push(g); }
+      var gr = mk("radialGradient", { id: "rt-moonglow" }, svg.querySelector("defs"));
+      mk("stop", { offset: "0", "stop-color": "#F4EBD6", "stop-opacity": ".30" }, gr);
+      mk("stop", { offset: ".45", "stop-color": "#F4EBD6", "stop-opacity": ".11" }, gr);
+      mk("stop", { offset: "1", "stop-color": "#F4EBD6", "stop-opacity": "0" }, gr);
+      moonG = mk("g", { opacity: "0" }, el("rt-sung").parentNode);   // inside the bank clip, so it rises out of the river
+      moonGlow = mk("circle", { fill: "url(#rt-moonglow)" }, moonG);
+      moonC = mk("path", { fill: "#EFE6D2" }, moonG);
+      beam = mk("path", { d: "M18 -11L78 -18L78 -1Z", fill: "#F7D488", opacity: "0" }, el("rt-car"));
+    })();
+  }
+  // fireworks and stars live in the birds' slot and sky; rebuilt whenever the layout changes
+  function fwFit(){
+    if(!NIGHT){ return; }
+    if(!flock || !flock.s){ return; }
+    var s = flock.s, cr = el("rt-flock").getBoundingClientRect(), tr = el("rt-town").getBoundingClientRect();
+    fwSlot = { x0: s.x0, y0: s.y0, W: s.W, H: s.H, k: s.k, n: Math.round(clamp(s.W * 1.2, 300, 700)) };
+    fwT = [birdPlate(fwSlot), birdTown(fwSlot), birdDate(fwSlot)];
+    var top = tr.top - cr.top + (tr.height - 280 * S);               // where the drawing's y = 0 sits on the canvas
+    fwGround = top + 128 * S;                                        // the rooftops the rockets go up from
+    fwTop = top; fwX0 = tr.left + tr.width / 2 - cr.left - 600 * S;
+    var skyBottom = top + 92 * S, n = Math.round(clamp(cr.width * cr.height / 9000, 30, 110));
+    stars = [];
+    for(var i = 0; i < n; i++){ stars.push([rnd(i * 3 + 1) * cr.width, Math.pow(rnd(i * 7 + 2), 1.3) * skyBottom, .5 + rnd(i * 11 + 3) * 1.1, rnd(i * 13 + 4) * 6.283]); }
+  }
+  function dot(g, x, y, r, a, c){
+    g.fillStyle = c; g.globalAlpha = a * .22; g.beginPath(); g.arc(x, y, r * 2.7, 0, 6.2832); g.fill();
+    g.globalAlpha = a; g.beginPath(); g.arc(x, y, r, 0, 6.2832); g.fill();
+  }
+  var FW_COL = ["#F2C26B", "#F2C26B", "#F2C26B", "#FFF1D2", "#E8743A"];
+  function fireworks(g, ct){
+    var u0 = ct - FW0;
+    if(u0 < 0 || u0 >= 3 * FWW || !fwT){ return; }
+    var j = Math.floor(u0 / FWW), u = u0 - j * FWW, T = fwT[j], s = fwSlot, k = s.k, R = 4, bursts = [];
+    for(var r = 0; r < R; r++){
+      var tl = r * .22, x0 = s.x0 + s.W * (.14 + .72 * r / (R - 1)) + (rnd(j * 10 + r) - .5) * s.W * .08;
+      var bx = x0 + (rnd(j * 20 + r) - .5) * s.W * .06, by = s.y0 + s.H * (.34 + .3 * rnd(j * 30 + r)), tb = tl + .7;
+      bursts.push([bx, by, tb]);
+      var q = (u - tl) / .7;                                     // the rocket going up, with its trail
+      if(q > 0 && q < 1){ var e = 1 - (1 - q) * (1 - q);
+        for(var tr = 0; tr < 7; tr++){ var qq = Math.max(0, e - tr * .035);
+          dot(g, x0 + (bx - x0) * qq, fwGround + (by - fwGround) * qq, (1.9 - tr * .2) * k, (1 - tr / 7) * .9, "#FBE3A8"); } }
+      var f = (u - tb) / .6;                                     // the flash: a ring of sparks
+      if(f > 0 && f < 1){ var grow = 1 - Math.pow(1 - f, 3);
+        for(var sp = 0; sp < 22; sp++){ var ang = sp / 22 * 6.2832 + r, rr = (30 + 24 * rnd(sp + r * 7 + j * 3)) * k * grow;
+          dot(g, bx + Math.cos(ang) * rr, by + Math.sin(ang) * rr + 16 * k * f * f, 1.5 * k, (1 - f) * .9, FW_COL[sp % FW_COL.length]); } }
+    }
+    for(var i = 0, n = T.length; i < n; i++){                    // the word: each spark flies to its place, glitters, falls away
+      var b = bursts[Math.min(R - 1, Math.floor(i * R / n))], t0 = b[2] + rnd(i * 5 + j) * .14, p = (u - t0) / .95;
+      if(p <= 0){ continue; }
+      var e2 = p >= 1 ? 1 : 1 - Math.pow(1 - p, 3), px = b[0] + (T[i][0] - b[0]) * e2, py = b[1] + (T[i][1] - b[1]) * e2, a = 1;
+      if(u > FWW - 1.3){ var d = u - (FWW - 1.3); py += 70 * k * d * d; px += (rnd(i * 3 + j) - .5) * 12 * k * d; a = Math.max(0, 1 - d / 1.2); }
+      else if(p >= 1){ py += 3 * k * Math.min(1, (u - t0 - .95) / 3); a = .55 + .45 * Math.abs(Math.sin(ct * 6 + i * 1.7)); }
+      if(a > .01){ dot(g, px, py, 1.25 * k + .35, a, FW_COL[Math.floor(rnd(i * 17 + j) * FW_COL.length)]); }
+    }
+  }
+  function nightUpdate(ct){
+    if(!lightsG){ return; }
+    var lv = nightLevel(ct);
+    if(Math.abs(lv - nightLast) > 1e-3){                           // the hero's colours
+      nightLast = lv;
+      if(lv <= 0){ HERO_VARS.forEach(function(v){ hero.style.removeProperty("--h-" + v); }); }
+      else {
+        // the words flip from dark to light as the sky crosses mid-tone, so they never fade into it on the way
+        var sk = palAt(lv, "sky"), L = (.2126 * sk[0] + .7152 * sk[1] + .0722 * sk[2]) / 255, f = smooth((.58 - L) / .04);
+        HERO_VARS.forEach(function(v){
+          var c = (v === "text" || v === "muted" || v === "deep") ? mixc(PAL[0][v], PAL[3][v], f) : palAt(lv, v);
+          hero.style.setProperty("--h-" + v, rgb(c)); }); }
+    }
+    // the sky turns: the sun leaves its place at 10 s and rides its arc down into the horizon to the west (fully down by
+    // 17.5 s); the moon, opposite it on the same turn, comes up in the east, crosses the sky and sets in the west; the sun
+    // comes back up out of the east at dawn and settles in its place as the day starts again
+    var A = wheel.rise, ang = 0;
+    if(ct > 10){
+      var K = [[10, 0], [17.5, A], [34.5, 6.2832 - A], [39, 6.2832]], s0 = A / 7.5, s1 = (6.2832 - 2 * A) / 17, s2 = A / 4.5;
+      var M = [0, 2 * s0 * s1 / (s0 + s1), 2 * s1 * s2 / (s1 + s2), 0], i0 = ct < 17.5 ? 0 : ct < 34.5 ? 1 : 2;
+      var h = K[i0 + 1][0] - K[i0][0], x = Math.min(1, (ct - K[i0][0]) / h), x2 = x * x, x3 = x2 * x;
+      ang = (2 * x3 - 3 * x2 + 1) * K[i0][1] + (x3 - 2 * x2 + x) * h * M[i0] + (3 * x2 - 2 * x3) * K[i0 + 1][1] + (x3 - x2) * h * M[i0 + 1];
+    }
+    el("rt-sung").setAttribute("transform", sunAt(ang));
+    var low = clamp(1 - (wheel.R * Math.cos(ang) - wheel.d) / wheel.H, 0, 1);      // redder the nearer it is to the horizon
+    el("rt-sun").style.fill = low > .002 ? rgb(mixc([200, 134, 42], [210, 86, 44], smooth(low))) : "";
+    var sun = el("rt-sun"), scx = +sun.getAttribute("cx"), sr = +sun.getAttribute("r"), mr = sr * .8;
+    var Rm = 198 + wheel.d - wheel.moonY, mx = scx - wheel.dir * Rm * Math.sin(ang), my = 198 + wheel.d + Rm * Math.cos(ang);
+    var moonUp = sr > 0 && my < 198 + mr + 1;
+    moonG.setAttribute("opacity", moonUp ? "1" : "0");
+    moonPx = moonUp ? [fwX0 + mx * S, fwTop + my * S, mr * S] : null;
+    if(moonUp){
+      if(Math.abs(mr - moonR) > .01){                            // a plain crescent: the lit rim, and the curve where the light ends
+        moonR = mr;
+        moonC.setAttribute("d", "M0 " + (-mr).toFixed(2) + "A" + mr.toFixed(2) + " " + mr.toFixed(2) + " 0 0 1 0 " + mr.toFixed(2) +
+                                 "A" + (mr * .5).toFixed(2) + " " + mr.toFixed(2) + " 0 0 0 0 " + (-mr).toFixed(2) + "Z");
+        moonGlow.setAttribute("cx", (mr * .45).toFixed(2)); moonGlow.setAttribute("cy", "0"); moonGlow.setAttribute("r", (mr * 2.6).toFixed(2));
+      }
+      // its lit side faces down towards where the sun went
+      moonG.setAttribute("transform", "translate(" + mx.toFixed(1) + " " + my.toFixed(1) + ")" + (wheel.dir < 0 ? " scale(-1 1)" : "") + " rotate(28)");
+    }
+    // the town lights up, window by window, then the bridge lamps; lights out at dawn
+    lightsG.setAttribute("opacity", ct > 17 && ct < 37 ? "1" : "0");
+    winEls.forEach(function(w, i){ w.setAttribute("opacity", on01(ct, 17.3 + i * .2, 34 + i * .12, .3).toFixed(2)); });
+    lampEls.forEach(function(w, i){ w.setAttribute("opacity", on01(ct, 18 + i * .08, 35, .3).toFixed(2)); });
+    beam.setAttribute("opacity", (.5 * on01(ct, 17.5, 35.5, .5)).toFixed(2));
+    // the stars and the fireworks, drawn over the birds' canvas (the birds are away all night)
+    var starA = on01(ct, 17, 35, 1.5);
+    if(starA > .01 || (ct >= FW0 && ct < FW0 + 3 * FWW)){
+      var c = el("rt-flock"), g = c.getContext("2d");
+      g.save();
+      if(starA > .01){ g.fillStyle = "#F4F1EA";
+        for(var i = 0; i < stars.length; i++){ var st = stars[i];
+          if(moonPx && Math.abs(st[0] - moonPx[0]) < moonPx[2] * 1.6 && Math.abs(st[1] - moonPx[1]) < moonPx[2] * 1.6){ continue; }   // none on the moon
+          g.globalAlpha = starA * (.45 + .55 * Math.abs(Math.sin(ct * .9 + st[3])));
+          g.beginPath(); g.arc(st[0], st[1], st[2], 0, 6.2832); g.fill(); } }
+      g.globalCompositeOperation = "lighter";
+      fireworks(g, ct);
+      g.restore();
+    }
   }
 
   // after the opening the town stays alive (real time only; paused off screen and in a hidden tab)
@@ -2041,7 +2226,7 @@
       el("rt-car").setAttribute("transform", "translate(" + cx.toFixed(1) + " " + Math.min(198, cy).toFixed(1) + ")");
       el("rt-car").setAttribute("opacity", cp > .93 ? (1 - (cp - .93) / .07).toFixed(2) : "1"); }
     else { el("rt-car").setAttribute("opacity", "0"); }
-    if(flock){ flock.frame(now); }
+    if(flock){ flock.frame(now); nightUpdate(flock.t % DAY); }
     if(pets){ pets.update(now / 1000); }
     if(alive){ requestAnimationFrame(ambient); }
   }
@@ -2070,7 +2255,7 @@
   function go(){
     try{
       layout();
-      if(qG != null && hasHero){ render(END); if(flock){ flock.resize(); flock.simulateTo(qG); } unhide(); return; }
+      if(qG != null && hasHero){ render(END); if(flock){ flock.resize(); fwFit(); flock.simulateTo(qG); nightUpdate(flock.t % DAY); } unhide(); return; }
       if((qP != null || qPI != null) && pets){
         render(END); var s = qP != null ? qP : qPI, T0 = 1000;
         if(qP != null){ pets.clickAll(T0); }
