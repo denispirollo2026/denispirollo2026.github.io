@@ -107,6 +107,30 @@
   .art-media.pm-arm .pm-part{opacity:0}
   .art-media.pm-arm.pm-on .pm-part{opacity:1;transition:opacity .35s ease-out var(--d,0s)}
 
+  /* M7 · walk the street: what the walker passes answers once, then holds still */
+  .sw-go.sw-swing{animation:sw-swing 1.7s ease-out}
+  .sw-go.sw-wobble{animation:sw-swing 1.3s ease-out}
+  @keyframes sw-swing{18%{transform:rotate(10deg)}40%{transform:rotate(-7deg)}62%{transform:rotate(4deg)}82%{transform:rotate(-1.5deg)}}
+  .sw-go.sw-hop{animation:sw-hop .55s cubic-bezier(.3,.6,.4,1)}
+  @keyframes sw-hop{45%{transform:translateY(-22px)}}
+  .sw-go.sw-flap{animation:sw-flap .8s ease-out}
+  @keyframes sw-flap{30%{transform:scaleY(1.14)}62%{transform:scaleY(.95)}}
+  .sw-go.sw-sway{animation:sw-sway 1.3s ease-in-out}
+  @keyframes sw-sway{30%{transform:rotate(4deg)}65%{transform:rotate(-2.5deg)}}
+  .sw-go.sw-flag{animation:sw-flag .9s ease-out}
+  @keyframes sw-flag{30%{transform:rotate(14deg)}65%{transform:rotate(-8deg)}}
+  .sw-go.sw-bird{animation:sw-bird .45s ease-in-out 2}
+  @keyframes sw-bird{50%{transform:scaleY(-.6)}}
+  .sw-go.sw-lamp .sw-glow{animation:sw-glow 1.6s ease-out forwards}
+  @keyframes sw-glow{0%{opacity:0}35%{opacity:.7}100%{opacity:.32}}
+  .sw-go.sw-ring{animation:sw-ring 1.5s ease-out}
+  @keyframes sw-ring{0%{opacity:0}20%{opacity:1}45%{opacity:.15}65%{opacity:1}100%{opacity:0}}
+  .sw-go.sw-smoke path{stroke-dasharray:1 1;animation:sw-smoke 1.6s ease-out}
+  @keyframes sw-smoke{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+  .sw-go.sw-bob{animation:sw-bob 2.2s ease-in-out}
+  .sw-go.sw-bob2{animation-delay:.3s}
+  @keyframes sw-bob{25%{transform:translateY(6px) rotate(-3deg)}50%{transform:translateY(-3px) rotate(2deg)}75%{transform:translateY(3px) rotate(-1deg)}}
+
   html.pm{scroll-behavior:smooth}
 }
 
@@ -146,6 +170,11 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
 .pm-share svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
 .pm-share:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--accent)}
 .pm-share:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--accent)}
+
+/* I5 · walk the street: the mouse can drag the street */
+.sw-scroll{cursor:grab}
+.sw-scroll.sw-drag{cursor:grabbing;scroll-snap-type:none;user-select:none;-webkit-user-select:none}
+.sw-scroll.sw-touring{scroll-snap-type:none}
 
 /* I4 · a thin ochre reading rule across the top */
 .pm-progress{position:fixed;left:0;top:0;width:100%;height:4px;background:var(--accent);transform-origin:0 50%;
@@ -813,6 +842,25 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   .art-media{margin:36px 0;content-visibility:auto;contain-intrinsic-size:auto 600px}
   .art-media img{width:100%;display:block;border:3px solid var(--ink)}
   .art-media .media-kind{margin-top:10px}
+  /* walk the street: one drawing of Main Street you slide along, the captions under each stretch of it */
+  .street-walk{contain-intrinsic-size:auto 480px}
+  .sw-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;scroll-behavior:auto;border:3px solid var(--ink);background:var(--paper);scrollbar-width:thin}
+  .sw-scroll:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .sw-track{--sw-h:260px;width:calc(var(--sw-h) * 5400 / 620)}
+  .sw-street{display:block;width:100%;height:var(--sw-h)}
+  .sw-stops{display:grid;grid-template-columns:repeat(5,1fr);list-style:none;margin:0;padding:0;border-top:3px solid var(--ink)}
+  .sw-stops li{scroll-snap-align:start;padding:16px 24px 20px}
+  .sw-stops li:last-child{scroll-snap-align:end}
+  .sw-kick{display:block;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .sw-title{display:block;margin-top:6px;font-size:24px;font-weight:900;line-height:1.1;letter-spacing:-.01em}
+  .sw-line{display:block;margin-top:8px;font-size:15px;line-height:1.45}
+  @media (max-width:560px){
+    .sw-track{--sw-h:180px}
+    .sw-stops li{padding:14px 18px 16px}
+    .sw-title{font-size:20px}
+    .sw-line{font-size:14.5px}
+  }
   .timeline{margin-top:28px;border-left:3px solid var(--ink)}
   .tl-row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0 14px 22px;border-bottom:1px solid var(--divider);position:relative}
   .tl-row::before{content:"";position:absolute;left:-8px;top:22px;width:13px;height:13px;background:var(--accent);border:3px solid var(--ink)}
@@ -2973,6 +3021,172 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
       });
     });
     if(!arm(svg.parentNode)){ parts.forEach(function(p){ p.classList.remove('pm-part'); }); }
+  });
+
+  /* M7 walk the street: a walker, with Whiskey behind him, goes down Main Street once when the street comes into
+     view, the view following him, stopping briefly at each caption. What he passes answers once: the signs swing,
+     people hop, awnings flap, the flags ripple, the lamps come on, the bell rings, the boats bob. Sliding the street
+     takes over at any moment; from then on the walker follows the reader, both ways. Without motion the street
+     stays still and slides as before. The mouse can drag it either way. */
+  each(art.querySelectorAll('figure[data-walk]'), function(fig){
+    var sc = fig.querySelector('.sw-scroll'), svg = fig.querySelector('svg.sw-street');
+    if(!sc || !svg){ return; }
+    var drag = null, takeOver = function(){};
+    sc.addEventListener('pointerdown', function(e){
+      if(e.pointerType !== 'mouse' || e.button !== 0){ return; }
+      drag = {x: e.clientX, left: sc.scrollLeft};
+      sc.classList.add('sw-drag');
+      takeOver();
+    });
+    window.addEventListener('pointermove', function(e){ if(drag){ sc.scrollLeft = drag.left - (e.clientX - drag.x); } });
+    window.addEventListener('pointerup', function(){ if(drag){ drag = null; sc.classList.remove('sw-drag'); } });
+    if(!motionOK){ return; }
+
+    var NS = 'http://www.w3.org/2000/svg', INK = '#14181C', OCHRE = '#C8862A', DEEP = '#8A5A12';
+    var X0 = 110, X1 = 4540, CAT = 3.4, BIG = 1.15, SPEED = 175, DWELL = 0.9;
+    /* the sidewalk, then up the ramp onto the dock */
+    function feet(x){ if(x <= 4240){ return 588; } if(x >= 4380){ return 482; } var u = (x - 4240) / 140; return 588 - 106 * u * u * (3 - 2 * u); }
+    function mk(tag, at, parent){
+      var e = doc.createElementNS(NS, tag);
+      for(var k in at){ e.setAttribute(k, at[k]); }
+      parent.appendChild(e);
+      return e;
+    }
+    function f1(v){ return (Math.round(v * 10) / 10).toString(); }
+    function seg(p, x1, y1, x2, y2){ p.setAttribute('d', 'M' + f1(x1) + ' ' + f1(y1) + 'L' + f1(x2) + ' ' + f1(y2)); }
+
+    /* the walker, drawn like the street's own people (a round ink head), in the campaign's ochre, facing right;
+       arms and legs sit behind the body */
+    var who = mk('g', {'class': 'sw-walker'}, svg);
+    var bod = mk('g', {}, who);
+    var stroke = {stroke: INK, 'stroke-linecap': 'round', fill: 'none'};
+    function limb(w){ var at = {'stroke-width': w}; for(var k in stroke){ at[k] = stroke[k]; } return mk('path', at, bod); }
+    var armB = limb(10), armF = limb(10), legB = limb(13), legF = limb(13);
+    mk('path', {d: 'M-25 -56C-27 -96 -20 -114 0 -115C20 -114 27 -96 25 -56Z', fill: OCHRE, stroke: INK,
+                'stroke-width': 6, 'stroke-linejoin': 'round'}, bod);
+    mk('circle', {cx: 3, cy: -140, r: 22, fill: INK, stroke: '#F4F1EA', 'stroke-width': 5}, bod);
+    function walkerPose(ph, amt){
+      var a = 0.5 * amt * Math.sin(ph), dip = 58 * (1 - Math.cos(a));
+      seg(legF, 0, -58, 58 * Math.sin(a), -58 + 58 * Math.cos(a));
+      seg(legB, 0, -58, -58 * Math.sin(a), -58 + 58 * Math.cos(a));
+      seg(armF, 0, -100, -44 * Math.sin(a * 0.8), -100 + 44 * Math.cos(a * 0.8));
+      seg(armB, 0, -100, 44 * Math.sin(a * 0.8), -100 + 44 * Math.cos(a * 0.8));
+      bod.setAttribute('transform', 'translate(0 ' + f1(dip) + ') rotate(' + f1(4 * amt) + ' 0 -58)');
+    }
+
+    /* Whiskey, the hero's ginger cat, in his running pose */
+    var cat = mk('g', {'class': 'sw-cat'}, svg), cb = mk('g', {}, cat);
+    var tailO = mk('path', {stroke: INK, 'stroke-width': 4.6, 'stroke-linecap': 'round', fill: 'none'}, cb);
+    var tailI = mk('path', {stroke: OCHRE, 'stroke-width': 2.4, 'stroke-linecap': 'round', fill: 'none'}, cb);
+    var paws = [];
+    for(var i = 0; i < 4; i++){ paws.push(mk('path', {stroke: INK, 'stroke-width': 2.6, 'stroke-linecap': 'round', fill: 'none'}, cb)); }
+    mk('ellipse', {cx: 0, cy: -12, rx: 12.5, ry: 5.4, fill: OCHRE, stroke: INK, 'stroke-width': 1.5}, cb);
+    mk('path', {d: 'M-6.4 -16.6q1.2 2.6 .4 5M-2 -17.2q1.2 2.6 .4 5.2M2.6 -17q1 2.4 .3 4.6', fill: 'none', stroke: DEEP,
+                'stroke-width': 1.3, 'stroke-linecap': 'round'}, cb);
+    mk('path', {d: 'M9.4 -18.2L10.2 -24.6L13.6 -20.2Z', fill: OCHRE, stroke: INK, 'stroke-width': 1.3, 'stroke-linejoin': 'round'}, cb);
+    mk('path', {d: 'M14.4 -20.6L17.8 -24.2L17.8 -18.2Z', fill: OCHRE, stroke: INK, 'stroke-width': 1.3, 'stroke-linejoin': 'round'}, cb);
+    mk('circle', {cx: 13.4, cy: -15.6, r: 5.3, fill: OCHRE, stroke: INK, 'stroke-width': 1.5}, cb);
+    mk('circle', {cx: 15.9, cy: -16.4, r: 0.95, fill: INK}, cb);
+    function catPose(ph, amt){
+      var lift = 1.4 * amt * Math.abs(Math.sin(ph)), amp = 0.9 * amt;
+      cb.setAttribute('transform', 'translate(0 ' + f1(-lift) + ')');
+      var roots = [[7.2, -10], [5, -10], [-7, -10], [-9.2, -10]], offs = [0, 0.7, Math.PI, Math.PI + 0.7];
+      for(var j = 0; j < 4; j++){
+        var a = amp * Math.sin(ph + offs[j]);
+        seg(paws[j], roots[j][0], roots[j][1], roots[j][0] + 9.4 * Math.sin(a), roots[j][1] + 9.4 * Math.cos(a) + lift);
+      }
+      var w = 2.2 * Math.sin(ph * 0.5), d = 'M-11.5 -13C-17 -14.4 -21 -' + f1(19 + w) + ' -24.6 -' + f1(17.4 + w);
+      tailO.setAttribute('d', d); tailI.setAttribute('d', d);
+    }
+
+    var reacts = [];
+    each(svg.querySelectorAll('.sw-r'), function(g){ reacts.push({el: g, x: +g.getAttribute('data-x'), done: false}); });
+    function maxS(){ return Math.max(1, sc.scrollWidth - sc.clientWidth); }
+    function walkerX(){ return X0 + (X1 - X0) * Math.min(1, Math.max(0, sc.scrollLeft / maxS())); }
+
+    var tour = null, cancelled = false, moved = false, dir = 1, ph = 0, amt = 0, lastX = null, catX = 0, catDir = 1, catPh = 0, catAmt = 0;
+    var raf = 0, lastT = 0;
+    function stops(){
+      var m = maxS(), w = sc.scrollWidth / 5, out = [0];
+      for(var k = 1; k < 5; k++){
+        var s = Math.min(m, Math.round(k * w));
+        if(s - out[out.length - 1] < 40){ out[out.length - 1] = s; } else { out.push(s); }
+      }
+      if(m - out[out.length - 1] < 40){ out[out.length - 1] = m; } else { out.push(m); }
+      return out;
+    }
+    function plan(pts){
+      var phases = [];
+      for(var k = 1; k < pts.length; k++){
+        phases.push({a: pts[k - 1], b: pts[k], dur: Math.max(0.6, (pts[k] - pts[k - 1]) / SPEED)});
+        if(k < pts.length - 1){ phases.push({a: pts[k], b: pts[k], dur: DWELL}); }
+      }
+      return phases;
+    }
+    function endTour(){ tour = null; sc.classList.remove('sw-touring'); kick(); }
+    function stepTour(dt){
+      if(!tour.paused){ tour.el += dt; }
+      var e = tour.el;
+      for(var k = 0; k < tour.ph.length; k++){
+        var p = tour.ph[k];
+        if(e <= p.dur){
+          var u = e / p.dur, s = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+          sc.scrollLeft = p.a + (p.b - p.a) * s;
+          return;
+        }
+        e -= p.dur;
+      }
+      sc.scrollLeft = tour.ph[tour.ph.length - 1].b;
+      endTour();
+    }
+    function frame(t){
+      raf = 0;
+      var dt = lastT ? Math.min(0.05, (t - lastT) / 1000) : 1 / 60;
+      lastT = t;
+      if(tour){ stepTour(dt); }
+      var x = walkerX();
+      if(lastX === null){ lastX = x; catX = x - 105; }
+      var dx = x - lastX;
+      lastX = x;
+      if(dx > 0.3){ dir = 1; } else if(dx < -0.3){ dir = -1; }
+      if(Math.abs(dx) > 0.3){ moved = true; }
+      ph += Math.abs(dx) / 210 * 2 * Math.PI;
+      amt += ((Math.abs(dx) > 0.05 ? 1 : 0) - amt) * Math.min(1, dt * 9);
+      walkerPose(ph, amt);
+      who.setAttribute('transform', 'translate(' + f1(x) + ' ' + f1(feet(x)) + ') scale(' + (dir * BIG) + ' ' + BIG + ')');
+      var cdx = (x - dir * 105 - catX) * Math.min(1, dt * 5);
+      catX += cdx;
+      if(cdx > 0.3){ catDir = 1; } else if(cdx < -0.3){ catDir = -1; }
+      catPh += Math.abs(cdx) / (CAT * 26) * 2 * Math.PI;
+      catAmt += ((Math.abs(cdx) > 0.08 ? 1 : 0) - catAmt) * Math.min(1, dt * 9);
+      catPose(catPh, catAmt);
+      cat.setAttribute('transform', 'translate(' + f1(catX) + ' ' + f1(feet(catX)) + ') scale(' + (catDir * CAT) + ' ' + CAT + ')');
+      reacts.forEach(function(r){
+        if(moved && !r.done && Math.abs(r.x - x) < 70){ r.done = true; r.el.classList.add('sw-go'); }
+      });
+      if((tour && !tour.paused) || amt > 0.02 || catAmt > 0.02 || Math.abs(cdx) > 0.05){ raf = requestAnimationFrame(frame); } else { lastT = 0; }
+    }
+    function kick(){ if(!raf){ raf = requestAnimationFrame(frame); } }
+    function startTour(){
+      if(cancelled || tour || sc.scrollLeft > 4){ return; }
+      tour = {ph: plan(stops()), el: 0, paused: false};
+      sc.classList.add('sw-touring');
+      kick();
+    }
+    takeOver = function(){ cancelled = true; if(tour){ endTour(); } };
+    sc.addEventListener('touchstart', takeOver, {passive: true});
+    sc.addEventListener('keydown', takeOver);
+    sc.addEventListener('pointerdown', function(e){ if(e.pointerType !== 'mouse'){ takeOver(); } });
+    sc.addEventListener('wheel', function(e){ if(Math.abs(e.deltaX) > Math.abs(e.deltaY) || e.shiftKey){ takeOver(); } }, {passive: true});
+    sc.addEventListener('scroll', kick, {passive: true});
+    var wait = 0;
+    new IntersectionObserver(function(entries){
+      var r = entries[0].intersectionRatio;
+      if(tour){ tour.paused = r < 0.3; if(!tour.paused){ kick(); } return; }
+      if(r >= 0.6 && !wait && !cancelled){ wait = setTimeout(function(){ wait = 0; startTour(); }, 700); }
+      if(r < 0.6 && wait){ clearTimeout(wait); wait = 0; }
+    }, {threshold: [0, 0.3, 0.6, 1]}).observe(sc);
+    kick();
   });
 
   window.addEventListener('beforeprint', function(){

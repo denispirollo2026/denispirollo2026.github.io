@@ -716,6 +716,25 @@
   .art-media{margin:36px 0;content-visibility:auto;contain-intrinsic-size:auto 600px}
   .art-media img{width:100%;display:block;border:3px solid var(--ink)}
   .art-media .media-kind{margin-top:10px}
+  /* walk the street: one drawing of Main Street you slide along, the captions under each stretch of it */
+  .street-walk{contain-intrinsic-size:auto 480px}
+  .sw-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;scroll-behavior:auto;border:3px solid var(--ink);background:var(--paper);scrollbar-width:thin}
+  .sw-scroll:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .sw-track{--sw-h:260px;width:calc(var(--sw-h) * 5400 / 620)}
+  .sw-street{display:block;width:100%;height:var(--sw-h)}
+  .sw-stops{display:grid;grid-template-columns:repeat(5,1fr);list-style:none;margin:0;padding:0;border-top:3px solid var(--ink)}
+  .sw-stops li{scroll-snap-align:start;padding:16px 24px 20px}
+  .sw-stops li:last-child{scroll-snap-align:end}
+  .sw-kick{display:block;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .sw-title{display:block;margin-top:6px;font-size:24px;font-weight:900;line-height:1.1;letter-spacing:-.01em}
+  .sw-line{display:block;margin-top:8px;font-size:15px;line-height:1.45}
+  @media (max-width:560px){
+    .sw-track{--sw-h:180px}
+    .sw-stops li{padding:14px 18px 16px}
+    .sw-title{font-size:20px}
+    .sw-line{font-size:14.5px}
+  }
   .timeline{margin-top:28px;border-left:3px solid var(--ink)}
   .tl-row{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0 14px 22px;border-bottom:1px solid var(--divider);position:relative}
   .tl-row::before{content:"";position:absolute;left:-8px;top:22px;width:13px;height:13px;background:var(--accent);border:3px solid var(--ink)}
