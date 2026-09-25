@@ -200,11 +200,6 @@
   .hero-after .video-slot{margin-top:56px}
   /* a phone: the stamp may wrap, or the French one (« Bientôt à l'affiche ») pushes the page 14 px past the screen */
   @media (max-width:520px){ .hero-after .video-slot{padding:32px 20px} .hero-after .vs-stamp{white-space:normal;font-size:18px;letter-spacing:.1em} }
-  /* the footer's birds: the name plate, HAWKESBURY, then the vote date, in turn */
-  .rt-foot{position:relative;background:var(--ink);border-top:12px solid var(--accent);height:clamp(260px,24vw,380px);overflow:hidden}
-  .rt-foot canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-  .rt-foot-line{position:absolute;left:0;right:0;bottom:18px;z-index:1;margin:0;font-size:11.5px;font-weight:800;letter-spacing:.14em;
-                text-transform:uppercase;color:#B9B3A6;text-align:center;pointer-events:none;padding:0 16px}
   /* wide screens: the whole hero fits the first screen, the copy above the town, Denis and the sign beside it */
   @media (min-width:900px){
     /* the height follows the screen, capped on tall portrait screens (a tablet held upright) so the sky never gapes */
@@ -226,7 +221,8 @@
   @media (max-width:899px){
     .hero{--bandH:150px;--dh:300px;--gap:10px;--nsz:36px;--stake:80px;padding:36px 0 0}
     .lockup{--P:clamp(54px,15vw,72px)}
-    .rt-scene{position:relative;height:calc(var(--dh) + 64px);margin-top:14px}
+    /* the extra 120 px is sky above Denis, where the birds build their words */
+    .rt-scene{position:relative;height:calc(var(--dh) + 184px);margin-top:6px}
     .rt-count{padding:7px 11px 6px;border-width:3px}
     .rt-l{font-size:9.5px;white-space:normal;max-width:10.2em;line-height:1.25}
     .hero .eyebrow{font-size:11px;letter-spacing:.1em}
@@ -598,8 +594,7 @@
   /* ============ end sign reservations (css) ============ */
 
   /* ============ footer ============ */
-  footer{padding:0 0 48px}
-  footer > .wrap{padding-top:64px}
+  footer{padding:64px 0 48px}
   .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px}
   .lockup-name{font-size:26px;font-weight:900;letter-spacing:-.01em}
   .lockup-descriptor{margin-top:4px;font-size:15px;font-weight:600;color:var(--muted)}
@@ -1893,13 +1888,6 @@
 
 
 <footer>
-  <div class="rt-foot" id="rt-foot">
-    <canvas id="rt-foot-flock" aria-hidden="true"></canvas>
-    <p class="rt-foot-line">
-      
-      <span class="lang-fr">Le vote a lieu le lundi 26 octobre 2026.</span>
-    </p>
-  </div>
   <div class="wrap">
     <div class="footer-grid">
       <div lang="en">
@@ -1955,7 +1943,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"main-street":"/fr/plans/main-street/","park":"/fr/plans/park/","powers":"/fr/plans/powers/","transport":"/fr/plans/transport/","infrastructure":"/fr/plans/infrastructure/","housing":"/fr/plans/housing/","roads":"/fr/plans/roads/","books":"/fr/plans/books/","partners":"/fr/plans/partners/","youth":"/fr/plans/youth/","transparency":"/fr/plans/transparency/","technology":"/fr/plans/technology/","campus":"/fr/plans/campus/","mainstreet":"/fr/plans/main-street/"};
+  var PLAN_PAGES = {"infrastructure":"/fr/plans/infrastructure/","main-street":"/fr/plans/main-street/","roads":"/fr/plans/roads/","books":"/fr/plans/books/","technology":"/fr/plans/technology/","park":"/fr/plans/park/","housing":"/fr/plans/housing/","transport":"/fr/plans/transport/","campus":"/fr/plans/campus/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","youth":"/fr/plans/youth/","transparency":"/fr/plans/transparency/","mainstreet":"/fr/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
@@ -2794,23 +2782,23 @@
 
 <script>
   /* ============ the river-town hero and the footer birds ============ */
-/* The river-town hero and the footer birds. The birds (PMFlock) and Whiskey and Peanut (PMPets) come in their own
+/* The river-town hero. The birds (PMFlock) and Whiskey and Peanut (PMPets) come in their own
    script blocks just before this one.
 
    The opening: the name plate stamps down, one ink line draws the river town, the sun rises behind the bridge, Denis
    stands up out of the page onto the promenade and the lawn-sign countdown plants beside him (about 3 s). Then the town
-   stays alive: water, a car over the bridge, a murmuration that forms a ballot mark over the river, Whiskey on the bridge
-   beam and Peanut at the foot of the sign (click either: it runs off, then comes back). The footer's birds build the name
-   plate, then HAWKESBURY, then the vote date, in turn.
+   stays alive: water, a car over the bridge, a murmuration in the sky that builds the name plate, then HAWKESBURY, then
+   the vote date, in turn, Whiskey on the bridge beam and Peanut at the foot of the sign (click either: it runs off, then
+   comes back).
    Everything alive pauses off screen and in a hidden tab, and stays still under reduced motion. Nothing here reads or
-   sends anything. Review a frozen moment with ?rt= (opening seconds), ?rg= (hero birds), ?rf= (footer birds),
+   sends anything. Review a frozen moment with ?rt= (opening seconds), ?rg= (the birds, seconds into their loop),
    ?rp= (both pets clicked at 0) or ?rpi= (pets idle). */
 (function(){
   "use strict";
   var END = 3.1, Q = location.search;
   function num(name){ var m = new RegExp("[?&]" + name + "=([\\d.]+)").exec(Q); return m ? parseFloat(m[1]) : null; }
-  var qT = num("rt"), qG = num("rg"), qF = num("rf"), qP = num("rp"), qPI = num("rpi");
-  var review = qT != null || qG != null || qF != null || qP != null || qPI != null;
+  var qT = num("rt"), qG = num("rg"), qP = num("rp"), qPI = num("rpi");
+  var review = qT != null || qG != null || qP != null || qPI != null;
   var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
   function el(id){ return document.getElementById(id); }
   function clamp(v, a, b){ return v < a ? a : v > b ? b : v; }
@@ -2819,7 +2807,6 @@
   function unhide(){ document.documentElement.classList.remove("rt-pre"); }
 
   var hero = el("hero"), hasHero = !!(hero && el("rt-town"));
-  var footEl = el("rt-foot"), hasFoot = !!(footEl && window.PMFlock);
   if(!hasHero){ unhide(); }
 
   /* ================================================================ the hero ================================================ */
@@ -2883,7 +2870,8 @@
     var axis = lc.left + lc.width / 2;
     if(desk){
       var rc = el("rt-right").getBoundingClientRect();
-      var want = rc.left + rc.width / 2, lo = axis + copyW / 2 + 28 + figW / 2, hi = spireL - 22 - figW / 2;
+      // a little left of the right column's centre, so the birds' words get more of the open sky beside him
+      var want = rc.left + rc.width / 2 - 70, lo = axis + copyW / 2 + 28 + figW / 2, hi = spireL - 22 - figW / 2;
       fig.style.left = (Math.max(lo, Math.min(want, hi)) - sr.left).toFixed(1) + "px";
     } else { fig.style.left = (sr.width * .5).toFixed(1) + "px"; }
     var fr = fig.getBoundingClientRect(), dW = img.offsetWidth, dH = img.offsetHeight, stk = el("rt-stake");
@@ -2966,38 +2954,66 @@
     if(pets){ pets.setIntro(seg(t, 1.70, 2.10), seg(t, 2.45, 2.80)); }
   }
 
-  // the hero murmuration: in from the right as one cloud, a ballot mark over the river, then away
+  // the hero's birds: one murmuration in the open sky beside Denis (above him on a phone) that builds three things in
+  // turn, each held, let go and swirled before the next: the name plate, the town's name in the campaign's own lettering
+  // (never the Town's logo, which the Town reserves), and the vote date as a ballot mark beside "26 OCT" (the same in
+  // English and French). The first time in, the cloud sweeps in from beyond the right edge.
+  var BIRD_CYCLE = 15;
   function heroSlot(cr){
-    var g = geo, desk = window.innerWidth >= 900, k = desk ? clamp(cr.width / 1400, .8, 1.2) : .62;
-    if(!g){ return { n: desk ? 380 : 220, k: k, L: 160 * k, cx: cr.width * .75, cy: cr.height * .3, size: 1 }; }
-    var x0, x1, y0 = cr.top + 16, y1 = g.sign.t - 18;
-    if(desk){ x0 = g.denis.r + 16; x1 = g.spire.on ? g.spire.l - 20 : cr.right - 16; }
-    else { x0 = g.denis.l + .78 * (g.denis.r - g.denis.l); x1 = cr.right - 8; y0 = cr.top + 8; }
-    var L = Math.max(80 * k, Math.min(260 * k, .82 * (x1 - x0), .82 * (y1 - y0)));
-    return { n: desk ? 380 : 220, k: k, L: L, cx: (x0 + x1) / 2 - cr.left, cy: (y0 + y1) / 2 - cr.top, size: desk ? 1.1 : 1 };
+    var g = geo, desk = window.innerWidth >= 900, x0, x1, y0, y1;
+    if(!g){ x0 = cr.width * .55; x1 = cr.width - 16; y0 = 16; y1 = cr.height * .55; }
+    else if(desk){ x0 = g.denis.r + 20 - cr.left; x1 = cr.right - 20 - cr.left; y0 = 18; y1 = g.sign.t - 16 - cr.top; }
+    else { x0 = 10; x1 = cr.width - 10; y0 = 6; y1 = Math.min(g.denis.t, g.sign.t) - 10 - cr.top; }
+    var W = Math.max(160, x1 - x0), H = Math.max(80, y1 - y0);
+    return { x0: x0, y0: y0, W: W, H: H, n: Math.round(clamp(W * 1.7, 420, 1000)), k: clamp(W / 780, .5, .85), size: 1 };
   }
-  function heroShape(s){ return PMFlock.ballot(s.n, s.cx, s.cy, s.L, -3); }
-  function heroPlan(tau, s, W){
-    var k = s.k, L = s.L, off = 1.1 * L + 60 * k, sx0 = W + off, sy0 = s.cy - .45 * L, P = { m: 0, face: Math.PI, on: tau < 17,
-        rx: .82 * L, ry: .3 * L, rot: -.28 + .2 * Math.sin(tau * .5) };
-    if(tau < 4.2){
-      var q = tau / 4.2, e = 1 - Math.pow(1 - q, 2), de = 2 * (1 - q) / 4.2;
-      P.cx = sx0 + (s.cx - sx0) * e; P.cy = sy0 + (s.cy - sy0) * e + 18 * k * Math.sin(tau * 1.6);
-      P.vx = (s.cx - sx0) * de; P.vy = (s.cy - sy0) * de + 28.8 * k * Math.cos(tau * 1.6);
-    } else if(tau < 12.8){
-      var u = tau - 4.2;
-      P.cx = s.cx + 26 * k * Math.sin(u * .9); P.cy = s.cy + 14 * k * Math.sin(u * 1.3);
-      P.vx = 23.4 * k * Math.cos(u * .9); P.vy = 18.2 * k * Math.cos(u * 1.3);
-      P.m = tau < 5 ? 0 : tau < 7.6 ? smooth((tau - 5) / 2.6) : tau < 11.6 ? 1 : 1 - smooth((tau - 11.6) / 1.2);
-    } else {
-      var pp = (tau - 12.8) / 3.8, e2 = pp * pp * pp, d2 = 3 * pp * pp / 3.8, ex = W + off * 1.6 - s.cx, cx0 = s.cx + 26 * k * Math.sin(8.6 * .9);
-      P.cx = cx0 + ex * e2; P.cy = s.cy - 150 * k * e2; P.vx = ex * d2; P.vy = -150 * k * d2; P.face = 0;
+  function birdFont(g, fs){ g.font = "italic 900 " + fs + "px 'Libre Franklin'"; }
+  // a shape drawn in the slot's own box, then moved to where the slot sits on the canvas
+  function inSlot(paint){ return function(s){ var p = PMFlock.sample(s.W, s.H, s.n, paint);
+    for(var i = 0; i < p.length; i++){ p[i][0] += s.x0; p[i][1] += s.y0; } return p; }; }
+  var birdPlate = inSlot(function(g, w, h){
+    var fs = Math.min(h * .5, w * .16); birdFont(g, fs);
+    var tw = g.measureText("PIROLLO").width;
+    if(tw > w * .8){ fs *= w * .8 / tw; birdFont(g, fs); tw = w * .8; }
+    g.translate(w / 2, h * .5); g.rotate(-2 * Math.PI / 180);
+    g.fillStyle = g.strokeStyle = "#000"; g.lineWidth = .075 * fs; g.lineJoin = "miter";
+    g.strokeRect(-tw / 2 - .26 * fs, -.66 * fs, tw + .52 * fs, 1.24 * fs);
+    g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("PIROLLO", 0, .03 * fs);
+  });
+  var birdTown = inSlot(function(g, w, h){
+    var fs = Math.min(h * .45, w * .14); birdFont(g, fs);
+    var tw = g.measureText("HAWKESBURY").width;
+    if(tw > w * .94){ fs *= w * .94 / tw; birdFont(g, fs); }
+    g.fillStyle = "#000"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("HAWKESBURY", w / 2, h * .5);
+  });
+  var birdDate = inSlot(function(g, w, h){
+    var fs = Math.min(h * .5, w * .18); birdFont(g, fs);
+    var tw = g.measureText("26 OCT").width, box = .92 * fs, gap = .4 * fs, all = box + gap + tw;
+    if(all > w * .92){ var q = w * .92 / all; fs *= q; box *= q; gap *= q; tw *= q; all = w * .92; birdFont(g, fs); }
+    var x0 = (w - all) / 2, cy = h * .5, lw = .085 * fs, ins = .22 * box;
+    g.fillStyle = g.strokeStyle = "#000"; g.lineWidth = lw; g.lineCap = "round"; g.lineJoin = "miter";
+    g.save(); g.translate(x0 + box / 2, cy); g.rotate(-3 * Math.PI / 180);          // the ballot box, tilted like the lawn sign
+    g.strokeRect(-box / 2, -box / 2, box, box);
+    g.lineWidth = lw * 1.25; g.beginPath();
+    g.moveTo(-box / 2 + ins, -box / 2 + ins); g.lineTo(box / 2 - ins, box / 2 - ins);
+    g.moveTo(box / 2 - ins, -box / 2 + ins); g.lineTo(-box / 2 + ins, box / 2 - ins); g.stroke(); g.restore();
+    g.textAlign = "left"; g.textBaseline = "middle"; g.fillText("26 OCT", x0 + box + gap, cy + .03 * fs);
+  });
+  function heroPlan(tau, s, W, H, t){
+    var cx = s.x0 + s.W / 2, cy = s.y0 + s.H / 2, ax = .16 * s.W, ay = .1 * s.H;
+    var P = { cx: cx + ax * Math.sin(t * .31 + 1), cy: cy + ay * Math.sin(t * .53),
+              vx: ax * .31 * Math.cos(t * .31 + 1), vy: ay * .53 * Math.cos(t * .53),
+              rx: .3 * s.W, ry: .24 * s.H, rot: .25 * Math.sin(t * .4), face: 0, on: true, si: Math.floor(t / BIRD_CYCLE) };
+    if(t < 3){                                                   // the first time in: from beyond the right edge
+      var off = (W - s.x0) + .6 * s.W, q = t / 3;
+      P.cx += off * (1 - q) * (1 - q); P.vx -= off * 2 * (1 - q) / 3; P.face = Math.PI;
     }
+    P.m = tau < 2.6 ? 0 : tau < 5.4 ? smooth((tau - 2.6) / 2.8) : tau < 11.2 ? 1 : tau < 12.4 ? 1 - smooth((tau - 11.2) / 1.2) : 0;
     return P;
   }
   if(hasHero && window.PMFlock && !reduce){
-    flock = new PMFlock(el("rt-flock"), { slot: heroSlot, shape: heroShape, plan: heroPlan, cycle: 22, replace: true,
-                                          colors: ["rgba(20,24,28,.92)", "#C8862A"], accentShare: .12 });
+    flock = new PMFlock(el("rt-flock"), { slot: heroSlot, shapes: [birdPlate, birdTown, birdDate], plan: heroPlan,
+                                          cycle: BIRD_CYCLE, replace: false, colors: ["rgba(20,24,28,.92)", "#C8862A"], accentShare: .14 });
     hero.addEventListener("mousemove", function(e){ var r = el("rt-flock").getBoundingClientRect(); flock.ptr = { x: e.clientX - r.left, y: e.clientY - r.top }; });
     hero.addEventListener("mouseleave", function(){ flock.ptr = null; });
     hero.addEventListener("click", function(e){ if(!e.target.closest("a,button")){ var r = el("rt-flock").getBoundingClientRect(); flock.burst(e.clientX - r.left, e.clientY - r.top); } });
@@ -3026,70 +3042,7 @@
     }); }).observe(hero);
   } else { heroSeen = true; }
 
-  /* ============================================================ the footer birds ============================================ */
-  // one murmuration that builds three things in turn, each held, let go and swirled before the next: the name plate, the
-  // town's name in the campaign's own lettering (never the Town's logo, which the Town reserves), and the vote date as a
-  // ballot mark beside "26 OCT" (the same in English and French)
-  var FOOT_CYCLE = 15, foot = null, footAlive = false, footSeen = false;
-  function footSlot(cr){ var W = cr.width; return { n: Math.round(clamp(W * .95, 640, 1450)), k: clamp(W / 1400, .62, 1.1), size: .85, W: W, H: cr.height }; }
-  function footFont(g, fs){ g.font = "italic 900 " + fs + "px 'Libre Franklin'"; }
-  function footPlate(s, W, H){
-    return PMFlock.sample(W, H, s.n, function(g, w, h){
-      var fs = Math.min(h * .42, w * .14); footFont(g, fs);
-      var tw = g.measureText("PIROLLO").width;
-      if(tw > w * .7){ fs *= w * .7 / tw; footFont(g, fs); tw = w * .7; }
-      g.translate(w / 2, h * .45); g.rotate(-2 * Math.PI / 180);
-      g.fillStyle = g.strokeStyle = "#000"; g.lineWidth = .075 * fs; g.lineJoin = "miter";
-      g.strokeRect(-tw / 2 - .26 * fs, -.66 * fs, tw + .52 * fs, 1.24 * fs);
-      g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("PIROLLO", 0, .03 * fs);
-    });
-  }
-  function footTown(s, W, H){
-    return PMFlock.sample(W, H, s.n, function(g, w, h){
-      var fs = Math.min(h * .4, w * .12); footFont(g, fs);
-      var tw = g.measureText("HAWKESBURY").width, fit = w < 600 ? .9 : .8;
-      if(tw > w * fit){ fs *= w * fit / tw; footFont(g, fs); }
-      g.fillStyle = "#000"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("HAWKESBURY", w / 2, h * .45);
-    });
-  }
-  function footDate(s, W, H){
-    return PMFlock.sample(W, H, s.n, function(g, w, h){
-      var fs = Math.min(h * .46, w * .15); footFont(g, fs);
-      var tw = g.measureText("26 OCT").width, box = .92 * fs, gap = .4 * fs, all = box + gap + tw, fit = w < 600 ? .88 : .72;
-      if(all > w * fit){ var q = w * fit / all; fs *= q; box *= q; gap *= q; tw *= q; all = w * fit; footFont(g, fs); }
-      var x0 = (w - all) / 2, cy = h * .45, lw = .085 * fs, ins = .22 * box;
-      g.fillStyle = g.strokeStyle = "#000"; g.lineWidth = lw; g.lineCap = "round"; g.lineJoin = "miter";
-      g.save(); g.translate(x0 + box / 2, cy); g.rotate(-3 * Math.PI / 180);          // the ballot box, tilted like the lawn sign
-      g.strokeRect(-box / 2, -box / 2, box, box);
-      g.lineWidth = lw * 1.25; g.beginPath();
-      g.moveTo(-box / 2 + ins, -box / 2 + ins); g.lineTo(box / 2 - ins, box / 2 - ins);
-      g.moveTo(box / 2 - ins, -box / 2 + ins); g.lineTo(-box / 2 + ins, box / 2 - ins); g.stroke(); g.restore();
-      g.textAlign = "left"; g.textBaseline = "middle"; g.fillText("26 OCT", x0 + box + gap, cy + .03 * fs);
-    });
-  }
-  function footPlan(tau, s, W, H, t){
-    // the free cloud stays in the band above the line of small text (its lowest edge is about 73% down)
-    var P = { cx: W / 2 + .26 * W * Math.sin(t * .31 + 1), cy: H * .42 + .07 * H * Math.sin(t * .53),
-              vx: .26 * W * .31 * Math.cos(t * .31 + 1), vy: .07 * H * .53 * Math.cos(t * .53),
-              rx: .2 * W, ry: .2 * H, rot: .25 * Math.sin(t * .4), face: 0, on: true, si: Math.floor(t / FOOT_CYCLE) };
-    P.m = tau < 1.8 ? 0 : tau < 4.8 ? smooth((tau - 1.8) / 3) : tau < 10.8 ? 1 : tau < 12 ? 1 - smooth((tau - 10.8) / 1.2) : 0;
-    return P;
-  }
-  if(hasFoot){
-    foot = new PMFlock(el("rt-foot-flock"), { slot: footSlot, shapes: [footPlate, footTown, footDate], plan: footPlan,
-                                              cycle: FOOT_CYCLE, replace: false, colors: ["#F4F1EA", "#C8862A"], accentShare: .16 });
-    footEl.addEventListener("mousemove", function(e){ var r = el("rt-foot-flock").getBoundingClientRect(); foot.ptr = { x: e.clientX - r.left, y: e.clientY - r.top }; });
-    footEl.addEventListener("mouseleave", function(){ foot.ptr = null; });
-    footEl.addEventListener("click", function(e){ var r = el("rt-foot-flock").getBoundingClientRect(); foot.burst(e.clientX - r.left, e.clientY - r.top); });
-  }
-  function footLoop(now){ if(!footAlive){ return; } foot.frame(now); requestAnimationFrame(footLoop); }
-  function footOn(){ if(foot && !footAlive && !reduce && !review && !document.hidden && footSeen){ footAlive = true; requestAnimationFrame(footLoop); } }
-  function footOff(){ footAlive = false; if(foot){ foot.pause(); } }
-  function footFit(){ if(foot && footEl.offsetParent){ foot.resize(); if(reduce){ foot.settle(); } } }
-  if(foot && "IntersectionObserver" in window){
-    new IntersectionObserver(function(es){ es.forEach(function(e){ footSeen = e.isIntersecting; if(footSeen){ footOn(); } else { footOff(); } }); }).observe(footEl);
-  }
-  document.addEventListener("visibilitychange", function(){ if(document.hidden){ halt(); footOff(); } else { resume(); footOn(); } });
+  document.addEventListener("visibilitychange", function(){ if(document.hidden){ halt(); } else { resume(); } });
 
   /* ================================================================ start ================================================== */
   var raf = 0;
@@ -3105,8 +3058,6 @@
   function go(){
     try{
       layout();
-      footFit();
-      if(qF != null && foot){ render(END); foot.simulateTo(qF); unhide(); return; }
       if(qG != null && hasHero){ render(END); if(flock){ flock.resize(); flock.simulateTo(qG); } unhide(); return; }
       if((qP != null || qPI != null) && pets){
         render(END); var s = qP != null ? qP : qPI, T0 = 1000;
@@ -3123,19 +3074,19 @@
       } else if(hasHero){ render(0); unhide(); play(); } else { unhide(); }
     }catch(err){ unhide(); try{ render(END); }catch(e2){} }
   }
-  window.addEventListener("resize", function(){ layout(); footFit(); });
+  window.addEventListener("resize", layout);
   if(typeof window.setLang === "function"){                      // the other language's copy has other widths
     var _setLang = window.setLang;
     window.setLang = function(l){ _setLang(l); layout(); };
   }
-  window.addEventListener("hashchange", function(){ setTimeout(function(){ layout(); footFit(); }, 0); });
+  window.addEventListener("hashchange", function(){ setTimeout(layout, 0); });
   if(hasHero){ el("rt-denis").addEventListener("load", layout); }
   var started = false;
   function once(){ if(!started){ started = true; go(); } }
-  // the name plate and the footer shapes need the real italic; wait for it (never a slanted fake), but never for long
+  // the name plate and the birds' shapes need the real italic; wait for it (never a slanted fake), but never for long
   var fontsWanted = document.fonts && document.fonts.load ?
     Promise.all([document.fonts.load("italic 900 40px 'Libre Franklin'"), document.fonts.load("italic 800 40px 'Libre Franklin'")]) : null;
-  if(fontsWanted){ fontsWanted.then(function(){ if(started){ footFit(); } once(); }, once); } else { once(); }
+  if(fontsWanted){ fontsWanted.then(function(){ if(started){ layout(); } once(); }, once); } else { once(); }
   setTimeout(once, 900);
 })();
 
