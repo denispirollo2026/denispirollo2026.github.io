@@ -44,6 +44,8 @@
 @font-face{font-family:'Libre Franklin';font-style:normal;font-weight:800;font-display:swap;src:url('/assets/fonts/LibreFranklin-800-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:'Libre Franklin';font-style:normal;font-weight:900;font-display:swap;src:url('/assets/fonts/LibreFranklin-900-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Libre Franklin';font-style:normal;font-weight:900;font-display:swap;src:url('/assets/fonts/LibreFranklin-900-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Libre Franklin';font-style:italic;font-weight:800 900;font-display:swap;src:url('/assets/fonts/LibreFranklin-Italic-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Libre Franklin';font-style:italic;font-weight:800 900;font-display:swap;src:url('/assets/fonts/LibreFranklin-Italic-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 
   .plans-soon{max-width:62ch;color:var(--muted);font-size:17px;line-height:1.6;padding:6px 0 2px}
   .plans-soon a{color:var(--accent-deep)}
@@ -152,24 +154,84 @@
   .lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--plate)}
   .lang-toggle button:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px}
 
-  /* ============ hero ============ */
-  .hero{padding:96px 0 72px}
-  .hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:56px;align-items:center}
-  .hero-name{
-    font-size:clamp(58px,9vw,118px);font-weight:900;line-height:.98;
-    letter-spacing:-.02em;margin-top:18px;
-  }
-  .hero-descriptor{margin-top:16px;font-size:clamp(18px,2.2vw,24px);font-weight:600;color:var(--muted)}
-  .hero-tagline{
-    margin-top:22px;font-size:clamp(27px,3.6vw,42px);font-weight:800;
-    line-height:1.12;color:var(--accent);text-wrap:balance;max-width:14ch;
-  }
-  .hero-anchor{margin-top:30px;animation:ctaIn .5s cubic-bezier(.22,.66,.24,1) .45s both}
-  @keyframes ctaIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .hero-line{font-size:17px;font-weight:600;color:var(--ink);max-width:40ch}
-  .hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:16px}
+  /* ============ hero: the river town ============
+     The name plate lockup, in the italic that lives only in the lockup. The copy is one centred column on the plate's
+     centre line, in the clear sky above the bridge; the scene (the town, the birds, Denis, the countdown sign, Whiskey
+     and Peanut) fills the hero behind it. */
+  .hero{position:relative;overflow:hidden}
+  .hero-copy{position:relative;z-index:2}
+  .hero-left{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+  .lockup{--P:120px;display:flex;flex-direction:column;align-items:center;width:max-content;max-width:100%;margin:0;
+          font-size:inherit;font-weight:inherit;line-height:1}
+  .lk-vote,.lk-denis,.lk-plate,.lk-pirollo,.lk-mayor{display:block}
+  .lk-vote{font-size:calc(var(--P)*.254);font-weight:800;letter-spacing:.22em;margin-left:.22em;text-transform:uppercase;line-height:1}
+  .lk-denis{font-size:calc(var(--P)*.441);font-weight:800;font-style:italic;letter-spacing:.16em;margin-left:.16em;text-transform:uppercase;
+            line-height:1;margin-top:calc(var(--P)*.203)}
+  .lk-plate{background:var(--plate);border:calc(var(--P)*.051) solid var(--ink);padding:calc(var(--P)*.034) calc(var(--P)*.22) calc(var(--P)*.068);
+            margin-top:calc(var(--P)*.254);transform:rotate(-2deg);box-shadow:calc(var(--P)*.102) calc(var(--P)*.119) 0 rgba(200,134,42,.28)}
+  .lk-pirollo{font-size:var(--P);font-weight:900;font-style:italic;letter-spacing:-.01em;line-height:1.04;text-transform:uppercase}
+  .lk-mayor{font-size:calc(var(--P)*.356);font-weight:800;font-style:italic;letter-spacing:.16em;margin-left:.16em;text-transform:uppercase;
+            line-height:1;margin-top:calc(var(--P)*.305);color:var(--accent-deep)}
+  .hero-tagline{font-size:clamp(22px,2.6vw,30px);font-weight:900;color:var(--accent);line-height:1.15;max-width:15em;text-wrap:balance}
+  .hero-line{font-size:16.5px;font-weight:600;color:var(--ink);max-width:44ch;margin:0 auto}
+  .hero-actions{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:16px}
   .hero-more{font-weight:700;font-size:15px;color:var(--accent-deep);text-decoration:none;border-bottom:3px solid transparent;padding-bottom:2px}
   .hero-more:hover,.hero-more:focus-visible{border-bottom-color:var(--accent)}
+  .rt-pre #hero .hero-copy,.rt-pre #hero .rt-scene{visibility:hidden}   /* until the script has set the opening's first frame */
+  .rt-scene{pointer-events:none}
+  .rt-town{position:absolute;left:0;right:0;bottom:0;width:100%;height:var(--bandH)}
+  .rt-town .rt-ln{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .rt-town .rt-wv{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;opacity:.55;vector-effect:non-scaling-stroke}
+  .rt-town .rt-fillp{fill:var(--paper)}
+  .rt-town .rt-sun{fill:var(--accent)}
+  .rt-town .rt-inkf{fill:var(--ink)}
+  .rt-town .pet{cursor:pointer;pointer-events:auto}.rt-town .pet .hit{pointer-events:all}
+  .rt-figure{position:absolute;bottom:var(--bank,40px);left:50%;display:flex;align-items:flex-end;gap:var(--gap);transform:translateX(-50%);width:max-content}
+  .rt-denis{height:var(--dh);width:auto;max-width:none;display:block;transform-origin:50% 100%}
+  .rt-sign{display:flex;flex-direction:column;align-items:center;transform-origin:50% 100%}
+  .rt-sign[hidden]{display:none}
+  .rt-count{background:var(--plate);border:4px solid var(--ink);padding:10px 16px 9px;box-shadow:8px 10px 0 rgba(200,134,42,.28);
+            transform:rotate(-3deg);text-align:left;white-space:nowrap}
+  .rt-n{font-size:var(--nsz);font-weight:900;line-height:.95;color:var(--accent);font-variant-numeric:tabular-nums}
+  .rt-l{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-top:4px;color:var(--ink)}
+  .rt-l [hidden]{display:none}
+  .rt-stake{width:7px;height:var(--stake);background:var(--ink);transform-origin:50% 100%}
+  .rt-flock{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .hero-after{padding:0 0 72px}
+  .hero-after .video-slot{margin-top:56px}
+  /* a phone: the stamp may wrap, or the French one (« Bientôt à l'affiche ») pushes the page 14 px past the screen */
+  @media (max-width:520px){ .hero-after .video-slot{padding:32px 20px} .hero-after .vs-stamp{white-space:normal;font-size:18px;letter-spacing:.1em} }
+  /* the footer's birds: the name plate, HAWKESBURY, then the vote date, in turn */
+  .rt-foot{position:relative;background:var(--ink);border-top:12px solid var(--accent);height:clamp(260px,24vw,380px);overflow:hidden}
+  .rt-foot canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .rt-foot-line{position:absolute;left:0;right:0;bottom:18px;z-index:1;margin:0;font-size:11.5px;font-weight:800;letter-spacing:.14em;
+                text-transform:uppercase;color:#B9B3A6;text-align:center;pointer-events:none;padding:0 16px}
+  /* wide screens: the whole hero fits the first screen, the copy above the town, Denis and the sign beside it */
+  @media (min-width:900px){
+    /* the height follows the screen, capped on tall portrait screens (a tablet held upright) so the sky never gapes */
+    .hero{--bandH:calc(100vw * 7 / 30);--dh:clamp(360px,min(calc(100vh - 290px),calc(62vw - 110px)),600px);--gap:24px;--nsz:48px;--stake:128px;
+          height:max(620px, min(calc(100vh - var(--hero-top,100px)), calc(62vw + 180px)))}
+    .lockup{--P:clamp(54px,min(6.2vw,8.2vh),94px)}
+    .hero-left{gap:clamp(10px,1.5vh,18px)}
+    .hero-tagline{font-size:clamp(21px,min(2.2vw,3.3vh),28px)}
+    .hero-line{font-size:15.5px}
+    .hero-copy{position:absolute;left:0;right:0;top:0;height:62%;display:flex;align-items:safe center;padding-top:16px}
+    .hero-copy .wrap{width:100%}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)}
+    .rt-scene{position:absolute;inset:0;z-index:1}
+  }
+  /* short laptop screens: the secondary line gives way, then the eyebrow, so the copy keeps clear of the bridge */
+  @media (min-width:900px) and (max-height:900px){ .hero .hero-line{display:none} }
+  @media (min-width:900px) and (max-height:760px){ .hero .eyebrow{display:none} .hero .hero-actions{margin-top:8px} }
+  /* phones and tablets: the copy first, then the scene as its own block */
+  @media (max-width:899px){
+    .hero{--bandH:150px;--dh:300px;--gap:10px;--nsz:36px;--stake:80px;padding:36px 0 0}
+    .lockup{--P:clamp(54px,15vw,72px)}
+    .rt-scene{position:relative;height:calc(var(--dh) + 64px);margin-top:14px}
+    .rt-count{padding:7px 11px 6px;border-width:3px}
+    .rt-l{font-size:9.5px;white-space:normal;max-width:10.2em;line-height:1.25}
+    .hero .eyebrow{font-size:11px;letter-spacing:.1em}
+  }
 
   /* ============ the ask: one button family, primary/nav/read/bar ============ */
   .cta{
@@ -210,19 +272,6 @@
   .read-cta p{margin:0;font-size:17px;line-height:1.5;max-width:44ch}
   .read-cta p strong{font-weight:900}
   .cta-bar{display:none}
-  .hero-photo{position:relative;max-width:430px;margin:0 auto}
-  .hero-photo img{width:100%;display:block;border:4px solid var(--ink)}
-  .hero-plate{
-    position:absolute;left:-18px;bottom:-24px;
-    background:var(--plate);border:4px solid var(--ink);
-    transform:rotate(-2deg);box-shadow:var(--shadow);
-    padding:16px 22px;text-align:center;
-  }
-  .hero-plate .plate-figure{font-size:40px;font-weight:900;line-height:1;color:var(--accent)}
-  .hero-plate .plate-label{
-    margin-top:6px;font-size:13px;font-weight:800;text-transform:uppercase;
-    letter-spacing:.1em;color:var(--ink);
-  }
 
   /* ============ video slot ============ */
   .video-slot{
@@ -550,7 +599,8 @@
   /* ============ end sign reservations (css) ============ */
 
   /* ============ footer ============ */
-  footer{padding:64px 0 48px}
+  footer{padding:0 0 48px}
+  footer > .wrap{padding-top:64px}
   .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px}
   .lockup-name{font-size:26px;font-weight:900;letter-spacing:-.01em}
   .lockup-descriptor{margin-top:4px;font-size:15px;font-weight:600;color:var(--muted)}
@@ -674,10 +724,7 @@
 
   /* ============ responsive ============ */
   @media (max-width:860px){
-    .hero{padding:64px 0 48px}
-    .hero-grid,.donate-grid{grid-template-columns:1fr}
-    .hero-photo{margin:16px auto 24px}
-    .hero-plate{left:-8px}
+    .donate-grid{grid-template-columns:1fr}
     .donate-plate{justify-self:start}
     .post-row{grid-template-columns:1fr;gap:6px}
     .post-art{display:none}
@@ -757,6 +804,8 @@
     </button>
   </nav>
 </header>
+
+
 
 
 
@@ -1219,6 +1268,13 @@
 </section>
 
 <footer>
+  <div class="rt-foot" id="rt-foot">
+    <canvas id="rt-foot-flock" aria-hidden="true"></canvas>
+    <p class="rt-foot-line">
+      <span class="lang-en">Voting day is Monday, October 26, 2026.</span>
+      
+    </p>
+  </div>
   <div class="wrap">
     <div class="footer-grid">
       <div lang="en">
@@ -1274,7 +1330,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"park":"/plans/park/","housing":"/plans/housing/","campus":"/plans/campus/","roads":"/plans/roads/","main-street":"/plans/main-street/","books":"/plans/books/","transparency":"/plans/transparency/","transport":"/plans/transport/","infrastructure":"/plans/infrastructure/","youth":"/plans/youth/","powers":"/plans/powers/","partners":"/plans/partners/","technology":"/plans/technology/","mainstreet":"/plans/main-street/"};
+  var PLAN_PAGES = {"main-street":"/plans/main-street/","park":"/plans/park/","powers":"/plans/powers/","transport":"/plans/transport/","infrastructure":"/plans/infrastructure/","housing":"/plans/housing/","roads":"/plans/roads/","books":"/plans/books/","partners":"/plans/partners/","youth":"/plans/youth/","transparency":"/plans/transparency/","technology":"/plans/technology/","campus":"/plans/campus/","mainstreet":"/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
@@ -1638,6 +1694,822 @@
     labelArrows();
     render();
   })();
+</script>
+
+<script>
+  /* ============ the birds ============ */
+/* A murmuration: hundreds of small birds fly as one living cloud (a slowly churning swirl plus a pull back inside a
+   stretched, turning ellipse, which gives a real murmuration its leaf shape). Then, in writing order, each bird peels off
+   to its own place in a shape, holds it alive, and lets go again. The pointer carves a path through the flock; a click
+   bursts it and it heals. Fixed 1/60 s steps and seeded randomness, so the same seconds always give the same frame.
+   Canvas 2D, one fill per colour per frame, no library.
+
+   new PMFlock(canvas, {
+     slot(rect)                -> { n, k, ... }       how many birds, their scale k, and anything plan/shape need
+     shape(slot, w, h)         -> [[x, y], ...]       exactly n target points, sorted left to right (writing order)
+     shapes                    several shape functions instead of one; the plan's si picks which one forms next
+     plan(tau, slot, w, h, t)  -> { cx, cy, vx, vy, rx, ry, rot, m, face, on, si }   the cloud and the formation weight m
+     cycle, replace            seconds per cycle; replace = re-seed the cloud off screen at every cycle start
+     colors, accentShare       fill colours (index 0 = most birds) and the share of birds in colour 1
+   }) */
+(function(){
+  "use strict";
+  var DT = 1 / 60, SPREAD = .9;
+  function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function smooth(x){ x = clamp01(x); return x * x * (3 - 2 * x); }
+  function rnd(i){ var s = Math.sin(i * 12.9898 + 78.233) * 43758.5453; return s - Math.floor(s); }
+
+  function PMFlock(canvas, cfg){
+    this.c = canvas; this.x = canvas.getContext("2d"); this.cfg = cfg;
+    this.t = 0; this.acc = 0; this.last = null; this.ptr = null; this.b = []; this.tg = []; this.s = null;
+    this.w = 0; this.h = 0; this.dpr = 1; this.placed = false; this.assigned = false; this.on = true;
+  }
+
+  PMFlock.prototype.resize = function(){
+    var r = this.c.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+    this.w = r.width; this.h = r.height; this.dpr = d;
+    this.c.width = Math.round(r.width * d); this.c.height = Math.round(r.height * d);       // (this wipes the canvas)
+    this.s = this.cfg.slot(r);
+    var n = this.s.n, share = this.cfg.accentShare || 0;
+    if(this.b.length !== n){
+      // a new size keeps the birds already flying (a resize must never blank the flock): add or drop at the end
+      var had = this.b.length;
+      if(had > n){ this.b.length = n; }
+      for(var i = had; i < n; i++){
+        var src = had ? this.b[i % had] : null;
+        this.b.push({ x: src ? src.x : -9999, y: src ? src.y : 0, vx: src ? src.vx : 0, vy: src ? src.vy : 0, ph: rnd(i + 3) * 6.283,
+                      hd: src ? src.hd : Math.PI, sz: .74 + rnd(i + 11) * .56, lag: .7 + rnd(i + 23) * .6, gl: rnd(i + 31) * 6.283,
+                      col: rnd(i + 41) < share ? 1 : 0, ti: i, ord: i / n, glide: false });
+      }
+      if(!had){ this.placed = false; }
+      this.assigned = false;
+    }
+    var me = this;                                                // one or more shapes; the plan's si picks which one forms next
+    this.tgs = (this.cfg.shapes || [this.cfg.shape]).map(function(f){ return f(me.s, me.w, me.h); });
+    this.tg = this.tgs[(this.si || 0) % this.tgs.length];          // a resize mid-formation keeps the shape being built
+    this.draw();                                                 // so a frozen frame is never left blank
+  };
+
+  // seed the cloud: every bird somewhere inside the plan's ellipse, all moving with it
+  PMFlock.prototype.place = function(tau){
+    var P = this.cfg.plan(tau, this.s, this.w, this.h, this.t), cr = Math.cos(P.rot), sr = Math.sin(P.rot);
+    for(var i = 0; i < this.b.length; i++){
+      var b = this.b[i], a = rnd(i * 7 + 1) * 6.283, q = Math.sqrt(rnd(i * 5 + 2));
+      var u = Math.cos(a) * q * P.rx, v = Math.sin(a) * q * P.ry;
+      b.x = P.cx + u * cr - v * sr; b.y = P.cy + u * sr + v * cr; b.vx = P.vx; b.vy = P.vy;
+      b.hd = Math.atan2(P.vy, P.vx || (P.face > 1.6 ? -1 : 1));
+    }
+    this.assigned = false;
+  };
+
+  // who goes where: birds sorted left to right take the targets sorted left to right (short, uncrossed flights),
+  // and that same rank is the order they peel off in, so the shape writes itself from the left
+  PMFlock.prototype.assign = function(){
+    var bs = this.b, idx = [];
+    for(var i = 0; i < bs.length; i++){ idx.push(i); }
+    idx.sort(function(p, q){ return bs[p].x - bs[q].x; });
+    for(var r = 0; r < idx.length; r++){ bs[idx[r]].ti = r; bs[idx[r]].ord = r / idx.length; }
+    this.assigned = true;
+  };
+
+  PMFlock.prototype.step = function(){
+    var cyc = this.cfg.cycle, tau = this.t % cyc;
+    if(!this.placed || (this.cfg.replace && tau < DT * .5)){ this.place(tau); this.placed = true; }
+    var P = this.cfg.plan(tau, this.s, this.w, this.h, this.t), k = this.s.k, n = this.b.length, tt = this.t;
+    this.on = P.on !== false;
+    if(P.m > 0 && !this.assigned){ this.si = (P.si || 0) % this.tgs.length; this.tg = this.tgs[this.si]; this.assign(); }   // targets fixed for the whole formation
+    else if(P.m <= 0 && this.assigned){ this.assigned = false; }
+    var cr = Math.cos(P.rot), sr = Math.sin(P.rot), A = 85 * k, sc = 1 / (220 * k), ptr = this.ptr, R = 78 * Math.max(.85, k);
+    var brx = P.rx * (1 + .14 * Math.sin(tt * .7)), bry = P.ry * (1 + .2 * Math.sin(tt * .9 + 1));   // the cloud breathes
+    var irx = 1 / (brx * brx), iry = 1 / (bry * bry), mx = 700 * k;
+    var g0 = this.grad(0, 0, tt);                                 // the swirl's drift at the centre, taken out below
+    // keep a little room between birds (a spatial hash, so it stays cheap at a thousand birds)
+    var cell = 12 * k, sep = 8.5 * k, grid = new Map();
+    for(var j = 0; j < n; j++){ var bj = this.b[j], key = Math.floor(bj.x / cell) * 65536 + Math.floor(bj.y / cell);
+      var lst = grid.get(key); if(lst){ lst.push(j); } else { grid.set(key, [j]); } }
+    for(var i = 0; i < n; i++){
+      var b = this.b[i], dx = b.x - P.cx, dy = b.y - P.cy;
+      // the swirl, relative to the cloud: it churns the flock without pushing the whole cloud aside
+      var gr = this.grad(dx * sc, dy * sc, tt);
+      var fx = (gr[1] - g0[1]) * A, fy = -(gr[0] - g0[0]) * A;
+      // held together inside the moving ellipse
+      var u = dx * cr + dy * sr, v = -dx * sr + dy * cr, e = Math.sqrt(u * u * irx + v * v * iry);
+      if(e > .85){ var pull = Math.min(2.5, e - .85) * 420 * k, dd = Math.sqrt(dx * dx + dy * dy) || 1; fx -= dx / dd * pull; fy -= dy / dd * pull; }
+      var ax = (P.vx + fx - b.vx) * 3, ay = (P.vy + fy - b.vy) * 3;
+      var gx = Math.floor(b.x / cell), gy = Math.floor(b.y / cell);
+      for(var ox = -1; ox <= 1; ox++){ for(var oy = -1; oy <= 1; oy++){
+        var nb = grid.get((gx + ox) * 65536 + gy + oy); if(!nb){ continue; }
+        for(var q2 = 0; q2 < nb.length; q2++){ var o = this.b[nb[q2]]; if(o === b){ continue; }
+          var sx = b.x - o.x, sy = b.y - o.y, d2 = sx * sx + sy * sy;
+          if(d2 < sep * sep && d2 > .0001){ var dd2 = Math.sqrt(d2), push = (sep - dd2) / sep * 900 * k; ax += sx / dd2 * push; ay += sy / dd2 * push; } } } }
+      // the formation: each bird peels off in writing order to its own place, then hovers there
+      var mi = this.assigned ? smooth(P.m * (1 + SPREAD) - b.ord * SPREAD) : 0;
+      if(mi > 0){
+        var T = this.tg[b.ti], tx = T[0] + .9 * k * Math.sin(tt * 2.1 + b.ph), ty = T[1] + .9 * k * Math.cos(tt * 1.7 + b.gl);
+        var K = 20 * b.lag, C = 2 * Math.sqrt(K) * .85;
+        ax += (K * (tx - b.x) - C * b.vx - ax) * mi; ay += (K * (ty - b.y) - C * b.vy - ay) * mi;
+      }
+      if(ptr){                                                    // the pointer carves a path through
+        var qx = b.x - ptr.x, qy = b.y - ptr.y, q = Math.sqrt(qx * qx + qy * qy);
+        if(q < R && q > .01){ var f = 3400 * k * (1 - q / R); ax += qx / q * f; ay += qy / q * f; }
+      }
+      b.vx += ax * DT; b.vy += ay * DT;
+      var spd = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+      if(spd > mx){ b.vx *= mx / spd; b.vy *= mx / spd; spd = mx; }
+      b.x += b.vx * DT; b.y += b.vy * DT;
+      // heading follows the flight; a bird holding its place faces the flock's way, drifting a little
+      var want = spd > 30 * k ? Math.atan2(b.vy, b.vx) : P.face + .35 * Math.sin(tt * .8 + b.gl);
+      var dh = Math.atan2(Math.sin(want - b.hd), Math.cos(want - b.hd));
+      b.hd += dh * Math.min(1, DT * 8);
+      // wings: faster when flying fast, and now and then a glide with the wings held out
+      b.glide = mi < .5 && Math.sin(tt * .9 + b.gl * 3) > .6;
+      if(!b.glide){ b.ph += DT * (10 + Math.min(spd / k, 500) / 45); }
+    }
+    this.t += DT;
+  };
+
+  // gradient of psi = sin(1.3X+.6t)cos(1.1Y-.45t) + .6 sin(.8(X+Y)-.35t+1.7) + .35 cos(2.1X-.7Y+.9t); its curl is the swirl
+  PMFlock.prototype.grad = function(X, Y, tt){
+    var a1 = 1.3 * X + .6 * tt, a2 = 1.1 * Y - .45 * tt, c3 = Math.cos(.8 * (X + Y) - .35 * tt + 1.7), s4 = Math.sin(2.1 * X - .7 * Y + .9 * tt);
+    return [1.3 * Math.cos(a1) * Math.cos(a2) + .48 * c3 - .735 * s4, -1.1 * Math.sin(a1) * Math.sin(a2) + .48 * c3 + .245 * s4];
+  };
+
+  PMFlock.prototype.burst = function(px, py){
+    var k = this.s.k, reach = 320 * k;
+    for(var i = 0; i < this.b.length; i++){
+      var b = this.b[i], dx = b.x - px, dy = b.y - py, d = Math.sqrt(dx * dx + dy * dy) || 1, f = Math.max(0, 1 - d / reach);
+      if(f <= 0){ continue; }
+      var a = (rnd(i + this.t * 7) - .5) * .9, ux = dx / d, uy = dy / d, v = (420 * f + 80) * k;
+      b.vx += (ux * Math.cos(a) - uy * Math.sin(a)) * v; b.vy += (ux * Math.sin(a) + uy * Math.cos(a)) * v;
+    }
+  };
+
+  // the bird, seen from below, heading +x, about 9 units nose to tail: wings reach out and back with the beat
+  PMFlock.prototype.draw = function(){
+    var x = this.x, d = this.dpr, cols = this.cfg.colors, s0 = this.s ? this.s.k * (this.s.size || 1) : 1;
+    x.setTransform(d, 0, 0, d, 0, 0); x.clearRect(0, 0, this.w, this.h);
+    if(!this.on){ return; }
+    for(var c = 0; c < cols.length; c++){
+      x.beginPath();
+      for(var i = 0; i < this.b.length; i++){
+        var b = this.b[i];
+        if(b.col !== c || b.x < -30 || b.x > this.w + 30 || b.y < -30 || b.y > this.h + 30){ continue; }
+        var f = b.glide ? .95 : .22 + .78 * Math.abs(Math.sin(b.ph)), sw = b.glide ? .2 : Math.cos(b.ph) * 1.2;
+        var s = s0 * b.sz, ch = Math.cos(b.hd) * s, sh = Math.sin(b.hd) * s, bx = b.x, by = b.y;
+        var tipX = -1.2 - sw, tipY = 5.8 * f;
+        x.moveTo(bx + 4.2 * ch, by + 4.2 * sh);                                        // beak
+        x.lineTo(bx + 1.4 * ch + .9 * sh, by + 1.4 * sh - .9 * ch);
+        x.lineTo(bx + tipX * ch + tipY * sh, by + tipX * sh - tipY * ch);             // wing tip
+        x.lineTo(bx - 1.6 * ch + 1.0 * sh, by - 1.6 * sh - 1.0 * ch);
+        x.lineTo(bx - 4.4 * ch + 1.5 * sh, by - 4.4 * sh - 1.5 * ch);                  // tail
+        x.lineTo(bx - 3.7 * ch, by - 3.7 * sh);
+        x.lineTo(bx - 4.4 * ch - 1.5 * sh, by - 4.4 * sh + 1.5 * ch);
+        x.lineTo(bx - 1.6 * ch - 1.0 * sh, by - 1.6 * sh + 1.0 * ch);
+        x.lineTo(bx + tipX * ch - tipY * sh, by + tipX * sh + tipY * ch);             // wing tip
+        x.lineTo(bx + 1.4 * ch - .9 * sh, by + 1.4 * sh + .9 * ch);
+        x.closePath();
+      }
+      x.fillStyle = cols[c]; x.fill();
+    }
+  };
+
+  PMFlock.prototype.frame = function(now){                        // real time: fixed steps, capped after a hidden tab
+    if(this.last == null){ this.last = now; }
+    this.acc += Math.min(.1, (now - this.last) / 1000); this.last = now;
+    while(this.acc >= DT){ this.step(); this.acc -= DT; }
+    this.draw();
+  };
+  PMFlock.prototype.pause = function(){ this.last = null; };
+  PMFlock.prototype.simulateTo = function(seconds){               // review frames: the same seconds, the same picture
+    this.t = 0; this.placed = false; this.assigned = false;
+    var n = Math.round(seconds / DT); for(var i = 0; i < n; i++){ this.step(); }
+    if(n === 0){ this.place(0); this.placed = true; }
+    this.draw();
+  };
+  PMFlock.prototype.reset = function(){ this.t = 0; this.acc = 0; this.last = null; this.placed = false; this.assigned = false; this.place(0); this.placed = true; this.draw(); };
+  PMFlock.prototype.settle = function(){                          // reduced motion: the shape, still
+    this.si = 0; this.tg = this.tgs[0];
+    for(var i = 0; i < this.b.length; i++){ var b = this.b[i], T = this.tg[i]; b.ti = i; b.x = T[0]; b.y = T[1]; b.vx = b.vy = 0; b.hd = 0; b.glide = true; }
+    this.on = true; this.draw();
+  };
+
+  // ---- shapes ----
+  // the ballot mark: a box and an X, two rows of birds thick, tilted like the lawn sign
+  PMFlock.ballot = function(n, cx, cy, L, tiltDeg){
+    var h = L / 2, ins = .2 * L, th = .026 * L, segs = [[-h, -h, h, -h], [h, -h, h, h], [h, h, -h, h], [-h, h, -h, -h],
+               [-h + ins, -h + ins, h - ins, h - ins], [h - ins, -h + ins, -h + ins, h - ins]];
+    var lens = segs.map(function(s){ return Math.hypot(s[2] - s[0], s[3] - s[1]); }), tot = lens.reduce(function(a, b){ return a + b; }, 0);
+    var per = Math.ceil(n / 2), out = [], a = (tiltDeg || 0) * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a);
+    for(var j = 0; j < per; j++){
+      var dist = (j + .5) / per * tot, si = 0;
+      while(si < segs.length - 1 && dist > lens[si]){ dist -= lens[si]; si++; }
+      var s = segs[si], q = Math.min(1, dist / lens[si]), px = s[0] + (s[2] - s[0]) * q, py = s[1] + (s[3] - s[1]) * q;
+      var nx = -(s[3] - s[1]) / lens[si], ny = (s[2] - s[0]) / lens[si];
+      for(var row = 0; row < 2 && out.length < n; row++){
+        var o = (row ? 1 : -1) * th + (rnd(j * 3 + row) - .5) * th * .8, x0 = px + nx * o, y0 = py + ny * o;
+        out.push([cx + x0 * ca - y0 * sa, cy + x0 * sa + y0 * ca]);
+      }
+    }
+    return out.sort(function(p, q){ return p[0] - q[0]; });
+  };
+
+  // any drawing (the name plate, a word): drawn once off screen, then sampled into exactly n points
+  PMFlock.sample = function(w, h, n, paint){
+    var cv = document.createElement("canvas"); cv.width = Math.max(1, Math.round(w)); cv.height = Math.max(1, Math.round(h));
+    var g = cv.getContext("2d"); paint(g, cv.width, cv.height);
+    var px = g.getImageData(0, 0, cv.width, cv.height).data, W = cv.width, H = cv.height, ink = 0;
+    for(var y = 0; y < H; y += 2){ for(var x = 0; x < W; x += 2){ if(px[(y * W + x) * 4 + 3] > 128){ ink++; } } }
+    var st = Math.max(1.2, Math.sqrt(ink * 4 / n)), pts = [];
+    for(var tries = 0; tries < 12; tries++){
+      pts = [];
+      for(var yy = st / 2; yy < H; yy += st){
+        for(var xx = st / 2, c = 0; xx < W; xx += st, c++){
+          var jx = xx + (rnd(c * 7 + yy) - .5) * st * .45, jy = yy + (rnd(c * 11 + yy * 3) - .5) * st * .45;
+          var ix = Math.round(jx), iy = Math.round(jy);
+          if(ix >= 0 && iy >= 0 && ix < W && iy < H && px[(iy * W + ix) * 4 + 3] > 128){ pts.push([jx, jy]); }
+        }
+      }
+      if(pts.length >= n){ break; }
+      st *= .94;
+    }
+    for(var i = pts.length - 1; i > 0; i--){ var j = Math.floor(rnd(i * 13 + 5) * (i + 1)), tmp = pts[i]; pts[i] = pts[j]; pts[j] = tmp; }
+    pts = pts.slice(0, n);
+    while(pts.length < n){ pts.push(pts[pts.length % Math.max(1, pts.length)] || [w / 2, h / 2]); }
+    return pts.sort(function(p, q){ return p[0] - q[0]; });
+  };
+
+  window.PMFlock = PMFlock;
+})();
+
+</script>
+
+<script>
+  /* ============ Whiskey and Peanut ============ */
+/* Whiskey and Peanut, two small easter eggs in the river town. Whiskey, Denis's ginger cat, sits on a high perch (the
+   bridge's top beam, else a roof ridge) with his tail hanging over the edge. Peanut, the chipmunk from Denis's garage who
+   has never once handed over the screwdriver, sits up at the foot of the lawn sign, holding it. Click either one and it
+   bolts off the page; a little later it comes back and settles in again. Hover and they notice you. Drawn in SVG in the
+   town's own drawing units and ink. Under reduced motion they sit still and a click fades them out and back instead. */
+(function(){
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var INK = "#14181C", GINGER = "#C8862A", DEEP = "#8A5A12", PAPER = "#F4F1EA";
+  function mk(tag, at, parent){ var e = document.createElementNS(NS, tag); for(var k in at){ e.setAttribute(k, at[k]); } if(parent){ parent.appendChild(e); } return e; }
+  function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function f2(v){ return (Math.round(v * 100) / 100).toString(); }
+  function rot(px, py, ox, oy, a){ var c = Math.cos(a), s = Math.sin(a), dx = px - ox, dy = py - oy; return [ox + dx * c - dy * s, oy + dx * s + dy * c]; }
+  function line(p, x1, y1, x2, y2){ p.setAttribute("d", "M" + f2(x1) + " " + f2(y1) + "L" + f2(x2) + " " + f2(y2)); }
+
+  // ---------- Whiskey (drawn facing right; about 38 units tall sitting) ----------
+  function buildCat(g){
+    var P = {};
+    mk("rect", { "class": "hit", x: -24, y: -48, width: 48, height: 78, fill: "rgba(0,0,0,0)" }, g);
+    var sit = P.sit = mk("g", {}, g);
+    P.tailO = mk("path", { fill: "none", stroke: INK, "stroke-width": 4.8, "stroke-linecap": "round" }, sit);
+    P.tailI = mk("path", { fill: "none", stroke: GINGER, "stroke-width": 2.5, "stroke-linecap": "round" }, sit);
+    mk("path", { d: "M-11 0C-14 -8 -10.5 -18 -2.5 -21.2C1.5 -23 5 -21.4 6 -17.4C7 -12.4 6.2 -6 8.4 0Z", fill: GINGER, stroke: INK, "stroke-width": 1.5, "stroke-linejoin": "round" }, sit);
+    mk("path", { d: "M-8.6 -13.2q2.6 -1.6 5 .6M-9.8 -8.2q2.8 -1.4 5.2 .8M-6.2 -17.6q2 -1.2 4 .4", fill: "none", stroke: DEEP, "stroke-width": 1.3, "stroke-linecap": "round" }, sit);
+    mk("path", { d: "M3.8 -9.6V-.6", fill: "none", stroke: INK, "stroke-width": 1.2, "stroke-linecap": "round" }, sit);
+    var head = P.head = mk("g", {}, sit);
+    mk("path", { d: "M-.9 -29.4L.1 -37.6L4 -32.6Z", fill: GINGER, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round" }, head);
+    P.ear = mk("path", { d: "M5.2 -32.8L9.1 -37.2L10 -29.8Z", fill: GINGER, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round" }, head);
+    mk("ellipse", { cx: 4.6, cy: -27, rx: 6.5, ry: 5.6, fill: GINGER, stroke: INK, "stroke-width": 1.5 }, head);
+    mk("path", { d: "M2.9 -32v2.2M5 -32.3v2", fill: "none", stroke: DEEP, "stroke-width": 1.1, "stroke-linecap": "round" }, head);
+    P.eye = mk("ellipse", { cx: 7.8, cy: -27.6, rx: 1, ry: 1, fill: INK }, head);
+    mk("path", { d: "M10.9 -25.4l-1.1 .7", fill: "none", stroke: INK, "stroke-width": .9, "stroke-linecap": "round" }, head);
+    // running (and strolling), facing right
+    var run = P.run = mk("g", { display: "none" }, g);
+    P.rBody = mk("g", {}, run);
+    P.rTailO = mk("path", { fill: "none", stroke: INK, "stroke-width": 4.6, "stroke-linecap": "round" }, P.rBody);
+    P.rTailI = mk("path", { fill: "none", stroke: GINGER, "stroke-width": 2.4, "stroke-linecap": "round" }, P.rBody);
+    P.legs = [];
+    for(var i = 0; i < 4; i++){ P.legs.push(mk("path", { fill: "none", stroke: INK, "stroke-width": 2.6, "stroke-linecap": "round" }, P.rBody)); }
+    mk("ellipse", { cx: 0, cy: -12, rx: 12.5, ry: 5.4, fill: GINGER, stroke: INK, "stroke-width": 1.5 }, P.rBody);
+    mk("path", { d: "M-6.4 -16.6q1.2 2.6 .4 5M-2 -17.2q1.2 2.6 .4 5.2M2.6 -17q1 2.4 .3 4.6", fill: "none", stroke: DEEP, "stroke-width": 1.3, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M9.4 -18.2L10.2 -24.6L13.6 -20.2Z", fill: GINGER, stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round" }, P.rBody);
+    mk("path", { d: "M14.4 -20.6L17.8 -24.2L17.8 -18.2Z", fill: GINGER, stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round" }, P.rBody);
+    mk("circle", { cx: 13.4, cy: -15.6, r: 5.3, fill: GINGER, stroke: INK, "stroke-width": 1.5 }, P.rBody);
+    mk("circle", { cx: 15.9, cy: -16.4, r: .95, fill: INK }, P.rBody);
+    return P;
+  }
+  function catSitPose(P, now, alert, seed){
+    var sp = alert ? 1.05 : 2.6, amp = alert ? .42 : .26, a = amp * Math.sin(now * 6.283 / sp + seed);
+    var o = [-10.5, -.5], c1 = rot(-15.4, 2.4, o[0], o[1], a * .45), c2 = rot(-15.8, 11.4, o[0], o[1], a * .85), e = rot(-12.6, 19.4, o[0], o[1], a), tip = rot(-10.4, 20.4, o[0], o[1], a * 1.15);
+    var d = "M-10 -1C" + f2(c1[0]) + " " + f2(c1[1]) + " " + f2(c2[0]) + " " + f2(c2[1]) + " " + f2(e[0]) + " " + f2(e[1]) + "Q" + f2(e[0] + .4) + " " + f2(e[1] + 2.4) + " " + f2(tip[0]) + " " + f2(tip[1]);
+    P.tailO.setAttribute("d", d); P.tailI.setAttribute("d", d);
+    var bl = (now + seed) % 4.3 < .13 ? .12 : 1;                  // a blink every few seconds
+    P.eye.setAttribute("ry", f2(bl));
+    var tw = (now + seed * 2) % 6.7 < .22 ? -16 : 0;              // an ear twitch
+    P.ear.setAttribute("transform", "rotate(" + tw + " 7.4 -31.4)");
+    P.head.setAttribute("transform", alert ? "rotate(-7 4 -22)" : "");
+  }
+  function catRunPose(P, ph, amp, bounce){
+    var lift = bounce * Math.abs(Math.sin(ph));
+    P.rBody.setAttribute("transform", "translate(0 " + f2(-lift) + ")");
+    var roots = [[7.2, -10], [5, -10], [-7, -10], [-9.2, -10]], offs = [0, .7, Math.PI, Math.PI + .7];
+    for(var i = 0; i < 4; i++){ var a = amp * Math.sin(ph + offs[i]), L = 9.4; line(P.legs[i], roots[i][0], roots[i][1], roots[i][0] + L * Math.sin(a), roots[i][1] + L * Math.cos(a) + lift); }
+    var w = 2.2 * Math.sin(ph * .5), d = "M-11.5 -13C-17 -14.4 -21 -" + f2(19 + w) + " -24.6 -" + f2(17.4 + w);
+    P.rTailO.setAttribute("d", d); P.rTailI.setAttribute("d", d);
+  }
+
+  // ---------- Peanut (drawn facing right; about 22 units tall sitting up) ----------
+  function buildChip(g){
+    var P = {};
+    mk("rect", { "class": "hit", x: -16, y: -30, width: 34, height: 34, fill: "rgba(0,0,0,0)" }, g);
+    var sit = P.sit = mk("g", {}, g);
+    P.tail = mk("path", { d: "M-3.2 -1.4C-10 -3 -11.4 -14.6 -7.6 -21C-6.6 -22.6 -4.8 -21.8 -5.4 -20.2C-8.2 -14.2 -7.2 -5.4 -1.2 -3.4Z", fill: DEEP, stroke: INK, "stroke-width": 1, "stroke-linejoin": "round" }, sit);
+    mk("ellipse", { cx: 0, cy: -8, rx: 5, ry: 7.2, fill: DEEP, stroke: INK, "stroke-width": 1.1 }, sit);
+    mk("ellipse", { cx: 1.9, cy: -7.2, rx: 2.5, ry: 4.8, fill: PAPER }, sit);
+    mk("path", { d: "M-4.1 -3.6C-4.7 -8 -3.9 -12 -2.1 -14.6", fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round" }, sit);
+    mk("path", { d: "M-2.9 -3.2C-3.4 -7.6 -2.8 -11.3 -1.1 -13.7", fill: "none", stroke: PAPER, "stroke-width": .9, "stroke-linecap": "round" }, sit);
+    mk("ellipse", { cx: 2.2, cy: -.9, rx: 3, ry: 1.1, fill: DEEP, stroke: INK, "stroke-width": .9 }, sit);
+    P.tool = mk("g", {}, sit);                                    // the screwdriver he will not hand over
+    mk("path", { d: "M5.3 -11.3L9.8 -14.8", fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round" }, P.tool);
+    mk("path", { d: "M2.7 -9.2L5.5 -11.4", fill: "none", stroke: INK, "stroke-width": 3.6, "stroke-linecap": "round" }, P.tool);
+    mk("path", { d: "M2.7 -9.2L5.5 -11.4", fill: "none", stroke: GINGER, "stroke-width": 2.2, "stroke-linecap": "round" }, P.tool);
+    mk("circle", { cx: 4.3, cy: -10.4, r: 1.35, fill: DEEP, stroke: INK, "stroke-width": .8 }, sit);
+    var head = P.head = mk("g", {}, sit);
+    mk("circle", { cx: -.8, cy: -20.6, r: 1.5, fill: DEEP, stroke: INK, "stroke-width": .9 }, head);
+    mk("circle", { cx: 1.5, cy: -16.8, r: 4.3, fill: DEEP, stroke: INK, "stroke-width": 1.1 }, head);
+    mk("ellipse", { cx: 3.6, cy: -15.1, rx: 2.4, ry: 2, fill: PAPER }, head);
+    mk("path", { d: "M-1.2 -18.6L4.6 -18", fill: "none", stroke: INK, "stroke-width": .7, "stroke-linecap": "round" }, head);
+    P.eye = mk("ellipse", { cx: 3.1, cy: -18.1, rx: .9, ry: .9, fill: INK }, head);
+    mk("circle", { cx: 5.7, cy: -16.6, r: .55, fill: INK }, head);
+    // running, facing right, the screwdriver in his mouth
+    var run = P.run = mk("g", { display: "none" }, g);
+    P.rBody = mk("g", {}, run);
+    mk("path", { d: "M-6 -5.4C-9 -8.6 -9.8 -13.6 -8.6 -17.6", fill: "none", stroke: INK, "stroke-width": 3.8, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M-6 -5.4C-9 -8.6 -9.8 -13.6 -8.6 -17.6", fill: "none", stroke: DEEP, "stroke-width": 2, "stroke-linecap": "round" }, P.rBody);
+    P.legs = [];
+    for(var i = 0; i < 4; i++){ P.legs.push(mk("path", { fill: "none", stroke: INK, "stroke-width": 1.7, "stroke-linecap": "round" }, P.rBody)); }
+    mk("ellipse", { cx: 0, cy: -5.4, rx: 6.8, ry: 3.4, fill: DEEP, stroke: INK, "stroke-width": 1 }, P.rBody);
+    mk("path", { d: "M-5 -7.4Q0 -9.8 5 -7.6", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M-4.6 -6.3Q0 -8.4 4.6 -6.5", fill: "none", stroke: PAPER, "stroke-width": .8, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M10.8 -4.9L14.8 -5.5", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M8.4 -4.6L10.9 -4.9", fill: "none", stroke: INK, "stroke-width": 3.2, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M8.4 -4.6L10.9 -4.9", fill: "none", stroke: GINGER, "stroke-width": 1.9, "stroke-linecap": "round" }, P.rBody);
+    mk("circle", { cx: 5.9, cy: -9.4, r: 1.1, fill: DEEP, stroke: INK, "stroke-width": .8 }, P.rBody);
+    mk("circle", { cx: 7.3, cy: -6.8, r: 3.3, fill: DEEP, stroke: INK, "stroke-width": 1 }, P.rBody);
+    mk("ellipse", { cx: 8.3, cy: -5.7, rx: 1.7, ry: 1.4, fill: PAPER }, P.rBody);
+    mk("circle", { cx: 8.4, cy: -7.7, r: .75, fill: INK }, P.rBody);
+    return P;
+  }
+  function chipSitPose(P, now, alert, seed){
+    var nib = !alert && (now + seed) % 3.1 < .7 ? .75 * Math.abs(Math.sin(now * 28)) : 0;    // nibbling, in bursts
+    P.head.setAttribute("transform", "translate(0 " + f2(alert ? -1 : nib) + ")");
+    var fl = (now + seed) % 2.3 < .5 ? 9 * Math.sin(now * 30) : 0;                             // a tail flick
+    P.tail.setAttribute("transform", "rotate(" + f2(fl) + " -3 -2)");
+    P.tool.setAttribute("transform", "rotate(" + f2(alert ? -8 : 2 * Math.sin(now * 3.1)) + " 4.2 -10.4)");
+    P.eye.setAttribute("ry", (now + seed) % 3.7 < .1 ? ".12" : ".9");
+  }
+  function chipRunPose(P, ph, amp, bounce){
+    var lift = bounce * Math.abs(Math.sin(ph));
+    P.rBody.setAttribute("transform", "translate(0 " + f2(-lift) + ")");
+    var roots = [[4.2, -4], [3, -4], [-3.8, -4], [-5, -4]], offs = [0, .8, Math.PI, Math.PI + .8];
+    for(var i = 0; i < 4; i++){ var a = amp * Math.sin(ph + offs[i]), L = 4.4; line(P.legs[i], roots[i][0], roots[i][1], roots[i][0] + L * Math.sin(a), roots[i][1] + L * Math.cos(a) + lift); }
+  }
+
+  // ---------- one pet: idle -> startle -> run off -> away -> come back -> settle -> idle ----------
+  var KIND = {
+    cat:  { size: 1, build: buildCat, sit: catSitPose, run: catRunPose, runV: 250, backV: 62, away: 12, stride: 21, sitFace: 1, runDir: -1, amp: 1, walkAmp: .5, bounce: 2.4, seed: 1.3 },
+    chip: { size: 1.3, build: buildChip, sit: chipSitPose, run: chipRunPose, runV: 300, backV: 120, away: 8.5, stride: 9, sitFace: -1, runDir: 1, amp: 1.1, walkAmp: 1.1, bounce: 1.3, seed: 4.1 }
+  };
+  // Peanut comes back the way chipmunks do: dash, freeze, dash, freeze, dash
+  var DASH = [[0, 0], [.3, .45], [.42, .45], [.68, .82], [.79, .82], [.93, 1], [1, 1]];
+  function dashAt(u){
+    for(var i = 1; i < DASH.length; i++){ if(u <= DASH[i][0]){ var a = DASH[i - 1], b = DASH[i], q = (u - a[0]) / (b[0] - a[0] || 1); return { p: a[1] + (b[1] - a[1]) * q, moving: b[1] !== a[1] }; } }
+    return { p: 1, moving: false };
+  }
+
+  function Pet(svg, kind, reduce){
+    this.k = KIND[kind]; this.kind = kind; this.reduce = reduce;
+    this.g = mk("g", { "class": "pet pet-" + kind, "aria-hidden": "true" }, svg);
+    this.P = this.k.build(this.g);
+    this.state = "idle"; this.ts = 0; this.x = 0; this.x0 = 0; this.home = { x: 0, y: 0 }; this.ps = 1; this.vis = { l: 0, r: 1200 };
+    this.hover = false; this.intro = 1; this.hidden = false;
+    var me = this;
+    this.g.addEventListener("pointerenter", function(){ me.hover = true; });
+    this.g.addEventListener("pointerleave", function(){ me.hover = false; });
+  }
+  Pet.prototype.edge = function(dir){ return dir < 0 ? this.vis.l - 34 * this.ps : this.vis.r + 34 * this.ps; };
+  Pet.prototype.click = function(now){
+    if(this.state === "idle" || this.state === "settle"){ this.state = this.reduce ? "fade" : "startle"; this.ts = now; this.x0 = this.x; }
+  };
+  Pet.prototype.update = function(now){
+    var k = this.k, t = now - this.ts, pose = "sit", face = k.sitFace, x = this.home.x, sq = 1, hop = 0, op = 1, ph = 0, amp = k.amp, bounce = k.bounce;
+    if(this.state === "fade"){
+      op = t < .25 ? 1 - t / .25 : t < 8 ? 0 : clamp01((t - 8) / .4);
+      if(t > 8.4){ this.state = "idle"; }
+    } else if(this.state === "startle"){
+      var q = clamp01(t / .16); sq = 1 - .1 * Math.sin(q * Math.PI); hop = 3 * Math.sin(q * Math.PI); face = k.runDir;
+      if(t >= .16){ this.state = "run"; this.ts = now; this.x0 = this.x; }
+    } else if(this.state === "run"){
+      pose = "run"; face = k.runDir; x = this.x0 + k.runDir * k.runV * Math.max(0, t - .03);
+      ph = Math.abs(x - this.x0) / k.stride * 6.283;
+      if((k.runDir < 0 && x < this.edge(-1)) || (k.runDir > 0 && x > this.edge(1))){ this.state = "away"; this.ts = now; }
+    } else if(this.state === "away"){
+      op = 0; x = this.edge(k.runDir);
+      if(t >= k.away){ this.state = "back"; this.ts = now; }
+    } else if(this.state === "back"){
+      var xe = this.edge(k.runDir), dist = Math.abs(this.home.x - xe), dur = dist / k.backV * (this.kind === "chip" ? 1.7 : 1);
+      var u = clamp01(t / dur), pr, moving = true;
+      if(this.kind === "chip"){ var dsh = dashAt(u); pr = dsh.p; moving = dsh.moving; }
+      else { pr = u < .85 ? u / .85 * .92 : .92 + .08 * Math.sin((u - .85) / .15 * Math.PI / 2); }
+      x = xe + (this.home.x - xe) * pr; face = -k.runDir;
+      if(moving){ pose = "run"; amp = this.kind === "chip" ? k.amp : k.walkAmp; bounce = this.kind === "chip" ? k.bounce : .5; ph = Math.abs(x - xe) / (k.stride * (this.kind === "chip" ? 1 : .55)) * 6.283; }
+      if(u >= 1){ this.state = "settle"; this.ts = now; }
+    } else if(this.state === "settle"){
+      sq = 1 - .06 * Math.sin(clamp01(t / .3) * Math.PI);
+      if(t >= .3){ this.state = "idle"; }
+    }
+    this.x = x;
+    var P = this.P;
+    P.sit.setAttribute("display", pose === "sit" ? "inline" : "none");
+    P.run.setAttribute("display", pose === "run" ? "inline" : "none");
+    if(pose === "sit"){ k.sit(P, now, this.hover || this.state === "startle", k.seed); } else { k.run(P, ph, amp, bounce); }
+    var s = this.ps;
+    this.g.setAttribute("transform", "translate(" + f2(x) + " " + f2(this.home.y - hop) + ") scale(" + f2(face * s * (2 - sq)) + " " + f2(s * sq) + ")");
+    this.op = op; this.g.setAttribute("opacity", f2(op * this.intro));
+    this.g.style.display = this.hidden ? "none" : "";
+  };
+
+  function PMPets(svg, opts){
+    var me = this; opts = opts || {};
+    this.cat = new Pet(svg, "cat", !!opts.reduce);
+    this.chip = new Pet(svg, "chip", !!opts.reduce);
+    [this.cat, this.chip].forEach(function(p){
+      p.g.addEventListener("click", function(e){ e.stopPropagation(); p.click(performance.now() / 1000); me.update(performance.now() / 1000); });
+    });
+  }
+  // homes and visible range in drawing units; ps enlarges them on a phone, where the drawing is small
+  PMPets.prototype.place = function(o){
+    var me = this;
+    [["cat", o.cat], ["chip", o.chip]].forEach(function(a){
+      var p = me[a[0]];
+      if(!a[1]){ p.hidden = true; return; }
+      p.hidden = false; p.home = { x: a[1].x, y: a[1].y }; p.ps = (o.ps || 1) * p.k.size; p.vis = o.vis;
+      if(p.state === "idle" || p.state === "settle"){ p.x = p.home.x; }
+    });
+  };
+  PMPets.prototype.setIntro = function(cat, chip){
+    var a = [[this.cat, cat], [this.chip, chip]];
+    for(var i = 0; i < 2; i++){ var p = a[i][0]; p.intro = a[i][1]; p.g.setAttribute("opacity", f2((p.op == null ? 1 : p.op) * p.intro)); }
+  };
+  PMPets.prototype.update = function(now){ this.lastNow = now; this.cat.update(now); this.chip.update(now); };
+  PMPets.prototype.clickAll = function(now){ this.cat.click(now); this.chip.click(now); };
+
+  window.PMPets = PMPets;
+})();
+
+</script>
+
+<script>
+  /* ============ the river-town hero and the footer birds ============ */
+/* The river-town hero and the footer birds. The birds (PMFlock) and Whiskey and Peanut (PMPets) come in their own
+   script blocks just before this one.
+
+   The opening: the name plate stamps down, one ink line draws the river town, the sun rises behind the bridge, Denis
+   stands up out of the page onto the promenade and the lawn-sign countdown plants beside him (about 3 s). Then the town
+   stays alive: water, a car over the bridge, a murmuration that forms a ballot mark over the river, Whiskey on the bridge
+   beam and Peanut at the foot of the sign (click either: it runs off, then comes back). The footer's birds build the name
+   plate, then HAWKESBURY, then the vote date, in turn.
+   Everything alive pauses off screen and in a hidden tab, and stays still under reduced motion. Nothing here reads or
+   sends anything. Review a frozen moment with ?rt= (opening seconds), ?rg= (hero birds), ?rf= (footer birds),
+   ?rp= (both pets clicked at 0) or ?rpi= (pets idle). */
+(function(){
+  "use strict";
+  var END = 3.1, Q = location.search;
+  function num(name){ var m = new RegExp("[?&]" + name + "=([\\d.]+)").exec(Q); return m ? parseFloat(m[1]) : null; }
+  var qT = num("rt"), qG = num("rg"), qF = num("rf"), qP = num("rp"), qPI = num("rpi");
+  var review = qT != null || qG != null || qF != null || qP != null || qPI != null;
+  var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function el(id){ return document.getElementById(id); }
+  function clamp(v, a, b){ return v < a ? a : v > b ? b : v; }
+  function seg(t, a, b){ if(t <= a) return 0; if(t >= b) return 1; var x = (t - a) / (b - a); return 1 - Math.pow(1 - x, 3); }
+  function smooth(x){ x = clamp(x, 0, 1); return x * x * (3 - 2 * x); }
+  function unhide(){ document.documentElement.classList.remove("rt-pre"); }
+
+  var hero = el("hero"), hasHero = !!(hero && el("rt-town"));
+  var footEl = el("rt-foot"), hasFoot = !!(footEl && window.PMFlock);
+  if(!hasHero){ unhide(); }
+
+  /* ================================================================ the hero ================================================ */
+  var draws = [], plan = {}, S = 1, geo = null, sunR = 36, lastT = null, pets = null, flock = null;
+  var days = 0, past = false;
+  if(hasHero){
+    // the town, seen from the waterfront: the bridge on the left, Main Street and the spire on the right
+    var sky = "M620 198V138H660V150H680V130H710V150H740V116H800V150H826V132L858 108L890 132V150H915V120H975V150H1000V128" +
+              "L1030 112L1060 128V150H1100V96H1112V70L1120 38L1128 70V96H1140V150H1165V132L1182 120L1200 132V198";
+    el("rt-sky").setAttribute("d", sky); el("rt-skyfill").setAttribute("d", sky + "Z");
+    var tr = "M0 150", x = 0, up = true, lastApex = 0;
+    while(x < 560){ x += 28; tr += (up ? "L" + x + " 114" : "L" + x + " 150"); if(up) lastApex = x; up = !up; }
+    tr += "M28 114H" + lastApex;
+    el("rt-truss").setAttribute("d", tr);
+    var ns = "http://www.w3.org/2000/svg";
+    [216, 232, 248, 264].forEach(function(y, k){
+      var d = "M" + (-60 + k * 13) + " " + y;
+      for(var i = 0; i < 44; i++){ d += "q15 " + (i % 2 ? 6 : -6) + " 30 0"; }
+      var p = document.createElementNS(ns, "path"); p.setAttribute("class", "rt-wv rt-draw"); p.setAttribute("d", d); el("rt-waves").appendChild(p);
+    });
+    draws = Array.prototype.slice.call(hero.querySelectorAll(".rt-draw"));
+    draws.forEach(function(p){ var L = p.getTotalLength(); p.style.strokeDasharray = L + " " + L; p.dataset.len = L; });
+    plan = { "rt-prom": [.10, .80], "rt-sky": [.30, 1.30], "rt-wins": [1.10, 1.50], "rt-deck": [.70, 1.30], "rt-truss": [.90, 1.80],
+             "rt-piers": [1.20, 1.70], "rt-ramp": [1.20, 1.40] };
+
+    // days to Monday 26 October 2026 (voting day), from the visitor's own clock; the sign comes down once it has passed
+    var eday = new Date(2026, 9, 26), now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    days = Math.round((eday - today) / 864e5);
+    past = days < 0; days = Math.max(0, days);
+    var form = days === 0 ? "zero" : days === 1 ? "one" : "many";
+    Array.prototype.forEach.call(hero.querySelectorAll("[data-cnt]"), function(s){ s.hidden = s.getAttribute("data-cnt") !== form; });
+    if(past){ el("rt-sign").hidden = true; }
+
+    pets = window.PMPets ? new PMPets(el("rt-town"), { reduce: reduce }) : null;
+  }
+
+  // One layout pass: the hero's height, where the copy, Denis, the sign, the sun and the two pets go at this screen size.
+  // S = drawing units to screen pixels. The ink strokes keep their width at any size (non-scaling stroke), which also makes
+  // Chrome measure dashes in SCREEN pixels, so the draw-on dash is the path length times S.
+  function layout(){
+    if(!hasHero || !hero.offsetParent){ return; }
+    var desk = window.innerWidth >= 900;
+    var top = hero.getBoundingClientRect().top + window.pageYOffset;
+    hero.style.setProperty("--hero-top", Math.round(top) + "px");
+    var svg = el("rt-town"), r = svg.getBoundingClientRect();
+    if(!r.width){ return; }
+    S = Math.max(r.width / 1200, r.height / 280);
+    function sx(v){ return r.left + r.width / 2 + (v - 600) * S; }
+    function vx(p){ return (p - r.left - r.width / 2) / S + 600; }
+    el("rt-scene").style.setProperty("--bank", ((280 - 198) * S - 1.5).toFixed(1) + "px");
+    draws.forEach(function(p){ var L = p.dataset.len * S + 2; p.style.strokeDasharray = L + " " + L; });
+    var hr = hero.getBoundingClientRect(), sr = el("rt-scene").getBoundingClientRect();
+
+    // 1. the copy: centred in the clear sky above the bridge beam (and above Whiskey's ears when he sits on it)
+    el("rt-copy").style.height = desk ? Math.max(260, hr.height - (280 - 74) * S - 12).toFixed(0) + "px" : "";
+
+    // 2. Denis and the sign: centred on the right-hand column, never over the copy, clear of the spire when possible
+    var fig = el("rt-figure"), img = el("rt-denis"), sgn = el("rt-sign"), figW = fig.offsetWidth;
+    var spireL = sx(1110), spireR = sx(1130), lc = el("rt-left").getBoundingClientRect();
+    var copyW = Math.max(el("rt-lockup").offsetWidth * 1.06, el("rt-tag").offsetWidth, el("rt-rest").offsetWidth);
+    var axis = lc.left + lc.width / 2;
+    if(desk){
+      var rc = el("rt-right").getBoundingClientRect();
+      var want = rc.left + rc.width / 2, lo = axis + copyW / 2 + 28 + figW / 2, hi = spireL - 22 - figW / 2;
+      fig.style.left = (Math.max(lo, Math.min(want, hi)) - sr.left).toFixed(1) + "px";
+    } else { fig.style.left = (sr.width * .5).toFixed(1) + "px"; }
+    var fr = fig.getBoundingClientRect(), dW = img.offsetWidth, dH = img.offsetHeight, stk = el("rt-stake");
+    var signOn = !sgn.hidden && sgn.offsetWidth > 0;
+    var sL = fr.left + sgn.offsetLeft, stakeX = signOn ? fr.left + stk.offsetLeft + stk.offsetWidth / 2 : fr.left + dW + 16;
+    geo = { desk: desk, r: r,
+            denis: { l: fr.left, r: fr.left + dW, t: fr.bottom - dH, b: fr.bottom, legL: fr.left + .24 * dW, legR: fr.left + .73 * dW },
+            sign: signOn ? { l: sL, r: sL + sgn.offsetWidth, t: fr.bottom - sgn.offsetHeight } : { l: fr.left + dW, r: fr.left + dW, t: fr.bottom - dH * .5 },
+            spire: { l: spireL, r: spireR, on: spireR > r.left + 4 && spireL < r.right - 4 } };
+
+    // 3. the sun, rising behind the bridge: on the copy's centre line on a wide screen, else in the widest free gap
+    var blocks = [[-1e9, r.left + 6], [r.right - 6, 1e9], [geo.denis.legL - 10, geo.denis.legR + 10],
+                  [geo.sign.l - 10, geo.sign.r + 10], [sx(1098), sx(1142)]];
+    function free(px, rad){ return blocks.every(function(b){ return px + rad < b[0] || px - rad > b[1]; }); }
+    var rad = 36 * S, sunX = null;
+    if(desk){ var ax = clamp(axis, sx(90), sx(510)); if(free(ax, rad + 8)){ sunX = ax; } }
+    if(sunX == null){
+      var bs = blocks.slice().sort(function(a, b){ return a[0] - b[0]; }), best = null, reach = -1e9;
+      bs.forEach(function(b){ if(b[0] > reach && (!best || b[0] - reach > best[1] - best[0])){ best = [reach, b[0]]; } reach = Math.max(reach, b[1]); });
+      if(best && best[1] - best[0] > 2 * (18 * S) + 16){ rad = Math.min(rad, (best[1] - best[0]) / 2 - 8); sunX = (best[0] + best[1]) / 2; }
+    }
+    sunR = sunX == null ? 0 : rad / S;
+    el("rt-sun").setAttribute("r", sunR.toFixed(1));
+    el("rt-sun").setAttribute("cx", sunX == null ? "-200" : vx(sunX).toFixed(1));
+    el("rt-sun").setAttribute("cy", (198 - Math.max(sunR * 1.9, 52)).toFixed(1));
+
+    // 4. Whiskey on the bridge's top beam (a little way from the sun), else a roof ridge; Peanut at the foot of the sign
+    if(pets){
+      var ps = Math.max(1, .85 / S), sunV = sunX == null ? -999 : vx(sunX), perches = [];
+      for(var bx = 40; bx <= 520; bx += 10){ perches.push([bx, 114, Math.abs(bx - (sunV - sunR - 60))]); }
+      [[858, 108], [770, 116], [945, 120], [1030, 112], [1182, 120]].forEach(function(p, i){ perches.push([p[0], p[1], 2000 + i]); });
+      perches.sort(function(a, b){ return a[2] - b[2]; });
+      var cat = null;
+      for(var i = 0; i < perches.length && !cat; i++){
+        var p = perches[i], half = 20 * ps, pxL = sx(p[0] - half), pxR = sx(p[0] + half), ok = pxL > r.left + 4 && pxR < r.right - 4;
+        if(ok && Math.abs(p[0] - sunV) < sunR + half + 6){ ok = false; }
+        if(ok){ ok = blocks.slice(2).every(function(b){ return pxR < b[0] || pxL > b[1]; }); }
+        if(ok){ cat = { x: p[0], y: p[1] }; }
+      }
+      var chipX = vx(stakeX) + 12 * ps;                          // just right of the stake, facing it
+      if(sx(chipX + 16 * ps) > r.right - 4){ chipX = vx(stakeX) - 12 * ps; }
+      pets.place({ cat: cat, chip: { x: chipX, y: 198 }, ps: ps, vis: { l: vx(r.left), r: vx(r.right) } });
+      pets.update(pets.lastNow != null ? pets.lastNow : performance.now() / 1000);
+    }
+    if(flock){ flock.resize(); }
+    if(lastT != null){ render(lastT); }
+  }
+
+  function render(t){
+    if(!hasHero){ return; }
+    lastT = t;
+    draws.forEach(function(p, i){
+      var w = plan[p.id] || [1.00 + .06 * (i % 4), 2.00];
+      p.style.strokeDashoffset = ((p.dataset.len * S + 2) * (1 - seg(t, w[0], w[1]))).toFixed(1);
+    });
+    el("rt-sung").setAttribute("transform", "translate(0 " + (110 * (1 - seg(t, 1.20, 2.20))).toFixed(1) + ")");
+    var p;
+    // the name plate stamps down and the page takes the hit
+    p = seg(t, .10, .40); el("rt-vote").style.opacity = p; el("rt-vote").style.transform = "translateY(" + (14 * (1 - p)) + "px)";
+    p = seg(t, .30, .60); el("rt-denisw").style.opacity = p; el("rt-denisw").style.transform = "scale(" + (1.35 - .35 * p) + ")";
+    p = seg(t, .50, .95); var pl = el("rt-plate"); pl.style.opacity = p;
+    pl.style.transform = "rotate(" + (-9 + 7 * p) + "deg) scale(" + (1.3 - .3 * p) + ")";
+    pl.style.boxShadow = "calc(var(--P)*" + (.102 * p).toFixed(3) + ") calc(var(--P)*" + (.119 * p).toFixed(3) + ") 0 rgba(200,134,42," + (.28 * p).toFixed(3) + ")";
+    var th = (t > .95 && t < 1.13) ? Math.sin((t - .95) / .18 * Math.PI) * 4 : 0;
+    hero.style.transform = th ? "translateY(" + th.toFixed(2) + "px)" : "";
+    p = seg(t, 1.00, 1.30); el("rt-mayor").style.opacity = p; el("rt-mayor").style.transform = "translateY(" + (16 * (1 - p)) + "px)";
+    // Denis stands up out of the page, hinged at his boots, and his ochre shadow lands with him
+    p = seg(t, 1.40, 2.00); var dn = el("rt-denis");
+    dn.style.opacity = Math.min(1, p * 5);
+    dn.style.transform = "perspective(1100px) rotateX(" + (82 * (1 - p)).toFixed(2) + "deg)";
+    dn.style.filter = "drop-shadow(" + (9 * p).toFixed(1) + "px " + (11 * p).toFixed(1) + "px 0 rgba(200,134,42," + (.30 * p).toFixed(3) + "))";
+    // the countdown sign plants beside him: the stake rises, the plate stamps, the days roll up
+    p = seg(t, 1.90, 2.20); el("rt-stake").style.transform = "scaleY(" + p.toFixed(3) + ")"; el("rt-sign").style.opacity = p > 0 ? 1 : 0;
+    p = seg(t, 2.05, 2.40); var c = el("rt-count"); c.style.opacity = p;
+    c.style.transform = "rotate(" + (-8 + 5 * p).toFixed(2) + "deg) scale(" + (1.25 - .25 * p).toFixed(3) + ")";
+    el("rt-n").textContent = days === 0 ? "✓" : String(Math.round(days * seg(t, 2.20, 2.90)));
+    p = seg(t, 2.30, 2.70); el("rt-tag").style.opacity = p; el("rt-tag").style.transform = "translateY(" + (16 * (1 - p)) + "px)";
+    p = seg(t, 2.50, 2.95); el("rt-rest").style.opacity = p; el("rt-rest").style.transform = "translateY(" + (16 * (1 - p)) + "px)";
+    // Whiskey is on the beam when the bridge finishes drawing; Peanut hops in once the sign is planted
+    if(pets){ pets.setIntro(seg(t, 1.70, 2.10), seg(t, 2.45, 2.80)); }
+  }
+
+  // the hero murmuration: in from the right as one cloud, a ballot mark over the river, then away
+  function heroSlot(cr){
+    var g = geo, desk = window.innerWidth >= 900, k = desk ? clamp(cr.width / 1400, .8, 1.2) : .62;
+    if(!g){ return { n: desk ? 380 : 220, k: k, L: 160 * k, cx: cr.width * .75, cy: cr.height * .3, size: 1 }; }
+    var x0, x1, y0 = cr.top + 16, y1 = g.sign.t - 18;
+    if(desk){ x0 = g.denis.r + 16; x1 = g.spire.on ? g.spire.l - 20 : cr.right - 16; }
+    else { x0 = g.denis.l + .78 * (g.denis.r - g.denis.l); x1 = cr.right - 8; y0 = cr.top + 8; }
+    var L = Math.max(80 * k, Math.min(260 * k, .82 * (x1 - x0), .82 * (y1 - y0)));
+    return { n: desk ? 380 : 220, k: k, L: L, cx: (x0 + x1) / 2 - cr.left, cy: (y0 + y1) / 2 - cr.top, size: desk ? 1.1 : 1 };
+  }
+  function heroShape(s){ return PMFlock.ballot(s.n, s.cx, s.cy, s.L, -3); }
+  function heroPlan(tau, s, W){
+    var k = s.k, L = s.L, off = 1.1 * L + 60 * k, sx0 = W + off, sy0 = s.cy - .45 * L, P = { m: 0, face: Math.PI, on: tau < 17,
+        rx: .82 * L, ry: .3 * L, rot: -.28 + .2 * Math.sin(tau * .5) };
+    if(tau < 4.2){
+      var q = tau / 4.2, e = 1 - Math.pow(1 - q, 2), de = 2 * (1 - q) / 4.2;
+      P.cx = sx0 + (s.cx - sx0) * e; P.cy = sy0 + (s.cy - sy0) * e + 18 * k * Math.sin(tau * 1.6);
+      P.vx = (s.cx - sx0) * de; P.vy = (s.cy - sy0) * de + 28.8 * k * Math.cos(tau * 1.6);
+    } else if(tau < 12.8){
+      var u = tau - 4.2;
+      P.cx = s.cx + 26 * k * Math.sin(u * .9); P.cy = s.cy + 14 * k * Math.sin(u * 1.3);
+      P.vx = 23.4 * k * Math.cos(u * .9); P.vy = 18.2 * k * Math.cos(u * 1.3);
+      P.m = tau < 5 ? 0 : tau < 7.6 ? smooth((tau - 5) / 2.6) : tau < 11.6 ? 1 : 1 - smooth((tau - 11.6) / 1.2);
+    } else {
+      var pp = (tau - 12.8) / 3.8, e2 = pp * pp * pp, d2 = 3 * pp * pp / 3.8, ex = W + off * 1.6 - s.cx, cx0 = s.cx + 26 * k * Math.sin(8.6 * .9);
+      P.cx = cx0 + ex * e2; P.cy = s.cy - 150 * k * e2; P.vx = ex * d2; P.vy = -150 * k * d2; P.face = 0;
+    }
+    return P;
+  }
+  if(hasHero && window.PMFlock && !reduce){
+    flock = new PMFlock(el("rt-flock"), { slot: heroSlot, shape: heroShape, plan: heroPlan, cycle: 22, replace: true,
+                                          colors: ["rgba(20,24,28,.92)", "#C8862A"], accentShare: .12 });
+    hero.addEventListener("mousemove", function(e){ var r = el("rt-flock").getBoundingClientRect(); flock.ptr = { x: e.clientX - r.left, y: e.clientY - r.top }; });
+    hero.addEventListener("mouseleave", function(){ flock.ptr = null; });
+    hero.addEventListener("click", function(e){ if(!e.target.closest("a,button")){ var r = el("rt-flock").getBoundingClientRect(); flock.burst(e.clientX - r.left, e.clientY - r.top); } });
+  }
+
+  // after the opening the town stays alive (real time only; paused off screen and in a hidden tab)
+  var alive = false, started2 = false, amb0 = 0, heroSeen = false;
+  function ambient(now){
+    var s = (now - amb0) / 1000;
+    el("rt-waves").setAttribute("transform", "translate(" + (-(s * 14) % 60).toFixed(2) + " 0)");
+    var cp = (s % 11) / 5.5;                                     // a car every 11 s: across the bridge into town
+    if(cp <= 1){ var cx = -20 + 640 * cp, cy = cx < 560 ? 150 : 150 + (cx - 560) * (48 / 42);
+      el("rt-car").setAttribute("transform", "translate(" + cx.toFixed(1) + " " + Math.min(198, cy).toFixed(1) + ")");
+      el("rt-car").setAttribute("opacity", cp > .93 ? (1 - (cp - .93) / .07).toFixed(2) : "1"); }
+    else { el("rt-car").setAttribute("opacity", "0"); }
+    if(flock){ flock.frame(now); }
+    if(pets){ pets.update(now / 1000); }
+    if(alive){ requestAnimationFrame(ambient); }
+  }
+  function resume(){ if(hasHero && started2 && heroSeen && !alive && !reduce && !review && !document.hidden){ alive = true; requestAnimationFrame(ambient); } }
+  function halt(){ alive = false; if(flock){ flock.pause(); } }
+  if(hasHero && "IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){
+      heroSeen = e.isIntersecting;
+      if(heroSeen){ layout(); resume(); } else { halt(); }
+    }); }).observe(hero);
+  } else { heroSeen = true; }
+
+  /* ============================================================ the footer birds ============================================ */
+  // one murmuration that builds three things in turn, each held, let go and swirled before the next: the name plate, the
+  // town's name in the campaign's own lettering (never the Town's logo, which the Town reserves), and the vote date as a
+  // ballot mark beside "26 OCT" (the same in English and French)
+  var FOOT_CYCLE = 15, foot = null, footAlive = false, footSeen = false;
+  function footSlot(cr){ var W = cr.width; return { n: Math.round(clamp(W * .95, 640, 1450)), k: clamp(W / 1400, .62, 1.1), size: .85, W: W, H: cr.height }; }
+  function footFont(g, fs){ g.font = "italic 900 " + fs + "px 'Libre Franklin'"; }
+  function footPlate(s, W, H){
+    return PMFlock.sample(W, H, s.n, function(g, w, h){
+      var fs = Math.min(h * .42, w * .14); footFont(g, fs);
+      var tw = g.measureText("PIROLLO").width;
+      if(tw > w * .7){ fs *= w * .7 / tw; footFont(g, fs); tw = w * .7; }
+      g.translate(w / 2, h * .45); g.rotate(-2 * Math.PI / 180);
+      g.fillStyle = g.strokeStyle = "#000"; g.lineWidth = .075 * fs; g.lineJoin = "miter";
+      g.strokeRect(-tw / 2 - .26 * fs, -.66 * fs, tw + .52 * fs, 1.24 * fs);
+      g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("PIROLLO", 0, .03 * fs);
+    });
+  }
+  function footTown(s, W, H){
+    return PMFlock.sample(W, H, s.n, function(g, w, h){
+      var fs = Math.min(h * .4, w * .12); footFont(g, fs);
+      var tw = g.measureText("HAWKESBURY").width, fit = w < 600 ? .9 : .8;
+      if(tw > w * fit){ fs *= w * fit / tw; footFont(g, fs); }
+      g.fillStyle = "#000"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("HAWKESBURY", w / 2, h * .45);
+    });
+  }
+  function footDate(s, W, H){
+    return PMFlock.sample(W, H, s.n, function(g, w, h){
+      var fs = Math.min(h * .46, w * .15); footFont(g, fs);
+      var tw = g.measureText("26 OCT").width, box = .92 * fs, gap = .4 * fs, all = box + gap + tw, fit = w < 600 ? .88 : .72;
+      if(all > w * fit){ var q = w * fit / all; fs *= q; box *= q; gap *= q; tw *= q; all = w * fit; footFont(g, fs); }
+      var x0 = (w - all) / 2, cy = h * .45, lw = .085 * fs, ins = .22 * box;
+      g.fillStyle = g.strokeStyle = "#000"; g.lineWidth = lw; g.lineCap = "round"; g.lineJoin = "miter";
+      g.save(); g.translate(x0 + box / 2, cy); g.rotate(-3 * Math.PI / 180);          // the ballot box, tilted like the lawn sign
+      g.strokeRect(-box / 2, -box / 2, box, box);
+      g.lineWidth = lw * 1.25; g.beginPath();
+      g.moveTo(-box / 2 + ins, -box / 2 + ins); g.lineTo(box / 2 - ins, box / 2 - ins);
+      g.moveTo(box / 2 - ins, -box / 2 + ins); g.lineTo(-box / 2 + ins, box / 2 - ins); g.stroke(); g.restore();
+      g.textAlign = "left"; g.textBaseline = "middle"; g.fillText("26 OCT", x0 + box + gap, cy + .03 * fs);
+    });
+  }
+  function footPlan(tau, s, W, H, t){
+    // the free cloud stays in the band above the line of small text (its lowest edge is about 73% down)
+    var P = { cx: W / 2 + .26 * W * Math.sin(t * .31 + 1), cy: H * .42 + .07 * H * Math.sin(t * .53),
+              vx: .26 * W * .31 * Math.cos(t * .31 + 1), vy: .07 * H * .53 * Math.cos(t * .53),
+              rx: .2 * W, ry: .2 * H, rot: .25 * Math.sin(t * .4), face: 0, on: true, si: Math.floor(t / FOOT_CYCLE) };
+    P.m = tau < 1.8 ? 0 : tau < 4.8 ? smooth((tau - 1.8) / 3) : tau < 10.8 ? 1 : tau < 12 ? 1 - smooth((tau - 10.8) / 1.2) : 0;
+    return P;
+  }
+  if(hasFoot){
+    foot = new PMFlock(el("rt-foot-flock"), { slot: footSlot, shapes: [footPlate, footTown, footDate], plan: footPlan,
+                                              cycle: FOOT_CYCLE, replace: false, colors: ["#F4F1EA", "#C8862A"], accentShare: .16 });
+    footEl.addEventListener("mousemove", function(e){ var r = el("rt-foot-flock").getBoundingClientRect(); foot.ptr = { x: e.clientX - r.left, y: e.clientY - r.top }; });
+    footEl.addEventListener("mouseleave", function(){ foot.ptr = null; });
+    footEl.addEventListener("click", function(e){ var r = el("rt-foot-flock").getBoundingClientRect(); foot.burst(e.clientX - r.left, e.clientY - r.top); });
+  }
+  function footLoop(now){ if(!footAlive){ return; } foot.frame(now); requestAnimationFrame(footLoop); }
+  function footOn(){ if(foot && !footAlive && !reduce && !review && !document.hidden && footSeen){ footAlive = true; requestAnimationFrame(footLoop); } }
+  function footOff(){ footAlive = false; if(foot){ foot.pause(); } }
+  function footFit(){ if(foot && footEl.offsetParent){ foot.resize(); if(reduce){ foot.settle(); } } }
+  if(foot && "IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ footSeen = e.isIntersecting; if(footSeen){ footOn(); } else { footOff(); } }); }).observe(footEl);
+  }
+  document.addEventListener("visibilitychange", function(){ if(document.hidden){ halt(); footOff(); } else { resume(); footOn(); } });
+
+  /* ================================================================ start ================================================== */
+  var raf = 0;
+  function play(){
+    cancelAnimationFrame(raf); halt(); started2 = false;
+    el("rt-car").setAttribute("opacity", "0");
+    if(flock){ flock.resize(); flock.reset(); }
+    if(reduce || !hero.offsetParent){ render(END); started2 = true; return; }   // hidden (a long read is open): no opening
+    var t0 = performance.now();
+    (function tick(now){ var t = (now - t0) / 1000; render(Math.min(t, END));
+      if(t < END){ raf = requestAnimationFrame(tick); } else { started2 = true; amb0 = performance.now(); resume(); } })(t0);
+  }
+  function go(){
+    try{
+      layout();
+      footFit();
+      if(qF != null && foot){ render(END); foot.simulateTo(qF); unhide(); return; }
+      if(qG != null && hasHero){ render(END); if(flock){ flock.resize(); flock.simulateTo(qG); } unhide(); return; }
+      if((qP != null || qPI != null) && pets){
+        render(END); var s = qP != null ? qP : qPI, T0 = 1000;
+        if(qP != null){ pets.clickAll(T0); }
+        for(var tt = 0; tt <= s + 1e-6; tt += 1 / 60){ pets.update(T0 + tt); }
+        unhide(); return; }
+      if(qT != null && hasHero){ render(clamp(qT, 0, END)); unhide(); return; }
+      if(hasHero && document.hidden){
+        // loaded in a background tab: the browser holds animation frames until the tab is seen, so show the finished
+        // hero now (never a blank one) and play the opening the first time the page is actually looked at
+        render(END); unhide(); started2 = true;
+        var firstLook = function(){ if(!document.hidden){ document.removeEventListener("visibilitychange", firstLook); render(0); play(); } };
+        document.addEventListener("visibilitychange", firstLook);
+      } else if(hasHero){ render(0); unhide(); play(); } else { unhide(); }
+    }catch(err){ unhide(); try{ render(END); }catch(e2){} }
+  }
+  window.addEventListener("resize", function(){ layout(); footFit(); });
+  if(typeof window.setLang === "function"){                      // the other language's copy has other widths
+    var _setLang = window.setLang;
+    window.setLang = function(l){ _setLang(l); layout(); };
+  }
+  window.addEventListener("hashchange", function(){ setTimeout(function(){ layout(); footFit(); }, 0); });
+  if(hasHero){ el("rt-denis").addEventListener("load", layout); }
+  var started = false;
+  function once(){ if(!started){ started = true; go(); } }
+  // the name plate and the footer shapes need the real italic; wait for it (never a slanted fake), but never for long
+  var fontsWanted = document.fonts && document.fonts.load ?
+    Promise.all([document.fonts.load("italic 900 40px 'Libre Franklin'"), document.fonts.load("italic 800 40px 'Libre Franklin'")]) : null;
+  if(fontsWanted){ fontsWanted.then(function(){ if(started){ footFit(); } once(); }, once); } else { once(); }
+  setTimeout(once, 900);
+})();
+
 </script>
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "232b5148254a4dc39e4d1f83c2997a17"}'></script>
 </body>
