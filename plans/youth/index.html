@@ -1289,7 +1289,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"books":"/plans/books/","technology":"/plans/technology/","main-street":"/plans/main-street/","partners":"/plans/partners/","youth":"/plans/youth/","transport":"/plans/transport/","roads":"/plans/roads/","campus":"/plans/campus/","infrastructure":"/plans/infrastructure/","park":"/plans/park/","powers":"/plans/powers/","transparency":"/plans/transparency/","housing":"/plans/housing/","mainstreet":"/plans/main-street/"};
+  var PLAN_PAGES = {"transparency":"/plans/transparency/","powers":"/plans/powers/","campus":"/plans/campus/","infrastructure":"/plans/infrastructure/","books":"/plans/books/","park":"/plans/park/","partners":"/plans/partners/","youth":"/plans/youth/","main-street":"/plans/main-street/","technology":"/plans/technology/","housing":"/plans/housing/","roads":"/plans/roads/","transport":"/plans/transport/","mainstreet":"/plans/main-street/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
