@@ -621,10 +621,10 @@
   @media print{ .lr-road{display:none} .lr-wait .lr-d{opacity:1} }
 
   /* ============ media grid ============ */
-  .media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
-  @media(max-width:860px){.media-grid{grid-template-columns:repeat(2,1fr)}}
-  @media(max-width:560px){.media-grid{grid-template-columns:1fr}}
-  .media-item{display:none;flex-direction:column;gap:10px}
+  .media-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 18px;align-items:start}
+  @media(max-width:1060px){.media-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:640px){.media-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}}
+  .media-item{display:none;flex-direction:column;gap:9px;min-width:0}
   .media-item.gal-on{display:flex;animation:galIn .55s cubic-bezier(.22,.66,.24,1) both;animation-delay:var(--gd,0s)}
   .media-item.gal-on.gal-out{animation:galOut .32s ease-in both;animation-delay:var(--go,0s)}
   @keyframes galIn{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
@@ -638,14 +638,14 @@
     .gal-arrow:hover,.gal-arrow:active{transform:none}
   }
   /* manual flip controls under the wall */
-  .gal-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:32px}
+  .gal-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:24px}
   .gal-arrow{
-    width:54px;height:54px;flex:none;display:flex;align-items:center;justify-content:center;
-    background:var(--paper);color:var(--ink);border:3px solid var(--ink);
-    box-shadow:5px 6px 0 rgba(200,134,42,.28);cursor:pointer;
+    width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;
+    background:var(--paper);color:var(--ink);border:2px solid var(--ink);
+    box-shadow:4px 5px 0 rgba(200,134,42,.28);cursor:pointer;
     transition:transform .14s ease,background .14s ease,box-shadow .14s ease;
   }
-  .gal-arrow svg{width:24px;height:24px;display:block}
+  .gal-arrow svg{width:20px;height:20px;display:block}
   .gal-arrow:hover{background:var(--accent);transform:translate(1px,1px);box-shadow:3px 4px 0 rgba(200,134,42,.28)}
   .gal-arrow:active{transform:translate(4px,5px);box-shadow:1px 1px 0 rgba(200,134,42,.28)}
   .gal-arrow:focus-visible{outline:2px solid var(--accent-deep);outline-offset:3px}
@@ -653,12 +653,35 @@
     font-size:14px;font-weight:800;letter-spacing:.14em;color:var(--accent-deep);
     min-width:70px;text-align:center;font-variant-numeric:tabular-nums;
   }
-  .media-item img{width:100%;display:block;border:3px solid var(--ink)}
-  .media-item a.media-out{display:block;text-decoration:none}
-  .media-item a.media-out img{transition:opacity .18s ease}
-  .media-item a.media-out:hover img{opacity:.86}
-  a.media-out-link{color:var(--accent-deep);text-decoration:underline}
-  .media-item video{width:100%;display:block;border:3px solid var(--ink);background:#000}
+  /* every tile the same shape; the frame keeps the top of the art, where the covers carry their titles */
+  .media-item img,.media-item video{
+    width:100%;display:block;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;
+    border:2px solid var(--ink);background:#E9E4D8;transition:box-shadow .18s ease;
+  }
+  .media-item video{background:#14181C}
+  .media-item a.media-out,.media-frame{display:block;position:relative;color:inherit;text-decoration:none;transition:transform .18s ease}
+  .media-item a.media-out:hover,.media-item.is-video:hover .media-frame{transform:translate(-2px,-2px)}
+  .media-item a.media-out:hover img,.media-item.is-video:hover video{box-shadow:4px 5px 0 rgba(200,134,42,.4)}
+  .media-item a.media-out:focus-visible{outline:2px solid var(--accent-deep);outline-offset:3px}
+  /* clips wait behind a play mark; the controls come with the first tap */
+  .media-play{
+    position:absolute;left:50%;top:50%;width:52px;height:52px;margin:-26px 0 0 -26px;padding:0;
+    display:flex;align-items:center;justify-content:center;border:2px solid var(--paper);border-radius:50%;
+    background:rgba(20,24,28,.78);color:var(--paper);cursor:pointer;transition:background .15s ease,transform .15s ease;
+  }
+  .media-play svg{width:22px;height:22px;display:block;margin-left:3px}
+  .media-play:hover{background:var(--accent);transform:scale(1.06)}
+  .media-play:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .media-item.is-playing .media-play{display:none}
+  .media-grid .media-kind{font-size:13px;font-weight:700;letter-spacing:.01em;text-transform:none;line-height:1.3;color:var(--ink)}
+  .media-cap{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .media-kind a.media-cap-link{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;color:inherit;text-decoration:none}
+  .media-kind a.media-cap-link:hover .media-cap{text-decoration:underline;text-underline-offset:2px}
+  /* the small arrow that says: this one opens the post */
+  .media-go{flex:none;width:13px;height:13px;margin-top:2px;color:var(--accent-deep)}
+  @media (prefers-reduced-motion:reduce){
+    .media-item a.media-out:hover,.media-item.is-video:hover .media-frame,.media-play:hover{transform:none}
+  }
   .media-tile{
     border:2px dashed var(--divider);background:rgba(255,255,255,.4);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -1560,19 +1583,47 @@
     var pagesEl = document.getElementById('gal-pages');
     var prevBtn = document.getElementById('gal-prev');
     var nextBtn = document.getElementById('gal-next');
-    var page = 0, hover = false, turning = false, ROWS = 3;
+    var page = 0, hover = false, turning = false;
     var LABELS = {
-      en: {prev: 'Previous set', next: 'Next set'},
-      fr: {prev: 'Ensemble précédent', next: 'Ensemble suivant'}
+      en: {prev: 'Previous set', next: 'Next set', play: 'Play'},
+      fr: {prev: 'Ensemble précédent', next: 'Ensemble suivant', play: 'Lire la vidéo'}
     };
     function labelArrows(){
       var l = LABELS[document.body.classList.contains('fr') ? 'fr' : 'en'];
       if(prevBtn){ prevBtn.setAttribute('aria-label', l.prev); prevBtn.setAttribute('title', l.prev); }
       if(nextBtn){ nextBtn.setAttribute('aria-label', l.next); nextBtn.setAttribute('title', l.next); }
+      grid.querySelectorAll('.media-play').forEach(function(b){ b.setAttribute('aria-label', l.play); });
     }
     function cols(){
       return Math.max(1, getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length);
     }
+    /* two rows a page, three on phones where the tiles are small */
+    function rows(){ return cols() <= 2 ? 3 : 2; }
+    /* clips wait behind a play mark; a tap starts one, with its controls */
+    all.forEach(function(t){
+      var v = t.querySelector('video'); if(!v){ return; }
+      t.classList.add('is-video');
+      v.removeAttribute('controls');
+      var frame = document.createElement('div'); frame.className = 'media-frame';
+      v.parentNode.insertBefore(frame, v); frame.appendChild(v);
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'media-play';
+      b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 4.5v15l12.5-7.5z" fill="currentColor"/></svg>';
+      frame.appendChild(b);
+      /* the tile shows a frame from inside the clip (its first frame is the blank cold open); a tap starts it from the top */
+      v._peek = function(){
+        if(t.classList.contains('is-playing') || !v.duration || v.currentTime > 0){ return; }
+        try{ v.currentTime = v.duration <= 15 ? v.duration * .55 : 12; }catch(e){}   /* short clips: the settled card; reels: past the intro */
+      };
+      v.addEventListener('loadedmetadata', function(){ if(t.classList.contains('gal-on')){ v._peek(); } });
+      function go(){
+        v.controls = true;
+        if(!t.classList.contains('is-playing')){ try{ v.currentTime = 0; }catch(e){} }
+        var p = v.play(); if(p && p.catch){ p.catch(function(){}); }
+      }
+      b.addEventListener('click', go);
+      v.addEventListener('click', function(){ if(!v.controls){ go(); } });
+      v.addEventListener('play', function(){ t.classList.add('is-playing'); v.controls = true; });
+    });
     function pool(){
       var fr = document.body.classList.contains('fr');
       return all.filter(function(t){
@@ -1582,12 +1633,15 @@
       });
     }
     function render(){
-      var p = pool(), per = cols() * ROWS, pages = Math.max(1, Math.ceil(p.length / per));
+      var p = pool(), per = cols() * rows(), pages = Math.max(1, Math.ceil(p.length / per));
       page = ((page % pages) + pages) % pages;
       var show = p.slice(page * per, page * per + per);
       all.forEach(function(t){
         var on = show.indexOf(t) !== -1;
-        if(on){ t.style.setProperty('--gd', (show.indexOf(t) * 70) + 'ms'); }
+        if(on){
+          t.style.setProperty('--gd', (show.indexOf(t) * 70) + 'ms');
+          var pv = t.querySelector('video'); if(pv && pv._peek){ pv._peek(); }
+        }
         t.classList.remove('gal-out');
         t.classList.toggle('gal-on', on);
         if(!on){ var v = t.querySelector('video'); if(v && !v.paused){ v.pause(); } }
@@ -1604,7 +1658,7 @@
       return all.some(function(t){ var v = t.querySelector('video'); return v && !v.paused && !v.ended; });
     }
     function turn(delta){
-      var p = pool(), per = cols() * ROWS;
+      var p = pool(), per = cols() * rows();
       if(turning || p.length <= per){ return; }
       turning = true;
       var out = all.filter(function(t){ return t.classList.contains('gal-on'); });
