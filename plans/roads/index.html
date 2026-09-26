@@ -643,6 +643,109 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   .post-excerpt{margin-top:6px;font-size:15px;color:var(--muted)}
   .post-cta{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);white-space:nowrap}
 
+  /* ============ the plans section: paper grain, with the discs and dots of the video intro ============ */
+  #plans{position:relative;isolation:isolate}
+  .plans-tex{position:absolute;left:0;right:0;top:0;bottom:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .plans-tex svg{position:absolute;top:0;height:100%;display:block;will-change:transform}
+  .plans-tex .tex-g{left:0;width:100%;opacity:.2}
+  .plans-tex .tex-l{left:0;width:440px;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 38%,rgba(0,0,0,.14) 82%,transparent 100%);
+    mask-image:linear-gradient(90deg,#000 0,#000 38%,rgba(0,0,0,.14) 82%,transparent 100%)}
+  .plans-tex .tex-r{right:0;width:440px;-webkit-mask-image:linear-gradient(270deg,#000 0,#000 38%,rgba(0,0,0,.14) 82%,transparent 100%);
+    mask-image:linear-gradient(270deg,#000 0,#000 38%,rgba(0,0,0,.14) 82%,transparent 100%)}
+  @media (max-width:860px){ .plans-tex .tex-l,.plans-tex .tex-r{opacity:.55} }
+  @media print{ .plans-tex{display:none} }
+
+  /* ============ the road trip through the plans ============
+     With motion allowed, a road is laid down the list of plans as the reader scrolls, and a white Firebird convertible
+     drives it with Whiskey riding along. Each plan's picture waits in pencil until the car reaches it, then acts out its
+     plan. At the end of the road the car parks, bunting drops and a little confetti falls. A mouse over a plan plays its
+     picture again. Nothing moves under reduced motion, and the list then looks as it always has. */
+  .lr-armed{position:relative}
+  .lr-road{position:absolute;left:0;top:-60px;width:100%;pointer-events:none;z-index:2;overflow:visible}
+  .lr-road .lr-survey{fill:none;stroke:var(--divider);stroke-width:3;stroke-linecap:round;stroke-dasharray:.1 9}
+  .lr-road .lr-body,.lr-road .lr-cat,.lr-road .lr-dot,.lr-road .lr-puff{transform-box:fill-box;transform-origin:50% 50%}
+  .lr-road .lr-cat.lr-hop{animation:lr-cat .55s cubic-bezier(.3,1.6,.5,1)}
+  .lr-road .lr-body.lr-park{animation:lr-park .7s ease-out}
+  .lr-road .lr-puff{animation:lr-puff .7s ease-out both}
+  .lr-road .lr-dot{transition:fill .25s}
+  .lr-road .lr-dot.lr-on{fill:var(--accent);animation:lr-ping .5s cubic-bezier(.3,1.6,.5,1)}
+  .lr-road .lr-finish{transition:opacity .2s}
+  .lr-road .lr-bunting{opacity:0}
+  .lr-party .lr-bunting{opacity:1}
+  .lr-party .lr-string{stroke-dasharray:1 1;animation:lr-draw .5s ease-out both}
+  .lr-party .lr-flag{transform-box:fill-box;transform-origin:50% 0;animation:lr-flag .9s cubic-bezier(.3,1.5,.5,1) var(--f,0s) both}
+  .lr-partied .lr-flag,.lr-partied .lr-string{animation:none}
+  .lr-road .lr-sprout{transform-box:fill-box;transform-origin:50% 100%;transform:scale(0)}
+  .lr-road .lr-sprout.lr-grown{transform:none;animation:lr-sprout .55s cubic-bezier(.3,1.6,.5,1) both}
+  .lr-road .lr-sprout.lr-still{animation:none}
+  @keyframes lr-sprout{0%{transform:scale(0)}100%{transform:none}}
+  .lr-confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:60}
+  @keyframes lr-cat{0%{transform:none}35%{transform:scale(1.5)}100%{transform:none}}
+  @keyframes lr-park{0%{transform:none}30%{transform:scale(1.08)}60%{transform:scale(.97)}100%{transform:none}}
+  @keyframes lr-puff{0%{transform:scale(.6);opacity:.8}100%{transform:scale(2.6);opacity:0}}
+  @keyframes lr-ping{0%{transform:none}40%{transform:scale(1.9)}100%{transform:none}}
+  @keyframes lr-flag{0%{transform:translateY(-30px) rotate(-16deg);opacity:0}50%{transform:rotate(9deg);opacity:1}72%{transform:rotate(-5deg)}88%{transform:rotate(2deg)}100%{transform:none;opacity:1}}
+  @media (min-width:861px){
+    .lr-armed .post-row{grid-template-columns:150px minmax(0,1fr) auto 140px}
+    .lr-armed .post-art{justify-self:start}
+  }
+  @media (min-width:861px) and (max-width:1060px){
+    .lr-armed .post-row{grid-template-columns:118px minmax(0,1fr) auto 140px;gap:18px}
+  }
+  @media (max-width:860px){
+    .lr-armed{padding-left:34px}
+    .lr-armed .post-row{grid-template-columns:minmax(0,1fr) 52px;column-gap:14px}
+    .lr-armed .post-date{grid-area:1/1;align-self:center}
+    .lr-armed .post-art{display:block;grid-area:1/2;width:52px;height:52px;align-self:center}
+    .lr-armed .post-row > div:nth-child(2){grid-area:2/1/3/3}
+    .lr-armed .post-cta{grid-area:3/1/4/3}
+  }
+  /* each picture waits in pencil, then acts out its plan */
+  .lr-art .lr-d{transition:opacity .4s ease}
+  .lr-wait .lr-d{opacity:.2}
+  .lr-art.lr-wave{animation:lr-hop .5s cubic-bezier(.3,1.6,.5,1) var(--w,0s)}
+  .lr-play .ls-up{transform-box:fill-box;transform-origin:50% 100%;animation:lr-grow-y var(--t,.5s) cubic-bezier(.3,1.45,.5,1) var(--d,0s) both}
+  .lr-play .ls-down{transform-box:fill-box;transform-origin:50% 0;animation:lr-grow-y var(--t,.45s) ease-out var(--d,0s) both}
+  .lr-play .ls-fill{transform-box:fill-box;transform-origin:50% 100%;animation:lr-grow-y var(--t,.8s) cubic-bezier(.3,1.2,.5,1) var(--d,0s) both}
+  .lr-play .ls-wave{animation:lr-wave-up var(--t,.8s) cubic-bezier(.3,1.2,.5,1) var(--d,0s) both}
+  .lr-play .ls-pop{transform-box:fill-box;transform-origin:50% 50%;animation:lr-pop var(--t,.42s) cubic-bezier(.3,1.7,.5,1) var(--d,0s) both}
+  .lr-play .ls-draw{stroke-dasharray:1 1;animation:lr-draw var(--t,.5s) ease-out var(--d,0s) both}
+  .lr-play .ls-march{animation:lr-march var(--t,.8s) ease-out var(--d,0s) both}
+  .lr-play .ls-write,.lr-play .ls-openr{transform-box:fill-box;transform-origin:0 50%;animation:lr-grow-x var(--t,.4s) ease-out var(--d,0s) both}
+  .lr-play .ls-openl{transform-box:fill-box;transform-origin:100% 50%;animation:lr-grow-x var(--t,.45s) cubic-bezier(.3,1.3,.5,1) var(--d,0s) both}
+  .lr-play .ls-openr{animation-timing-function:cubic-bezier(.3,1.3,.5,1);animation-delay:var(--d,.08s)}
+  .lr-play .ls-widen{transform-box:fill-box;transform-origin:50% 50%;animation:lr-grow-x var(--t,.45s) ease-out var(--d,0s) both}
+  .lr-play .ls-drop{transform-box:fill-box;transform-origin:50% 100%;animation:lr-drop var(--t,.6s) ease-out var(--d,0s) both}
+  .lr-play .ls-flick{animation:lr-flick var(--t,.6s) linear var(--d,0s) both}
+  .lr-play .ls-tv{transform-box:fill-box;transform-origin:50% 50%;animation:lr-tv var(--t,.45s) ease-out var(--d,0s) both}
+  .lr-play .ls-pen{transform-box:fill-box;transform-origin:50% 50%;animation:lr-pen var(--t,1.3s) ease-out var(--d,0s) both}
+  .lr-play .ls-slide{animation:lr-slide var(--t,.45s) ease-out var(--d,0s) both}
+  .lr-play .ls-swing{transform-box:view-box;transform-origin:20px 82px;animation:lr-swing var(--t,.8s) ease-in-out var(--d,0s) both}
+  .lr-play .ls-inl{animation:lr-in-l var(--t,.5s) cubic-bezier(.3,1.4,.5,1) var(--d,0s) both}
+  .lr-play .ls-inr{animation:lr-in-r var(--t,.5s) cubic-bezier(.3,1.4,.5,1) var(--d,0s) both}
+  .lr-play .ls-knock{transform-box:fill-box;transform-origin:0 50%;animation:lr-knock var(--t,1.3s) ease-in-out var(--d,0s) both}
+  .lr-play .ls-bus{animation:lr-bus var(--t,.95s) ease-out var(--d,0s) both}
+  .lr-play .ls-bolt{transform-box:fill-box;transform-origin:50% 50%;animation:lr-bolt var(--t,.6s) linear var(--d,0s) both}
+  @keyframes lr-hop{0%{transform:none}40%{transform:translateY(-7px) rotate(-3deg)}100%{transform:none}}
+  @keyframes lr-grow-y{0%{transform:scaleY(0)}100%{transform:none}}
+  @keyframes lr-grow-x{0%{transform:scaleX(0)}100%{transform:none}}
+  @keyframes lr-pop{0%{transform:scale(0)}100%{transform:none}}
+  @keyframes lr-wave-up{0%{transform:translateY(20px)}100%{transform:none}}
+  @keyframes lr-draw{0%{stroke-dashoffset:1;opacity:0}10%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
+  @keyframes lr-march{0%{stroke-dashoffset:40;opacity:0}25%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
+  @keyframes lr-drop{0%{transform:translateY(-26px);opacity:0}45%{transform:none;opacity:1}62%{transform:translateY(-6px)}78%{transform:none}88%{transform:translateY(-1.5px)}100%{transform:none}}
+  @keyframes lr-flick{0%{opacity:0}20%{opacity:1}30%{opacity:.15}45%{opacity:1}55%{opacity:.4}70%,100%{opacity:1}}
+  @keyframes lr-tv{0%{transform:scale(.2,.04);opacity:0}35%{transform:scale(1.04,.08);opacity:1}70%{transform:scale(1,1.06)}100%{transform:none}}
+  @keyframes lr-pen{0%{transform:translate(14px,-18px) rotate(10deg);opacity:0}25%{transform:none;opacity:1}35%{transform:translate(2px,1px) rotate(-2deg)}45%{transform:translate(-1px,0)}55%{transform:translate(2px,1px) rotate(-2deg)}65%{transform:translate(-1px,0)}75%{transform:translate(1px,1px)}100%{transform:none}}
+  @keyframes lr-slide{0%{transform:translateY(14px);opacity:0}100%{transform:none;opacity:1}}
+  @keyframes lr-swing{0%{transform:rotate(-38deg)}30%{transform:rotate(10deg)}45%{transform:rotate(-22deg)}65%{transform:rotate(7deg)}80%{transform:rotate(-4deg)}100%{transform:none}}
+  @keyframes lr-in-l{0%{transform:translateX(-16px);opacity:0}100%{transform:none;opacity:1}}
+  @keyframes lr-in-r{0%{transform:translateX(16px);opacity:0}100%{transform:none;opacity:1}}
+  @keyframes lr-knock{0%{transform:scale(0)}18%{transform:scale(1.12)}28%{transform:none}38%{transform:translateX(-1.5px)}44%{transform:translateX(1.5px)}50%{transform:translateX(-1.5px)}56%{transform:none}74%{transform:scaleX(.2)}100%{transform:none}}
+  @keyframes lr-bus{0%{transform:translateX(-50px);opacity:0}25%{opacity:1}75%{transform:translateX(2px)}88%{transform:translateX(-1px)}100%{transform:none}}
+  @keyframes lr-bolt{0%{opacity:0;transform:scale(.5)}20%{opacity:1;transform:scale(1.15)}32%{opacity:.15}44%{opacity:1}56%{opacity:.35}70%,100%{opacity:1;transform:none}}
+  @media print{ .lr-road{display:none} .lr-wait .lr-d{opacity:1} }
+
   /* ============ media grid ============ */
   .media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
   @media(max-width:860px){.media-grid{grid-template-columns:repeat(2,1fr)}}
@@ -2090,6 +2193,420 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
     }, { threshold: .3 });
     cards.forEach(function(c){ io.observe(c); });
     window.addEventListener("beforeprint", function(){ grid.classList.remove("fp-armed"); });
+  })();
+</script>
+
+<script>
+  /* ============ the road trip through the plans ============ */
+  /* As the reader scrolls, a road is laid down the list and a white Firebird convertible drives it, Whiskey riding along.
+     Each plan's picture comes to life when the car reaches it; at the end of the road, bunting and a little confetti. */
+  (function(){
+    var list = document.querySelector("#plans .post-list"); if(!list){ return; }
+    if(!window.matchMedia || matchMedia("(prefers-reduced-motion: reduce)").matches){ return; }
+    if(!window.requestAnimationFrame || !("IntersectionObserver" in window) || !("ResizeObserver" in window)){ return; }
+    var NS = "http://www.w3.org/2000/svg", INK = "#14181C", OCHRE = "#C8862A", DEEP = "#8A5A12", GOLD = "#F2C14E";
+    var TAR = "#E4DDCF", TOP = 60, BOT = 100, FOCUS = .6, STEP = 3;
+    var rows = Array.prototype.slice.call(list.querySelectorAll(".post-row"));
+    var arts = rows.map(function(r){ return r.querySelector(".post-art svg"); });
+    var phoneQ = matchMedia("(max-width:860px)");
+    function mk(tag, at, parent){
+      var e = document.createElementNS(NS, tag);
+      for(var k in at){ e.setAttribute(k, at[k]); }
+      if(parent){ parent.appendChild(e); }
+      return e;
+    }
+    function f1(n){ return Math.round(n * 10) / 10; }
+
+    list.classList.add("lr-armed");
+    arts.forEach(function(a){ if(a){ a.classList.add("lr-wait"); } });
+    var svg = mk("svg", {"class": "lr-road", "aria-hidden": "true", focusable: "false"});
+    list.insertBefore(svg, list.firstChild);
+    /* a little speckle in the asphalt */
+    var asph = mk("pattern", {id: "lr-asph", patternUnits: "userSpaceOnUse", width: 16, height: 16}, mk("defs", {}, svg));
+    mk("rect", {width: 16, height: 16, fill: TAR}, asph);
+    [[3, 4, .8, "#B9B09F"], [11, 2, .6, "#B9B09F"], [7.5, 11, .9, "#C4BBAB"], [14, 13, .6, "#B9B09F"], [1.5, 13.5, .5, "#C4BBAB"],
+     [12, 8, .7, "#F3EEE4"], [5, 7.5, .5, "#F3EEE4"]].forEach(function(s){ mk("circle", {cx: s[0], cy: s[1], r: s[2], fill: s[3]}, asph); });
+    var survey = mk("path", {"class": "lr-survey"}, svg);
+    var edgeG = mk("g", {}, svg), tarG = mk("g", {}, svg), lineG = mk("g", {}, svg);
+    var finish = mk("g", {"class": "lr-finish", opacity: 0}, svg), decorG = mk("g", {}, svg);
+    var stopG = mk("g", {}, svg), bunting = mk("g", {"class": "lr-bunting"}, svg), puffs = mk("g", {}, svg);
+    var shadow = mk("g", {}, svg), car = mk("g", {}, svg), body = mk("g", {"class": "lr-body"}, car);
+
+    /* the car, seen from above and facing right: a white Firebird convertible with its top folded down */
+    var CAR = "M17.4 -6.9Q19.7 -4.2 19.7 0Q19.7 4.2 17.4 6.9C13 8.3 8 8.2 4 7.8C-2 7.4 -6 7.6 -9 8.4C-14 8.9 -17.2 8.4 -18.7 6.6" +
+              "Q-19.7 0 -18.7 -6.6C-17.2 -8.4 -14 -8.9 -9 -8.4C-6 -7.6 -2 -7.4 4 -7.8C8 -8.2 13 -8.3 17.4 -6.9Z";
+    mk("path", {d: CAR, fill: OCHRE, opacity: .35}, shadow);
+    [[11.5, -8.5], [11.5, 8.5], [-12.5, -8.9], [-12.5, 8.9]].forEach(function(p){
+      mk("rect", {x: p[0] - 3, y: p[1] - 1.1, width: 6, height: 2.2, rx: .8, fill: INK}, body);
+    });
+    mk("path", {d: CAR, fill: "#FFFFFF", stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round"}, body);
+    mk("path", {d: "M18.3 -6.2Q20.8 -3.2 20.8 0Q20.8 3.2 18.3 6.2", fill: "none", stroke: "#9C978D", "stroke-width": 1.5, "stroke-linecap": "round"}, body);
+    mk("path", {d: "M-19.2 -5.8Q-20.5 0 -19.2 5.8", fill: "none", stroke: "#9C978D", "stroke-width": 1.5, "stroke-linecap": "round"}, body);
+    mk("path", {d: "M18.5 -1.3L19.9 0L18.5 1.3", fill: "none", stroke: INK, "stroke-width": .9}, body);
+    mk("circle", {cx: 17, cy: -5, r: 1.2, fill: "#FFF7DF", stroke: INK, "stroke-width": .7}, body);
+    mk("circle", {cx: 17, cy: 5, r: 1.2, fill: "#FFF7DF", stroke: INK, "stroke-width": .7}, body);
+    mk("rect", {x: 9, y: -4.1, width: 4, height: 2.2, rx: .7, fill: "#ECE8E0", stroke: INK, "stroke-width": .8}, body);
+    mk("rect", {x: 9, y: 1.9, width: 4, height: 2.2, rx: .7, fill: "#ECE8E0", stroke: INK, "stroke-width": .8}, body);
+    mk("path", {d: "M4.6 -6.7L4.6 6.7L2.2 6.3L2.2 -6.3Z", fill: "#A9C2D2", stroke: INK, "stroke-width": .9, "stroke-linejoin": "round"}, body);
+    mk("rect", {x: -10, y: -6.3, width: 12.2, height: 12.6, rx: 2, fill: INK}, body);
+    mk("rect", {x: -3.6, y: -5.5, width: 4.4, height: 4.4, rx: 1.1, fill: "#3B3E44"}, body);
+    mk("rect", {x: -3.6, y: 1.1, width: 4.4, height: 4.4, rx: 1.1, fill: "#3B3E44"}, body);
+    mk("rect", {x: -9.4, y: -5.5, width: 3.8, height: 11, rx: 1.2, fill: "#3B3E44"}, body);
+    mk("rect", {x: -13.6, y: -6.9, width: 3.8, height: 13.8, rx: 1.8, fill: INK}, body);
+    mk("path", {d: "M-12.3 -5.6V5.6", stroke: "#4A4D53", "stroke-width": .8}, body);
+    /* the driver in his blazer and sunglasses, and Whiskey in the passenger seat */
+    mk("ellipse", {cx: -2.4, cy: -3.3, rx: 1.9, ry: 3.4, fill: "#27303F"}, body);
+    mk("circle", {cx: -1.2, cy: -3.3, r: 2.2, fill: "#D3CFC6", stroke: INK, "stroke-width": .6}, body);
+    mk("path", {d: "M.3 -4.9Q1.4 -3.3 .3 -1.7", fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round"}, body);
+    var cat = mk("g", {"class": "lr-cat"}, body);
+    mk("path", {d: "M-2.6 4.4Q-6 6.4 -8.6 4.2", fill: "none", stroke: INK, "stroke-width": 2.2, "stroke-linecap": "round"}, cat);
+    mk("path", {d: "M-2.6 4.4Q-6 6.4 -8.6 4.2", fill: "none", stroke: OCHRE, "stroke-width": 1.1, "stroke-linecap": "round"}, cat);
+    mk("path", {d: "M-.2 1.5L1.9 .8L1.3 2.7Z", fill: OCHRE, stroke: INK, "stroke-width": .6, "stroke-linejoin": "round"}, cat);
+    mk("path", {d: "M-.2 4.9L1.9 5.6L1.3 3.7Z", fill: OCHRE, stroke: INK, "stroke-width": .6, "stroke-linejoin": "round"}, cat);
+    mk("circle", {cx: -.6, cy: 3.2, r: 2.1, fill: OCHRE, stroke: INK, "stroke-width": .7}, cat);
+
+    var mode = "", W = 0, H = 0, total = 0, xs = [], ys = [], segs = [], stopLen = [], dots = [], dash = [8, 8];
+    var items = [], endY = 0, finishLen = 0, scale = 1, cur = 0, paved = 0, played = [], partied = false, laid = false, lastA = 90;
+
+    function lenAtY(y){
+      var n = ys.length; if(!n){ return 0; }
+      if(y <= ys[0]){ return 0; } if(y >= ys[n - 1]){ return total; }
+      var lo = 0, hi = n - 1;
+      while(hi - lo > 1){ var mid = (lo + hi) >> 1; if(ys[mid] <= y){ lo = mid; } else { hi = mid; } }
+      var span = ys[hi] - ys[lo], fr = span > 0 ? (y - ys[lo]) / span : 0;
+      return Math.min(total, (lo + fr) * STEP);
+    }
+    function at(l){
+      var i = Math.max(0, Math.min(xs.length - 1.001, l / STEP)), k = Math.floor(i), fr = i - k;
+      return [xs[k] + (xs[k + 1] - xs[k]) * fr, ys[k] + (ys[k + 1] - ys[k]) * fr];
+    }
+    function target(){
+      var L = list.getBoundingClientRect();
+      return lenAtY(innerHeight * FOCUS - L.top);
+    }
+    function dashTo(n){
+      var per = dash[0] + dash[1], k = Math.floor(n / per), out = [];
+      for(var j = 0; j < k; j++){ out.push(dash[0], dash[1]); }
+      out.push(f1(Math.min(dash[0], n - k * per)), 99999);
+      return out.join(" ");
+    }
+
+    function layout(){
+      var L = list.getBoundingClientRect();
+      if(L.height < 10){ return false; }
+      mode = phoneQ.matches ? "phone" : "desk";
+      W = Math.round(L.width); H = Math.round(L.height);
+      svg.setAttribute("viewBox", "0 " + (-TOP) + " " + W + " " + (H + TOP + BOT));
+      svg.style.height = (H + TOP + BOT) + "px";
+      var boxes = arts.map(function(a){
+        var r = a.parentNode.getBoundingClientRect();
+        return {l: r.left - L.left, r: r.right - L.left, t: r.top - L.top, b: r.bottom - L.top};
+      });
+      var pieces = [], x0, y, d, roadX;
+      if(mode === "desk"){
+        var lane = boxes[0].r + 22, gap = boxes[0].l + 48;
+        y = -40; d = "M" + f1(gap) + " " + y;
+        boxes.forEach(function(bx, i){
+          var t = bx.t + 8, m = (y + t) / 2, s = (bx.t + bx.b) / 2;
+          d += "C" + f1(gap) + " " + f1(m) + " " + f1(lane) + " " + f1(m) + " " + f1(lane) + " " + f1(t) + "L" + f1(lane) + " " + f1(s);
+          pieces.push(d); d = "M" + f1(lane) + " " + f1(s);
+          if(i < boxes.length - 1){
+            var b = bx.b - 8, g2 = (bx.b + boxes[i + 1].t) / 2, m2 = (b + g2) / 2;
+            d += "L" + f1(lane) + " " + f1(b) + "C" + f1(lane) + " " + f1(m2) + " " + f1(gap) + " " + f1(m2) + " " + f1(gap) + " " + f1(g2);
+            y = g2;
+          }
+        });
+        endY = H + 52; d += "L" + f1(lane) + " " + endY; pieces.push(d);
+        roadX = lane; scale = 1.25; dash = [8, 8];
+      } else {
+        x0 = 17; y = -40;
+        boxes.forEach(function(bx, i){
+          var s = (bx.t + bx.b) / 2, h = s - y, w = 6;
+          pieces.push("M" + x0 + " " + f1(y) + "C" + (x0 + w) + " " + f1(y + h / 3) + " " + (x0 - w) + " " + f1(y + 2 * h / 3) + " " + x0 + " " + f1(s));
+          y = s;
+        });
+        endY = H + 44; pieces.push("M" + x0 + " " + f1(y) + "L" + x0 + " " + endY);
+        roadX = x0; scale = .78; dash = [5, 6];
+      }
+      var ew = mode === "desk" ? 28 : 16, tw = mode === "desk" ? 24 : 13, cw = mode === "desk" ? 2 : 1.5;
+      survey.setAttribute("d", pieces.join(""));
+      survey.style.strokeWidth = mode === "desk" ? "" : "2";
+      total = survey.getTotalLength();
+      xs = []; ys = [];
+      for(var l = 0; l < total; l += STEP){ var p = survey.getPointAtLength(l); xs.push(p.x); ys.push(p.y); }
+      var pe = survey.getPointAtLength(total); xs.push(pe.x); ys.push(pe.y);
+      /* one short road piece per plan, so only the piece under the car is redrawn */
+      edgeG.textContent = ""; tarG.textContent = ""; lineG.textContent = ""; segs = []; stopLen = [];
+      var acc = 0;
+      pieces.forEach(function(pd, i){
+        var probe = mk("path", {d: pd, fill: "none"}, lineG), len = probe.getTotalLength();
+        lineG.removeChild(probe);
+        var lead = i ? 1 : 0, dd = i ? pd.replace(/^M([-\d.]+) ([-\d.]+)/, function(_, a, b){ return "M" + a + " " + (+b - 1) + "L" + a + " " + b; }) : pd;
+        segs.push({
+          e: mk("path", {d: dd, fill: "none", stroke: INK, "stroke-width": ew}, edgeG),
+          t: mk("path", {d: dd, fill: "none", stroke: "url(#lr-asph)", "stroke-width": tw}, tarG),
+          c: mk("path", {d: pd, fill: "none", stroke: OCHRE, "stroke-width": cw}, lineG),
+          start: acc, len: len, lead: lead, shown: -1
+        });
+        acc += len;
+        if(i < pieces.length - 1){ stopLen.push(acc); }
+      });
+      /* a chequered line across the road just past the last plan */
+      finish.textContent = "";
+      var fy = H + (mode === "desk" ? 18 : 14), sq = mode === "desk" ? 4.8 : 3.25, half = tw / 2;
+      for(var cx = -half, c = 0; cx < half - .1; cx += sq, c++){
+        for(var r = 0; r < 2; r++){
+          mk("rect", {x: f1(roadX + cx), y: f1(fy + r * sq), width: sq, height: sq, fill: (c + r) % 2 ? "#FFFFFF" : INK}, finish);
+        }
+      }
+      finishLen = lenAtY(fy);
+      /* stop dots on the phone road */
+      stopG.textContent = ""; dots = [];
+      if(mode === "phone"){
+        boxes.forEach(function(bx, i){
+          dots.push(mk("circle", {"class": "lr-dot" + (played[i] ? " lr-on" : ""), cx: x0, cy: f1((bx.t + bx.b) / 2), r: 4.2,
+                                   fill: played[i] ? OCHRE : "#FFFFFF", stroke: INK, "stroke-width": 1.5}, stopG));
+        });
+      }
+      /* the bunting, strung across the list just past the last plan */
+      bunting.textContent = "";
+      var by = H + 8, sag = mode === "desk" ? 18 : 12, x1 = 6, x2 = W - 6;
+      mk("path", {"class": "lr-string", pathLength: 1, d: "M" + x1 + " " + by + "Q" + f1(W / 2) + " " + (by + 2 * sag) + " " + x2 + " " + by,
+                  fill: "none", stroke: INK, "stroke-width": 1.4}, bunting);
+      var gapF = mode === "desk" ? 34 : 24, fw = mode === "desk" ? 18 : 13, fh = mode === "desk" ? 20 : 15;
+      var nf = Math.max(4, Math.floor((x2 - x1) / gapF)), cols = [OCHRE, INK, "#FFFFFF", DEEP];
+      for(var k = 1; k < nf; k++){
+        var tt = k / nf, qx = (1 - tt) * (1 - tt) * x1 + 2 * (1 - tt) * tt * (W / 2) + tt * tt * x2;
+        var qy = (1 - tt) * (1 - tt) * by + 2 * (1 - tt) * tt * (by + 2 * sag) + tt * tt * by;
+        var fl = mk("path", {"class": "lr-flag", d: "M" + f1(qx - fw / 2) + " " + f1(qy) + "H" + f1(qx + fw / 2) + "L" + f1(qx) + " " + f1(qy + fh) + "Z",
+                             fill: cols[k % 4], stroke: INK, "stroke-width": 1.2, "stroke-linejoin": "round"}, bunting);
+        fl.style.setProperty("--f", Math.round(Math.abs(qx - roadX) / W * 600) + "ms");
+      }
+      /* plant the roadside for this layout */
+      decorG.textContent = ""; items = [];
+      if(mode === "desk"){
+        var gapX = boxes[0].l + 48, laneX = boxes[0].r + 22, kinds = ["tree", "lamp", "bush", "pine", "tree", "lamp"];
+        spot("sign", gapX + 46, -16, .8, true);
+        boxes.forEach(function(bx, i){
+          spot("tuft", laneX + 22, bx.t + 24);
+          if(i % 2){ spot("tuft", laneX + 21, bx.b - 8, .85); }
+          if(i < boxes.length - 1){
+            var g2 = (bx.b + boxes[i + 1].t) / 2, k = kinds[i % kinds.length];
+            spot(k, laneX + 3, g2 + (k === "bush" ? 6 : 11));
+            if(i % 3 === 1){ spot("tuft", gapX - 26, g2 + 5); }
+            if(i % 4 === 2){ spot("bush", gapX - 30, g2 + 8, .8); }
+          }
+        });
+        spot("tree", laneX + 30, H + 62); spot("bush", laneX - 34, H + 66, .9); spot("tuft", laneX - 20, H + 70);
+      } else {
+        spot("sign", x0 + 18, -14, .8, true);
+        boxes.forEach(function(bx, i){
+          var s = (bx.t + bx.b) / 2;
+          spot("tuft", i % 2 ? 4 : 29.5, s + 44, .7);
+          if(i % 3 === 1){ spot("bush", 4.5, s + 104, .5); }
+        });
+      }
+      return true;
+    }
+
+    /* the roadside, drawn like the plan pictures: ink lines, pale ochre fills, an ochre shadow */
+    var PALE = "#F1E3C4";
+    var DRAW = {
+      tree: function(g){
+        mk("ellipse", {cx: 2.5, cy: .5, rx: 7, ry: 1.8, fill: OCHRE, opacity: .3}, g);
+        mk("rect", {x: -1.3, y: -8, width: 2.6, height: 8.5, fill: INK}, g);
+        mk("circle", {cx: 2, cy: -13, r: 7.5, fill: OCHRE, opacity: .3}, g);
+        mk("circle", {cx: 0, cy: -15, r: 7.5, fill: PALE, stroke: INK, "stroke-width": 1.4}, g);
+        mk("path", {d: "M-3.4 -17.4q2 -2.6 5.2 -1.6", fill: "none", stroke: DEEP, "stroke-width": 1.1, "stroke-linecap": "round"}, g);
+      },
+      pine: function(g){
+        mk("rect", {x: -1.2, y: -6, width: 2.4, height: 6.5, fill: INK}, g);
+        mk("path", {d: "M2 -25L10 -5H-6Z", fill: OCHRE, opacity: .3}, g);
+        mk("path", {d: "M0 -26L8 -6H-8Z", fill: PALE, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round"}, g);
+        mk("path", {d: "M-3.6 -14.5H3.6", stroke: DEEP, "stroke-width": 1.1, "stroke-linecap": "round"}, g);
+      },
+      bush: function(g){
+        mk("ellipse", {cx: 2.5, cy: .3, rx: 9, ry: 1.8, fill: OCHRE, opacity: .3}, g);
+        mk("circle", {cx: 4.5, cy: -4.4, r: 4.4, fill: PALE, stroke: INK, "stroke-width": 1.2}, g);
+        mk("circle", {cx: -2, cy: -5.4, r: 5.4, fill: PALE, stroke: INK, "stroke-width": 1.2}, g);
+      },
+      lamp: function(g){
+        mk("path", {d: "M0 0V-21q0 -3.5 4.6 -3.5", fill: "none", stroke: INK, "stroke-width": 1.6, "stroke-linecap": "round"}, g);
+        mk("path", {d: "M-3 0H3", stroke: INK, "stroke-width": 1.6, "stroke-linecap": "round"}, g);
+        mk("circle", {cx: 5.6, cy: -22.6, r: 2.7, fill: GOLD, stroke: INK, "stroke-width": 1.1}, g);
+      },
+      tuft: function(g){
+        mk("path", {d: "M-3.4 0q-.6 -3 -2.2 -5M0 0v-6.5M3.4 0q.6 -3 2.2 -4.6", fill: "none", stroke: DEEP, "stroke-width": 1.2, "stroke-linecap": "round"}, g);
+      },
+      sign: function(g){
+        mk("path", {d: "M0 0V-15", stroke: INK, "stroke-width": 1.8, "stroke-linecap": "round"}, g);
+        mk("path", {d: "M1.5 -29L10.5 -20L1.5 -11L-7.5 -20Z", fill: OCHRE, opacity: .3}, g);
+        mk("path", {d: "M0 -30L9 -21L0 -12L-9 -21Z", fill: GOLD, stroke: INK, "stroke-width": 1.5, "stroke-linejoin": "round"}, g);
+        mk("path", {d: "M-.6 -14.8C3.2 -17.4 -3.6 -20.4 .2 -23.4L.2 -25.4M-1.8 -24.2L.2 -26.6L2.2 -24.2", fill: "none", stroke: INK,
+                    "stroke-width": 1.3, "stroke-linecap": "round", "stroke-linejoin": "round"}, g);
+      }
+    };
+    function spot(kind, x, y, s, always){
+      s = (s || 1) * (mode === "desk" ? (kind === "tuft" ? 1.15 : 1.5) : 1);
+      var o = mk("g", {transform: "translate(" + f1(x) + " " + f1(y) + ")" + (s && s !== 1 ? " scale(" + s + ")" : "")}, decorG);
+      var g = mk("g", {"class": "lr-sprout"}, o);
+      DRAW[kind](g);
+      items.push({g: g, len: always ? -1 : lenAtY(y), on: false});
+    }
+
+    function place(){
+      var p = at(cur), q1 = at(Math.max(0, cur - 4)), q2 = at(Math.min(total, cur + 4));
+      var dx = q2[0] - q1[0], dy = q2[1] - q1[1];
+      if(dx * dx + dy * dy > .01){ lastA = Math.atan2(dy, dx) * 180 / Math.PI; }
+      car.setAttribute("transform", "translate(" + f1(p[0]) + " " + f1(p[1]) + ") rotate(" + f1(lastA) + ") scale(" + scale + ")");
+      shadow.setAttribute("transform", "translate(" + f1(p[0] + 2.5 * scale) + " " + f1(p[1] + 3 * scale) + ") rotate(" + f1(lastA) + ") scale(" + scale + ")");
+    }
+    function pave(){
+      segs.forEach(function(sg){
+        var loc = Math.max(0, Math.min(sg.len, paved - sg.start)), key = Math.round(loc);
+        if(key === sg.shown){ return; }
+        sg.shown = key;
+        if(loc >= sg.len - .5){
+          sg.e.removeAttribute("stroke-dasharray"); sg.t.removeAttribute("stroke-dasharray");
+          sg.c.setAttribute("stroke-dasharray", dash.join(" "));
+        } else {
+          var on = loc > 0 ? f1(loc + sg.lead) : 0;
+          sg.e.setAttribute("stroke-dasharray", on + " 99999");
+          sg.t.setAttribute("stroke-dasharray", on + " 99999");
+          sg.c.setAttribute("stroke-dasharray", dashTo(loc));
+        }
+      });
+      for(var q = 0; q < items.length; q++){
+        if(!items[q].on && paved >= items[q].len){ items[q].on = true; items[q].g.classList.add("lr-grown"); }
+      }
+      finish.setAttribute("opacity", paved >= finishLen ? 1 : 0);
+    }
+    function hop(){ cat.classList.remove("lr-hop"); void cat.getBoundingClientRect(); cat.classList.add("lr-hop"); }
+    function play(i){
+      var a = arts[i]; if(!a){ return; }
+      a.classList.remove("lr-wait", "lr-play"); void a.getBoundingClientRect(); a.classList.add("lr-play");
+      a._lrAt = Date.now();
+    }
+    function arrive(i){
+      played[i] = true; play(i); hop();
+      if(dots[i]){ dots[i].setAttribute("fill", OCHRE); dots[i].classList.add("lr-on"); }
+    }
+    function puff(){
+      if(puffs.childNodes.length > 8){ return; }
+      var p = at(cur), r = lastA * Math.PI / 180, back = 22 * scale;
+      var c = mk("circle", {"class": "lr-puff", cx: f1(p[0] - Math.cos(r) * back), cy: f1(p[1] - Math.sin(r) * back),
+                            r: mode === "desk" ? 2.6 : 1.8, fill: "#CFC8BA"}, puffs);
+      setTimeout(function(){ if(c.parentNode){ puffs.removeChild(c); } }, 750);
+    }
+    function confetti(bursts){
+      var cv = document.createElement("canvas"), dpr = Math.min(2, window.devicePixelRatio || 1), w = innerWidth, h = innerHeight;
+      cv.className = "lr-confetti"; cv.setAttribute("aria-hidden", "true");
+      cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+      document.body.appendChild(cv);
+      var ctx = cv.getContext("2d"); if(!ctx){ cv.remove(); return; }
+      ctx.scale(dpr, dpr);
+      var cols = [OCHRE, INK, DEEP, GOLD], P = [];
+      bursts.forEach(function(b){
+        for(var i = 0; i < b[3]; i++){
+          var a = -Math.PI / 2 + b[2] + (Math.random() - .5) * 1.9, v = 6 + Math.random() * 9;
+          P.push({x: b[0], y: b[1], vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: Math.random() * 6.3, vr: (Math.random() - .5) * .4,
+                  w: 5 + Math.random() * 5, h: 2.5 + Math.random() * 2.5, c: cols[i % 4], ph: Math.random() * 6.3});
+        }
+      });
+      var t0 = 0, dur = 3200;
+      function tick(ts){
+        if(!t0){ t0 = ts; }
+        var t = ts - t0;
+        ctx.clearRect(0, 0, w, h);
+        ctx.globalAlpha = t > dur - 700 ? Math.max(0, (dur - t) / 700) : 1;
+        P.forEach(function(p){
+          p.vy = (p.vy + .25) * .965; p.vx *= .97;
+          p.x += p.vx + Math.sin(t / 180 + p.ph) * .7; p.y += p.vy; p.r += p.vr;
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.scale(1, Math.cos(t / 140 + p.ph));
+          ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); ctx.restore();
+        });
+        if(t < dur){ requestAnimationFrame(tick); } else { cv.remove(); }
+      }
+      requestAnimationFrame(tick);
+    }
+    function party(){
+      partied = true;
+      svg.classList.add("lr-party");
+      setTimeout(function(){ svg.classList.add("lr-partied"); }, 2600);
+      body.classList.remove("lr-park"); void body.getBoundingClientRect(); body.classList.add("lr-park");
+      hop(); setTimeout(hop, 650);
+      var r = body.getBoundingClientRect(), L = list.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var lean = cx > L.left + L.width / 2 ? -.5 : .5;
+      confetti([[cx, cy, lean, 70], [L.left + L.width / 2, L.bottom + 20, 0, 60]]);
+      var n = arts.length;
+      arts.forEach(function(a, i){
+        if(!a){ return; }
+        a.style.setProperty("--w", ((n - 1 - i) * 70) + "ms");
+        a.classList.remove("lr-wave"); void a.getBoundingClientRect(); a.classList.add("lr-wave");
+      });
+      setTimeout(function(){ arts.forEach(function(a){ if(a){ a.classList.remove("lr-wave"); } }); }, n * 70 + 900);
+    }
+
+    var raf = 0, last = 0, visible = false, puffAt = 0, first = true;
+    function frame(ts){
+      raf = 0;
+      var dt = last ? Math.min(48, ts - last) : 16; last = ts;
+      var tg = target(), diff = tg - cur, step = diff * (1 - Math.exp(-dt / 170)), cap = dt * 1.6;
+      if(step > cap){ step = cap; } else if(step < -cap){ step = -cap; }
+      if(Math.abs(diff) < .4){ step = diff; }
+      cur += step;
+      if(cur > paved){ paved = cur; }
+      place(); pave();
+      for(var i = 0; i < stopLen.length; i++){ if(!played[i] && cur >= stopLen[i] - 2){ arrive(i); } }
+      if(Math.abs(step) / dt > .06 && ts - puffAt > 120){ puffAt = ts; puff(); }
+      if(!partied && cur >= total - 1.5){
+        var sy = list.getBoundingClientRect().top + endY;
+        if(sy > 0 && sy < innerHeight){ party(); }
+      }
+      if(Math.abs(tg - cur) > .4 && visible){ raf = requestAnimationFrame(frame); } else { last = 0; }
+    }
+    function kick(){ if(!raf && visible && laid){ raf = requestAnimationFrame(frame); } }
+    function relayout(){
+      if(!layout()){ return; }
+      laid = true;
+      cur = target();
+      if(first){
+        /* plans already above the car when the page opens are shown as they are, without playing */
+        first = false; paved = cur;
+        stopLen.forEach(function(sl, i){
+          if(cur >= sl - 2){
+            played[i] = true;
+            if(arts[i]){ arts[i].classList.remove("lr-wait"); }
+            if(dots[i]){ dots[i].setAttribute("fill", OCHRE); dots[i].classList.add("lr-on"); }
+          }
+        });
+        if(cur >= total - 1.5){ partied = true; svg.classList.add("lr-party", "lr-partied"); }
+      } else {
+        var reached = 0;
+        played.forEach(function(p, i){ if(p && stopLen[i] > reached){ reached = stopLen[i]; } });
+        paved = partied ? total : Math.max(cur, reached);
+      }
+      items.forEach(function(it){ if(paved >= it.len){ it.on = true; it.g.classList.add("lr-grown", "lr-still"); } });
+      segs.forEach(function(sg){ sg.shown = -1; });
+      place(); pave(); kick();
+    }
+    var pending = 0;
+    new ResizeObserver(function(){
+      if(pending){ return; }
+      pending = requestAnimationFrame(function(){ pending = 0; relayout(); });
+    }).observe(list);
+    new IntersectionObserver(function(es){
+      visible = es[es.length - 1].isIntersecting;
+      kick();
+    }, {rootMargin: "300px 0px"}).observe(list);
+    window.addEventListener("scroll", kick, {passive: true});
+    window.addEventListener("resize", kick);
+    rows.forEach(function(r, i){
+      r.addEventListener("pointerenter", function(e){
+        if(e.pointerType === "mouse" && played[i] && arts[i] && Date.now() - (arts[i]._lrAt || 0) > 1700){ play(i); }
+      });
+    });
+    window.addEventListener("beforeprint", function(){ arts.forEach(function(a){ if(a){ a.classList.remove("lr-wait"); } }); });
   })();
 </script>
 
