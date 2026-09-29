@@ -311,6 +311,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   .rt-town{position:absolute;left:0;right:0;bottom:0;width:100%;height:var(--bandH)}
   .rt-town .rt-ln{fill:none;stroke:var(--h-line,var(--ink));stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
   .rt-town .rt-wv{fill:none;stroke:var(--h-line,var(--ink));stroke-width:2.2;stroke-linecap:round;opacity:.55;vector-effect:non-scaling-stroke}
+  .rt-town .rt-dt{fill:none;stroke:var(--h-line,var(--ink));stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
   .rt-town .rt-fillp{fill:var(--h-fill,var(--paper))}
   .rt-town .rt-sun{fill:var(--accent)}
   .rt-town .rt-inkf{fill:var(--h-line,var(--ink))}
@@ -357,7 +358,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
     /* the extra 120 px is sky above Denis, where the birds build their words */
     .rt-scene{position:relative;height:calc(var(--dh) + 184px);margin-top:6px}
     .rt-count{padding:7px 11px 6px;border-width:3px}
-    .rt-l{font-size:9.5px;white-space:normal;max-width:10.2em;line-height:1.25}
+    .rt-l{font-size:11px;white-space:normal;max-width:10.2em;line-height:1.25}
     .hero .eyebrow{font-size:11px;letter-spacing:.1em}
   }
 
@@ -939,7 +940,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   .dn-submit:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
   .dn-privacy{
     margin-top:20px;font-size:14.5px;color:var(--ink);line-height:1.55;
-    background:var(--paper);border-left:4px solid var(--accent-deep);padding:12px 14px;
+    background:var(--paper);border:2px solid var(--accent-deep);padding:12px 14px;
   }
   .dn-region-line{align-items:flex-start}
   .dn-region-toggle{
@@ -998,7 +999,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   }
   .sg-dates{
     margin-top:18px;max-width:52ch;font-size:15px;line-height:1.55;
-    background:var(--plate);border-left:4px solid var(--accent-deep);padding:12px 14px;
+    background:var(--plate);border:2px solid var(--accent-deep);padding:12px 14px;
   }
   .sg-plate{
     background:var(--plate);border:4px solid var(--ink);transform:rotate(-2deg);
@@ -1016,7 +1017,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   .sg-radio input{width:22px;height:22px;flex:none;margin:1px 0 0;accent-color:var(--accent-deep)}
   .sg-note{
     display:none;margin-top:12px;font-size:14.5px;line-height:1.55;
-    background:var(--paper);border-left:4px solid var(--accent);padding:10px 12px;
+    background:var(--paper);border:2px solid var(--accent);padding:10px 12px;
   }
   .sg-note.show{display:block}
   .sg-note .sg-radios{flex-direction:row;gap:26px;margin-top:10px}
@@ -1180,7 +1181,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
     stroke-linecap:round;stroke-linejoin:round;
   }
   .mech-list .lever-row{margin-top:2px}
-  @media(max-width:520px){.lever{font-size:10px;letter-spacing:.06em}}
+  @media(max-width:520px){.lever{font-size:11px;letter-spacing:.04em}}
 
   /* ============ responsive ============ */
   @media (max-width:860px){
@@ -3166,14 +3167,12 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   var wheel = { dir: -1, d: 60, R: 128, H: 68, rise: 1.4, moonY: 80 };
   var days = 0, past = false;
   if(hasHero){
-    // the town, seen from the waterfront: the bridge on the left, Main Street and the spire on the right
-    var sky = "M620 198V138H660V150H680V130H710V150H740V116H800V150H826V132L858 108L890 132V150H915V120H975V150H1000V128" +
-              "L1030 112L1060 128V150H1100V96H1112V70L1120 38L1128 70V96H1140V150H1165V132L1182 120L1200 132V198";
+    // the town, seen from the waterfront (redrawn 2026-09-26 from the drone frames and the 1930s postcards): the Perley
+    // Bridge on the left as it is, a long flat deck on piers with a railing and globe lamps (the old id "rt-truss" now
+    // carries the railing and the lamps); Main Street's brick blocks and peaked houses; the stone church on the right
+    var sky = "M620 198L620 132L634 132L634 126L652 126L652 132L666 132L666 150L683 122L689 131.9L689 125L694 125L694 140.1L700 150L700 140L752 140L752 112L757 112L757 116L807 116L807 112L812 112L812 146L840 146L840 136L862 108L884 136L884 142L918 142L918 122L938 122L938 117L958 117L958 122L978 122L978 150L1004 150L1004 132L1014 123.5L1014 113L1019 113L1019 119.3L1030 110L1056 132L1056 134L1062 112L1100 112L1100 90L1102 78L1104 90L1107 90L1120 30L1133 90L1136 90L1138 78L1140 90L1140 150L1160 150L1160 140L1180 120L1200 140L1200 198";
     el("rt-sky").setAttribute("d", sky); el("rt-skyfill").setAttribute("d", sky + "Z");
-    var tr = "M0 150", x = 0, up = true, lastApex = 0;
-    while(x < 560){ x += 28; tr += (up ? "L" + x + " 114" : "L" + x + " 150"); if(up) lastApex = x; up = !up; }
-    tr += "M28 114H" + lastApex;
-    el("rt-truss").setAttribute("d", tr);
+    el("rt-truss").setAttribute("d", "M0 143H560M28 143V150M84 143V150M140 143V150M196 143V150M252 143V150M308 143V150M364 143V150M420 143V150M476 143V150M532 143V150M56 150V114M52.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M112 150V114M108.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M168 150V114M164.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M224 150V114M220.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M280 150V114M276.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M336 150V114M332.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M392 150V114M388.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M448 150V114M444.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0M504 150V114M500.5 110a3.5 3.5 0 1 0 7 0a3.5 3.5 0 1 0 -7 0");
     var ns = "http://www.w3.org/2000/svg";
     [216, 232, 248, 264].forEach(function(y, k){
       var d = "M" + (-60 + k * 13) + " " + y;
@@ -3262,11 +3261,11 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
     if(desk){ Array.prototype.forEach.call(el("rt-left").children, function(c){ var b = c.getBoundingClientRect(); if(b.height){ cb = Math.max(cb, (b.bottom - bandTop) / S); } }); }
     wheel.moonY = clamp(cb + sunR * .8 + 8, 80, 100);
 
-    // 4. Whiskey on the bridge's top beam (a little way from the sun), else a roof ridge; Peanut at the foot of the sign
+    // 4. Whiskey on the bridge railing between two lamps (a little way from the sun), else a roof ridge; Peanut at the foot of the sign
     if(pets){
       var ps = Math.max(1, .85 / S), sunV = sunX == null ? -999 : vx(sunX), perches = [];
-      for(var bx = 40; bx <= 520; bx += 10){ perches.push([bx, 114, Math.abs(bx - (sunV - sunR - 60))]); }
-      [[858, 108], [770, 116], [945, 120], [1030, 112], [1182, 120]].forEach(function(p, i){ perches.push([p[0], p[1], 2000 + i]); });
+      for(var bx = 28; bx <= 532; bx += 56){ perches.push([bx, 143, Math.abs(bx - (sunV - sunR - 60))]); }   // the railing, midway between two lamps
+      [[862, 108], [782, 116], [948, 117], [1030, 110], [1180, 120], [643, 126]].forEach(function(p, i){ perches.push([p[0], p[1], 2000 + i]); });
       perches.sort(function(a, b){ return a[2] - b[2]; });
       var cat = null;
       for(var i = 0; i < perches.length && !cat; i++){
@@ -3419,8 +3418,10 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   }
   function palAt(lv, key){ var i = Math.min(Math.floor(lv), PAL.length - 2); return mixc(PAL[i][key], PAL[i + 1][key], lv - i); }
   function on01(ct, a, b, fade){ return smooth((ct - a) / fade) * (1 - smooth((ct - b) / fade)); }
-  var WINDOWS = [[690, 138, 8], [750, 128, 9], [766, 128, 9], [782, 128, 9], [850, 136, 8], [866, 136, 8], [935, 130, 9],
-                 [955, 130, 9], [1022, 134, 8], [1038, 134, 8], [1180, 140, 8]];
+  var WINDOWS = [[630, 142, 8], [643, 142, 8], [656, 142, 8], [630, 158, 8], [643, 158, 8], [656, 158, 8], [683, 134, 6], [677, 160, 8], [689, 160, 8], [712, 150, 8], [726, 150, 8], [740, 150, 8], [765, 124, 8], [782, 124, 8], [799, 124, 8], [765, 140, 8], [782, 140, 8], [799, 140, 8], [765, 156, 8], [782, 156, 8], [799, 156, 8], [826, 158, 8], [862, 120, 7], [852, 146, 8], [872, 146, 8], [894, 152, 8], [908, 152, 8], [930, 130, 8], [948, 130, 8], [966, 130, 8], [930, 148, 8], [948, 148, 8], [966, 148, 8], [1030, 120, 6], [1018, 144, 8], [1042, 144, 8], [1068, 142, 28], [1088, 142, 28], [1150, 162, 8], [1180, 128, 6], [1172, 150, 8], [1188, 150, 8]];
+  // the windows light in a scattered order, not left to right: WORDER[i] is window i's place in that order
+  var WORDER = (function(){ var o = WINDOWS.map(function(w, i){ return [rnd(i * 5 + 2), i]; }).sort(function(a, b){ return a[0] - b[0]; }), r = [];
+    o.forEach(function(p, k){ r[p[1]] = k; }); return r; })();
   var lightsG = null, winEls = [], lampEls = [], moonG = null, moonC = null, moonGlow = null, moonR = -1, beam = null;
   var nightLast = -1, stars = [], fwT = null, fwSlot = null, fwGround = 0, fwTop = 0, fwX0 = 0, moonPx = null;
   var FW0 = 18.5, FWW = 5.5;                                     // fireworks: three words, 5.5 s each, from 18.5 s
@@ -3431,9 +3432,9 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
       lightsG = mk("g", { opacity: "0" }, svg); svg.insertBefore(lightsG, el("rt-deck"));
       WINDOWS.forEach(function(w){ var g = mk("g", { opacity: "0" }, lightsG);
         mk("rect", { x: w[0] - 6, y: w[1] - 4, width: 12, height: w[2] + 8, rx: 4, fill: "#F2C26B", opacity: ".22" }, g);
-        mk("rect", { x: w[0] - 2.4, y: w[1] - 1, width: 4.8, height: w[2] + 2, fill: "#F7D488" }, g); winEls.push(g); });
+        mk("rect", { x: w[0] - (w[2] > 20 ? 3.2 : 2), y: w[1] + (w[2] > 20 ? 6 : .5), width: w[2] > 20 ? 6.4 : 4, height: w[2] - (w[2] > 20 ? 6.5 : 1), fill: "#F7D488" }, g); winEls.push(g); });
       for(var x = 56; x <= 504; x += 56){ var g = mk("g", { opacity: "0" }, lightsG);
-        mk("circle", { cx: x, cy: 109, r: 8, fill: "#F2C26B", opacity: ".2" }, g); mk("circle", { cx: x, cy: 109, r: 2.6, fill: "#FBE3A8" }, g); lampEls.push(g); }
+        mk("circle", { cx: x, cy: 110, r: 8, fill: "#F2C26B", opacity: ".2" }, g); mk("circle", { cx: x, cy: 110, r: 2.6, fill: "#FBE3A8" }, g); lampEls.push(g); }
       var gr = mk("radialGradient", { id: "rt-moonglow" }, svg.querySelector("defs"));
       mk("stop", { offset: "0", "stop-color": "#F4EBD6", "stop-opacity": ".30" }, gr);
       mk("stop", { offset: ".45", "stop-color": "#F4EBD6", "stop-opacity": ".11" }, gr);
@@ -3532,7 +3533,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
     }
     // the town lights up, window by window, then the bridge lamps; lights out at dawn
     lightsG.setAttribute("opacity", ct > 17 && ct < 37 ? "1" : "0");
-    winEls.forEach(function(w, i){ w.setAttribute("opacity", on01(ct, 17.3 + i * .2, 34 + i * .12, .3).toFixed(2)); });
+    var WN = winEls.length; winEls.forEach(function(w, i){ var k = WORDER[i]; w.setAttribute("opacity", on01(ct, 17.3 + k * 2.4 / WN, 34 + k * 1.4 / WN, .3).toFixed(2)); });
     lampEls.forEach(function(w, i){ w.setAttribute("opacity", on01(ct, 18 + i * .08, 35, .3).toFixed(2)); });
     beam.setAttribute("opacity", (.5 * on01(ct, 17.5, 35.5, .5)).toFixed(2));
     // the stars and the fireworks, drawn over the birds' canvas (the birds are away all night)
