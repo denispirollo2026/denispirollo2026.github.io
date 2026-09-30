@@ -197,6 +197,8 @@
   .hero-actions{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:16px}
   .hero-more{font-weight:700;font-size:15px;color:var(--h-deep,var(--accent-deep));text-decoration:none;border-bottom:3px solid transparent;padding-bottom:2px}
   .hero-more:hover,.hero-more:focus-visible{border-bottom-color:var(--accent)}
+  .hero-plans{display:inline-flex;align-items:center;gap:.4em;font-weight:800;font-size:16px;color:var(--ink);background:var(--plate,#FFFFFF);text-decoration:none;border:3px solid var(--ink);padding:12px 20px;box-shadow:5px 5px 0 var(--accent);transition:transform .15s ease,box-shadow .15s ease}
+  .hero-plans:hover,.hero-plans:focus-visible{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--accent)}
   .rt-pre #hero .hero-copy,.rt-pre #hero .rt-scene{visibility:hidden}   /* until the script has set the opening's first frame */
   .rt-scene{pointer-events:none}
   .rt-town{position:absolute;left:0;right:0;bottom:0;width:100%;height:var(--bandH)}
@@ -1111,6 +1113,7 @@
     .nav.open .nav-links a.cta{margin:12px 22px 4px;justify-content:center;transform:none;padding:14px}
     .lang-toggle button{padding:6px 11px}
     .hero-actions .cta{width:100%;justify-content:center;padding:17px 22px;transform:none}
+    .hero-actions .hero-plans{width:100%;justify-content:center;padding:15px 22px}
     .read-cta .cta{width:100%;justify-content:center;padding:17px 22px;transform:none}
     /* the phone bar: the ask sits in the thumb zone once the reader is past the hero */
     .cta-bar{
@@ -1185,6 +1188,7 @@
             </p>
             <div class="hero-actions">
               <a class="cta" href="#donate"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.5" fill="var(--paper)" stroke="var(--ink)" stroke-width="2.5"/><text x="12" y="16.5" text-anchor="middle" font-family="'Libre Franklin',Arial,sans-serif" font-size="13" font-weight="900" fill="var(--ink)">$</text></svg><span class="lang-fr">Contribuez</span></a>
+              <a class="hero-plans" href="#plans"><span class="lang-fr">Lire les 13 plans &rarr;</span></a>
               <a class="hero-more" href="#platform"><span class="lang-fr">Voir les cinq points &rarr;</span></a>
             </div>
           </div>
