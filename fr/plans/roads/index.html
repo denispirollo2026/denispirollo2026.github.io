@@ -22,17 +22,17 @@
 <meta property="og:title" content="Plan des routes pour Hawkesbury · Denis Pirollo">
 <meta property="og:description" content="Ce que dit le plan de la Ville, qui est responsable de chaque morceau de la solution, et les sept gestes qu&#x27;un maire peut vraiment poser avec le conseil.">
 <meta property="og:url" content="https://denispirollo2026.ca/fr/plans/roads/">
-<meta property="og:image" content="https://denispirollo2026.ca/share-card-fr.png">
+<meta property="og:image" content="https://denispirollo2026.ca/assets/share/roads-fr.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Denis Pirollo, candidat à la mairie de Hawkesbury">
+<meta property="og:image:alt" content="9,9 millions $ par année ce que le plan de la Ville elle-même dit que ça prend pour entretenir tout ce qu&#x27;elle possède. Denis Pirollo">
 <meta property="og:locale" content="fr_CA">
 <meta property="og:locale:alternate" content="en_CA">
 <meta property="article:modified_time" content="2026-09-29">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Plan des routes pour Hawkesbury · Denis Pirollo">
 <meta name="twitter:description" content="Ce que dit le plan de la Ville, qui est responsable de chaque morceau de la solution, et les sept gestes qu&#x27;un maire peut vraiment poser avec le conseil.">
-<meta name="twitter:image" content="https://denispirollo2026.ca/share-card-fr.png">
+<meta name="twitter:image" content="https://denispirollo2026.ca/assets/share/roads-fr.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://denispirollo2026.ca/fr/plans/roads/#article","headline":"Les pires rues en premier, chaque piastre de l'extérieur : le plan des routes","inLanguage":"fr-CA","dateModified":"2026-09-29","image":"https://denispirollo2026.ca/assets/denis-pirollo-hawkesbury-860.jpg","mainEntityOfPage":"https://denispirollo2026.ca/fr/plans/roads/","author":{"@type":"Person","@id":"https://denispirollo2026.ca/#denis-pirollo","name":"Denis Pirollo","url":"https://denispirollo2026.ca/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Denis Pirollo","item":"https://denispirollo2026.ca/fr/"},{"@type":"ListItem","position":2,"name":"Plan des routes pour Hawkesbury","item":"https://denispirollo2026.ca/fr/plans/roads/"}]}]}</script>
 <style>
 @font-face{font-family:'Libre Franklin';font-style:normal;font-weight:500;font-display:swap;src:url('/assets/fonts/LibreFranklin-500-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
@@ -229,6 +229,30 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
 }
 @media (max-width:400px){
   .sig-close{grid-template-columns:1fr}
+}
+
+/* Plan passport, plan-page half (2026-09-29): a count line, one stamp per plan and one hint inside the close.
+   Page tokens only. The landing move is under html.sig-motion; under reduced motion a stamp simply appears. */
+.sigpp-pass{grid-column:1 / -1;margin-top:4px;padding-top:14px;border-top:2px solid var(--ink)}
+.sigpp-line{margin:0;font-size:15px;font-weight:800;line-height:1.3;color:var(--ink)}
+.sigpp-stamps{display:grid;grid-template-columns:repeat(var(--sigpp-d,13),minmax(0,34px));gap:8px;justify-content:start;
+  list-style:none;margin:12px 0 0;padding:0}
+.sigpp-stamp{position:relative;aspect-ratio:1}
+.sigpp-mark{display:block;width:100%;height:100%;box-sizing:border-box;border:2px dashed var(--muted);background:var(--paper)}
+.sigpp-mark svg{display:block;width:100%;height:100%;overflow:visible}
+.sigpp-tick{display:none;fill:none;stroke:var(--ink);stroke-width:4.4;stroke-linecap:round;stroke-linejoin:round}
+.sigpp-paw{display:none;fill:var(--ink)}
+.sigpp-read .sigpp-mark{border:2px solid var(--ink);background:var(--accent)}
+.sigpp-read:nth-child(odd) .sigpp-mark{transform:rotate(-3deg)}
+.sigpp-read:nth-child(even) .sigpp-mark{transform:rotate(2.5deg)}
+.sigpp-read .sigpp-tick,.sigpp-pawed .sigpp-paw{display:block}
+.sigpp-pawed:not(.sigpp-read) .sigpp-paw{transform:translate(-9px,-9px)}
+.sigpp-here .sigpp-mark{box-shadow:0 0 0 2px var(--plate),0 0 0 4px var(--ink)}
+.sigpp-hint{margin:12px 0 0;font-size:13px;line-height:1.45;color:var(--muted)}
+.sig-motion .sigpp-land{animation:sigpp-land .5s cubic-bezier(.2,.7,.2,1) .25s backwards}
+@keyframes sigpp-land{from{opacity:0;transform:scale(1.8) rotate(-14deg)}}
+@media (max-width:700px){
+  .sigpp-stamps{grid-template-columns:repeat(var(--sigpp-m,7),minmax(0,44px))}
 }
 
 /* Roads piece, 2026-09-29. Page tokens only. */
@@ -1521,7 +1545,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
       <div class="sixty-lab"><span class="lang-fr">En soixante secondes</span></div>
       <dl>
         <dt><span class="lang-fr">Le chiffre</span></dt>
-        <dd><span class="lang-fr">9,9 millions $ par année : ce que le plan de la Ville elle-même dit que ça prend pour entretenir tout ce qu'elle possède.</span></dd>
+        <dd><span class="lang-fr">9,9 millions $ par année : ce que le plan de la Ville elle-même dit que ça prend pour entretenir tout ce qu'elle possède.</span></dd>
         <dt><span class="lang-fr">Le levier</span></dt>
         <dd><span class="lang-fr">Les pires rues en premier, dans l'ordre que les cotes de la Ville elle-même établissent, pis chaque piastre de l'extérieur demandée.</span></dd>
         <dt><span class="lang-fr">Le vote</span></dt>
@@ -1645,7 +1669,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
         </div></div>
         <div class="tl-row"><div class="tl-date">Feb 2026</div><div class="tl-body">
           
-          <span class="lang-fr">Le budget 2026 met environ 6 millions $ pour refaire la Main Ouest.</span>
+          <span class="lang-fr">Le budget 2026 met environ 6 millions $ pour refaire la Main Ouest.</span>
         </div></div>
         <div class="tl-row"><div class="tl-date">Apr 2026</div><div class="tl-body">
           
@@ -1657,7 +1681,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
         </div></div>
         <div class="tl-row"><div class="tl-date">Jul 2026</div><div class="tl-body">
           
-          <span class="lang-fr">Les Comtés signent l'entente sur la Main : 468 000 $ dans un chantier d'égout pluvial de 1,8 million $.</span>
+          <span class="lang-fr">Les Comtés signent l'entente sur la Main : 468 000 $ dans un chantier d'égout pluvial de 1,8 million $.</span>
         </div></div>
         <div class="tl-row"><div class="tl-date">Sep 2026</div><div class="tl-body">
           
@@ -1697,7 +1721,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
         <div class="eco-name"><span class="lang-fr">La Province</span></div>
         <div class="eco-body">
           <p>
-          <span class="lang-fr">L'Ontario gère un programme qui s'appelle Connecting Links. Il paie pour des bouts de route que la province a mis sur sa propre liste. Il paie <span class="hl">jusqu'à 90 % des coûts</span>, avec un plafond fixé maintenant à <span class="hl">5 millions $</span> par projet routier. La dernière ronde a mis 46 millions $ dans 21 projets. La période de demandes a fermé le 13 novembre 2025. La ronde 2027-2028 est ouverte maintenant, pis <b class="pop">la demande de la Ville pour la rue McGill pis le boulevard Chenail est passée au conseil le 14 septembre 2026, date limite le 12 novembre</b>. L'Ontario envoie aussi de l'argent chaque année selon une formule, ce qui veut juste dire que le montant est calculé selon une règle fixe au lieu d'être décidé chaque année. C'est <span class="hl">1,2 million $</span> du Fonds ontarien pour l'infrastructure communautaire, pour les routes pis les égouts. Rien ne garantit que cette subvention-là va monter. Elle a baissé de 133 000 $ entre 2025 et 2026. Pis la province est dans l'histoire une troisième fois. C'est son propre transport de remblai contaminé qui fait attendre la Main Ouest jusqu'en 2027.</span></p>
+          <span class="lang-fr">L'Ontario gère un programme qui s'appelle Connecting Links. Il paie pour des bouts de route que la province a mis sur sa propre liste. Il paie <span class="hl">jusqu'à 90 % des coûts</span>, avec un plafond fixé maintenant à <span class="hl">5 millions $</span> par projet routier. La dernière ronde a mis 46 millions $ dans 21 projets. La période de demandes a fermé le 13 novembre 2025. La ronde 2027-2028 est ouverte maintenant, pis <b class="pop">la demande de la Ville pour la rue McGill pis le boulevard Chenail est passée au conseil le 14 septembre 2026, date limite le 12 novembre</b>. L'Ontario envoie aussi de l'argent chaque année selon une formule, ce qui veut juste dire que le montant est calculé selon une règle fixe au lieu d'être décidé chaque année. C'est <span class="hl">1,2 million $</span> du Fonds ontarien pour l'infrastructure communautaire, pour les routes pis les égouts. Rien ne garantit que cette subvention-là va monter. Elle a baissé de 133 000 $ entre 2025 et 2026. Pis la province est dans l'histoire une troisième fois. C'est son propre transport de remblai contaminé qui fait attendre la Main Ouest jusqu'en 2027.</span></p>
         </div>
       </div>
       <div class="eco-band">
@@ -1790,7 +1814,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
       </h2>
       <p>
         
-        <span class="lang-fr">Dans son propre budget, la Ville prévoit que ses réserves, l'argent qu'elle a mis de côté, seront de <span class="hl">6,2 millions $</span> d'ici la fin de l'année. Réparer pis remplacer tout ce que la Ville possède, routes, tuyaux, bâtiments pis équipements, ça devrait coûter environ <span class="hl">9,9 millions $ par année</span> selon le plan de la Ville elle-même. Ça fait que l'argent mis de côté vaut <b class="pop">à peu près sept mois de cette facture annuelle.</b> La Ville n'est pas cassée. Mais personne ne peut vous promettre que le trou se remplira en un seul budget, pis je ne ferai pas semblant du contraire. Ce que je peux promettre, c'est d'essayer de le refermer plus vite chaque année, dans cet ordre : les pires rues en premier, chaque piastre de l'extérieur qu'on est allé chercher, chaque projet fait une fois, chaque année rapportée.</span>
+        <span class="lang-fr">Dans son propre budget, la Ville prévoit que ses réserves, l'argent qu'elle a mis de côté, seront de <span class="hl">6,2 millions $</span> d'ici la fin de l'année. Réparer pis remplacer tout ce que la Ville possède, routes, tuyaux, bâtiments pis équipements, ça devrait coûter environ <span class="hl">9,9 millions $ par année</span> selon le plan de la Ville elle-même. Ça fait que l'argent mis de côté vaut <b class="pop">à peu près sept mois de cette facture annuelle.</b> La Ville n'est pas cassée. Mais personne ne peut vous promettre que le trou se remplira en un seul budget, pis je ne ferai pas semblant du contraire. Ce que je peux promettre, c'est d'essayer de le refermer plus vite chaque année, dans cet ordre : les pires rues en premier, chaque piastre de l'extérieur qu'on est allé chercher, chaque projet fait une fois, chaque année rapportée.</span>
       </p>
       <p>
         
@@ -1835,7 +1859,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
           <li><span class="lang-fr">Règlement 4-2026, annexes A et B · le budget 2026 adopté, incluant la ligne Main Ouest et ce que la Ville prévoit avoir en réserves.</span></li>
           <li><span class="lang-fr">Rapport administratif AG-02-2026, réunion ordinaire du conseil, 22 juin 2026 · le report de la Main Ouest et le transport provincial.</span></li>
           <li><span class="lang-fr">Couverture de l'entente Connecting Link, Le Carillon, juillet 2026 · la part de 468 000 $ des Comtés.</span></li>
-          <li><span class="lang-fr">Annonce provinciale Connecting Links, 6 février 2026 · la ronde de 46 millions $ et le plafond de 5 millions $.</span></li>
+          <li><span class="lang-fr">Annonce provinciale Connecting Links, 6 février 2026 · la ronde de 46 millions $ et le plafond de 5 millions $.</span></li>
           <li><span class="lang-fr">La demande 2027-2028, rue McGill et boulevard Chenail · conseil de la Ville de Hawkesbury, 14 septembre 2026, recommandation 2026_REC_52; date limite de dépôt le 12 novembre 2026</span></li>
           <li><span class="lang-fr">Données ouvertes de l'Ontario · allocations du Fonds ontarien pour l'infrastructure communautaire (FOIC); allocations du Fonds de partenariat avec les municipalités de l'Ontario (FPMO), 2024 à 2026.</span></li>
           <li><span class="lang-fr">Données ouvertes d'Infrastructure Canada · Fonds pour le développement des collectivités, 2025-26.</span></li>
@@ -4548,10 +4572,11 @@ window.SIG_PLANS=[["roads", "Roads plan for Hawkesbury", "Plan des routes pour H
       pets.update(performance.now() / 1000);
     }
     layer.addEventListener("pointerover", kick);
-    layer.addEventListener("click", function(){
+    /* capture phase: pets.js stops the tap at the pet itself, so a bubbling listener here never heard it (passport, 2026-09-29) */
+    layer.addEventListener("click", function(e){
       kick();
-      if(!found){ found = true; doc.dispatchEvent(new CustomEvent("sig:pet", { detail: { route: SIG.route, kind: o.kind } })); }
-    });
+      if(!found && e.target.closest && e.target.closest(".pet")){ found = true; doc.dispatchEvent(new CustomEvent("sig:pet", { detail: { route: SIG.route, kind: o.kind } })); }
+    }, true);
     place();
     window.addEventListener("resize", place);
     SIG.check("pet placed inside its figure", o.x >= 0 && o.x <= 1 && o.y >= 0 && o.y <= host.clientHeight);
@@ -4597,6 +4622,132 @@ window.SIG_PLANS=[["roads", "Roads plan for Hawkesbury", "Plan des routes pour H
     }
     if(doc.readyState === "loading"){ doc.addEventListener("DOMContentLoaded", go); } else { go(); }
   };
+})();
+
+/* Plan passport, plan-page half (2026-09-29): reaching a plan's receipts stamps it in the visitor's own browser
+   (one localStorage key; no cookie, nothing sent). Storage blocked: same page, counts start at this visit. */
+(function(){
+  "use strict";
+  var S = window.SIG, plans = window.SIG_PLANS || [], KEY = "pirollo-passport", HAS_IO = "IntersectionObserver" in window;
+  window.SIGPP = {};
+  if(!S || !S.close || !plans.length){ return; }
+  var T = S.t, L = S.FR ? 2 : 1, me = -1, i;
+  for(i = 0; i < plans.length; i++){ if(plans[i][0] === S.route){ me = i; } }
+  if(me < 0){ return; }
+
+  function obj(v){ return v && typeof v === "object" ? v : {}; }
+  function get(){
+    var d = null;
+    try { d = JSON.parse(localStorage.getItem(KEY)); } catch(e){}
+    d = obj(d);
+    return { v: 1, read: obj(d.read), paws: obj(d.paws) };
+  }
+  var st = get(), box = null, line = null, next = null, ul = null, items = [], seen = false, pend = [];
+  var chk = { name: "after the receipts are scrolled into view this plan is stamped", ok: !!st.read[S.route] };
+  S.checks.push(chk);
+
+  function put(kind){   /* this visit's own marks are merged in, so blocked storage still counts them */
+    var d = get(), k;
+    for(k in st.read){ d.read[k] = 1; }
+    for(k in st.paws){ d.paws[k] = 1; }
+    d[kind][S.route] = 1;
+    st = d;
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e){}
+  }
+
+  function render(s){
+    var n = 0, q = plans[(me + 1) % plans.length], j, c;
+    plans.forEach(function(p, k){
+      var r = !!s.read[p[0]], w = !!s.paws[p[0]], li = items[k];
+      n += r ? 1 : 0;
+      li.classList.toggle("sigpp-read", r);
+      li.classList.toggle("sigpp-pawed", w);
+      li.lastChild.textContent = p[L] + ", " + (r ? T("read", "lu") : T("not read yet", "pas encore lu")) +
+        (w ? ", " + T("paw print", "empreinte de patte") : "");
+    });
+    line.textContent = T("You have read {n} of {t} plans", "Vous avez lu {n} plan{s} sur {t}")
+      .replace("{n}", n).replace("{s}", n > 1 ? "s" : "").replace("{t}", plans.length);
+    for(j = 1; j < plans.length; j++){
+      c = plans[(me + j) % plans.length];
+      if(!s.read[c[0]]){ q = c; break; }
+    }
+    if(next){
+      next.setAttribute("href", (S.FR ? "/fr" : "") + "/plans/" + q[0] + "/");
+      next.lastChild.textContent = q[L];
+    }
+  }
+
+  function pop(k){   /* a landing stamp moves once, and only once the reader can see the row */
+    if(seen){ items[k].classList.add("sigpp-land"); } else { pend.push(k); }
+  }
+  function stamp(){
+    if(st.read[S.route]){ return; }
+    put("read");
+    if(box){ render(st); pop(me); }
+    chk.ok = !!st.read[S.route] && (!box || items[me].className.indexOf("sigpp-read") > 0);
+  }
+  function paw(){
+    if(st.paws[S.route]){ return; }
+    put("paws");
+    if(box){ render(st); pop(me); }
+  }
+  function watch(els){
+    if(st.read[S.route] || !HAS_IO){ return; }
+    var io = new IntersectionObserver(function(es){
+      if(es.some(function(e){ return e.isIntersecting; })){ io.disconnect(); stamp(); }
+    }, { rootMargin: "0px 0px -20% 0px" });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  function build(){
+    next = box.querySelector(".sig-close-next");
+    var pass = S.el("div", { "class": "sigpp-pass" }, box);
+    line = S.el("p", { "class": "sigpp-line" }, pass);
+    ul = S.el("ul", { "class": "sigpp-stamps", role: "list" }, pass);
+    ul.style.setProperty("--sigpp-d", plans.length);
+    ul.style.setProperty("--sigpp-m", Math.ceil(plans.length / 2));
+    plans.forEach(function(p, k){
+      var li = S.el("li", { "class": "sigpp-stamp" + (k === me ? " sigpp-here" : "") }, ul);
+      if(k === me){ li.setAttribute("aria-current", "page"); }
+      S.el("span", { "class": "sigpp-mark", "aria-hidden": "true", title: p[L] }, li).innerHTML =
+        '<svg viewBox="0 0 40 40" focusable="false"><path class="sigpp-tick" d="M8 20L16 28L27 12"/><g class="sigpp-paw">' +
+        '<ellipse cx="30" cy="32" rx="4.4" ry="3.6"/><circle cx="24.8" cy="27.2" r="1.8"/><circle cx="28" cy="24.4" r="1.8"/>' +
+        '<circle cx="32" cy="24.4" r="1.8"/><circle cx="35.2" cy="27.2" r="1.8"/></g></svg>';
+      S.el("span", { "class": "sig-sr" }, li);
+      li.addEventListener("animationend", function(){ li.classList.remove("sigpp-land"); });
+      items.push(li);
+    });
+    S.el("p", { "class": "sigpp-hint" }, pass,
+      T("Tap Whiskey or Peanut on each plan to leave a paw print.", "Touchez Whiskey ou Peanut sur chaque plan pour laisser une empreinte de patte."));
+    render(st);
+    if(HAS_IO){
+      var vo = new IntersectionObserver(function(es){
+        if(es[0].isIntersecting){ vo.disconnect(); seen = true; pend.forEach(pop); pend = []; }
+      });
+      vo.observe(box);
+    } else { seen = true; }
+    if(!S.art.querySelector(".receipts-block")){ watch([box]); }
+
+    var m = /^(?:\/fr)?\/plans\/([a-z-]+)\/$/.exec(next ? next.getAttribute("href") : "");
+    S.check("the close carries the count line and one stamp per plan", /\d/.test(line.textContent) && ul.children.length === plans.length);
+    S.check("the next-plan link points at a published plan", !!m && plans.some(function(p){ return p[0] === m[1]; }));
+    var t = { read: {}, paws: {} };
+    t.paws[S.route] = 1;
+    render(t);
+    var pawed = items[me].classList.contains("sigpp-pawed");
+    render(st);
+    S.check("a paw print lands on this plan's stamp", pawed);
+  }
+
+  var orig = S.close;
+  S.close = function(){
+    box = orig.apply(S, arguments);
+    if(box){ build(); }
+    return box;
+  };
+  document.addEventListener("sig:pet", paw);
+  var recs = S.art.querySelectorAll(".receipts-block");
+  if(recs.length){ watch(Array.prototype.slice.call(recs)); }
 })();
 
 /* Roads signature piece (2026-09-29): the graded network as 100 pieces (the plan before, today), the yearly bill drawn as a

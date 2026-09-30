@@ -57,6 +57,23 @@
   .vote-wrap{max-width:780px}
   .vote-wrap .art-body a{color:var(--accent-deep);font-weight:700}
 </style>
+<style id="pp-css">
+/* Plan passport, home half (2026-09-29): a count line above the plans list and a "Read" stamp on each read plan.
+   The stamps sit in the first column, clear of the road trip's road and car (on the right, or in the phone gutter). */
+.sigpp-home-line{margin:0 0 14px;font-size:14px;font-weight:800;letter-spacing:.08em;line-height:1.3;text-transform:uppercase;color:var(--ink)}
+.sigpp-home-line::before{content:"";display:inline-block;width:10px;height:10px;margin-right:8px;border:2px solid var(--ink);background:var(--accent);vertical-align:-1px}
+.sigpp-home-stamp{display:flex;align-items:center;gap:6px;width:max-content;max-width:100%;margin-top:8px;padding:3px 8px 3px 6px;
+  border:2px solid var(--ink);background:var(--accent);color:var(--ink);font-size:12px;font-weight:900;letter-spacing:.12em;
+  line-height:1.2;text-transform:uppercase;transform:rotate(-3deg)}
+.sigpp-home-stamp svg{display:block;width:12px;height:12px;flex:none}
+.sigpp-home-stamp .sigpp-hp{width:15px;height:15px;margin-left:2px}
+@media (max-width:860px){
+  .sigpp-armed{padding-left:52px}   /* clear of the road's start sign, which stands in the phone gutter above the list */
+  .sigpp-armed::before{display:none}
+  .sigpp-home-stamp{display:inline-flex;margin:0 0 0 10px;vertical-align:middle}
+}
+
+</style>
 </head>
 <body class="fr">
 <style>
@@ -4304,5 +4321,44 @@
 
 </script>
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "232b5148254a4dc39e4d1f83c2997a17"}'></script>
+<script id="pp-js">
+window.SIG_PLANS=[["roads", "Roads plan for Hawkesbury", "Plan des routes pour Hawkesbury"], ["main-street", "Main Street and waterfront plan for Hawkesbury", "Plan pour la rue Main et le bord de l'eau à Hawkesbury"], ["youth", "Young people and jobs plan for Hawkesbury", "Plan pour nos jeunes et les jobs à Hawkesbury"], ["housing", "Housing plan for Hawkesbury", "Plan pour le logement à Hawkesbury"], ["books", "Open the books: Hawkesbury's budget", "Ouvrir les livres : le budget de Hawkesbury"], ["park", "Industrial park plan for Hawkesbury", "Plan pour le parc industriel de Hawkesbury"], ["technology", "Town Hall process audit for Hawkesbury", "Audit des processus de l'hôtel de ville de Hawkesbury"], ["powers", "What the mayor of Hawkesbury can do", "Ce que le maire de Hawkesbury peut faire"], ["transparency", "Council transparency plan for Hawkesbury", "Plan de transparence du conseil de Hawkesbury"], ["campus", "A training campus for Hawkesbury: the idea", "Un campus de formation pour Hawkesbury : l'idée"], ["partners", "Regional partnerships plan for Hawkesbury", "Plan des partenariats régionaux pour Hawkesbury"], ["transport", "Public transit plan for Hawkesbury", "Plan pour le transport en commun à Hawkesbury"], ["infrastructure", "Water, sewer and power capacity plan for Hawkesbury", "Plan pour la capacité en eau, en égout et en électricité à Hawkesbury"]];
+/* Plan passport, home half (2026-09-29). Plain standalone script: it only reads the visitor's own "pirollo-passport"
+   key (window.SIGPP) and stamps the plans they have read. If nothing is read the list is left as it was. It writes
+   nothing, sends nothing and repeats nothing. */
+(function(){
+  "use strict";
+  var plans = window.SIG_PLANS, list = document.querySelector("#plans .post-list");
+  window.SIGPP = window.SIGPP || {};
+  if(!plans || !list){ return; }
+  var FR = /^fr/i.test(document.documentElement.getAttribute("lang") || ""), d = null, n = 0, known = {};
+  function T(en, fr){ return FR ? fr : en; }
+  try { d = JSON.parse(localStorage.getItem("pirollo-passport")); } catch(e){}
+  function pick(k){ return d && d[k] && typeof d[k] === "object" ? d[k] : {}; }
+  var read = pick("read"), paws = pick("paws");
+  plans.forEach(function(p){ known[p[0]] = 1; n += read[p[0]] ? 1 : 0; });
+  window.SIGPP.read = n;
+  if(!n){ return; }
+
+  var TICK = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12.5L9.5 18L20 6" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var PAW = '<svg class="sigpp-hp" viewBox="0 0 40 40" role="img" aria-label="' + T("paw print", "empreinte de patte") + '" focusable="false"><g fill="currentColor"><ellipse cx="20" cy="26" rx="8" ry="6.6"/><circle cx="9" cy="16" r="3.6"/><circle cx="16" cy="9.5" r="3.6"/><circle cx="24" cy="9.5" r="3.6"/><circle cx="31" cy="16" r="3.6"/></g></svg>';
+
+  var p = document.createElement("p");
+  p.className = "sigpp-home-line" + (list.classList.contains("lr-armed") ? " sigpp-armed" : "");
+  p.textContent = T("You have read {n} of {t} plans", "Vous avez lu {n} plan{s} sur {t}")
+    .replace("{n}", n).replace("{s}", n > 1 ? "s" : "").replace("{t}", plans.length);
+  list.parentNode.insertBefore(p, list);
+
+  Array.prototype.forEach.call(list.querySelectorAll("a.post-row"), function(a){
+    var m = /plans\/([a-z-]+)/.exec(a.getAttribute("href") || "");
+    if(!m || !known[m[1]] || !read[m[1]]){ return; }
+    var s = document.createElement("span");
+    s.className = "sigpp-home-stamp";
+    s.innerHTML = TICK + "<span>" + T("Read", "Lu") + "</span>" + (paws[m[1]] ? PAW : "");
+    (a.querySelector(".post-date") || a).appendChild(s);
+  });
+})();
+
+</script>
 </body>
 </html>
