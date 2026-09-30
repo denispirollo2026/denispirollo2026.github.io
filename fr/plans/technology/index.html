@@ -183,6 +183,119 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
 @media print{.pm-filter,.pm-toc,.pm-share,.pm-progress{display:none}}
 
 </style>
+<style id="sig-css">
+/* Signature pieces, shared core (2026-09-29): the opener, the section-break mark, the pet layer, the close.
+   Page tokens only. Nothing here hides text; motion rules apply only under html.sig-motion. */
+.sig-sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* opener: a line drawing in the title band, at rest by default */
+.sig-opener{margin:0 0 18px;max-width:780px}
+.sig-opener svg{display:block;width:100%;height:auto;overflow:visible}
+.sig-opener svg *{vector-effect:non-scaling-stroke}
+.sig-motion .sig-opener.sig-draw svg :not(.sig-fill):is(path,line,polyline,circle,rect,ellipse){
+  stroke-dasharray:1;stroke-dashoffset:1;animation:sig-ink .6s cubic-bezier(.2,.7,.2,1) var(--sd,0s) forwards}
+.sig-motion .sig-opener.sig-draw svg .sig-fill{opacity:0;animation:sig-fade .45s ease-out var(--sd,.9s) forwards}
+@keyframes sig-ink{to{stroke-dashoffset:0}}
+@keyframes sig-fade{to{opacity:1}}
+
+/* section-break mark in front of each main heading */
+.sig-break{display:flex;justify-content:flex-start;margin:56px 0 -34px;height:30px}
+.sig-break svg{height:30px;width:auto;overflow:visible}
+.sig-motion .sig-break.sig-arm{opacity:0;transform:translateY(6px)}
+.sig-motion .sig-break.sig-arm.sig-on{opacity:1;transform:none;transition:opacity .5s ease-out,transform .6s cubic-bezier(.2,.7,.2,1)}
+
+/* Whiskey or Peanut, hiding in a figure */
+.sig-pet-host{position:relative}
+.sig-pet-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.sig-pet-layer .pet{pointer-events:auto;cursor:pointer}
+
+/* the engagement close */
+.sig-close{display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:10px;align-items:stretch;margin:34px 0 8px;
+  padding:16px;border:3px solid var(--ink);background:var(--plate);box-shadow:var(--shadow)}
+.sig-close-btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 14px;
+  font:inherit;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  color:var(--ink);background:var(--paper);border:2px solid var(--ink);cursor:pointer}
+.sig-close-btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--accent)}
+.sig-close-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--accent)}
+.sig-close-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sig-close-next{flex-direction:column;align-items:flex-start;justify-content:center;background:var(--ink);color:var(--plate);text-transform:none;letter-spacing:0}
+.sig-close-lab{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.sig-close-title{font-size:15px;font-weight:800;line-height:1.25}
+.sig-motion .sig-close.sig-arm{opacity:0;transform:translateY(10px)}
+.sig-motion .sig-close.sig-arm.sig-on{opacity:1;transform:none;transition:opacity .5s ease-out,transform .7s cubic-bezier(.2,.7,.2,1)}
+@media (max-width:700px){
+  .sig-close{grid-template-columns:1fr 1fr}
+  .sig-close-next{grid-column:1 / -1}
+}
+@media (max-width:400px){
+  .sig-close{grid-template-columns:1fr}
+}
+
+.sig-technology-tour,.sig-technology-wall{margin:36px 0 30px;border:3px solid var(--ink);background:var(--plate);box-shadow:6px 6px 0 var(--accent)}
+.sig-technology-strip,.sig-technology-head,.sig-technology-lab{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.sig-technology-strip{height:34px;display:flex;align-items:center;padding:0 12px;background:var(--ink);color:var(--plate)}
+.sig-technology-in{padding:16px}
+.sig-technology-src{display:block;margin-top:14px}
+.art-body .sig-technology-wall+.tally,.art-body:has(.sig-technology-tour) figure.art-media:has(svg[aria-label^="What is online"]){height:0;margin:0;padding:0;border:0;overflow:hidden}
+.sig-technology-row{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.sig-technology-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:92px;padding:8px 6px;font:800 13.5px/1.2 "Libre Franklin",Arial,sans-serif;text-align:center;color:var(--ink);background:var(--paper);border:3px solid var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--accent)}
+.sig-technology-card svg{width:30px;height:30px}
+.sig-technology-card[aria-pressed=true]{background:var(--ink);color:var(--plate);box-shadow:none}
+.sig-technology-card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sig-technology-stage{margin-top:12px;border:3px solid var(--ink);padding:6px 10px 8px}
+.sig-technology-stage svg{display:block;width:100%;height:auto}
+.sig-technology-sc,.sig-technology-rt{stroke-linecap:round;stroke-linejoin:round}
+.sig-technology-sc{fill:var(--plate);stroke:var(--muted);stroke-width:3}
+.sig-technology-rt{stroke:var(--ink)}
+.sig-technology-rt>path{fill:none;stroke-width:5}
+.sig-technology-rt>circle{fill:var(--ink)}
+.sig-technology-rt>g{fill:var(--plate);stroke-width:3.5}
+.sig-technology-rt text{font:900 20px "Libre Franklin",Arial,sans-serif;text-anchor:middle}
+.sig-technology-said{min-height:3.3em;padding:6px 2px 0;font-size:16px;font-weight:800;line-height:1.35;text-wrap:balance}
+.sig-technology-said:not(.sig-technology-on){color:var(--muted)}
+.sig-technology-piles{display:grid;grid-template-columns:5fr 7fr;gap:14px;margin-top:14px}
+.sig-technology-pile{padding:12px 12px 14px;border:3px solid var(--ink)}
+.sig-technology-home{background:var(--paper)}
+.sig-technology-home .sig-technology-head{color:var(--accent-deep)}
+.sig-technology-away{display:flex;flex-direction:column;background:var(--ink);color:var(--plate)}
+.sig-technology-table{width:220px;height:126px;max-width:100%;margin:0 auto}
+.sig-technology-table svg{display:block;width:100%;height:100%}
+.sig-technology-chips{list-style:none;display:grid;gap:8px;margin-top:10px}
+.sig-technology-away .sig-technology-chips{flex:1;grid-template-columns:1fr 1fr;grid-auto-rows:1fr}
+.sig-technology-chips li{min-height:44px;display:flex;flex-direction:column;justify-content:center;padding:8px 11px;font-size:14px;font-weight:800;line-height:1.25;color:var(--ink);background:var(--plate);border:2px solid var(--ink);transform:rotate(var(--r,0deg))}
+.sig-technology-chips .sig-technology-sel{outline:3px solid var(--accent);outline-offset:1px}
+.sig-technology-route{display:block;margin-top:3px;font-size:13px;font-weight:600;color:var(--muted)}
+.sig .sig-technology-route{display:none}
+.sig-technology-boards{display:grid;grid-auto-flow:column;grid-template:auto 1fr/1fr 1fr;gap:0 16px}
+.sig-technology-half{display:contents}
+.sig-technology-lab{color:var(--muted)}
+.sig-technology-big{margin:2px 0 8px;font-size:clamp(30px,6vw,44px);font-weight:900;line-height:1.1;color:var(--accent)}
+.sig-technology-board{display:flex;align-items:center;justify-content:center;min-height:120px;background:var(--ink)}
+.sig-technology-notes{--c:11;width:100%;display:grid;grid-template-columns:repeat(var(--c),1fr);gap:4px;padding:10px}
+.sig-technology-notes i{position:relative;display:block;aspect-ratio:1.12;transform:rotate(var(--r,0deg));background:linear-gradient(var(--muted),var(--muted)) 20% 40%/60% 9% no-repeat,linear-gradient(var(--muted),var(--muted)) 20% 68%/38% 9% no-repeat,var(--plate)}
+.sig-technology-o{z-index:1}
+.sig-technology-o::after,.sig-technology-key i{content:"";position:absolute;inset:-5px -7px;border:3px solid var(--accent);border-radius:50%;transform:rotate(-6deg)}
+.sig-technology-nyet{display:block;width:min(46%,116px);padding:14px 8px;font-size:17px;font-weight:900;line-height:1.15;text-align:center;color:var(--ink);background:var(--plate);transform:rotate(-3deg)}
+.sig-technology-key{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:14px;font-weight:700}
+.sig-technology-key i{position:static;flex:none;width:28px;height:19px}
+@media (max-width:700px){
+  .sig-technology-piles{grid-template-columns:1fr}
+  .sig-technology-boards{display:block}
+  .sig-technology-half+.sig-technology-half .sig-technology-hd{margin-top:16px}
+  .sig-technology-row{display:flex;overflow-x:auto;scroll-snap-type:x proximity;padding:0 2px 8px}
+  .sig-technology-card{flex:0 0 124px;scroll-snap-align:start}
+  .sig-technology-notes{--c:10}
+  .sig-technology-said{min-height:6em}
+  .sig-technology-board{min-height:130px}
+}
+.sig-motion .sig-arm .sig-technology-a{opacity:0;transform:translateY(var(--y,-16px)) rotate(var(--r,0deg)) scale(var(--s,1))}
+.sig-motion .sig-arm.sig-on .sig-technology-a{opacity:1;transform:rotate(var(--r,0deg));transition:opacity .35s ease-out var(--t),transform var(--d,.6s) cubic-bezier(.2,.7,.2,1) var(--t)}
+.sig-motion .sig-arm .sig-technology-o::after{transform:rotate(-6deg) scale(0)}
+.sig-motion .sig-arm.sig-on .sig-technology-o::after{transform:rotate(-6deg);transition:transform var(--e,.5s) cubic-bezier(.2,.7,.2,1) var(--u)}
+.sig-motion .sig-technology-rt>path{stroke-dasharray:1;stroke-dashoffset:1;animation:sig-ink .8s cubic-bezier(.2,.7,.2,1) var(--sd,0s) forwards}
+.sig-motion .sig-technology-rt>:is(circle,g){opacity:0;animation:sig-fade .35s ease-out var(--sd,.6s) forwards}
+
+</style>
 </head>
 <body class="fr viewing-article">
 <style>
@@ -1360,6 +1473,28 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
     </a>
 
     <header class="art-header">
+      
+      <div class="sig-opener" data-hold="sig-technology" aria-hidden="true">
+        <svg viewBox="0 0 780 90" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#14181C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+          <rect class="sig-fill" x="667" y="18" width="38" height="54" rx="2" fill="rgba(200,134,42,.2)" stroke="none"/>
+          <path d="M60 10H108L124 26V84H60Z"/>
+          <path d="M108 10V26H124"/>
+          <path d="M72 44H112M72 56H112M72 68H96"/>
+          <path d="M72 24H82V34H72Z"/>
+          <path d="M156 50C186 18 224 18 262 44"/>
+          <path d="M250 32L263 45L246 52"/>
+          <path d="M310 22L360 10L410 26L444 16V76L410 68L360 84L310 74Z"/>
+          <path d="M360 10V84M410 26V68"/>
+          <path d="M474 50C504 18 542 18 580 44"/>
+          <path d="M568 32L581 45L564 52"/>
+          <rect x="660" y="6" width="52" height="80" rx="9"/>
+          <rect x="667" y="18" width="38" height="54" rx="2"/>
+          <path d="M680 12H692"/>
+          <path d="M674 45L682 54L696 36" stroke="#C8862A" stroke-width="5"/>
+        </svg>
+        <template class="sig-mark"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#14181C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M6 4H16L20 8V26H6Z"/><path d="M16 4V8H20"/><path d="M10 14H16M10 18H16M10 22H14"/><path d="M26 15H36"/><path d="M33 12L36 15L33 18"/><rect x="41" y="3" width="13" height="24" rx="3"/><path d="M44 16L47 19L52 11" stroke="#C8862A" stroke-width="2"/></svg></template>
+      </div>
+      
       <div class="eyebrow">
         
         <span class="lang-fr">Le plan · Technologie · texte de fond</span>
@@ -1405,6 +1540,40 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
         
         <span class="lang-fr">Faites une petite tournée de commissions dans votre propre ville. Vous pouvez acheter une passe de stationnement pour la rampe à bateaux assis à votre table de cuisine en deux minutes. Ensuite, votre chien a besoin de sa licence. Celle-là, c'est un voyage en char jusqu'à l'hôtel de ville, porte 3, en personne, pis trente piastres si vous arrivez avant le 15 mars. Un permis de construction s'en va par courriel ou sur papier à la porte 1. Pour réserver un mariage civil, vous appelez le greffe. Pour payer un permis d'affaires, vous marchez jusqu'au comptoir. Pis quoi que vous veniez faire, venez avant midi ou après 13 h, parce que la bâtisse prend son dîner. Rien de tout ça ne décrit le monde derrière le comptoir. Ce monde-là travaille avec les outils qu'on lui a donnés. <b class="pop">Ça décrit les outils.</b></span>
       </p>
+      
+      <figure class="sig-technology-tour" data-hold="sig-technology" data-sig-frame>
+        <div class="sig-technology-strip"><span class="lang-fr">La tournée de commissions</span></div>
+        <div class="sig-technology-in">
+          <div class="sig-technology-piles" data-sig-frame>
+            <div class="sig-technology-pile sig-technology-home">
+              <div class="sig-technology-head"><span class="lang-fr">De chez vous</span></div>
+              <div class="sig-technology-table">
+                <svg viewBox="0 0 220 126" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--ink,#14181C)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <path d="M8 70H212" stroke-width="6"/>
+                  <path d="M22 73V122M198 73V122"/>
+                  <rect x="150" y="34" width="20" height="34" rx="4" fill="var(--plate,#FFFFFF)"/>
+                  <path d="M156 42H164"/>
+                  <path d="M96 68V54H118V68M118 58H123Q126 58 126 62Q126 66 122 66H118"/>
+                </svg>
+              </div>
+              <ul class="sig-technology-chips">
+                <li data-e="1"><b><span class="lang-fr">Passe de stationnement, rampe à bateaux</span></b><span class="sig-technology-route"><span class="lang-fr">À votre table de cuisine en deux minutes.</span></span></li>
+              </ul>
+            </div>
+            <div class="sig-technology-pile sig-technology-away">
+              <div class="sig-technology-head"><span class="lang-fr">Il faut encore un voyage ou un appel</span></div>
+              <ul class="sig-technology-chips">
+                <li data-e="2"><b><span class="lang-fr">Licence de chien</span></b><span class="sig-technology-route"><span class="lang-fr">Un voyage en char jusqu'à l'hôtel de ville, porte 3, en personne, pis trente piastres si vous arrivez avant le 15 mars.</span></span></li>
+                <li data-e="3"><b><span class="lang-fr">Permis de construction</span></b><span class="sig-technology-route"><span class="lang-fr">Par courriel ou sur papier à la porte 1.</span></span></li>
+                <li data-e="4"><b><span class="lang-fr">Réservation d'un mariage civil</span></b><span class="sig-technology-route"><span class="lang-fr">Vous appelez le greffe.</span></span></li>
+                <li data-e="5"><b><span class="lang-fr">Frais du permis d'affaires</span></b><span class="sig-technology-route"><span class="lang-fr">Vous marchez jusqu'au comptoir.</span></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="receipt sig-technology-src"><span class="lang-fr">Source · les deux listes viennent des pages de la Ville, lues le 29 août 2026</span></div>
+        </div>
+      </figure>
+      
       <p>
         
         <span class="lang-fr">Je dis ça avec amour. Mon propre niveau de technologie, c'est d'imprimer les courriels importants pour les lire comme il faut. Je ne suis pas le gars qui règle ça avec ses deux pouces. Je suis le gars qui a signé trente ans de factures. Je sais ce que coûte une heure de main-d'œuvre qualifiée. Pis quand je marche dans cette bâtisse-là, je vois les heures partout : des formulaires retapés à la main, du papier porté à la main, trois voyages où un clic devrait suffire. <b class="pop">Chacune de ces heures-là, c'est votre argent de taxes.</b> Ce plan-ci, c'est d'aller le rechercher.</span>
@@ -1501,6 +1670,30 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
         <span class="lang-fr">Demander, ça ne coûte pas cher. Répondre, c'est là que la plupart des organisations lâchent, parce qu'une bonne idée qui vient du comptoir a habituellement besoin de trois choses que le comptoir n'a pas : la permission, un peu d'argent, pis un après-midi. Alors l'audit apporte les trois. La permission : une règle écrite, votée par le conseil, qui dit qu'une réparation à l'intérieur de la façon de travailler d'un service, sous un montant fixé, n'a besoin que du oui du directeur ou de la directrice. La réparation va sur la liste, pis le conseil lit la liste chaque trimestre. L'argent : un fonds de réparation dans mon premier budget, une modeste enveloppe votée en public, dépensée seulement pour des idées venues des gens qui font l'ouvrage, chaque piastre inscrite au décompte annuel. Le temps : un premier groupe d'employés, de chaque service pis de chaque niveau, reçoit quelques jours de formation sur la méthode toute simple qu'utilisent les villes les mieux gérées : observer l'ouvrage, compter les étapes, enlever celles dont personne n'a besoin, mesurer ce qui a changé. Mississauga est une ville de sept cent mille habitants, alors prenez-en la méthode, jamais la taille. En 2017, elle avait déjà formé <span class="hl">plus de 1 800</span> de ses propres employés à cette méthode, pis rapporté <span class="hl">1,6 million $</span> d'économies et, en plus, <span class="hl">2,2 millions $</span> en coûts évités depuis 2014, le tout venu de projets menés par le personnel. Une de ses réparations des premiers temps, dans le service des parcs, a fait baisser d'<span class="hl">un quart</span> les appels du public au sujet du ramassage des déchets dans les parcs. Personne n'a acheté un système pour ça. Les gens qui faisaient la job ont changé le trajet. Sherbrooke a formé <span class="hl">80 employés pis 30 gestionnaires</span> sur leurs propres vrais dossiers, a mené cinq projets, pis en quelques semaines un arriéré de <span class="hl">mille</span> dossiers de taxe de bienvenue a été réglé. <b class="pop">Une règle pour notre fonds : une idée qui vient du comptoir a droit à la même écoute qu'une idée qui vient du bureau de la direction.</b> Pis une promesse, ici, là où elle a sa place : une réparation qui libère une heure redonne cette heure au résident qui se tient devant vous. Personne ne perd sa job pour ça.</span>
       </p>
 
+      
+      <figure class="sig-technology-wall" data-hold="sig-technology" data-sig-frame>
+        <div class="sig-technology-strip"><span class="lang-fr">Le mur d'idées</span></div>
+        <div class="sig-technology-in">
+          <div class="sig-technology-boards">
+            <div class="sig-technology-half">
+              <div class="sig-technology-hd">
+                <div class="sig-technology-lab"><span class="lang-fr">Comté d'Elgin, idées trouvées</span></div>
+                <div class="sig-technology-big"><span class="lang-fr">plus de 110</span></div>
+              </div>
+              <div class="sig-technology-board"><div class="sig-technology-notes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="sig-technology-o"></i><i></i><i></i></div></div>
+            </div>
+            <div class="sig-technology-half">
+              <div class="sig-technology-hd">
+                <div class="sig-technology-lab"><span class="lang-fr">Hawkesbury, idées demandées par écrit</span></div>
+              </div>
+              <div class="sig-technology-board"><b class="sig-technology-nyet"><span class="lang-fr">pas encore</span></b></div>
+            </div>
+          </div>
+          <div class="sig-technology-key"><i aria-hidden="true"></i><span class="lang-fr">Choisies pour agir en premier&nbsp;: douze</span></div>
+          <div class="receipt sig-technology-src" aria-hidden="true"><span class="lang-fr">Source · l'examen de la prestation des services du comté d'Elgin lui-même, rapport final du 30 octobre 2020. Les économies qu'il avance sont des projections, pis cette page ne les emprunte pas pour Hawkesbury.</span></div>
+        </div>
+      </figure>
+      
       <figure class="tally">
         <div class="tally-row">
           <div class="tally-label"><span class="lang-fr">Comté d'Elgin, idées trouvées</span></div>
@@ -4050,6 +4243,540 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   window.addEventListener('resize', update);
   update();
 })();
+
+</script>
+<script id="sig-js">
+window.SIG_PLANS=[["roads", "Roads plan for Hawkesbury", "Plan des routes pour Hawkesbury"], ["main-street", "Main Street and waterfront plan for Hawkesbury", "Plan pour la rue Main et le bord de l'eau à Hawkesbury"], ["youth", "Young people and jobs plan for Hawkesbury", "Plan pour nos jeunes et les jobs à Hawkesbury"], ["housing", "Housing plan for Hawkesbury", "Plan pour le logement à Hawkesbury"], ["books", "Open the books: Hawkesbury's budget", "Ouvrir les livres : le budget de Hawkesbury"], ["park", "Industrial park plan for Hawkesbury", "Plan pour le parc industriel de Hawkesbury"], ["technology", "Town Hall process audit for Hawkesbury", "Audit des processus de l'hôtel de ville de Hawkesbury"], ["powers", "What the mayor of Hawkesbury can do", "Ce que le maire de Hawkesbury peut faire"], ["transparency", "Council transparency plan for Hawkesbury", "Plan de transparence du conseil de Hawkesbury"], ["campus", "A training campus for Hawkesbury: the idea", "Un campus de formation pour Hawkesbury : l'idée"], ["partners", "Regional partnerships plan for Hawkesbury", "Plan des partenariats régionaux pour Hawkesbury"], ["transport", "Public transit plan for Hawkesbury", "Plan pour le transport en commun à Hawkesbury"], ["infrastructure", "Water, sewer and power capacity plan for Hawkesbury", "Plan pour la capacité en eau, en égout et en électricité à Hawkesbury"]];
+/* Whiskey and Peanut, two small easter eggs in the river town. Whiskey, Denis's ginger cat, sits on a high perch (the
+   bridge's top beam, else a roof ridge) with his tail hanging over the edge. Peanut, the chipmunk from Denis's garage who
+   has never once handed over the screwdriver, sits up at the foot of the lawn sign, holding it. Click either one and it
+   bolts off the page; a little later it comes back and settles in again. Hover and they notice you. Drawn in SVG in the
+   town's own drawing units and ink. Under reduced motion they sit still and a click fades them out and back instead. */
+(function(){
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var INK = "#14181C", GINGER = "#C8862A", DEEP = "#8A5A12", PAPER = "#F4F1EA";
+  function mk(tag, at, parent){ var e = document.createElementNS(NS, tag); for(var k in at){ e.setAttribute(k, at[k]); } if(parent){ parent.appendChild(e); } return e; }
+  function clamp01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function f2(v){ return (Math.round(v * 100) / 100).toString(); }
+  function rot(px, py, ox, oy, a){ var c = Math.cos(a), s = Math.sin(a), dx = px - ox, dy = py - oy; return [ox + dx * c - dy * s, oy + dx * s + dy * c]; }
+  function line(p, x1, y1, x2, y2){ p.setAttribute("d", "M" + f2(x1) + " " + f2(y1) + "L" + f2(x2) + " " + f2(y2)); }
+
+  // ---------- Whiskey (drawn facing right; about 38 units tall sitting) ----------
+  function buildCat(g){
+    var P = {};
+    mk("rect", { "class": "hit", x: -24, y: -48, width: 48, height: 78, fill: "rgba(0,0,0,0)" }, g);
+    var sit = P.sit = mk("g", {}, g);
+    P.tailO = mk("path", { fill: "none", stroke: INK, "stroke-width": 4.8, "stroke-linecap": "round" }, sit);
+    P.tailI = mk("path", { fill: "none", stroke: GINGER, "stroke-width": 2.5, "stroke-linecap": "round" }, sit);
+    mk("path", { d: "M-11 0C-14 -8 -10.5 -18 -2.5 -21.2C1.5 -23 5 -21.4 6 -17.4C7 -12.4 6.2 -6 8.4 0Z", fill: GINGER, stroke: INK, "stroke-width": 1.5, "stroke-linejoin": "round" }, sit);
+    mk("path", { d: "M-8.6 -13.2q2.6 -1.6 5 .6M-9.8 -8.2q2.8 -1.4 5.2 .8M-6.2 -17.6q2 -1.2 4 .4", fill: "none", stroke: DEEP, "stroke-width": 1.3, "stroke-linecap": "round" }, sit);
+    mk("path", { d: "M3.8 -9.6V-.6", fill: "none", stroke: INK, "stroke-width": 1.2, "stroke-linecap": "round" }, sit);
+    var head = P.head = mk("g", {}, sit);
+    mk("path", { d: "M-.9 -29.4L.1 -37.6L4 -32.6Z", fill: GINGER, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round" }, head);
+    P.ear = mk("path", { d: "M5.2 -32.8L9.1 -37.2L10 -29.8Z", fill: GINGER, stroke: INK, "stroke-width": 1.4, "stroke-linejoin": "round" }, head);
+    mk("ellipse", { cx: 4.6, cy: -27, rx: 6.5, ry: 5.6, fill: GINGER, stroke: INK, "stroke-width": 1.5 }, head);
+    mk("path", { d: "M2.9 -32v2.2M5 -32.3v2", fill: "none", stroke: DEEP, "stroke-width": 1.1, "stroke-linecap": "round" }, head);
+    P.eye = mk("ellipse", { cx: 7.8, cy: -27.6, rx: 1, ry: 1, fill: INK }, head);
+    mk("path", { d: "M10.9 -25.4l-1.1 .7", fill: "none", stroke: INK, "stroke-width": .9, "stroke-linecap": "round" }, head);
+    // running (and strolling), facing right
+    var run = P.run = mk("g", { display: "none" }, g);
+    P.rBody = mk("g", {}, run);
+    P.rTailO = mk("path", { fill: "none", stroke: INK, "stroke-width": 4.6, "stroke-linecap": "round" }, P.rBody);
+    P.rTailI = mk("path", { fill: "none", stroke: GINGER, "stroke-width": 2.4, "stroke-linecap": "round" }, P.rBody);
+    P.legs = [];
+    for(var i = 0; i < 4; i++){ P.legs.push(mk("path", { fill: "none", stroke: INK, "stroke-width": 2.6, "stroke-linecap": "round" }, P.rBody)); }
+    mk("ellipse", { cx: 0, cy: -12, rx: 12.5, ry: 5.4, fill: GINGER, stroke: INK, "stroke-width": 1.5 }, P.rBody);
+    mk("path", { d: "M-6.4 -16.6q1.2 2.6 .4 5M-2 -17.2q1.2 2.6 .4 5.2M2.6 -17q1 2.4 .3 4.6", fill: "none", stroke: DEEP, "stroke-width": 1.3, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M9.4 -18.2L10.2 -24.6L13.6 -20.2Z", fill: GINGER, stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round" }, P.rBody);
+    mk("path", { d: "M14.4 -20.6L17.8 -24.2L17.8 -18.2Z", fill: GINGER, stroke: INK, "stroke-width": 1.3, "stroke-linejoin": "round" }, P.rBody);
+    mk("circle", { cx: 13.4, cy: -15.6, r: 5.3, fill: GINGER, stroke: INK, "stroke-width": 1.5 }, P.rBody);
+    mk("circle", { cx: 15.9, cy: -16.4, r: .95, fill: INK }, P.rBody);
+    return P;
+  }
+  function catSitPose(P, now, alert, seed){
+    var sp = alert ? 1.05 : 2.6, amp = alert ? .42 : .26, a = amp * Math.sin(now * 6.283 / sp + seed);
+    var o = [-10.5, -.5], c1 = rot(-15.4, 2.4, o[0], o[1], a * .45), c2 = rot(-15.8, 11.4, o[0], o[1], a * .85), e = rot(-12.6, 19.4, o[0], o[1], a), tip = rot(-10.4, 20.4, o[0], o[1], a * 1.15);
+    var d = "M-10 -1C" + f2(c1[0]) + " " + f2(c1[1]) + " " + f2(c2[0]) + " " + f2(c2[1]) + " " + f2(e[0]) + " " + f2(e[1]) + "Q" + f2(e[0] + .4) + " " + f2(e[1] + 2.4) + " " + f2(tip[0]) + " " + f2(tip[1]);
+    P.tailO.setAttribute("d", d); P.tailI.setAttribute("d", d);
+    var bl = (now + seed) % 4.3 < .13 ? .12 : 1;                  // a blink every few seconds
+    P.eye.setAttribute("ry", f2(bl));
+    var tw = (now + seed * 2) % 6.7 < .22 ? -16 : 0;              // an ear twitch
+    P.ear.setAttribute("transform", "rotate(" + tw + " 7.4 -31.4)");
+    P.head.setAttribute("transform", alert ? "rotate(-7 4 -22)" : "");
+  }
+  function catRunPose(P, ph, amp, bounce){
+    var lift = bounce * Math.abs(Math.sin(ph));
+    P.rBody.setAttribute("transform", "translate(0 " + f2(-lift) + ")");
+    var roots = [[7.2, -10], [5, -10], [-7, -10], [-9.2, -10]], offs = [0, .7, Math.PI, Math.PI + .7];
+    for(var i = 0; i < 4; i++){ var a = amp * Math.sin(ph + offs[i]), L = 9.4; line(P.legs[i], roots[i][0], roots[i][1], roots[i][0] + L * Math.sin(a), roots[i][1] + L * Math.cos(a) + lift); }
+    var w = 2.2 * Math.sin(ph * .5), d = "M-11.5 -13C-17 -14.4 -21 -" + f2(19 + w) + " -24.6 -" + f2(17.4 + w);
+    P.rTailO.setAttribute("d", d); P.rTailI.setAttribute("d", d);
+  }
+
+  // ---------- Peanut (drawn facing right; about 22 units tall sitting up) ----------
+  function buildChip(g){
+    var P = {};
+    mk("rect", { "class": "hit", x: -16, y: -30, width: 34, height: 34, fill: "rgba(0,0,0,0)" }, g);
+    var sit = P.sit = mk("g", {}, g);
+    P.tail = mk("path", { d: "M-3.2 -1.4C-10 -3 -11.4 -14.6 -7.6 -21C-6.6 -22.6 -4.8 -21.8 -5.4 -20.2C-8.2 -14.2 -7.2 -5.4 -1.2 -3.4Z", fill: DEEP, stroke: INK, "stroke-width": 1, "stroke-linejoin": "round" }, sit);
+    mk("ellipse", { cx: 0, cy: -8, rx: 5, ry: 7.2, fill: DEEP, stroke: INK, "stroke-width": 1.1 }, sit);
+    mk("ellipse", { cx: 1.9, cy: -7.2, rx: 2.5, ry: 4.8, fill: PAPER }, sit);
+    mk("path", { d: "M-4.1 -3.6C-4.7 -8 -3.9 -12 -2.1 -14.6", fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round" }, sit);
+    mk("path", { d: "M-2.9 -3.2C-3.4 -7.6 -2.8 -11.3 -1.1 -13.7", fill: "none", stroke: PAPER, "stroke-width": .9, "stroke-linecap": "round" }, sit);
+    mk("ellipse", { cx: 2.2, cy: -.9, rx: 3, ry: 1.1, fill: DEEP, stroke: INK, "stroke-width": .9 }, sit);
+    P.tool = mk("g", {}, sit);                                    // the screwdriver he will not hand over
+    mk("path", { d: "M5.3 -11.3L9.8 -14.8", fill: "none", stroke: INK, "stroke-width": 1.1, "stroke-linecap": "round" }, P.tool);
+    mk("path", { d: "M2.7 -9.2L5.5 -11.4", fill: "none", stroke: INK, "stroke-width": 3.6, "stroke-linecap": "round" }, P.tool);
+    mk("path", { d: "M2.7 -9.2L5.5 -11.4", fill: "none", stroke: GINGER, "stroke-width": 2.2, "stroke-linecap": "round" }, P.tool);
+    mk("circle", { cx: 4.3, cy: -10.4, r: 1.35, fill: DEEP, stroke: INK, "stroke-width": .8 }, sit);
+    var head = P.head = mk("g", {}, sit);
+    mk("circle", { cx: -.8, cy: -20.6, r: 1.5, fill: DEEP, stroke: INK, "stroke-width": .9 }, head);
+    mk("circle", { cx: 1.5, cy: -16.8, r: 4.3, fill: DEEP, stroke: INK, "stroke-width": 1.1 }, head);
+    mk("ellipse", { cx: 3.6, cy: -15.1, rx: 2.4, ry: 2, fill: PAPER }, head);
+    mk("path", { d: "M-1.2 -18.6L4.6 -18", fill: "none", stroke: INK, "stroke-width": .7, "stroke-linecap": "round" }, head);
+    P.eye = mk("ellipse", { cx: 3.1, cy: -18.1, rx: .9, ry: .9, fill: INK }, head);
+    mk("circle", { cx: 5.7, cy: -16.6, r: .55, fill: INK }, head);
+    // running, facing right, the screwdriver in his mouth
+    var run = P.run = mk("g", { display: "none" }, g);
+    P.rBody = mk("g", {}, run);
+    mk("path", { d: "M-6 -5.4C-9 -8.6 -9.8 -13.6 -8.6 -17.6", fill: "none", stroke: INK, "stroke-width": 3.8, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M-6 -5.4C-9 -8.6 -9.8 -13.6 -8.6 -17.6", fill: "none", stroke: DEEP, "stroke-width": 2, "stroke-linecap": "round" }, P.rBody);
+    P.legs = [];
+    for(var i = 0; i < 4; i++){ P.legs.push(mk("path", { fill: "none", stroke: INK, "stroke-width": 1.7, "stroke-linecap": "round" }, P.rBody)); }
+    mk("ellipse", { cx: 0, cy: -5.4, rx: 6.8, ry: 3.4, fill: DEEP, stroke: INK, "stroke-width": 1 }, P.rBody);
+    mk("path", { d: "M-5 -7.4Q0 -9.8 5 -7.6", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M-4.6 -6.3Q0 -8.4 4.6 -6.5", fill: "none", stroke: PAPER, "stroke-width": .8, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M10.8 -4.9L14.8 -5.5", fill: "none", stroke: INK, "stroke-width": 1, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M8.4 -4.6L10.9 -4.9", fill: "none", stroke: INK, "stroke-width": 3.2, "stroke-linecap": "round" }, P.rBody);
+    mk("path", { d: "M8.4 -4.6L10.9 -4.9", fill: "none", stroke: GINGER, "stroke-width": 1.9, "stroke-linecap": "round" }, P.rBody);
+    mk("circle", { cx: 5.9, cy: -9.4, r: 1.1, fill: DEEP, stroke: INK, "stroke-width": .8 }, P.rBody);
+    mk("circle", { cx: 7.3, cy: -6.8, r: 3.3, fill: DEEP, stroke: INK, "stroke-width": 1 }, P.rBody);
+    mk("ellipse", { cx: 8.3, cy: -5.7, rx: 1.7, ry: 1.4, fill: PAPER }, P.rBody);
+    mk("circle", { cx: 8.4, cy: -7.7, r: .75, fill: INK }, P.rBody);
+    return P;
+  }
+  function chipSitPose(P, now, alert, seed){
+    var nib = !alert && (now + seed) % 3.1 < .7 ? .75 * Math.abs(Math.sin(now * 28)) : 0;    // nibbling, in bursts
+    P.head.setAttribute("transform", "translate(0 " + f2(alert ? -1 : nib) + ")");
+    var fl = (now + seed) % 2.3 < .5 ? 9 * Math.sin(now * 30) : 0;                             // a tail flick
+    P.tail.setAttribute("transform", "rotate(" + f2(fl) + " -3 -2)");
+    P.tool.setAttribute("transform", "rotate(" + f2(alert ? -8 : 2 * Math.sin(now * 3.1)) + " 4.2 -10.4)");
+    P.eye.setAttribute("ry", (now + seed) % 3.7 < .1 ? ".12" : ".9");
+  }
+  function chipRunPose(P, ph, amp, bounce){
+    var lift = bounce * Math.abs(Math.sin(ph));
+    P.rBody.setAttribute("transform", "translate(0 " + f2(-lift) + ")");
+    var roots = [[4.2, -4], [3, -4], [-3.8, -4], [-5, -4]], offs = [0, .8, Math.PI, Math.PI + .8];
+    for(var i = 0; i < 4; i++){ var a = amp * Math.sin(ph + offs[i]), L = 4.4; line(P.legs[i], roots[i][0], roots[i][1], roots[i][0] + L * Math.sin(a), roots[i][1] + L * Math.cos(a) + lift); }
+  }
+
+  // ---------- one pet: idle -> startle -> run off -> away -> come back -> settle -> idle ----------
+  var KIND = {
+    cat:  { size: 1, build: buildCat, sit: catSitPose, run: catRunPose, runV: 250, backV: 62, away: 12, stride: 21, sitFace: 1, runDir: -1, amp: 1, walkAmp: .5, bounce: 2.4, seed: 1.3 },
+    chip: { size: 1.3, build: buildChip, sit: chipSitPose, run: chipRunPose, runV: 300, backV: 120, away: 8.5, stride: 9, sitFace: -1, runDir: 1, amp: 1.1, walkAmp: 1.1, bounce: 1.3, seed: 4.1 }
+  };
+  // Peanut comes back the way chipmunks do: dash, freeze, dash, freeze, dash
+  var DASH = [[0, 0], [.3, .45], [.42, .45], [.68, .82], [.79, .82], [.93, 1], [1, 1]];
+  function dashAt(u){
+    for(var i = 1; i < DASH.length; i++){ if(u <= DASH[i][0]){ var a = DASH[i - 1], b = DASH[i], q = (u - a[0]) / (b[0] - a[0] || 1); return { p: a[1] + (b[1] - a[1]) * q, moving: b[1] !== a[1] }; } }
+    return { p: 1, moving: false };
+  }
+
+  function Pet(svg, kind, reduce){
+    this.k = KIND[kind]; this.kind = kind; this.reduce = reduce;
+    this.g = mk("g", { "class": "pet pet-" + kind, "aria-hidden": "true" }, svg);
+    this.P = this.k.build(this.g);
+    this.state = "idle"; this.ts = 0; this.x = 0; this.x0 = 0; this.home = { x: 0, y: 0 }; this.ps = 1; this.vis = { l: 0, r: 1200 };
+    this.hover = false; this.intro = 1; this.hidden = false;
+    var me = this;
+    this.g.addEventListener("pointerenter", function(){ me.hover = true; });
+    this.g.addEventListener("pointerleave", function(){ me.hover = false; });
+  }
+  Pet.prototype.edge = function(dir){ return dir < 0 ? this.vis.l - 34 * this.ps : this.vis.r + 34 * this.ps; };
+  Pet.prototype.click = function(now){
+    if(this.state === "idle" || this.state === "settle"){ this.state = this.reduce ? "fade" : "startle"; this.ts = now; this.x0 = this.x; }
+  };
+  Pet.prototype.update = function(now){
+    var k = this.k, t = now - this.ts, pose = "sit", face = k.sitFace, x = this.home.x, sq = 1, hop = 0, op = 1, ph = 0, amp = k.amp, bounce = k.bounce;
+    if(this.state === "fade"){
+      op = t < .25 ? 1 - t / .25 : t < 8 ? 0 : clamp01((t - 8) / .4);
+      if(t > 8.4){ this.state = "idle"; }
+    } else if(this.state === "startle"){
+      var q = clamp01(t / .16); sq = 1 - .1 * Math.sin(q * Math.PI); hop = 3 * Math.sin(q * Math.PI); face = k.runDir;
+      if(t >= .16){ this.state = "run"; this.ts = now; this.x0 = this.x; }
+    } else if(this.state === "run"){
+      pose = "run"; face = k.runDir; x = this.x0 + k.runDir * k.runV * Math.max(0, t - .03);
+      ph = Math.abs(x - this.x0) / k.stride * 6.283;
+      if((k.runDir < 0 && x < this.edge(-1)) || (k.runDir > 0 && x > this.edge(1))){ this.state = "away"; this.ts = now; }
+    } else if(this.state === "away"){
+      op = 0; x = this.edge(k.runDir);
+      if(t >= k.away){ this.state = "back"; this.ts = now; }
+    } else if(this.state === "back"){
+      var xe = this.edge(k.runDir), dist = Math.abs(this.home.x - xe), dur = dist / k.backV * (this.kind === "chip" ? 1.7 : 1);
+      var u = clamp01(t / dur), pr, moving = true;
+      if(this.kind === "chip"){ var dsh = dashAt(u); pr = dsh.p; moving = dsh.moving; }
+      else { pr = u < .85 ? u / .85 * .92 : .92 + .08 * Math.sin((u - .85) / .15 * Math.PI / 2); }
+      x = xe + (this.home.x - xe) * pr; face = -k.runDir;
+      if(moving){ pose = "run"; amp = this.kind === "chip" ? k.amp : k.walkAmp; bounce = this.kind === "chip" ? k.bounce : .5; ph = Math.abs(x - xe) / (k.stride * (this.kind === "chip" ? 1 : .55)) * 6.283; }
+      if(u >= 1){ this.state = "settle"; this.ts = now; }
+    } else if(this.state === "settle"){
+      sq = 1 - .06 * Math.sin(clamp01(t / .3) * Math.PI);
+      if(t >= .3){ this.state = "idle"; }
+    }
+    this.x = x;
+    var P = this.P;
+    P.sit.setAttribute("display", pose === "sit" ? "inline" : "none");
+    P.run.setAttribute("display", pose === "run" ? "inline" : "none");
+    if(pose === "sit"){ k.sit(P, now, this.hover || this.state === "startle", k.seed); } else { k.run(P, ph, amp, bounce); }
+    var s = this.ps;
+    this.g.setAttribute("transform", "translate(" + f2(x) + " " + f2(this.home.y - hop) + ") scale(" + f2(face * s * (2 - sq)) + " " + f2(s * sq) + ")");
+    this.op = op; this.g.setAttribute("opacity", f2(op * this.intro));
+    this.g.style.display = this.hidden ? "none" : "";
+  };
+
+  function PMPets(svg, opts){
+    var me = this; opts = opts || {};
+    this.cat = new Pet(svg, "cat", !!opts.reduce);
+    this.chip = new Pet(svg, "chip", !!opts.reduce);
+    [this.cat, this.chip].forEach(function(p){
+      p.g.addEventListener("click", function(e){ e.stopPropagation(); p.click(performance.now() / 1000); me.update(performance.now() / 1000); });
+    });
+  }
+  // homes and visible range in drawing units; ps enlarges them on a phone, where the drawing is small
+  PMPets.prototype.place = function(o){
+    var me = this;
+    [["cat", o.cat], ["chip", o.chip]].forEach(function(a){
+      var p = me[a[0]];
+      if(!a[1]){ p.hidden = true; return; }
+      p.hidden = false; p.home = { x: a[1].x, y: a[1].y }; p.ps = (o.ps || 1) * p.k.size; p.vis = o.vis;
+      if(p.state === "idle" || p.state === "settle"){ p.x = p.home.x; }
+    });
+  };
+  PMPets.prototype.setIntro = function(cat, chip){
+    var a = [[this.cat, cat], [this.chip, chip]];
+    for(var i = 0; i < 2; i++){ var p = a[i][0]; p.intro = a[i][1]; p.g.setAttribute("opacity", f2((p.op == null ? 1 : p.op) * p.intro)); }
+  };
+  PMPets.prototype.update = function(now){ this.lastNow = now; this.cat.update(now); this.chip.update(now); };
+  PMPets.prototype.clickAll = function(now){ this.cat.click(now); this.chip.click(now); };
+
+  window.PMPets = PMPets;
+})();
+
+/* Signature pieces, shared core (2026-09-29). Every plan page's own file (motion/plans/<route>.js) uses SIG.*:
+   language, motion allowed or not, arm-on-scroll (the kit's own rules), the opener drawing in the title band,
+   the section-break mark, a polite announcer for screen readers, Whiskey or Peanut hidden in a figure, and the
+   engagement close. Progressive: without this script the page reads exactly as its markup says. */
+(function(){
+  "use strict";
+  var doc = document, root = doc.documentElement;
+  var art = doc.querySelector(".article-view");
+  if(!art){ return; }
+  var FR = /^fr/i.test(root.getAttribute("lang") || "");
+  var motionOK = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: no-preference)").matches &&
+                    "IntersectionObserver" in window);
+  var NS = "http://www.w3.org/2000/svg";
+  root.classList.add("sig");
+  if(motionOK){ root.classList.add("sig-motion"); }
+
+  var SIG = window.SIG = {
+    FR: FR, motionOK: motionOK, art: art, checks: [],
+    route: (art.id || "").replace(/^view-/, "")
+  };
+  SIG.t = function(en, fr){ return FR ? fr : en; };
+  SIG.el = function(tag, at, parent, text){
+    var e = doc.createElement(tag);
+    for(var k in (at || {})){ e.setAttribute(k, at[k]); }
+    if(text != null){ e.textContent = text; }
+    if(parent){ parent.appendChild(e); }
+    return e;
+  };
+  SIG.svg = function(tag, at, parent){
+    var e = doc.createElementNS(NS, tag);
+    for(var k in (at || {})){ e.setAttribute(k, at[k]); }
+    if(parent){ parent.appendChild(e); }
+    return e;
+  };
+  /* the check tool reads SIG.checks: each page's file adds its own asserts here */
+  SIG.check = function(name, ok){ SIG.checks.push({ name: name, ok: !!ok }); return !!ok; };
+
+  /* arm(el, play): play(instant) runs exactly once. instant is true when motion is off or the element is already on
+     the first screen at load (the kit's rule: nothing on the first screen animates); false when it scrolls in. */
+  var io = motionOK ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting){ return; }
+      io.unobserve(e.target);
+      e.target.classList.add("sig-on");
+      var f = e.target.__sigPlay; e.target.__sigPlay = null;
+      if(f){ f(false); }
+    });
+  }, { threshold: 0.2, rootMargin: "0px 0px -6% 0px" }) : null;
+  SIG.arm = function(el, play){
+    var vh = window.innerHeight || root.clientHeight;
+    if(!io || el.getBoundingClientRect().top <= vh * 0.9){
+      el.classList.add("sig-on");
+      if(play){ play(true); }
+      return false;
+    }
+    el.classList.add("sig-arm");
+    el.__sigPlay = play;
+    io.observe(el);
+    return true;
+  };
+
+  /* polite announcer: one live region for the page */
+  var live = null;
+  SIG.say = function(text){
+    if(!live){ live = SIG.el("div", { "class": "sig-sr", role: "status", "aria-live": "polite" }, doc.body); }
+    live.textContent = "";
+    setTimeout(function(){ live.textContent = text; }, 60);
+  };
+
+  /* the opener: .sig-opener svg in the title band draws itself once, when the page opens (Zan's ruling 2,
+     2026-09-29: the decorative drawing may move on arrival; text never waits). Elements to draw carry no class;
+     elements with class "sig-fill" fade in after the lines. Total at most 1.6 s. */
+  SIG.opener = function(){
+    var box = art.querySelector(".sig-opener svg");
+    if(!box){ return; }
+    var lines = box.querySelectorAll("path:not(.sig-fill),line:not(.sig-fill),polyline:not(.sig-fill),circle:not(.sig-fill),rect:not(.sig-fill),ellipse:not(.sig-fill)");
+    var fills = box.querySelectorAll(".sig-fill");
+    SIG.check("opener has lines to draw", lines.length > 0);
+    if(!motionOK){ return; }
+    var n = lines.length, step = n > 1 ? 0.9 / (n - 1) : 0;
+    Array.prototype.forEach.call(lines, function(p, i){
+      p.setAttribute("pathLength", "1");
+      p.style.setProperty("--sd", (i * step).toFixed(3) + "s");
+    });
+    Array.prototype.forEach.call(fills, function(f, i){ f.style.setProperty("--sd", (0.9 + i * 0.08).toFixed(3) + "s"); });
+    box.parentNode.classList.add("sig-draw");
+  };
+
+  /* section-break mark: the page's <template class="sig-mark"> is cloned in front of each main heading */
+  SIG.breaks = function(){
+    var tpl = art.querySelector("template.sig-mark");
+    if(!tpl || !tpl.content){ return 0; }
+    var hs = art.querySelectorAll(".art-body > .art-h2, .art-body > section > .art-h2");
+    Array.prototype.forEach.call(hs, function(h){
+      var d = SIG.el("div", { "class": "sig-break", "aria-hidden": "true" });
+      d.appendChild(tpl.content.cloneNode(true));
+      h.parentNode.insertBefore(d, h);
+      SIG.arm(d);
+    });
+    return hs.length;
+  };
+
+  /* Whiskey ("cat") or Peanut ("chip") hiding in a figure. host: an element (gets position:relative);
+     o: {kind, x (0..1 of the host width), y (px from the host top, where the feet rest), scale, face (1 or -1)}.
+     Tap: he bolts and comes back. Hover: he notices you. Reduced motion: he fades out and back instead.
+     Decorative and hidden from screen readers; the first tap fires a "sig:pet" event for the passport. */
+  SIG.pet = function(host, o){
+    if(!window.PMPets){ return null; }
+    host.classList.add("sig-pet-host");
+    var layer = SIG.svg("svg", { "class": "sig-pet-layer", "aria-hidden": "true", focusable: "false" }, host);
+    var pets = new window.PMPets(layer, { reduce: !motionOK });
+    var raf = 0, found = false;
+    function busy(){
+      var p = o.kind === "chip" ? pets.chip : pets.cat;
+      return p.state !== "idle" || p.hover;
+    }
+    function frame(){
+      raf = 0;
+      pets.update(performance.now() / 1000);
+      if(busy()){ raf = requestAnimationFrame(frame); }
+    }
+    function kick(){ if(!raf){ raf = requestAnimationFrame(frame); } }
+    function place(){
+      var w = host.clientWidth, h = host.clientHeight;
+      layer.setAttribute("viewBox", "0 0 " + w + " " + h);
+      var spot = { x: Math.round(w * o.x), y: o.y };
+      pets.place({ cat: o.kind === "chip" ? null : spot, chip: o.kind === "chip" ? spot : null,
+                   ps: o.scale || 1, vis: { l: 0, r: w } });
+      pets.update(performance.now() / 1000);
+    }
+    layer.addEventListener("pointerover", kick);
+    layer.addEventListener("click", function(){
+      kick();
+      if(!found){ found = true; doc.dispatchEvent(new CustomEvent("sig:pet", { detail: { route: SIG.route, kind: o.kind } })); }
+    });
+    place();
+    window.addEventListener("resize", place);
+    SIG.check("pet placed inside its figure", o.x >= 0 && o.x <= 1 && o.y >= 0 && o.y <= host.clientHeight);
+    return pets;
+  };
+
+  /* the engagement close, the same on every plan: ask Denis, share, get a sign, next plan */
+  SIG.close = function(){
+    var plans = window.SIG_PLANS || [], me = -1;
+    for(var i = 0; i < plans.length; i++){ if(plans[i][0] === SIG.route){ me = i; } }
+    var closer = art.querySelector(".art-closer");
+    if(!closer || me < 0){ return null; }
+    var pre = FR ? "/fr" : "";
+    var title = plans[me][FR ? 2 : 1], next = plans[(me + 1) % plans.length];
+    var box = SIG.el("nav", { "class": "sig-close", "aria-label": SIG.t("Keep going", "On continue") });
+    var subj = encodeURIComponent(SIG.t("Question about: ", "Question sur : ") + title);
+    var a1 = SIG.el("a", { "class": "sig-close-btn", href: "mailto:denispirollo2026@gmail.com?subject=" + subj }, box,
+                    SIG.t("Ask Denis about this plan", "Posez votre question à Denis sur ce plan"));
+    var b2 = SIG.el("button", { "class": "sig-close-btn", type: "button" }, box, SIG.t("Share this plan", "Partager ce plan"));
+    b2.addEventListener("click", function(){
+      var kit = doc.querySelector(".pm-share");
+      if(kit){ kit.click(); return; }
+      if(navigator.share){ navigator.share({ title: doc.title, url: location.href }).catch(function(){}); }
+    });
+    SIG.el("a", { "class": "sig-close-btn", href: pre + "/#signs" }, box, SIG.t("Get a sign", "Ma pancarte"));
+    var a4 = SIG.el("a", { "class": "sig-close-btn sig-close-next", href: pre + "/plans/" + next[0] + "/" }, box);
+    SIG.el("span", { "class": "sig-close-lab" }, a4, SIG.t("Next plan", "Plan suivant"));
+    SIG.el("span", { "class": "sig-close-title" }, a4, next[FR ? 2 : 1]);
+    closer.parentNode.insertBefore(box, closer.nextSibling);
+    SIG.arm(box);
+    SIG.check("close has four ways on", box.children.length === 4 && !!a1);
+    return box;
+  };
+
+  /* every page's own file registers here; the core runs the opener, the marks and the close around it */
+  SIG.run = function(fn){
+    function go(){
+      SIG.opener();
+      SIG.breaks();
+      try { fn(SIG); } catch(e){ SIG.check("page script ran without error: " + e.message, false); throw e; }
+      SIG.close();
+      SIG.ready = true;
+    }
+    if(doc.readyState === "loading"){ doc.addEventListener("DOMContentLoaded", go); } else { go(); }
+  };
+})();
+
+/* Technology signature piece (2026-09-29): the errand tour (five errands, a route drawn for each tap, two piles, Whiskey on the
+   kitchen table) and the idea wall (110 notes land, 12 get an ochre circle, Hawkesbury's board stays bare). Every figure and
+   sentence is already on the page; Elgin's dollar sum is never drawn. */
+SIG.run(function(S){
+  "use strict";
+  var T = S.t, X = "sig-technology-", L = S.FR ? "fr" : "en";
+  var tour = S.art.querySelector("." + X + "tour"), wall = S.art.querySelector("." + X + "wall");
+  if(!tour || !wall){ S.check("piece markup present", false); return; }
+  function all(root, sel){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function say(li){ return li.querySelector("." + X + "route .lang-" + L).textContent; }
+
+  /* the five errand icons, and the scene: a kitchen table with a phone on the left, Town Hall on the right */
+  var ICO = {
+    1: '<path d="M4 19H28L23 26H9Z"/><path d="M16 4V17M16 4L26 17H16"/>',
+    2: '<circle cx="7" cy="14" r="2.6"/><circle cx="13" cy="8" r="2.6"/><circle cx="20" cy="8" r="2.6"/><circle cx="26" cy="14" r="2.6"/><path d="M9 25Q16 12 23 25Q16 29 9 25Z"/>',
+    3: '<path d="M4 16L16 5L28 16V28H4Z"/><path d="M13 28V20H19V28"/>',
+    4: '<circle cx="12" cy="17" r="7.5"/><circle cx="20" cy="17" r="7.5"/>',
+    5: '<path d="M5 12H27L25 5H7Z"/><path d="M7 12V28H25V12"/><path d="M13 28V20H19V28"/>'
+  };
+  var SCENE = '<g class="' + X + 'sc"><path d="M8 142H592" fill="none" stroke="var(--divider)" stroke-width="4"/>' +
+    '<path d="M22 112H112M32 114V142M102 114V142" fill="none"/><rect x="58" y="82" width="18" height="30" rx="4"/><path d="M63 90H71" fill="none"/>' +
+    '<path d="M362 84L480 44L598 84Z"/><rect x="372" y="84" width="216" height="58"/>' +
+    '<rect x="384" y="110" width="26" height="32"/><rect x="550" y="110" width="26" height="32"/><rect x="452" y="104" width="56" height="38"/>' +
+    '<path d="M452 124H508M480 44V24H498V32H480" fill="none"/><circle cx="480" cy="64" r="10"/></g>';
+
+  /* route pieces: P a drawn line, G a glyph that fades in, D dots along a curve (steps, mail, a call), door a lit door */
+  function P(d, s, st){ return '<path pathLength="1" style="--sd:' + s + 's;' + (st || "") + '" d="' + d + '"/>'; }
+  function G(s, inner){ return '<g style="--sd:' + s + 's">' + inner + '</g>'; }
+  function D(a, n, s, w){
+    var o = "", i, t, u;
+    for(i = 0; i < n; i++){
+      t = i / (n - 1); u = 1 - t;
+      o += '<circle r="4.5" style="--sd:' + (s + i * 0.07).toFixed(2) + 's" cx="' + Math.round(u * u * a[0] + 2 * u * t * a[2] + t * t * a[4]) +
+        '" cy="' + Math.round(u * u * a[1] + 2 * u * t * a[3] + t * t * a[5] + (i % 2 ? w : -w)) + '"/>';
+    }
+    return o;
+  }
+  function door(x, n, s){
+    return G(s, '<rect x="' + x + '" y="110" width="26" height="32" fill="var(--accent)"/><text x="' + (x + 13) + '" y="134" fill="var(--ink)" stroke="none">' + n + '</text>');
+  }
+  var RING = "stroke-width:3.5px";
+  var RT = [
+    function(){ return P("M82 86Q112 46 148 60", 0) + G(.5, '<rect x="150" y="46" width="46" height="28" rx="3" fill="var(--accent)"/>') +
+      P("M160 61L167 68L182 52", .6, "stroke-width:4px") + G(.9, '<circle cx="240" cy="60" r="17"/><path d="M240 60V48M240 60L248 65" fill="none"/>'); },
+    function(){ return P("M122 148C230 172 400 172 560 148", 0) +
+      G(.45, '<path d="M322 158H362V148Q362 144 358 144H352L346 136H334L328 144H326Q322 144 322 148Z"/><circle cx="331" cy="160" r="5"/><circle cx="353" cy="160" r="5"/>') + door(550, 3, .7); },
+    function(){ return P("M82 86Q240 4 397 108", 0) + D([96, 104, 240, 58, 384, 120], 9, .1, 0) +
+      G(.5, '<rect x="226" y="40" width="28" height="18"/><path d="M226 40L240 51L254 40" fill="none"/>') + door(384, 1, .75); },
+    function(){ return D([84, 84, 270, 14, 468, 58], 10, 0, 0) + P("M92 74Q102 84 92 94", .1, RING) + P("M102 68Q116 84 102 100", .2, RING) +
+      G(.8, '<circle cx="480" cy="64" r="10" fill="var(--accent)"/>') + P("M496 54Q504 64 496 74", .9, RING); },
+    function(){ return D([126, 132, 288, 132, 448, 132], 9, 0, 4) +
+      G(.65, '<rect x="452" y="104" width="56" height="38" fill="var(--accent)"/><path d="M452 124H508" fill="none"/>'); }
+  ];
+
+  /* the errand tour: cards in the page's order, a stage that draws the tapped route, the piles below them */
+  var lis = all(tour, "li[data-e]").sort(function(a, b){ return a.getAttribute("data-e") - b.getAttribute("data-e"); });
+  var inner = tour.querySelector("." + X + "in"), piles = tour.querySelector("." + X + "piles");
+  var deck = S.el("div", { "class": X + "deck" });
+  var row = S.el("div", { "class": X + "row", role: "group", "aria-label": T("Errands", "Commissions") }, deck);
+  var btns = lis.map(function(li, i){
+    var b = S.el("button", { type: "button", "class": X + "card " + X + "a", "aria-pressed": "false" }, row);
+    S.svg("svg", { viewBox: "0 0 32 32", "aria-hidden": "true", focusable: "false", fill: "none", stroke: "currentColor", "stroke-width": "2.4",
+                   "stroke-linecap": "round", "stroke-linejoin": "round" }, b).innerHTML = ICO[i + 1];
+    S.el("span", {}, b).appendChild(li.querySelector("b").cloneNode(true));
+    b.style.cssText = "--t:" + i * 70 + "ms;--y:14px";
+    li.classList.add(X + "a");
+    li.style.cssText = "--t:" + (800 + i * 140) + "ms;--y:-60px;--d:.7s;--r:" + (i % 2 ? 1 : -0.8) + "deg";
+    b.addEventListener("click", function(){ pick(i, true); });
+    return b;
+  });
+  var stage = S.el("div", { "class": X + "stage" }, deck);
+  var scene = S.svg("svg", { viewBox: "0 0 600 176", "aria-hidden": "true", focusable: "false" }, stage);
+  scene.innerHTML = SCENE + '<g class="' + X + 'rt"></g>';
+  var rt = scene.lastChild, HINT = T("Tap an errand", "Touchez une commission");
+  var said = S.el("div", { "class": X + "said" }, stage, HINT);
+  inner.insertBefore(deck, piles);
+
+  /* whatever a tap draws must be on screen, above the phone's donate bar */
+  function reveal(){
+    var gap = stage.getBoundingClientRect().bottom - (window.innerHeight - 100);
+    if(gap > 0){ window.scrollBy({ top: gap + 8, behavior: S.motionOK ? "smooth" : "auto" }); }
+  }
+  function pick(i, user){
+    btns.forEach(function(b, j){ b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+    lis.forEach(function(li, j){ li.classList.toggle(X + "sel", j === i); });
+    said.classList.toggle(X + "on", i >= 0);
+    if(i < 0){ rt.innerHTML = ""; said.textContent = HINT; row.scrollLeft = 0; return; }
+    rt.innerHTML = RT[i]();
+    said.textContent = say(lis[i]);
+    row.scrollLeft = Math.max(0, btns[i].offsetLeft - (row.clientWidth - btns[i].offsetWidth) / 2);
+    if(user){ S.say(said.textContent); reveal(); }
+  }
+
+  /* Whiskey sits on the left end of the kitchen table in the From home pile, his tail over the edge */
+  var pets = S.pet(tour.querySelector("." + X + "table"), { kind: "cat", x: 27 / 220, y: 67, scale: 1.15 });
+
+  /* the idea wall: 110 notes land (CSS), twelve get a circle, Hawkesbury's board stays bare */
+  var notes = all(wall, "." + X + "notes i"), rings = notes.filter(function(n){ return n.className === X + "o"; });
+  var R = [-2.5, 1.6, -0.8, 2.4], nyet = wall.querySelector("." + X + "nyet");
+  notes.forEach(function(n, i){ n.classList.add(X + "a"); n.style.cssText = "--t:" + i * 6 + "ms;--s:.5;--r:" + R[i % 4] + "deg"; });
+  rings.forEach(function(n, k){ n.style.setProperty("--u", 1200 + k * 70 + "ms"); });
+  rings[rings.length - 1].style.setProperty("--e", ".9s");
+  nyet.classList.add(X + "a");
+  nyet.style.cssText = "--t:2s;--y:-24px;--s:.6;--r:-3deg;--d:.9s";
+  S.arm(tour);
+  S.arm(wall, function(){
+    S.say(T("Elgin County, ideas found, more than 110. Chosen to act on first, twelve. Hawkesbury, ideas asked for in writing, not yet.",
+            "Comté d'Elgin, idées trouvées, plus de 110. Choisies pour agir en premier, douze. Hawkesbury, idées demandées par écrit, pas encore."));
+  });
+
+  /* the piece's own asserts */
+  var para = S.art.querySelector(".art-body > p .lang-" + L).textContent.replace(/\s+/g, " ").toLowerCase();
+  var oldFig = S.art.querySelector('figure.art-media svg[aria-label^="What is online"]'), tally = wall.nextElementSibling;
+  var drawn = RT.every(function(f, i){ pick(i); return rt.children.length > 0 && said.textContent === say(lis[i]) && btns[i].getAttribute("aria-pressed") === "true"; });
+  pick(-1);
+  S.check("five errands in the page's order, one From home, four still a trip or a call",
+    lis.length === 5 && tour.querySelectorAll("." + X + "home li").length === 1 && tour.querySelectorAll("." + X + "away li").length === 4 &&
+    lis[0].parentNode.parentNode.classList.contains(X + "home"));
+  S.check("each route sentence is the page's own words", lis.every(function(li){ return para.indexOf(say(li).replace(/\.$/, "").toLowerCase()) >= 0; }));
+  S.check("each tap draws its route and marks its card", drawn && !said.classList.contains(X + "on"));
+  S.check("no count is printed on the piles", !/\d/.test(all(tour, "." + X + "head").map(function(e){ return e.textContent; }).join(" ")));
+  S.check("the wall has 110 notes, 12 circled, and Hawkesbury's board holds one note",
+    notes.length === 110 && rings.length === 12 && wall.querySelectorAll("." + X + "nyet").length === 1);
+  S.check("Elgin's dollar sum is not in the piece", !/3[.,]7|\$/.test(tour.textContent + wall.textContent));
+  S.check("the old drawing and the Elgin tally stay in the page as text, out of sight",
+    !!oldFig && !!tally && tally.classList.contains("tally") && oldFig.parentNode.textContent.length > 100 && tally.textContent.length > 100 &&
+    oldFig.parentNode.offsetHeight === 0 && tally.offsetHeight === 0);
+  S.check("Whiskey sits on the kitchen table", !!pets);
+  S.check("the no-layoffs line is still where it was", /loses their job to a machine|perd sa job au profit d'une machine/.test(S.art.textContent));
+
+  S.demo = lis.map(function(li, i){ return { run: function(){ pick(i, true); } }; });
+});
 
 </script>
 </body>
