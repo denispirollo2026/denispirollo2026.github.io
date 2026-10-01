@@ -7,6 +7,20 @@
   <language>fr-ca</language>
   <atom:link href="https://denispirollo2026.ca/fr/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
+    <title>Le résident type a treize ans de plus qu'il y a vingt ans. Le plan pour renverser ça.</title>
+    <link>https://denispirollo2026.ca/fr/plans/youth/</link>
+    <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/youth/</guid>
+    <pubDate>Thu, 01 Oct 2026 12:00:00 +0000</pubDate>
+    <description>Le résident type d'aujourd'hui a treize ans de plus que celui d'il y a vingt ans. Un premier emploi à l'hôtel de ville, une vraie place à la table, pis le jeune talent qui porte déjà cette campagne.</description>
+  </item>
+  <item>
+    <title>L'hôtel de ville coûte 37 pour cent de plus qu'il y a cinq ans. L'audit qui va nous dire pourquoi.</title>
+    <link>https://denispirollo2026.ca/fr/plans/technology/</link>
+    <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/technology/</guid>
+    <pubDate>Thu, 01 Oct 2026 12:00:00 +0000</pubDate>
+    <description>Faire rouler l'hôtel de ville coûte 37 pour cent de plus qu'il y a cinq ans. Pis aucune ligne dans les livres ne dit ce que la technologie coûte. L'audit qui compte les heures, les services qui passent en ligne, pis la promesse que personne ne perd sa job là-dedans.</description>
+  </item>
+  <item>
     <title>Les pires rues en premier, chaque piastre de l'extérieur : le plan des routes</title>
     <link>https://denispirollo2026.ca/fr/plans/roads/</link>
     <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/roads/</guid>
@@ -14,11 +28,11 @@
     <description>Ce que dit le plan de la Ville, qui est responsable de chaque morceau de la solution, et les sept gestes qu'un maire peut vraiment poser avec le conseil.</description>
   </item>
   <item>
-    <title>Le résident type a treize ans de plus qu'il y a vingt ans. Le plan pour renverser ça.</title>
-    <link>https://denispirollo2026.ca/fr/plans/youth/</link>
-    <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/youth/</guid>
-    <pubDate>Wed, 30 Sep 2026 12:00:00 +0000</pubDate>
-    <description>Le résident type d'aujourd'hui a treize ans de plus que celui d'il y a vingt ans. Un premier emploi à l'hôtel de ville, une vraie place à la table, pis le jeune talent qui porte déjà cette campagne.</description>
+    <title>Presque deux cases de stationnement pour un studio : les règles qui bloquent les logements ici</title>
+    <link>https://denispirollo2026.ca/fr/plans/housing/</link>
+    <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/housing/</guid>
+    <pubDate>Thu, 01 Oct 2026 12:00:00 +0000</pubDate>
+    <description>Pendant vingt ans, notre population a baissé alors que les villes autour grandissaient. Le terrain qui se fait nettoyer en ce moment, les règlements qu'un conseil peut corriger lui-même, et le monde que Denis va appeler lui-même.</description>
   </item>
   <item>
     <title>Zéro autobus. Une loi. Quatre votes.</title>
@@ -77,25 +91,11 @@
     <description>Six ans d'archives du conseil, pis pas un vote ne montre qui a voté de quel bord. C'est parfaitement légal, pis ça peut finir le jour où quelqu'un le demande. Le plan pour mettre chaque vote sur les grosses affaires au registre, avec les noms, là où vous pouvez le consulter.</description>
   </item>
   <item>
-    <title>L'hôtel de ville coûte 37 pour cent de plus qu'il y a cinq ans. L'audit qui va nous dire pourquoi.</title>
-    <link>https://denispirollo2026.ca/fr/plans/technology/</link>
-    <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/technology/</guid>
-    <pubDate>Tue, 29 Sep 2026 12:00:00 +0000</pubDate>
-    <description>Faire rouler l'hôtel de ville coûte 37 pour cent de plus qu'il y a cinq ans. Pis aucune ligne dans les livres ne dit ce que la technologie coûte. L'audit qui compte les heures, les services qui passent en ligne, pis la promesse que personne ne perd sa job là-dedans.</description>
-  </item>
-  <item>
     <title>À moitié pleines par temps sec : ce que nos usines pis notre réseau électrique peuvent vraiment prendre</title>
     <link>https://denispirollo2026.ca/fr/plans/infrastructure/</link>
     <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/infrastructure/</guid>
     <pubDate>Tue, 29 Sep 2026 12:00:00 +0000</pubDate>
     <description>L'usine d'épuration a roulé à peu près à la moitié de sa cote l'an passé, l'usine de filtration a utilisé moins du tiers à sa journée la plus occupée, pis Hydro One voit de la place pour des logements jusqu'en 2037. Les vraies limites, c'est les orages, une grosse industrie pis les pannes. Pis le chiffre que personne n'a publié.</description>
-  </item>
-  <item>
-    <title>Presque deux cases de stationnement pour un studio : les règles qui bloquent les logements ici</title>
-    <link>https://denispirollo2026.ca/fr/plans/housing/</link>
-    <guid isPermaLink="true">https://denispirollo2026.ca/fr/plans/housing/</guid>
-    <pubDate>Tue, 29 Sep 2026 12:00:00 +0000</pubDate>
-    <description>Pendant vingt ans, notre population a baissé alors que les villes autour grandissaient. Le terrain qui se fait nettoyer en ce moment, les règlements qu'un conseil peut corriger lui-même, et le monde que Denis va appeler lui-même.</description>
   </item>
 </channel>
 </rss>
