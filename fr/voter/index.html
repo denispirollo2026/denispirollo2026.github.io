@@ -1249,6 +1249,9 @@
 
 
 
+
+
+
 <section class="article-view active" id="view-vote">
   <div class="wrap vote-wrap">
     <a class="art-back" href="/fr/">&larr; Retour au site</a>
@@ -1322,7 +1325,7 @@
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"books":"/fr/plans/books/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","infrastructure":"/fr/plans/infrastructure/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","roads":"/fr/plans/roads/","technology":"/fr/plans/technology/","transparency":"/fr/plans/transparency/","transport":"/fr/plans/transport/","youth":"/fr/plans/youth/"};
+  var PLAN_PAGES = {"alto":"/fr/plans/alto/","books":"/fr/plans/books/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","infrastructure":"/fr/plans/infrastructure/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","roads":"/fr/plans/roads/","technology":"/fr/plans/technology/","transparency":"/fr/plans/transparency/","transport":"/fr/plans/transport/","youth":"/fr/plans/youth/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }

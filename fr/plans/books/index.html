@@ -1513,6 +1513,9 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
 
 
 
+
+
+
 <section class="article-view active" id="view-books" data-updated="2026-09-30">
   <div class="wrap art-wrap">
     <a class="art-back" href="/fr/#plans">
@@ -1885,7 +1888,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
   })();
 
   /* each published long read has its own address; an old #/plans/<slug> link lands there */
-  var PLAN_PAGES = {"books":"/fr/plans/books/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","infrastructure":"/fr/plans/infrastructure/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","roads":"/fr/plans/roads/","technology":"/fr/plans/technology/","transparency":"/fr/plans/transparency/","transport":"/fr/plans/transport/","youth":"/fr/plans/youth/"};
+  var PLAN_PAGES = {"alto":"/fr/plans/alto/","books":"/fr/plans/books/","campus":"/fr/plans/campus/","housing":"/fr/plans/housing/","infrastructure":"/fr/plans/infrastructure/","main-street":"/fr/plans/main-street/","mainstreet":"/fr/plans/main-street/","park":"/fr/plans/park/","partners":"/fr/plans/partners/","powers":"/fr/plans/powers/","roads":"/fr/plans/roads/","technology":"/fr/plans/technology/","transparency":"/fr/plans/transparency/","transport":"/fr/plans/transport/","youth":"/fr/plans/youth/"};
   function route(){
     var m = location.hash.match(/^#\/plans\/([a-z-]+)$/);
     if(m && PLAN_PAGES[m[1]]){ location.replace(PLAN_PAGES[m[1]]); return; }
@@ -4177,7 +4180,7 @@ button.pm-lever-btn:focus-visible,.pm-share:focus-visible,.pm-toc summary:focus-
 
 </script>
 <script id="sig-js">
-window.SIG_PLANS=[["roads", "Roads plan for Hawkesbury", "Plan des routes pour Hawkesbury"], ["main-street", "Main Street and waterfront plan for Hawkesbury", "Plan pour la rue Main et le bord de l'eau à Hawkesbury"], ["youth", "Young people and jobs plan for Hawkesbury", "Plan pour nos jeunes et les jobs à Hawkesbury"], ["housing", "Housing plan for Hawkesbury", "Plan pour le logement à Hawkesbury"], ["books", "Open the books: Hawkesbury's budget", "Ouvrir les livres : le budget de Hawkesbury"], ["park", "Industrial park plan for Hawkesbury", "Plan pour le parc industriel de Hawkesbury"], ["technology", "Town Hall process audit for Hawkesbury", "Audit des processus de l'hôtel de ville de Hawkesbury"], ["powers", "What the mayor of Hawkesbury can do", "Ce que le maire de Hawkesbury peut faire"], ["transparency", "Council transparency plan for Hawkesbury", "Plan de transparence du conseil de Hawkesbury"], ["campus", "A training campus for Hawkesbury: the idea", "Un campus de formation pour Hawkesbury : l'idée"], ["partners", "Regional partnerships plan for Hawkesbury", "Plan des partenariats régionaux pour Hawkesbury"], ["transport", "Public transit plan for Hawkesbury", "Plan pour le transport en commun à Hawkesbury"], ["infrastructure", "Water, sewer and power capacity plan for Hawkesbury", "Plan pour la capacité en eau, en égout et en électricité à Hawkesbury"]];
+window.SIG_PLANS=[["roads", "Roads plan for Hawkesbury", "Plan des routes pour Hawkesbury"], ["main-street", "Main Street and waterfront plan for Hawkesbury", "Plan pour la rue Main et le bord de l'eau à Hawkesbury"], ["youth", "Young people and jobs plan for Hawkesbury", "Plan pour nos jeunes et les jobs à Hawkesbury"], ["housing", "Housing plan for Hawkesbury", "Plan pour le logement à Hawkesbury"], ["books", "Open the books: Hawkesbury's budget", "Ouvrir les livres : le budget de Hawkesbury"], ["park", "Industrial park plan for Hawkesbury", "Plan pour le parc industriel de Hawkesbury"], ["technology", "Town Hall process audit for Hawkesbury", "Audit des processus de l'hôtel de ville de Hawkesbury"], ["powers", "What the mayor of Hawkesbury can do", "Ce que le maire de Hawkesbury peut faire"], ["transparency", "Council transparency plan for Hawkesbury", "Plan de transparence du conseil de Hawkesbury"], ["campus", "A training campus for Hawkesbury: the idea", "Un campus de formation pour Hawkesbury : l'idée"], ["partners", "Regional partnerships plan for Hawkesbury", "Plan des partenariats régionaux pour Hawkesbury"], ["transport", "Public transit plan for Hawkesbury", "Plan pour le transport en commun à Hawkesbury"], ["infrastructure", "Water, sewer and power capacity plan for Hawkesbury", "Plan pour la capacité en eau, en égout et en électricité à Hawkesbury"], ["alto", "Position on Alto high-speed rail for Hawkesbury: a stop, or a real connection", "Position sur le train à grande vitesse Alto pour Hawkesbury : un arrêt, ou un vrai lien"]];
 /* Whiskey and Peanut, two small easter eggs in the river town. Whiskey, Denis's ginger cat, sits on a high perch (the
    bridge's top beam, else a roof ridge) with his tail hanging over the edge. Peanut, the chipmunk from Denis's garage who
    has never once handed over the screwdriver, sits up at the foot of the lawn sign, holding it. Click either one and it
